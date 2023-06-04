@@ -5,10 +5,11 @@ description: > # this means to ignore newlines until "baseurl:"
   I am a graduate instructor and Ph.D. candidate in Agricultural and Applied Economics at Texas Tech University. 
   My research agenda is broadly focused on developing programmable stochastic models of resource use behavior to inform resource policy via high-resolution data. 
 # baseurl: "/" # the subpath of your site, e.g. /blog/
-url: "https://zacharymcgee.net" # the base hostname & protocol for your site
+url: "https://syedmfuad.net" # the base hostname & protocol for your site
 googlescholar: https://scholar.google.com/citations?user=wlRQLtwAAAAJ&hl=en
 orcid: https://orcid.org/0000-0002-2462-0269
-github_username:  zacmcgee
+github_username:  syedmfuad
+linkedin: https://www.linkedin.com/in/syedmfuad
 permalink: /blog/:year/:month/:title.html
 gems:
   - jekyll-sitemap
