@@ -2,7 +2,7 @@
 layout: default
 ---
 <img style="width=209px;height=375px;float:left;padding:15px;"
-src="/images/photo.png" alt="" width="209" height="375">
+src="/images/photo.jpg" alt="" width="209" height="375">
 
 Welcome to my website. I am a graduate instructor and Ph.D. candidate in Agricultural and Applied Economics at Texas Tech University. Before that, I earned my B.S. in Finance and Mathematics.
 
