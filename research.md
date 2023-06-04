@@ -19,16 +19,15 @@ The final paper examines the extent to which a persistent, racial property taxat
 Muriuki, J., Hudson, D. **Fuad, Syed, M.** March, R., Lacombe, D. 2023. "Spillover Effect of Violent Conflicts on Food Insecurity in Sub-Saharan Africa." *Food Policy, 115.* DOI: [10.1177/10659129211020830](https://doi.org/10.1016/j.foodpol.2023.102417) <br><br>
 *We examine violent conflict's spillover effects on food insecurity in Uganda, Ethiopia, and Malawi. Using a contiguity matrix weighted on the distance between housing units and data from the Living Standard Measurement Survey, we find a statistically significant spillover effect of violent conflict on food security in Ethiopia and Uganda. Statistically significant indirect effects of violent conflict on food security were negative within Malawi and positive within Ethiopia. Direct and spillover effects of violent conflicts and other covariates on food security are also analyzed.*<br> 
 
-### Working Papers <br> 
-Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks. (with Michael C. Farmer) <br>
-Residential Property Tax Discrimination in Atlanta, GA. (with Michael C. Farmer) <br>
-Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) <br> 
-Comparative Effectiveness of Machine Learning Methods for Causal Inference. (with Syed Badruddoza and Modhurima Amin) <br> 
-Determinants of the Presence, Density, and Popularity of U.S. Food Retailers. (with Syed Badruddoza and Modhurima Amin) <br> 
-DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data. (with Shakil Haider and Darren Hudson) <br> 
-Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) <br> 
-
 ### Papers in Review <br> 
-Congressional Distribution of Power and the Reach of the Federal Government, 1865-1946 (with Derek A. Epp and Sean M. Theriault) *(In Progress)*<br>
-The Voting Behavior of the Federalist Society Senators in Federal Judicial Nominations (with Christine C. Bird and Jonathan M. King) *(In Progress)*<br>
-Differential Electoral Coordination of House Republican Intraparty Organizations *(In Progress)*
+Violent Conflicts and their Impact on Food Insecurity in Sub-Saharan Africa. (with James Muriuki and Darren Hudson) <br> 
+Individual, Household, and Community Resilience and Coping Strategies to Violent Conflict Impacts in Sub-Saharan Africa. (with James Muriuki and Darren Hudson) <br> 
+
+### Working Papers <br> 
+Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks. (with Michael C. Farmer) *(In Progress)*<br>
+Residential Property Tax Discrimination in Atlanta, GA. (with Michael C. Farmer) *(In Progress)*<br>
+Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) *(In Progress)*<br> 
+Comparative Effectiveness of Machine Learning Methods for Causal Inference. (with Syed Badruddoza and Modhurima Amin) *(In Progress)*<br> 
+Determinants of the Presence, Density, and Popularity of U.S. Food Retailers. (with Syed Badruddoza and Modhurima Amin) *(In Progress)*<br> 
+DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data. (with Shakil Haider and Darren Hudson) *(In Progress)*<br> 
+Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) *(In Progress)*<br> 
