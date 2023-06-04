@@ -34,6 +34,6 @@ Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties. (with Shakil 
 
 ### Pre-2019 Publications <br>
 Bhattacharya, D., Rahman, M.R., **Fuad, Syed, M.** (2019). How Coherent are Trade and Investment Policies of the Southern Finance Providers? A Case Study on Indo-Bangla Lines of Credit. *New York: United Nations
-Development Program.*
+Development Program.*<br>
 **Fuad, Syed, M.**, et al. (2018). Local governance, decentralization and corruption in Bangladesh and Nigeria. *London: Overseas Development Institute (ODI)*
 
