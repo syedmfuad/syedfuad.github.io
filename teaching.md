@@ -3,10 +3,10 @@ layout: page
 title: Teaching
 permalink: /teaching/
 ---
-At Texas Tech, I teach the undergraduate Agricultural Statistics (*Introduction to Statistics*) and conduct lab classes. I also serve as a teaching assistant for graduate courses in Advanced Natural Resource Economics and Agribusiness Finance. 
+At Texas Tech, I teach the undergraduate Agricultural Statistics (*Introduction to Statistics*) and conduct lab classes. This is a required course for all degree programs in the Agricultural & Applied Economics Department and a core course in the curriculum in Davis College. I also serve as a teaching assistant for graduate courses in Advanced Natural Resource Economics and Agribusiness Finance. 
 
 ### Instructor of Record<br>
-#### Introduction to American Politics<br>
+#### Agricultural Statistics (AAEC 2401) <br>
 I approach my Introduction to American Politics course by explicitly placing the historical development of the United States political system at its heart. The course starts with the first African slaves brought to the colonies and traces the political develop of the country through the most recent developments in our political institutions such as centralized leadership in Congress and the Imperial Presidency. I am a firm believer in the idea that history can tell us much about our current political situation. While I am certainly not a historian or even an APD scholar, I personally find history to be critical to my own understanding of politics within the United States and around the world.
 
 In addition to my lectures, I also regularly assign outside readings from the popular press that students discuss in small groups. These articles are meant to stimulate discussion around big ideas in American politics today or forced students to debate two sides of a contested issue. For example, one week students wrestle with whether or not the United States Senate should even exist; another week they debate the role of federal regulations in protecting or harming Americans and their impact on the economy. At all times I strive to present an objective view of politics. As someone with a longstanding interest in American politics, I know it to be true that most people want to make up their own minds. Presenting students with diverse perspectives and facts will help them shape their own opinions and take ownership over different ideas about what it means to be a citizen in the United States today. Ideally, these developments will also push them to become more civically engaged too.
