@@ -39,6 +39,8 @@ DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data. (with
 
 Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) *(In Progress)*<br> 
 
+The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) *(In Progress)*<br> 
+
 ### Pre-2019 Publications <br>
 Bhattacharya, D., Rahman, M.R., **Fuad, Syed, M.** (2019). How Coherent are Trade and Investment Policies of the Southern Finance Providers? A Case Study on Indo-Bangla Lines of Credit. *New York: United Nations
 Development Program.*<br>
