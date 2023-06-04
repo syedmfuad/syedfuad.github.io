@@ -21,19 +21,27 @@ Muriuki, J., Hudson, D. **Fuad, Syed, M.** March, R., Lacombe, D. 2023. "Spillov
 
 ### Papers in Review <br> 
 Violent Conflicts and their Impact on Food Insecurity in Sub-Saharan Africa. (with James Muriuki and Darren Hudson) <br> 
+
 Individual, Household, and Community Resilience and Coping Strategies to Violent Conflict Impacts in Sub-Saharan Africa. (with James Muriuki and Darren Hudson) <br> 
 
 ### Working Papers <br> 
 Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks. (with Michael C. Farmer) *(In Progress)*<br>
+
 Residential Property Tax Discrimination in Atlanta, GA. (with Michael C. Farmer) *(In Progress)*<br>
+
 Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) *(In Progress)*<br> 
+
 Comparative Effectiveness of Machine Learning Methods for Causal Inference. (with Syed Badruddoza and Modhurima Amin) *(In Progress)*<br> 
+
 Determinants of the Presence, Density, and Popularity of U.S. Food Retailers. (with Syed Badruddoza and Modhurima Amin) *(In Progress)*<br> 
+
 DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data. (with Shakil Haider and Darren Hudson) *(In Progress)*<br> 
+
 Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) *(In Progress)*<br> 
 
 ### Pre-2019 Publications <br>
 Bhattacharya, D., Rahman, M.R., **Fuad, Syed, M.** (2019). How Coherent are Trade and Investment Policies of the Southern Finance Providers? A Case Study on Indo-Bangla Lines of Credit. *New York: United Nations
 Development Program.*<br>
+
 **Fuad, Syed, M.**, et al. (2018). Local governance, decentralization and corruption in Bangladesh and Nigeria. *London: Overseas Development Institute (ODI)*
 
