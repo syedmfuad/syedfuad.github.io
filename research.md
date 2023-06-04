@@ -31,6 +31,8 @@ Residential Property Tax Discrimination in Atlanta, GA. (with Michael C. Farmer)
 
 Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) *(In Progress)*<br> 
 
+A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA. (with Michael C. Farmer and Abidemi Adisa) *(In Progress)*<br> 
+
 Comparative Effectiveness of Machine Learning Methods for Causal Inference. (with Syed Badruddoza and Modhurima Amin) *(In Progress)*<br> 
 
 Determinants of the Presence, Density, and Popularity of U.S. Food Retailers. (with Syed Badruddoza and Modhurima Amin) *(In Progress)*<br> 
