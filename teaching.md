@@ -19,4 +19,6 @@ At Texas Tech, I teach the undergraduate Agricultural Statistics (*Introduction 
 * AAEC 6302: Food, Agriculture, and Natural Resource Policy Analysis (Fall 2021)
 * AGEC 240 (Mayville State University): Trends & Issues in Agriculture (Fall 2022)
 
+
+
  *Detailed course evaluations per course are available upon request.*
