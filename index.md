@@ -10,5 +10,5 @@ My research agenda is broadly focused on developing programmable stochastic mode
 
 My academic work has been published in Food Policy. Current projects, including working papers, can be found [here](/research/). Requests for drafts of working papers are welcome. To request a draft, please feel free to email me. If you would like a copy of my CV, it can be found [here](/FuadSyed_CV_12152022.pdf). 
 
-I have [teaching](/teaching/) experience in statistics and have TA-ed in graduate-level quantitative methodology and undergraduate-level finance. 
+I have [teaching](/teaching/) experience in statistics and have TA-ed in graduate-level quantitative methodology and undergraduate-level finance courses. 
 
