@@ -6,7 +6,7 @@ description: > # this means to ignore newlines until "baseurl:"
   My research agenda is broadly focused on developing programmable stochastic models of resource use behavior to inform resource policy via high-resolution data. 
 # baseurl: "/" # the subpath of your site, e.g. /blog/
 url: "https://syedmfuad.net" # the base hostname & protocol for your site
-googlescholar_username: https://scholar.google.com/citations?user=COaq5fAAAAAJ&hl=en
+googlescholar_username: user=COaq5fAAAAAJ&hl=en
 orcid: https://orcid.org/0000-0002-2462-0269
 github_username:  syedmfuad
 linkedin: https://www.linkedin.com/in/syedmfuad
