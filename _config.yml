@@ -10,6 +10,7 @@ googlescholar_username: https://scholar.google.com/citations?user=COaq5fAAAAAJ&h
 orcid: https://orcid.org/0000-0002-2462-0269
 github_username:  syedmfuad
 linkedin: https://www.linkedin.com/in/syedmfuad
+twitter_username: syedmfuad
 permalink: /blog/:year/:month/:title.html
 gems:
   - jekyll-sitemap
