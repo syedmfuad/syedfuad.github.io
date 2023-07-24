@@ -48,6 +48,8 @@ Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties. (with Shakil 
 The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) *(In Progress)*<br> 
 
 ### Pre-2019 Publications <br>
+Prior to my Ph.D., I worked primarily in policy, especially related to international development. My work involved collaboration and grant-specific research with multilateral organizations and international agencies like United Nations, DFID, British Academy, Overseas Development Institute. Some selected works include: 
+
 Bhattacharya, D., Rahman, M.R., **Fuad, Syed, M.** (2019). How Coherent are Trade and Investment Policies of the Southern Finance Providers? A Case Study on Indo-Bangla Lines of Credit. *New York: United Nations
 Development Program.*<br>
 
