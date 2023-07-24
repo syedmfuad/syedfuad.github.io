@@ -19,16 +19,18 @@ Muriuki, J., Hudson, D. **Fuad, Syed, M.** March, R., Lacombe, D. 2023. "Spillov
 *We examine violent conflict's spillover effects on food insecurity in Uganda, Ethiopia, and Malawi. Using a contiguity matrix weighted on the distance between housing units and data from the Living Standard Measurement Survey, we find a statistically significant spillover effect of violent conflict on food security in Ethiopia and Uganda. Statistically significant indirect effects of violent conflict on food security were negative within Malawi and positive within Ethiopia. Direct and spillover effects of violent conflicts and other covariates on food security are also analyzed.*<br> 
 
 ### Papers in Review <br> 
-Violent Conflicts and their Impact on Food Insecurity in Sub-Saharan Africa. (with James Muriuki and Darren Hudson) <br> 
+Violent Conflicts and their Impact on Food Insecurity in Sub-Saharan Africa. (*R&R*, with James Muriuki and Darren Hudson) <br> 
 
-Individual, Household, and Community Resilience and Coping Strategies to Violent Conflict Impacts in Sub-Saharan Africa. (with James Muriuki and Darren Hudson) <br> 
+Individual, Household, and Community Resilience and Coping Strategies to Violent Conflict Impacts in Sub-Saharan Africa. (*R&R*, with James Muriuki and Darren Hudson) <br> 
 
 ### Working Papers <br> 
-Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks. (with Michael C. Farmer) *(In Progress)*<br>
+Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks. <br> 
+
+Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) <br> 
+
+A Problem with Distance Variables and Alternatives for their Use. (with Michael C. Farmer, Kusum Naithani, and Donald Lacombe) <br> 
 
 Residential Property Tax Discrimination in Atlanta, GA. (with Michael C. Farmer) *(In Progress)*<br>
-
-Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) *(In Progress)*<br> 
 
 A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA. (with Michael C. Farmer and Abidemi Adisa) *(In Progress)*<br> 
 
