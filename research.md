@@ -5,7 +5,7 @@ permalink: /research/
 ---
 As an applied microeconomist, my work involves developing programmable stochastic models that employ very high-resolution data. The emphasis on high-resolution data coupled with complex, emerging methodologies to manage very local and specific resources in a very targeted way is a common theme of my research. Broadly, my two most competitive skills are the ability to locate very quickly, very high-resolution data that then demand advanced numerical methods to answer these highly nuanced policy questions that also enjoy immediate currency in public discourse. 
 
-My research interest broadly lies in computational social sciences and natural resource, and more specifically in network analysis, spatial analysis, machine learning, causal inference, and practically any research that incolves generating insights from the harmonization and use of large, high resolution data. I enjoy working with interdisciplinary teams and have experience working with remotely sensed data, gridded agricultural data, GIS, and geospatial analysis in addition to regular economic analysis and modeling. 
+My research interest broadly lies in computational social sciences and natural resources. More specifically, I am interested in network analysis, spatial analysis, machine learning, causal inference, and practically any research that incolves generating insights from the harmonization and use of large, high resolution data. I enjoy working with interdisciplinary teams and have experience working with remotely sensed data, gridded agricultural data, GIS, and geospatial analysis in addition to regular economic analysis and modeling. 
 
 Requests for drafts of working papers are welcome. Please feel free to email me your request.
 
