@@ -23,13 +23,14 @@ Violent Conflicts and their Impact on Food Insecurity in Sub-Saharan Africa. (*R
 
 Individual, Household, and Community Resilience and Coping Strategies to Violent Conflict Impacts in Sub-Saharan Africa. (*R&R*, with James Muriuki and Darren Hudson) <br> 
 
-### Working Papers <br> 
+### Papers in Submission <br> 
 Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks. <br> 
 
 Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) <br> 
 
 A Problem with Distance Variables and Alternatives for their Use. (with Michael C. Farmer, Kusum Naithani, and Donald Lacombe) <br> 
 
+### Working Papers <br> 
 Residential Property Tax Discrimination in Atlanta, GA. (with Michael C. Farmer) *(In Progress)*<br>
 
 A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA. (with Michael C. Farmer and Abidemi Adisa) *(In Progress)*<br> 
