@@ -26,7 +26,7 @@ Violent Conflicts and their Impact on Food Insecurity in Sub-Saharan Africa. (*R
 Individual, Household, and Community Resilience and Coping Strategies to Violent Conflict Impacts in Sub-Saharan Africa. (*R&R*, with James Muriuki and Darren Hudson) <br> 
 
 ### Papers in Submission <br> 
-Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks. <br> 
+Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks. (with Michael C. Farmer) <br> 
 
 Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) <br> 
 
