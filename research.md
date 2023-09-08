@@ -34,11 +34,11 @@ Comparative Effectiveness of Machine Learning Methods for Causal Inference. (wit
 Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) <br> 
 
 ### Working Papers <br> 
-Residential Property Tax Discrimination in Atlanta, GA. (with Michael C. Farmer) *(In progress)*<br>
+Residential Property Tax Discrimination in Atlanta, GA. (with Michael C. Farmer) *(In prep)*<br>
 
-A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA. (with Michael C. Farmer and Abidemi Adisa) *(In progress)*<br> 
+A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA. (with Michael C. Farmer and Abidemi Adisa) *(In prep)*<br> 
 
-Determinants of the Presence, Density, and Popularity of U.S. Food Retailers. (with Syed Badruddoza and Modhurima Amin) *(In progress)*<br> 
+Determinants of the Presence, Density, and Popularity of U.S. Food Retailers. (with Syed Badruddoza and Modhurima Amin) *(In process of submission)*<br> 
 
 DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data. (with Shakil Haider and Darren Hudson) *(In process of submission)*<br> 
 
