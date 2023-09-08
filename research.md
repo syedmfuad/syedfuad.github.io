@@ -21,22 +21,22 @@ Muriuki, J., Hudson, D. **Fuad, Syed, M.** March, R., Lacombe, D. 2023. "Spillov
 *We examine violent conflict's spillover effects on food insecurity in Uganda, Ethiopia, and Malawi. Using a contiguity matrix weighted on the distance between housing units and data from the Living Standard Measurement Survey, we find a statistically significant spillover effect of violent conflict on food security in Ethiopia and Uganda. Statistically significant indirect effects of violent conflict on food security were negative within Malawi and positive within Ethiopia. Direct and spillover effects of violent conflicts and other covariates on food security are also analyzed.*<br> 
 
 ### Papers in Review <br> 
-Violent Conflicts and their Impact on Food Insecurity in Sub-Saharan Africa. (*R&R*, with James Muriuki and Darren Hudson) <br> 
+Violent Conflicts and their Impact on Food Insecurity in Sub-Saharan Africa. (*R&R* at Agriculture and Food Security, with James Muriuki and Darren Hudson) <br> 
 
-Individual, Household, and Community Resilience and Coping Strategies to Violent Conflict Impacts in Sub-Saharan Africa. (*R&R*, with James Muriuki and Darren Hudson) <br> 
+Individual, Household, and Community Resilience and Coping Strategies to Violent Conflict Impacts in Sub-Saharan Africa. (*R&R* at Agrekon, with James Muriuki and Darren Hudson) <br> 
 
-Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks. (with Michael C. Farmer) <br> 
+Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks. (under review at *Social Networks* with Michael C. Farmer) <br> 
 
-A Problem with Distance Variables and Alternatives for their Use. (with Michael C. Farmer, Kusum Naithani, and Donald Lacombe) <br> 
+A Problem with Distance Variables and Alternatives for their Use. (under review at *Journal of Real Estate Research* with Michael C. Farmer, Kusum Naithani, and Donald Lacombe) <br> 
+
+Comparative Effectiveness of Machine Learning Methods for Causal Inference. (with Syed Badruddoza and Modhurima Amin) <br> 
+
+Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) <br> 
 
 ### Working Papers <br> 
 Residential Property Tax Discrimination in Atlanta, GA. (with Michael C. Farmer) *(In Progress)*<br>
 
-Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) *(In Progress)*<br> 
-
 A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA. (with Michael C. Farmer and Abidemi Adisa) *(In Progress)*<br> 
-
-Comparative Effectiveness of Machine Learning Methods for Causal Inference. (with Syed Badruddoza and Modhurima Amin) *(In Progress)*<br> 
 
 Determinants of the Presence, Density, and Popularity of U.S. Food Retailers. (with Syed Badruddoza and Modhurima Amin) *(In Progress)*<br> 
 
@@ -47,7 +47,7 @@ Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties. (with Shakil 
 The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) *(In Progress)*<br> 
 
 ### Pre-2019 Publications <br>
-Prior to my Ph.D., I worked primarily in policy, especially related to international development. My work involved collaboration and grant-specific research with multilateral organizations and international agencies like United Nations, DFID, British Academy, Overseas Development Institute. Some selected works include: 
+Prior to my Ph.D., I worked primarily in policy related to development economics. My work involved collaboration and grant-specific research with multilateral organizations and international agencies including United Nations, Department for International Development (now the Foreign, Commonwealth and Development Office), British Academy, Overseas Development Institute, etc. Some of my selected works include: 
 
 Bhattacharya, D., Rahman, M.R., **Fuad, Syed, M.** (2019). How Coherent are Trade and Investment Policies of the Southern Finance Providers? A Case Study on Indo-Bangla Lines of Credit. *New York: United Nations
 Development Program.*<br>
