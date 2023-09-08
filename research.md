@@ -34,17 +34,17 @@ Comparative Effectiveness of Machine Learning Methods for Causal Inference. (wit
 Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) <br> 
 
 ### Working Papers <br> 
-Residential Property Tax Discrimination in Atlanta, GA. (with Michael C. Farmer) *(In Progress)*<br>
+Residential Property Tax Discrimination in Atlanta, GA. (with Michael C. Farmer) *(In progress)*<br>
 
-A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA. (with Michael C. Farmer and Abidemi Adisa) *(In Progress)*<br> 
+A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA. (with Michael C. Farmer and Abidemi Adisa) *(In progress)*<br> 
 
-Determinants of the Presence, Density, and Popularity of U.S. Food Retailers. (with Syed Badruddoza and Modhurima Amin) *(In Progress)*<br> 
+Determinants of the Presence, Density, and Popularity of U.S. Food Retailers. (with Syed Badruddoza and Modhurima Amin) *(In progress)*<br> 
 
-DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data. (with Shakil Haider and Darren Hudson) <br> 
+DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data. (with Shakil Haider and Darren Hudson) *(In process of submission)*<br> 
 
-Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) <br> 
+Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) *(In proces of submission)*<br> 
 
-The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) <br> 
+The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) *(In process of submission)*<br> 
 
 ### Pre-2019 Publications <br>
 Prior to my Ph.D., I worked in policy related to international development economics. My work involved collaborative and grant-specific research with multilateral organizations and international agencies including United Nations, Department for International Development (now the Foreign, Commonwealth and Development Office), British Academy, Overseas Development Institute, etc. Some of my selected works include: 
