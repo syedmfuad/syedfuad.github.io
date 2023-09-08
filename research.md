@@ -25,9 +25,9 @@ Violent Conflicts and their Impact on Food Insecurity in Sub-Saharan Africa. (*R
 
 Individual, Household, and Community Resilience and Coping Strategies to Violent Conflict Impacts in Sub-Saharan Africa. (*R&R* at Agrekon, with James Muriuki and Darren Hudson) <br> 
 
-Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks. (under review at *Social Networks* with Michael C. Farmer) <br> 
+Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks. (with Michael C. Farmer) <br> 
 
-A Problem with Distance Variables and Alternatives for their Use. (under review at *Journal of Real Estate Research* with Michael C. Farmer, Kusum Naithani, and Donald Lacombe) <br> 
+A Problem with Distance Variables and Alternatives for their Use. (with Michael C. Farmer, Kusum Naithani, and Donald Lacombe) <br> 
 
 Comparative Effectiveness of Machine Learning Methods for Causal Inference. (with Syed Badruddoza and Modhurima Amin) <br> 
 
@@ -40,11 +40,11 @@ A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in
 
 Determinants of the Presence, Density, and Popularity of U.S. Food Retailers. (with Syed Badruddoza and Modhurima Amin) *(In Progress)*<br> 
 
-DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data. (with Shakil Haider and Darren Hudson) *(In Progress)*<br> 
+DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data. (with Shakil Haider and Darren Hudson) <br> 
 
-Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) *(In Progress)*<br> 
+Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) <br> 
 
-The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) *(In Progress)*<br> 
+The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) <br> 
 
 ### Pre-2019 Publications <br>
 Prior to my Ph.D., I worked primarily in policy related to development economics. My work involved collaboration and grant-specific research with multilateral organizations and international agencies including United Nations, Department for International Development (now the Foreign, Commonwealth and Development Office), British Academy, Overseas Development Institute, etc. Some of my selected works include: 
