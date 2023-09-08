@@ -47,10 +47,10 @@ Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties. (with Shakil 
 The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties. (with Shakil Haider and Darren Hudson) <br> 
 
 ### Pre-2019 Publications <br>
-Prior to my Ph.D., I worked primarily in policy related to development economics. My work involved collaboration and grant-specific research with multilateral organizations and international agencies including United Nations, Department for International Development (now the Foreign, Commonwealth and Development Office), British Academy, Overseas Development Institute, etc. Some of my selected works include: 
+Prior to my Ph.D., I worked in policy related to international development economics. My work involved collaborative and grant-specific research with multilateral organizations and international agencies including United Nations, Department for International Development (now the Foreign, Commonwealth and Development Office), British Academy, Overseas Development Institute, etc. Some of my selected works include: 
 
 Bhattacharya, D., Rahman, M.R., **Fuad, Syed, M.** (2019). How Coherent are Trade and Investment Policies of the Southern Finance Providers? A Case Study on Indo-Bangla Lines of Credit. *New York: United Nations
 Development Program.*<br>
 
-**Fuad, Syed, M.**, et al. (2018). Local governance, decentralization and corruption in Bangladesh and Nigeria. *London: Overseas Development Institute (ODI)*
+Nixon, H., Menocal, A. R., Bhattacharya, D., **Fuad, Syed. M.**, Hassan, I., ... & Yusuf, S. (2018). Local governance, decentralization and corruption in Bangladesh and Nigeria. *London: Overseas Development Institute (ODI)*
 
