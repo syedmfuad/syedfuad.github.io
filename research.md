@@ -18,7 +18,6 @@ The final paper examines the extent to which a persistent, racial property taxat
 
 ### Peer-Reviewed Publications <br>
 Muriuki, J., Hudson, D. **Fuad, Syed, M.** March, R., Lacombe, D. 2023. "Spillover Effect of Violent Conflicts on Food Insecurity in Sub-Saharan Africa." *Food Policy, 115.* DOI: [10.1177/10659129211020830](https://doi.org/10.1016/j.foodpol.2023.102417) <br><br>
-*We examine violent conflict's spillover effects on food insecurity in Uganda, Ethiopia, and Malawi. Using a contiguity matrix weighted on the distance between housing units and data from the Living Standard Measurement Survey, we find a statistically significant spillover effect of violent conflict on food security in Ethiopia and Uganda. Statistically significant indirect effects of violent conflict on food security were negative within Malawi and positive within Ethiopia. Direct and spillover effects of violent conflicts and other covariates on food security are also analyzed.*<br> 
 
 Muriuki, J., Hudson, D. **Fuad, Syed, M.** "The Impact of Conflict on Food Security in Sub-Saharan Africa." *Agriculture & Food Security (Forthcoming)*
 
