@@ -20,9 +20,9 @@ The final paper examines the extent to which a persistent, racial property taxat
 Muriuki, J., Hudson, D. **Fuad, Syed, M.** March, R., Lacombe, D. 2023. "Spillover Effect of Violent Conflicts on Food Insecurity in Sub-Saharan Africa." *Food Policy, 115.* DOI: [10.1177/10659129211020830](https://doi.org/10.1016/j.foodpol.2023.102417) <br><br>
 *We examine violent conflict's spillover effects on food insecurity in Uganda, Ethiopia, and Malawi. Using a contiguity matrix weighted on the distance between housing units and data from the Living Standard Measurement Survey, we find a statistically significant spillover effect of violent conflict on food security in Ethiopia and Uganda. Statistically significant indirect effects of violent conflict on food security were negative within Malawi and positive within Ethiopia. Direct and spillover effects of violent conflicts and other covariates on food security are also analyzed.*<br> 
 
-### Papers in Review <br> 
-Impact of Conflict on Food Security in Sub-Saharan Africa. (*R&R* at Agriculture and Food Security, with James Muriuki and Darren Hudson) <br> 
+Muriuki, J., Hudson, D. **Fuad, Syed, M.** "The Impact of Conflict on Food Security in Sub-Saharan Africa." *Agriculture & Food Security (Forthcoming)*
 
+### Papers in Review <br> 
 Individual, Household, and Community Resilience and Coping Strategies to Conflict in Sub-Saharan Africa. (*R&R* at Agrekon, with James Muriuki and Darren Hudson) <br> 
 
 Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks. (with Michael C. Farmer) <br> 
@@ -33,10 +33,14 @@ Comparative Effectiveness of Machine Learning Methods for Causal Inference. (wit
 
 Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) <br> 
 
+Populists’ Playbook: Impact of Durable Right-Wing Populists on Democratic Quality <br> 
+
 ### Working Papers <br> 
 Residential Property Tax Discrimination in Atlanta, GA. (with Michael C. Farmer) *(In prep)*<br>
 
 A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA. (with Michael C. Farmer and Abidemi Adisa) *(In prep)*<br> 
+
+Can Machine Learning Predict Defaults in Peer-to-Peer Small Loans? (in prep, with Syed Badruddoza & James Muriuki) *(In prep)*<br> 
 
 Determinants of the Presence, Density, and Popularity of U.S. Food Retailers. (with Syed Badruddoza and Modhurima Amin) *(In process of submission)*<br> 
 
