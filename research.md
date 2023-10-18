@@ -30,19 +30,23 @@ Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dyn
 A Problem with Distance Variables and Alternatives for their Use. (with Michael C. Farmer, Kusum Naithani, and Donald Lacombe) <br> 
 
 Comparative Effectiveness of Machine Learning Methods for Causal Inference. (with Syed Badruddoza and Modhurima Amin) <br> 
+[AAEA 2023](/PPT_Comparative%20effectiveness%20of%20causal%20ML.pdf)
 
 Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) <br> 
 
 Populists’ Playbook: Impact of Durable Right-Wing Populists on Democratic Quality <br> 
 
 ### Working Papers <br> 
-Residential Property Tax Discrimination in Atlanta, GA. (with Michael C. Farmer) *(In prep)*<br>
+Residential Property Tax Discrimination in Atlanta, GA. (with Michael C. Farmer) *(In prep)*<br> 
+[Mid-Continent Regional Science Association Meeting 2023](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf)
 
 A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA. (with Michael C. Farmer and Abidemi Adisa) *(In prep)*<br> 
+[Mid-Continent Regional Science Association Meeting 2023](/PPT_Submarket%20separation%20in%20Atlanta.pdf)
 
 Can Machine Learning Predict Defaults in Peer-to-Peer Small Loans? (in prep, with Syed Badruddoza & James Muriuki) *(In prep)*<br> 
 
 Determinants of the Presence, Density, and Popularity of U.S. Food Retailers. (with Syed Badruddoza and Modhurima Amin) *(In process of submission)*<br> 
+[AAEA 2023](/PPT_Determinants%20of%20food%20retailer%20location.pdf)
 
 DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data. (with Shakil Haider and Darren Hudson) *(In process of submission)*<br> 
 
