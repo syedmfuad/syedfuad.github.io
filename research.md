@@ -38,7 +38,7 @@ Muriuki, J., Hudson, D. **Fuad, Syed, M.** "The Impact of Conflict on Food Secur
 
 ### Working Papers <br> 
 **Residential Property Tax Discrimination in Atlanta, GA.** (with Michael C. Farmer) *(In prep)*<br> 
-*Presented at Mid-Continent Regional Science Association Meeting 2023 ([oral presentation](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf))*
+*Presented at Mid-Continent Regional Science Association Meeting 2023, scheduled for AEA/ASSA 2024 ([oral presentation](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf))*
 
 **A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA.** (with Michael C. Farmer and Abidemi Adisa) *(In prep)*<br> 
 *Presented at Mid-Continent Regional Science Association Meeting 2023 ([oral presentation](/PPT_Submarket%20separation%20in%20Atlanta.pdf))*
