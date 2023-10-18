@@ -6,7 +6,7 @@ src="/images/photo.jpg" alt="" width="209" height="209">
 
 I am currently a graduate instructor and Ph.D. candidate in Agricultural and Applied Economics at Texas Tech University. Before that, I completed my undergrad majoring in Finance and Mathematics. 
 
-My research agenda is broadly focused on developing programmable computational models to tackle challenges that arise from real-world data. I leverage large, high resolution data sources - household surveys, home sales, mobile phone GPS, remote sensing, geospatial gridded production - to capture and improve understanding of human networks and resource use behavior to inform resource policy. 
+My research agenda is broadly focused on developing programmable computational models to tackle challenges that arise from real-world data. I leverage **large, high resolution data sources** - household surveys, home sales, mobile phone GPS, remote sensing, geospatial gridded production - to capture and improve understanding of **human networks and resource use behavior** to inform resource policy. 
 
 As an applied microeconomist, my research strengthens the data-policy pathway by using applied econometric and machine learning methods, first by collecting unique, high-resolution data, and then by applying advanced techniques that often require high quality, high-resolution data. 
 
