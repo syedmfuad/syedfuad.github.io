@@ -31,7 +31,7 @@ Presented at AAEA 2023, SEA 2023, Arts and Humanities Conference 2022 & 2023, sc
 A Problem with Distance Variables and Alternatives for their Use. (with Michael C. Farmer, Kusum Naithani, and Donald Lacombe) <br> 
 
 Comparative Effectiveness of Machine Learning Methods for Causal Inference. (with Syed Badruddoza and Modhurima Amin) <br> 
-[AAEA 2023](/PPT_Comparative%20effectiveness%20of%20causal%20ML.pdf)
+Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([oral presentation](/PPT_Comparative%20effectiveness%20of%20causal%20ML.pdf), [poster](/Poster_Comparative%20effectiveness%20of%20causal%20ML.pdf)) 
 
 Profitability of a Two Product Biorefinery. (with Michael C. Farmer and Abidemi Adisa) <br> 
 
