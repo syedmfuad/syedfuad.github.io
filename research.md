@@ -59,7 +59,9 @@ The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties. (with Shakil
 Prior to my Ph.D., I worked in policy related to international development economics. My work involved collaborative and grant-specific research with multilateral organizations and international agencies including United Nations, Department for International Development (now the Foreign, Commonwealth and Development Office), British Academy, Overseas Development Institute, etc. Some of my selected works include: 
 
 Bhattacharya, D., Rahman, M.R., **Fuad, Syed, M.** (2019). How Coherent are Trade and Investment Policies of the Southern Finance Providers? A Case Study on Indo-Bangla Lines of Credit. *New York: United Nations
-Development Program.*<br>
+Development Program.*<br> 
+[External link](https://unsouthsouth.org/2019/03/18/south-south-ideas-how-coherent-are-trade-and-investment-policies-of-the-southern-finance-providers-a-case-study-on-indo-bangla-lines-of-credit-2019/)
 
-Nixon, H., Menocal, A. R., Bhattacharya, D., **Fuad, Syed. M.**, Hassan, I., ... & Yusuf, S. (2018). Local governance, decentralization and corruption in Bangladesh and Nigeria. *London: Overseas Development Institute (ODI)*
+Nixon, H., Menocal, A. R., Bhattacharya, D., **Fuad, Syed. M.**, Hassan, I., ... & Yusuf, S. (2018). Local governance, decentralization and corruption in Bangladesh and Nigeria. *London: Overseas Development Institute (ODI)* 
+[External link](https://odi.org/en/publications/local-governance-decentralisation-and-anti-corruption-in-bangladesh-and-nigeria/), [Country report](https://odi.org/en/about/our-work/decentralisation-multilevel-governance-and-corruption/)
 
