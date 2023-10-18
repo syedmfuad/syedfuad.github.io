@@ -25,7 +25,7 @@ Muriuki, J., Hudson, D. **Fuad, Syed, M.** "The Impact of Conflict on Food Secur
 Individual, Household, and Community Resilience and Coping Strategies to Conflict in Sub-Saharan Africa. (*R&R* at Agrekon, with James Muriuki and Darren Hudson) <br> 
 
 Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks. (with Michael C. Farmer) <br> 
-[AAEA 2023](/PPT_Strength of weak ties.pdf) 
+[AAEA 2023](/PPT_Strength%of%weak%ties.pdf) 
 
 A Problem with Distance Variables and Alternatives for their Use. (with Michael C. Farmer, Kusum Naithani, and Donald Lacombe) <br> 
 
