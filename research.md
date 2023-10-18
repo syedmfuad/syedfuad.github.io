@@ -61,6 +61,6 @@ Bhattacharya, D., Rahman, M.R., **Fuad, Syed, M.** (2019). How Coherent are Trad
 Development Program.*<br> 
 [External link to paper](https://unsouthsouth.org/2019/03/18/south-south-ideas-how-coherent-are-trade-and-investment-policies-of-the-southern-finance-providers-a-case-study-on-indo-bangla-lines-of-credit-2019/)
 
-Nixon, H., Menocal, A. R., Bhattacharya, D., **Fuad, Syed. M.**, Hassan, I., ... & Yusuf, S. (2018). Local governance, decentralization and corruption in Bangladesh and Nigeria. *London: Overseas Development Institute (ODI)* 
+Nixon, H., Menocal, A. R., Bhattacharya, D., **Fuad, Syed. M.**, Hassan, I., ... & Yusuf, S. (2018). Local governance, decentralization and corruption in Bangladesh and Nigeria. *London: Overseas Development Institute (ODI)* <br> 
 [External link to paper](https://odi.org/en/publications/local-governance-decentralisation-and-anti-corruption-in-bangladesh-and-nigeria/), [External link to country report](https://odi.org/en/about/our-work/decentralisation-multilevel-governance-and-corruption/)
 
