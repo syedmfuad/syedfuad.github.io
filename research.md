@@ -36,6 +36,7 @@ Muriuki, J., Hudson, D. **Fuad, Syed, M.** "The Impact of Conflict on Food Secur
 *Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([oral presentation](/PPT_Comparative%20effectiveness%20of%20causal%20ML.pdf), [poster](/Poster_Comparative%20effectiveness%20of%20causal%20ML.pdf))* 
 
 **Profitability of a Two Product Biorefinery.** (with Michael C. Farmer and Abidemi Adisa) <br> 
+*([Oral presentation](/PPT_Bioenergy.pdf))*
 
 **Populists’ Playbook: Impact of Durable Right-Wing Populists on Democratic Quality.** <br> 
 
