@@ -11,10 +11,13 @@ Requests for drafts of working papers are welcome. Please feel free to email me 
 
 ### Dissertation <br>
 My dissertation is organized around three themes. The first examines specific properties of social networks to locate opportunities to fund academic researchers strategically in order to facilitate productivity and network resilience. I use extensive econometric modeling, simulation, and machine learning to examine the productive collaborations of researchers to predict publication output. Using collaboration as the unit of analysis, the analyses determine the expected number of publications, the likelihood that new researchers enter the network through a collaboration, or if an existing researcher will exit. I compare several funding strategies and assess whether network compactness or density contributes to overall topic advancement, in particular, if the most successful strategies exhibit the properties of a small world network. 
+*([Oral presentation](/PPT_Strength%20of%20weak%20ties.pdf), [Poster](/Poster_Strength%20of%20weak%20ties.pdf))*
 
 The second dissertation paper centers on improving output of a biopower process. I was able to locate hourly data on electricity prices at gins for 12 years and develop a stochastic distribution of electricity prices month by month using Bayesian methods. I conduct operations research to allocate variable gin trash volumes to jointly manage ginning and biopower together over a 9-month ginning season over 10,000 simulation years. 
+*([Oral presentation](/PPT_Bioenergy.pdf))*
 
 The final paper examines the extent to which a persistent, racial property taxation gap exists in Atlanta, GA, even after city leadership shifted to minority control. I use high-resolution demographic and sales price data, downscaling geospatial mapping to appropriate scales, to locate neighborhood characteristics of a sale, as well as individual housing characteristics and those of adjacent neighbors. All of these had to be conformed to a uniform scale to provide highly detailed individual outcomes. This reversed a prior finding using much less detailed information that African Americans were under-taxed in Atlanta. 
+*([Oral presentation](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf))*
 
 ### Peer-Reviewed Publications <br>
 Muriuki, J., Hudson, D. **Fuad, Syed, M.** March, R., Lacombe, D. 2023. "Spillover Effect of Violent Conflicts on Food Insecurity in Sub-Saharan Africa." *Food Policy, 115.* DOI: [10.1177/10659129211020830](https://doi.org/10.1016/j.foodpol.2023.102417) <br> 
