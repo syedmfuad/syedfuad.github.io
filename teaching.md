@@ -8,8 +8,8 @@ At Texas Tech, I teach the undergraduate Agricultural Statistics (*Introduction 
 ### Instructor of Record<br>
 * AAEC 2401: Agricultural Statistics<br> 
 
-    + Fall 2022: [Syllabus](/AAEC2401-001_Syllabus_Fall2022.pdf)
-    + Spring 2023: [Syllabus](/AAEC2401-001_Syllabus_Spring2023.pdf)
+    + Fall 2022 (4.30/5.00): [Syllabus](/AAEC2401-001_Syllabus_Fall2022.pdf)
+    + Spring 2023 (4.67/5.00): [Syllabus](/AAEC2401-001_Syllabus_Spring2023.pdf)
 
 ### Teaching Assistant <br>
 * AAEC 6308: Advanced Natural Resource Economics (Fall 2022 & 2023)
