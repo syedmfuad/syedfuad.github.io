@@ -3,7 +3,7 @@ title: Syed Fuad
 email: syed.m.fuad@ttu.edu
 description: > # this means to ignore newlines until "baseurl:"
   I am a graduate instructor and Ph.D. candidate in Agricultural and Applied Economics at Texas Tech University. 
-  My research agenda is broadly focused on developing programmable stochastic models of resource use behavior to inform resource policy via high-resolution data. 
+  My research agenda is broadly focused on developing programmable computational models of networks and resource use behavior to inform resource policy via high-resolution data. 
 # baseurl: "/" # the subpath of your site, e.g. /blog/
 url: "https://syedmfuad.net" # the base hostname & protocol for your site
 googlescholar_username: user=COaq5fAAAAAJ&hl=en
