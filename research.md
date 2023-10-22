@@ -31,6 +31,7 @@ Muriuki, J., Hudson, D. **Fuad, Syed, M.** "The Impact of Conflict on Food Secur
 *Presented at AAEA 2023, SEA 2023, Arts and Humanities Conference 2022 & 2023, Davis College Graduate Poster Competition 2022 & 2023, scheduled for AEA/ASSA 2024 ([oral presentation](/PPT_Strength%20of%20weak%20ties.pdf), [poster](/Poster_Strength%20of%20weak%20ties.pdf))*
 
 **A Problem with Distance Variables and Alternatives for their Use.** (with Michael C. Farmer, Kusum Naithani, and Donald Lacombe) <br> 
+*Presented at Mid-Continent Regional Science Association Meeting 2023 ([oral presentation](/PPT_Distance%20variables.pdf))*
 
 **Comparative Effectiveness of Machine Learning Methods for Causal Inference.** (with Syed Badruddoza and Modhurima Amin) <br> 
 *Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([oral presentation](/PPT_Comparative%20effectiveness%20of%20causal%20ML.pdf), [poster](/Poster_Comparative%20effectiveness%20of%20causal%20ML.pdf))* 
