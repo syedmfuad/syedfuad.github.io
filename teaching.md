@@ -3,7 +3,7 @@ layout: page
 title: Teaching
 permalink: /teaching/
 ---
-At Texas Tech, I teach the undergraduate Agricultural Statistics (*Introduction to Statistics*) and conduct lab classes. This is a required course for all degree programs in the Agricultural & Applied Economics Department and a core course in the curriculum in Davis College. I also serve as a teaching assistant for the graduate course in Advanced Natural Resource Economics and undergraduate course Agribusiness Finance. 
+At Texas Tech, I teach the undergraduate Agricultural Statistics (*Introduction to Statistics*) and conduct lab classes. This is a required course for all degree programs in the Agricultural & Applied Economics Department and a core course in the curriculum in Davis College. I also serve as a teaching assistant for the second-year Ph.D. course in Advanced Natural Resource Economics and third-year undergraduate course Agribusiness Finance. 
 
 ### Instructor of Record<br>
 * AAEC 2401: Agricultural Statistics<br> 
