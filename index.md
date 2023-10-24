@@ -12,7 +12,7 @@ As an applied microeconomist, my research strengthens the data-policy pathway by
 
 Publications, current projects, including working papers, can be found [here](/research/). A copy of my CV can be found [here](/FuadSyed_CV_04152023.pdf). 
 
-I have [teaching](/teaching/) experience in statistics and have TA-ed in graduate-level quantitative methodology and undergraduate-level finance courses. 
+I have [teaching](/teaching/) experience in statistics and have TA-ed in Ph.D. quantitative methodology and undergraduate finance courses. 
 
 
 <!--- My research output and approaches do not fit into a single category. While focused on centralized themes, I attempt to bridge several fields and methodologies. My empirical style is more like that of an applied economist using rigorous empirical approaches to answer questions that enjoy currency. In general, my research involves rigorous modeling coupled with complex, high-resolution data providing a deep understanding of individual behavior. --->
