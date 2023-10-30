@@ -20,9 +20,9 @@ The final paper examines the extent to which a persistent, racial property taxat
 *([Oral presentation](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf))*
 
 ### Peer-Reviewed Publications <br>
-"Spillover Effect of Violent Conflicts on Food Insecurity in Sub-Saharan Africa." (with James Muriuki, Darren Hudon, Donald Lacombe & Ray March) *Food Policy, 115.* DOI: [10.1177/10659129211020830](https://doi.org/10.1016/j.foodpol.2023.102417) <br> 
+"Spillover Effect of Violent Conflicts on Food Insecurity in Sub-Saharan Africa." (with James Muriuki, Darren Hudon, Donald Lacombe & Ray March). *Food Policy, 115.* DOI: [10.1177/10659129211020830](https://doi.org/10.1016/j.foodpol.2023.102417) <br> 
 
-Muriuki, J., Hudson, D. **Fuad, Syed, M.** 2023. "The Impact of Conflict on Food Security: Evidence from Household Data in Ethiopia and Malawi." *Agriculture & Food Security, 12,* 41. DOI: [10.1186/s40066-023-00447-z](https://doi.org/10.1186/s40066-023-00447-z) <br>
+"The Impact of Conflict on Food Security: Evidence from Household Data in Ethiopia and Malawi." (with James Muriuki & Donald Hudson). *Agriculture & Food Security, 12,* 41. DOI: [10.1186/s40066-023-00447-z](https://doi.org/10.1186/s40066-023-00447-z) <br>
 
 ### Papers in Review <br> 
 **Individual, Household, and Community Resilience and Coping Strategies to Conflict in Sub-Saharan Africa.** (*R&R* at Agrekon, with James Muriuki and Darren Hudson) <br> 
