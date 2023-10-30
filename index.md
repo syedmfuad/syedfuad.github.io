@@ -4,7 +4,7 @@ layout: default
 <img style="width=209px;height=209px;float:left;padding:15px;"
 src="/images/photo.jpg" alt="" width="209" height="209">
 
-I am currently a graduate instructor and Ph.D. candidate in Applied Economics at Texas Tech University. Before that, I completed my undergrad majoring in Finance and Mathematics. 
+I am currently a Ph.D. candidate in Applied Economics at Texas Tech University. Before that, I completed my undergrad majoring in Finance and Mathematics. 
 
 My research develops programmable computational models to tackle challenges that arise from real-world data. I leverage **large, high resolution data sources** - microdata, mobile GPS, remote sensing, geospatial gridded data - to capture and improve understanding of **networks and resource-use behavior**. 
 
