@@ -11,7 +11,7 @@ Requests for drafts of working papers are welcome. Please feel free to email me 
 
 ### Dissertation <br>
 My dissertation is organized around three themes. The first examines specific properties of social networks to locate opportunities to fund academic researchers strategically in order to facilitate research productivity and network connectedness. I developed an integrated econometric modeling and simulation method to examine the productive collaborations of researchers to predict publication output. Using collaboration as the unit of analysis, the analyses determine the expected number of publications, the likelihood that new researchers enter the network through a collaboration, or if an existing researcher will exit. I compare several funding strategies and assess whether network compactness or density contributes to overall topic advancement, in particular, if the most successful strategies exhibit the properties of a small-world network. <br>
-*([Oral presentation](/PPT_Strength%20of%20weak%20ties.pdf), [Poster](/Poster_Strength%20of%20weak%20ties.pdf))*
+*([Paper](/PPT_Strength%20of%20weak%20ties.pdf), [Poster](/Poster_Strength%20of%20weak%20ties.pdf))*
 
 The second dissertation paper centers on improving output of a biopower process. I was able to locate hourly data on electricity prices at gins for 12 years and develop a stochastic distribution of electricity prices month by month using Bayesian simulation methods. I conduct operations research to allocate variable gin trash volumes to jointly manage ginning and biopower together over a 9-month ginning season over 10,000 simulation years at different scales of power generation. <br>
 *([Oral presentation](/PPT_Bioenergy.pdf))*
@@ -28,7 +28,7 @@ The final paper examines the extent to which a persistent, racial property taxat
 **Individual, Household, and Community Resilience and Coping Strategies to Conflict in Sub-Saharan Africa** (*R&R* at Agrekon, with James Muriuki and Darren Hudson) <br> 
 
 **Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks** (with Michael C. Farmer) <br> 
-*Presented at AAEA 2023, SEA 2023, Arts and Humanities Conference 2022 & 2023, Davis College Graduate Poster Competition 2022 & 2023, scheduled for AEA/ASSA 2024 ([oral presentation](/PPT_Strength%20of%20weak%20ties.pdf), [poster](/Poster_Strength%20of%20weak%20ties.pdf))*
+*Presented at AAEA 2023, SEA 2023, Arts and Humanities Conference 2022 & 2023, Davis College Graduate Poster Competition 2022 & 2023, scheduled for AEA/ASSA 2024 ([Paper](/PPT_Strength%20of%20weak%20ties.pdf), [poster](/Poster_Strength%20of%20weak%20ties.pdf))*
 
 **A Problem with Distance Variables and Alternatives for their Use** (with Michael C. Farmer, Kusum Naithani, and Donald Lacombe) <br> 
 *Presented at Mid-Continent Regional Science Association Meeting 2023 ([oral presentation](/PPT_Distance%20variables.pdf))*
