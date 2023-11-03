@@ -59,7 +59,7 @@ The final paper examines the extent to which a persistent, racial property taxat
 
 **The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties** (with Shakil Haider and Darren Hudson) *(In process of submission)*<br> 
 
-### Pre-2019 Publications <br>
+### Pre-Ph.D. Publications <br>
 Prior to my Ph.D., I worked in policy related to international development economics. My work involved collaborative and grant-specific research with multilateral organizations and international agencies including United Nations, Department for International Development (now the Foreign, Commonwealth and Development Office), British Academy, Overseas Development Institute, etc. Some of my selected works include: 
 
 Bhattacharya, D., Rahman, M.R., **Fuad, Syed, M.** (2019). How Coherent are Trade and Investment Policies of the Southern Finance Providers? A Case Study on Indo-Bangla Lines of Credit. *New York: United Nations
