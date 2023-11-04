@@ -28,6 +28,7 @@ The final paper examines the extent to which a persistent, racial property taxat
 **Individual, Household, and Community Resilience and Coping Strategies to Conflict in Sub-Saharan Africa** (*R&R* at Agrekon, with James Muriuki and Darren Hudson) <br> 
 
 **Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks** (with Michael C. Farmer) <br> 
+[Abstract](/abstracts/networks)
 *Presented at AAEA 2023, SEA 2023, Arts and Humanities Conference 2022 & 2023, Davis College Graduate Poster Competition 2022 & 2023, scheduled for AEA/ASSA 2024 ([Paper](/PPT_Strength%20of%20weak%20ties.pdf), [poster](/Poster_Strength%20of%20weak%20ties.pdf))*
 
 **A Problem with Distance Variables and Alternatives for their Use** (with Michael C. Farmer, Kusum Naithani, and Donald Lacombe) <br> 
