@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Research
-permalink: /networks
+permalink: /networks/
 ---
 
 ![alt text](/images/404.gif "Page Not Found")
