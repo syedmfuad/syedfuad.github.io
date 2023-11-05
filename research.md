@@ -17,7 +17,7 @@ The second dissertation paper centers on improving output of a biopower process.
 *([Oral presentation](/PPT_Bioenergy.pdf))*
 
 The final paper examines the extent to which a persistent, racial property taxation gap exists in Atlanta, GA, even after city leadership shifted to minority control. I use high-resolution demographic and sales price data, downscaling geospatial mapping to appropriate scales, to locate neighborhood characteristics of a sale, as well as individual housing characteristics and those of adjacent neighbors. All of these had to be conformed to a uniform scale to provide highly detailed individual outcomes. This reversed a prior finding using much less detailed information that African Americans were under-taxed in Atlanta. <br>
-*([Oral presentation](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf))*
+*([Abstract](/abstracts/atlanta_tax.md), [Oral presentation](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf))*
 
 ### Peer-Reviewed Publications <br>
 "Spillover Effect of Violent Conflicts on Food Insecurity in Sub-Saharan Africa" (with James Muriuki, Darren Hudon, Donald Lacombe & Ray March). *Food Policy, 115.* DOI: [10.1177/10659129211020830](https://doi.org/10.1016/j.foodpol.2023.102417) <br> 
