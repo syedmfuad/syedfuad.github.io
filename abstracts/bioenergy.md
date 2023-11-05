@@ -4,7 +4,8 @@ title: Research
 permalink: /bioenergy/
 ---
 
-![alt text](https://github.com/syedmfuad/syedfuad.github.io/blob/master/images/bioenergy.PNG)
+<img style="width=721.8px;height=365.4px;float:left;padding:15px;"
+src="/images/bioenergy.PNG" alt="" width="721.8" height="365.4">
 
 **Profitability of a two-product biorefinery**
 
