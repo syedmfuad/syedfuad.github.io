@@ -4,7 +4,8 @@ title: Research
 permalink: /networks/
 ---
 
-![alt text](https://github.com/syedmfuad/syedfuad.github.io/blob/master/images/networks.PNG)
+<img style="width=729px;height=555px;float:left;padding:15px;"
+src="/images/networks.PNG" alt="" width="729" height="555">
 
 **Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks**
 
