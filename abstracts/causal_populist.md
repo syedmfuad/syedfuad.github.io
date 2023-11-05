@@ -6,8 +6,8 @@ permalink: /causal-populist/
 
 ![alt text](https://github.com/syedmfuad/syedfuad.github.io/blob/master/images/causal_populist.PNG)
 
-<img style="width=967px;height=494px;float:left;padding:15px;"
-src="/images/causal_populist.PNG" alt="" width="967" height="494">
+<img style="width=628.55px;height=321.1px;float:left;padding:15px;"
+src="/images/causal_populist.PNG" alt="" width="628.55" height="321.1">
 
 **Populists’ Playbook: Impact of Durable Right-Wing Populists on Democratic Quality**
 
