@@ -4,8 +4,8 @@ title: Research
 permalink: /bioenergy/
 ---
 
-<img style="width=721.8px;height=365.4px;float:left;padding:15px;"
-src="/images/bioenergy.PNG" alt="" width="721.8" height="365.4">
+<img style="width=724px;height=831px;float:left;padding:15px;"
+src="/images/bioenergy.PNG" alt="" width="724" height="831">
 
 **Profitability of a two-product biorefinery**
 
