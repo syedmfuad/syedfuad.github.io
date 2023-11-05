@@ -6,6 +6,9 @@ permalink: /causal-populist/
 
 ![alt text](https://github.com/syedmfuad/syedfuad.github.io/blob/master/images/causal_populist.PNG)
 
+<img style="width=967px;height=494px;float:left;padding:15px;"
+src="/images/causal_populist.PNG" alt="" width="967" height="494">
+
 **Populists’ Playbook: Impact of Durable Right-Wing Populists on Democratic Quality**
 
 We study the impact of right-wing populist regimes on democratic quality. 
