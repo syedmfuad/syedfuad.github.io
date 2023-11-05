@@ -4,7 +4,10 @@ title: Research
 permalink: /atlanta-tax/
 ---
 
-![alt text](https://github.com/syedmfuad/syedfuad.github.io/blob/master/images/atlanta_tax.PNG)
+![alt text](https://github.com/syedmfuad/syedfuad.github.io/blob/master/images/atlanta_tax.PNG) 
+
+<img style="width=725.25px;height=378px;float:left;padding:15px;"
+src="/images/atlanta_tax.PNG" alt="" width="725.25" height="378">
 
 **Residential Property Tax Discrimination in Atlanta, GA**
 
