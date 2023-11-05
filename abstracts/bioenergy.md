@@ -3,7 +3,6 @@ layout: default
 title: Research
 permalink: /bioenergy/
 ---
-
 <img style="width=724px;height=831px;float:left;padding:15px;"
 src="/images/bioenergy.PNG" alt="" width="724" height="831">
 
