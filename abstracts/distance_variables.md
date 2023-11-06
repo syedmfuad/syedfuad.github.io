@@ -3,10 +3,13 @@ layout: default
 title: Research
 permalink: /distance-variables/
 ---
-**A Problem with Distance Variables and Alternatives for their Use** 
 
 <img style="width=654px;height=361px;float:left;padding:15px;"
 src="/images/distance.PNG" alt="" width="654" height="361">
+
+**A Problem with Distance Variables and Alternatives for their Use** 
+
+***Abstract***
 
 Researchers commonly use distance variables to (1) estimate the direct influence of a landmark on an outcome of interest, such as a neighborhood park on home price, or (2) control for omitted spatial influences that affect predictions of key policy variables. Though used, there remain concerns about the effects that distance variables might exert on multivariate analyses. While both uses continue, the use of distance as a control to capture omitted effects of location is more common. The variable used for this control purpose most frequently is distance to the Central Business District (CBD). The variable is added to a multivariate analysis to capture larger and unmodelled spatial effects due to the position of an observed action, which may influence an outcome under study.
 
