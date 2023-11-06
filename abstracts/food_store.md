@@ -4,6 +4,9 @@ title: Research
 permalink: /food_store/
 ---
 
+<img style="width=736px;height=710px;float:left;padding:15px;"
+src="/images/food_stores.PNG" alt="" width="736" height="710">
+
 **Determinants of the presence, density, and popularity of U.S. food retailers** 
 
 ***Abstract***
