@@ -3,7 +3,13 @@ layout: default
 title: Research
 permalink: /daca-causal/
 ---
+
+<img style="width=730px;height=443.75px;float:left;padding:15px;"
+src="/images/daca_causal.PNG" alt="" width="730" height="443.75">
+
 **DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data**
+
+***Abstract***
 
 Deferred Action for Childhood Arrivals (DACA) stands as one of the most significant and extensive immigration policies in recent U.S. history. 
 Its primary aim was to grant work authorization to qualifying undocumented immigrants. However, it quickly generated controversy due to the potential to 
