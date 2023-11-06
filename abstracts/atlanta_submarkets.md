@@ -3,7 +3,9 @@ layout: default
 title: Research
 permalink: /atlanta-submarkets/
 ---
-**A Comparison of Submarket Separation Techniques: A Case in the City of Atlanta**
+**A Comparison of Submarket Separation Techniques: A Case in the City of Atlanta** 
+
+***Abstract***
 
 Defining urban submarkets remains an active research question. Some scholars even declare the nonexistence of residential housing submarkets. Goodman and Thibodeau (1998) – G-T – marks a common reference point for discussion. G-T used geographic school districts in Dallas to designate submarkets, estimated by a hierarchic model to allow variation within submarkets.
 
