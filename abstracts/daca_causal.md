@@ -4,8 +4,8 @@ title: Research
 permalink: /daca-causal/
 ---
 
-<img style="width=584px;height=355px;float:left;padding:15px;"
-src="/images/daca_causal.PNG" alt="" width="584" height="355">
+<img style="width=642.4px;height=390.5px;float:left;padding:15px;"
+src="/images/daca_causal.PNG" alt="" width="642.4" height="390.5">
 
 **DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data**
 
