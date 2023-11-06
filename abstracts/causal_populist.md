@@ -9,6 +9,8 @@ src="/images/causal_populist.PNG" alt="" width="725.25" height="370.5">
 
 **Populists’ Playbook: Impact of Durable Right-Wing Populists on Democratic Quality**
 
+***Abstract***
+
 We study the impact of right-wing populist regimes on democratic quality. 
 Data are drawn from four populist regimes led by charismatic leaders who derive their legitimacy from their personal appeal and have achieved tremendous electoral success. 
 We use synthetic control methods to construct a control unit for each individual country and find that the election of populist leaders leads to large and statistically significant declines in 
