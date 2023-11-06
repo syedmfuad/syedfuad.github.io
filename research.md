@@ -48,10 +48,10 @@ Individual, Household, and Community Resilience and Coping Strategies to Conflic
 [A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA](/abstracts/atlanta_submarkets.md) (with Michael C. Farmer and Abidemi Adisa) *(In prep)*<br> 
 *Presented at Mid-Continent Regional Science Association Meeting 2023 ([Oral presentation](/PPT_Submarket%20separation%20in%20Atlanta.pdf))*
 
-**Can Machine Learning Predict Defaults in Peer-to-Peer Small Loans?** (in prep, with Syed Badruddoza & James Muriuki) *(In prep)*<br> 
+Can Machine Learning Predict Defaults in Peer-to-Peer Small Loans? (in prep, with Syed Badruddoza & James Muriuki) *(In prep)*<br> 
 
-**Determinants of the Presence, Density, and Popularity of U.S. Food Retailers** (with Syed Badruddoza and Modhurima Amin) *(In process of submission)*<br> 
-*Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([oral presentation](/PPT_Determinants%20of%20food%20retailer%20location.pdf), [poster](/Poster_Determinants%20of%20food%20retailer%20location.pdf))* 
+[Determinants of the Presence, Density, and Popularity of U.S. Food Retailers](/abstracts/food_store.md) (with Syed Badruddoza and Modhurima Amin) *(In process of submission)*<br> 
+*Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([Oral presentation](/PPT_Determinants%20of%20food%20retailer%20location.pdf), [poster](/Poster_Determinants%20of%20food%20retailer%20location.pdf))* 
 
 [DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data](/abstracts/daca_causal.md) (with Shakil Haider and Darren Hudson) *(In process of submission)*<br> 
 
