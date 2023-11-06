@@ -8,6 +8,8 @@ src="/images/bioenergy.PNG" alt="" width="724" height="831">
 
 **Profitability of a two-product biorefinery**
 
+***Abstract***
+
 Using the example of cotton gin waste (CGW), this work argues that onsite power production at food and fiber processing facilities can be very profitable - 
 adding needed revenues to rural processing plants and producer cooperatives. The investment presents a stable, environmentally sound alternative to policies that seek to increase bioenergy by way of 
 large facilities dependent on dedicated crops.  
