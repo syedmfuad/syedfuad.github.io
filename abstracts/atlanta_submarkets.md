@@ -3,6 +3,10 @@ layout: default
 title: Research
 permalink: /atlanta-submarkets/
 ---
+
+<img style="width=733px;height=587.2px;float:left;padding:15px;"
+src="/images/atlanta_submarkets.PNG" alt="" width="733" height="587.2">
+
 **A Comparison of Submarket Separation Techniques: A Case in the City of Atlanta** 
 
 ***Abstract***
