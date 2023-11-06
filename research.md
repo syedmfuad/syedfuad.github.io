@@ -55,9 +55,9 @@ Can Machine Learning Predict Defaults in Peer-to-Peer Small Loans? (in prep, wit
 
 [DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data](/abstracts/daca_causal.md) (with Shakil Haider and Darren Hudson) *(In process of submission)*<br> 
 
-**Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties** (with Shakil Haider and Darren Hudson) *(In proces of submission)*<br> 
+Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties (with Shakil Haider and Darren Hudson) *(In proces of submission)*<br> 
 
-**The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties** (with Shakil Haider and Darren Hudson) *(In process of submission)*<br> 
+The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties (with Shakil Haider and Darren Hudson) *(In process of submission)*<br> 
 
 ### Pre-Ph.D. Publications <br>
 Prior to my Ph.D., I worked in policy related to international development economics. My work involved collaborative and grant-specific research with multilateral organizations and international agencies including United Nations, Department for International Development (now the Foreign, Commonwealth and Development Office), British Academy, Overseas Development Institute, etc. Some of my selected works include: 
