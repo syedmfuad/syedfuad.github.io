@@ -9,7 +9,7 @@ src="/images/causal_ml1.PNG" alt="" width="636" height="277.5">
 <img style="width=636px;height=277.5px;float:left;padding:15px;"
 src="/images/causal_ml2.PNG" alt="" width="636" height="277.5">
 
-**Which Causal Machine Learning Model to Use?** 
+**Comparative Effectiveness of Machine Learning Methods for Causal Inference** 
 
 ***Abstract*** 
 
