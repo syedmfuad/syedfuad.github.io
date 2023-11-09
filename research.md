@@ -30,7 +30,7 @@ Individual, Household, and Community Resilience and Coping Strategies to Conflic
 [Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks](/abstracts/networks.md) (with Michael C. Farmer) <br> 
 *Presented at AAEA 2023, SEA 2023, Arts and Humanities Conference 2022 & 2023, Davis College Graduate Poster Competition 2022 & 2023, scheduled for AEA/ASSA 2024 ([Paper](/PPT_Strength%20of%20weak%20ties.pdf), [poster](/Poster_Strength%20of%20weak%20ties.pdf))*
 
-[A Problem with Distance Variables and Alternatives for their Use](/abstracts/distance_variables.md) (with Michael C. Farmer, Kusum Naithani, and Donald Lacombe) <br> 
+[A Problem with Distance Variables and Alternatives for their Use](/abstracts/distance_variables.md) (with Michael C. Farmer, Donald Lacombe, and Kusum Naithani) <br> 
 *Presented at Mid-Continent Regional Science Association Meeting 2023 ([Oral presentation](/PPT_Distance%20variables.pdf))*
 
 [Comparative Effectiveness of Machine Learning Methods for Causal Inference](/abstracts/causal_ml.md) (with Syed Badruddoza and Modhurima Amin) <br> 
