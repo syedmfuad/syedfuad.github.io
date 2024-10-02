@@ -6,7 +6,7 @@ src="/images/photo.jpg" alt="" width="209" height="209">
 
 I am currently a Ph.D. candidate in Applied Economics at Texas Tech University. 
 
-My research centers on agricultural and geospatial economics, leveraging high-resolution data and advanced econometric methods to address challenges in managing localized resources. Currently, I am working on identifying niche markets and industries that attract small and medium-sized beginning farmers, using restricted-access data from the Census of Agriculture. 
+My research centers on agricultural and geospatial economics. I leverage high-resolution data and advanced econometric methods to address challenges in managing localized resources. Currently, I am using restricted-access Census of Agriculture data to identify niche markets and industries that attract small and medium-sized beginning farmers. 
 
 My work so far has explored areas of spillover effect of conflict (*[Food Policy'23](https://www.sciencedirect.com/science/article/pii/S0306919223000155?via%3Dihub)*), causal  effects of conflict (*[Agriculture & Food Security'23](https://agricultureandfoodsecurity.biomedcentral.com/articles/10.1186/s40066-023-00447-z)*), resilience in the face of conflict (*[Agrekon'24](https://www.tandfonline.com/doi/full/10.1080/03031853.2024.2368128)*), problems with using distance variables in hedonics (*[Journal of Real Estate Research'24](https://www.tandfonline.com/doi/full/10.1080/03031853.2024.2368128)*). I also have papers under review that study property tax discrimination, and economic feasibility of converting cotton gin to electric power. 
 
