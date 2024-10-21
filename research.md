@@ -19,7 +19,12 @@ The second dissertation paper centers on improving output of a biopower process.
 The final paper examines the extent to which a persistent, racial property taxation gap exists in Atlanta, GA, even after city leadership shifted to minority control. I use high-resolution demographic and sales price data, downscaling geospatial mapping to appropriate scales, to locate neighborhood characteristics of a sale, as well as individual housing characteristics and those of adjacent neighbors. All of these had to be conformed to a uniform scale to provide highly detailed individual outcomes. This reversed a prior finding using much less detailed information that African Americans were under-taxed in Atlanta. <br>
 *([Paper](/Paper_Bias%20in%20Atlanta%20property%20tax.pdf), [Abstract](/abstracts/atlanta_tax.md), [Oral presentation](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf))*
 
-### Peer-Reviewed Publications <br>
+### Peer-Reviewed Publications <br> 
+
+"A Problem with Distance Variables and Alternatives for Their Use" (with Michael Farmer, Kusum Naithani & Donald Lacombe). *Journal of Real Estate Research,* (1-23) DOI: [10.1080/08965803.2024.2325244](https://www.tandfonline.com/doi/abs/10.1080/08965803.2024.2325244) <br> 
+
+"Individual, Household, and Community Resilience and Coping Strategies to Conflict in Uganda and Malawi" (with James Muriuki & Darren Hudon). *Agrekon, 63,* (1-2). DOI: [10.1080/03031853.2024.2368128](https://doi.org/10.1080/03031853.2024.2368128) <br> 
+
 "Spillover Effect of Violent Conflicts on Food Insecurity in Sub-Saharan Africa" (with James Muriuki, Darren Hudon, Donald Lacombe & Ray March). *Food Policy, 115.* DOI: [10.1177/10659129211020830](https://doi.org/10.1016/j.foodpol.2023.102417) <br> 
 
 "The Impact of Conflict on Food Security: Evidence from Household Data in Ethiopia and Malawi" (with James Muriuki & Donald Hudson). *Agriculture & Food Security, 12,* 41. DOI: [10.1186/s40066-023-00447-z](https://doi.org/10.1186/s40066-023-00447-z) <br>
