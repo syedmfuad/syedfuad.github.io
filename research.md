@@ -3,9 +3,9 @@ layout: page
 title: Research
 permalink: /research/
 ---
-As an applied microeconomist, my work involves developing programmable computational models that employ very high-resolution and spatiotemporal data. The emphasis on high-resolution data coupled with complex, emerging methodologies to manage very local and specific resources in a very targeted way is a common theme of my research. Broadly, my two most competitive skills are the ability to locate very quickly, very high-resolution data that then demand advanced numerical methods to answer nuanced policy questions that enjoy immediate currency in public discourse. 
+As an applied microeconomist, my work involves developing programmable models that employ high-resolution and spatiotemporal data. The emphasis on high-resolution data coupled with complex, emerging methodologies to manage local and specific resources in a very targeted way is a common theme of my research. Currently, I work mostly in productivity and efficiency analysis by developing and applying econometric models or machine learning applications to help understand the challenges and opportunities for beginning farmers using restricted-access Agriculture Census data. 
 
-My research interest broadly centers on computational social sciences and natural resources. I am interested in works that require advanced analytical tools and methods to address these topics, both in a cross-section and intertemporal context. I also enjoy collaborating with interdisciplinary teams and have experience working with remote sensing data, gridded agricultural production data, geospatial analysis, causal inference and machine learning in addition to regular econometric analysis, modeling and visualization. 
+I am interested in works that require advanced analytical tools and methods to address these topics, both in a cross-section and intertemporal context. I also enjoy collaborating with interdisciplinary teams and have experience working with remote sensing data, gridded agricultural production data, geospatial analysis, causal inference and machine learning in addition to regular econometric analysis, modeling and visualization. 
 
 Requests for drafts of working papers are welcome. Please feel free to email me your request. 
 
@@ -21,7 +21,8 @@ The final paper examines the extent to which a persistent, racial property taxat
 
 ### Peer-Reviewed Publications <br> 
 
-"A Problem with Distance Variables and Alternatives for Their Use" (with Michael Farmer, Kusum Naithani & Donald Lacombe). *Journal of Real Estate Research,* (1-23) DOI: [10.1080/08965803.2024.2325244](https://www.tandfonline.com/doi/abs/10.1080/08965803.2024.2325244) <br> 
+"A Problem with Distance Variables and Alternatives for Their Use" (with Michael Farmer, Kusum Naithani & Donald Lacombe). *Journal of Real Estate Research,* (1-23) DOI: [10.1080/08965803.2024.2325244](https://www.tandfonline.com/doi/abs/10.1080/08965803.2024.2325244) *([Paper](/Paper_Distance%20paper.pdf))* 
+<br> 
 
 "Individual, Household, and Community Resilience and Coping Strategies to Conflict in Uganda and Malawi" (with James Muriuki & Darren Hudon). *Agrekon, 63,* (1-2). DOI: [10.1080/03031853.2024.2368128](https://doi.org/10.1080/03031853.2024.2368128) <br> 
 
