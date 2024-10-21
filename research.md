@@ -31,16 +31,11 @@ The final paper examines the extent to which a persistent, racial property taxat
 "The Impact of Conflict on Food Security: Evidence from Household Data in Ethiopia and Malawi" (with James Muriuki & Donald Hudson). *Agriculture & Food Security, 12,* 41. DOI: [10.1186/s40066-023-00447-z](https://doi.org/10.1186/s40066-023-00447-z) <br>
 
 ### Papers in Review <br> 
-Individual, Household, and Community Resilience and Coping Strategies to Conflict in Sub-Saharan Africa (*R&R* at Agrekon, with James Muriuki and Darren Hudson) <br> 
 
 [Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks](/abstracts/networks.md) (with Michael C. Farmer) <br> 
 *Presented at AAEA 2023, SEA 2023, Arts and Humanities Conference 2022 & 2023, Davis College Graduate Poster Competition 2022 & 2023, scheduled for AEA/ASSA 2024 ([Paper](/PPT_Strength%20of%20weak%20ties.pdf), [poster](/Poster_Strength%20of%20weak%20ties.pdf))*
 
-[A Problem with Distance Variables and Alternatives for their Use](/abstracts/distance_variables.md) (with Michael C. Farmer, Donald Lacombe, and Kusum Naithani) <br> 
-*Presented at Mid-Continent Regional Science Association Meeting 2023 ([Oral presentation](/PPT_Distance%20variables.pdf))*
 
-[Comparative Effectiveness of Machine Learning Methods for Causal Inference](/abstracts/causal_ml.md) (with Syed Badruddoza and Modhurima Amin) <br> 
-*Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([Oral presentation](/PPT_Comparative%20effectiveness%20of%20causal%20ML.pdf), [poster](/Poster_Comparative%20effectiveness%20of%20causal%20ML.pdf))* 
 
 [Profitability of a Two Product Biorefinery](/abstracts/bioenergy.md) (with Michael C. Farmer and Abidemi Adisa) <br> 
 *([Oral presentation](/PPT_Bioenergy.pdf))*
@@ -50,6 +45,9 @@ Individual, Household, and Community Resilience and Coping Strategies to Conflic
 ### Working Papers <br> 
 [Residential Property Tax Discrimination in Atlanta, GA](/abstracts/atlanta_tax.md) (with Michael C. Farmer) *(In prep)*<br> 
 *Presented at Mid-Continent Regional Science Association Meeting 2023, scheduled for AEA/ASSA 2024 ([Oral presentation](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf))*
+
+[Comparative Effectiveness of Machine Learning Methods for Causal Inference](/abstracts/causal_ml.md) (with Syed Badruddoza and Modhurima Amin) <br> 
+*Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([Oral presentation](/PPT_Comparative%20effectiveness%20of%20causal%20ML.pdf), [poster](/Poster_Comparative%20effectiveness%20of%20causal%20ML.pdf))* 
 
 [A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA](/abstracts/atlanta_submarkets.md) (with Michael C. Farmer and Abidemi Adisa) *(In prep)*<br> 
 *Presented at Mid-Continent Regional Science Association Meeting 2023 ([Oral presentation](/PPT_Submarket%20separation%20in%20Atlanta.pdf))*
