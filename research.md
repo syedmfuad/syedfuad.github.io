@@ -14,7 +14,7 @@ My dissertation is organized around three themes. The first examines specific pr
 *([Paper](/PPT_Strength%20of%20weak%20ties.pdf), [Abstract](/abstracts/networks.md), [Poster](/Poster_Strength%20of%20weak%20ties.pdf))*
 
 The second dissertation paper centers on improving output of a biopower process. I was able to locate hourly data on electricity prices at gins for 12 years and develop a stochastic distribution of electricity prices month by month using Bayesian simulation methods. I conduct operations research to allocate variable gin trash volumes to jointly manage ginning and biopower together over a 9-month ginning season over 10,000 simulation years at different scales of power generation. <br>
-*([Abstract](/abstracts/bioenergy.md), [Oral presentation](/PPT_Bioenergy.pdf))*
+*([Paper](/Paper_Bioenergy.pdf), [Abstract](/abstracts/bioenergy.md), [Oral presentation](/PPT_Bioenergy.pdf))*
 
 The final paper examines the extent to which a persistent, racial property taxation gap exists in Atlanta, GA, even after city leadership shifted to minority control. I use high-resolution demographic and sales price data, downscaling geospatial mapping to appropriate scales, to locate neighborhood characteristics of a sale, as well as individual housing characteristics and those of adjacent neighbors. All of these had to be conformed to a uniform scale to provide highly detailed individual outcomes. This reversed a prior finding using much less detailed information that African Americans were under-taxed in Atlanta. <br>
 *([Paper](/Paper_Bias%20in%20Atlanta%20property%20tax.pdf), [Abstract](/abstracts/atlanta_tax.md), [Oral presentation](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf))*
