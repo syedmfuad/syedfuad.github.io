@@ -28,17 +28,15 @@ The final paper examines the extent to which a persistent, racial property taxat
 
 "Spillover Effect of Violent Conflicts on Food Insecurity in Sub-Saharan Africa" (with James Muriuki, Darren Hudon, Donald Lacombe & Ray March). *Food Policy, 115.* DOI: [10.1177/10659129211020830](https://doi.org/10.1016/j.foodpol.2023.102417) <br> 
 
-"The Impact of Conflict on Food Security: Evidence from Household Data in Ethiopia and Malawi" (with James Muriuki & Donald Hudson). *Agriculture & Food Security, 12,* 41. DOI: [10.1186/s40066-023-00447-z](https://doi.org/10.1186/s40066-023-00447-z) <br>
+"The Impact of Conflict on Food Security: Evidence from Household Data in Ethiopia and Malawi" (with James Muriuki & Darren Hudson). *Agriculture & Food Security, 12,* 41. DOI: [10.1186/s40066-023-00447-z](https://doi.org/10.1186/s40066-023-00447-z) <br>
 
 ### Papers in Review <br> 
 
 [Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks](/abstracts/networks.md) (with Michael C. Farmer) <br> 
 *Presented at AAEA 2023, SEA 2023, Arts and Humanities Conference 2022 & 2023, Davis College Graduate Poster Competition 2022 & 2023, scheduled for AEA/ASSA 2024 ([Paper](/PPT_Strength%20of%20weak%20ties.pdf), [poster](/Poster_Strength%20of%20weak%20ties.pdf))*
 
-
-
-[Profitability of a Two Product Biorefinery](/abstracts/bioenergy.md) (with Michael C. Farmer and Abidemi Adisa) <br> 
-*([Oral presentation](/PPT_Bioenergy.pdf))*
+[Economic Opportunities of Bioelectricity from Cotton Gin Waste](/abstracts/bioenergy.md) (with Michael C. Farmer) <br> 
+*([Paper](/Paper_Bioenergy.pdf), [Oral presentation](/PPT_Bioenergy.pdf))*
 
 [Populists’ Playbook: Impact of Durable Right-Wing Populists on Democratic Quality](/abstracts/causal_populist.md) <br> 
 
