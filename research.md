@@ -33,24 +33,23 @@ The final paper examines the extent to which a persistent, racial property taxat
 ### Papers in Review <br> 
 
 [Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks](/abstracts/networks.md) (with Michael C. Farmer) <br> 
-*Presented at AAEA 2023, SEA 2023, Arts and Humanities Conference 2022 & 2023, Davis College Graduate Poster Competition 2022 & 2023, scheduled for AEA/ASSA 2024 ([Paper](/PPT_Strength%20of%20weak%20ties.pdf), [poster](/Poster_Strength%20of%20weak%20ties.pdf))*
+*Presented at AAEA 2023, SEA 2023, Arts and Humanities Conference 2022 & 2023, Davis College Graduate Poster Competition 2022 & 2023, scheduled for AEA/ASSA 2024 ([poster](/Poster_Strength%20of%20weak%20ties.pdf))* 
 
 [Economic Opportunities of Bioelectricity from Cotton Gin Waste](/abstracts/bioenergy.md) (with Michael C. Farmer) <br> 
 *([Paper](/Paper_Bioenergy.pdf), [Oral presentation](/PPT_Bioenergy.pdf))*
 
+[Racial Bias in Property Taxation in Atlanta: The Difficulty of Reversing a Legacy of Discrimination](/abstracts/atlanta_tax.md) (with Michael C. Farmer) <br> 
+*Presented at Mid-Continent Regional Science Association Meeting 2023, scheduled for AEA/ASSA 2024 ([Paper](/Paper_Bias%20in%20Atlanta%20property%20tax.pdf), [Oral presentation](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf))* 
+
 [Populists’ Playbook: Impact of Durable Right-Wing Populists on Democratic Quality](/abstracts/causal_populist.md) <br> 
 
 ### Working Papers <br> 
-[Residential Property Tax Discrimination in Atlanta, GA](/abstracts/atlanta_tax.md) (with Michael C. Farmer) *(In prep)*<br> 
-*Presented at Mid-Continent Regional Science Association Meeting 2023, scheduled for AEA/ASSA 2024 ([Oral presentation](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf))*
 
 [Comparative Effectiveness of Machine Learning Methods for Causal Inference](/abstracts/causal_ml.md) (with Syed Badruddoza and Modhurima Amin) <br> 
 *Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([Oral presentation](/PPT_Comparative%20effectiveness%20of%20causal%20ML.pdf), [poster](/Poster_Comparative%20effectiveness%20of%20causal%20ML.pdf))* 
 
 [A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA](/abstracts/atlanta_submarkets.md) (with Michael C. Farmer and Abidemi Adisa) *(In prep)*<br> 
-*Presented at Mid-Continent Regional Science Association Meeting 2023 ([Oral presentation](/PPT_Submarket%20separation%20in%20Atlanta.pdf))*
-
-Can Machine Learning Predict Defaults in Peer-to-Peer Small Loans? (in prep, with Syed Badruddoza & James Muriuki) *(In prep)*<br> 
+*Presented at Mid-Continent Regional Science Association Meeting 2023 ([Oral presentation](/PPT_Submarket%20separation%20in%20Atlanta.pdf))* 
 
 [Determinants of the Presence, Density, and Popularity of U.S. Food Retailers](/abstracts/food_store.md) (with Syed Badruddoza and Modhurima Amin) *(In process of submission)*<br> 
 *Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([Oral presentation](/PPT_Determinants%20of%20food%20retailer%20location.pdf), [poster](/Poster_Determinants%20of%20food%20retailer%20location.pdf))* 
