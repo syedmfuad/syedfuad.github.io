@@ -43,20 +43,22 @@ The final paper examines the extent to which a persistent, racial property taxat
 
 [Populists’ Playbook: Impact of Durable Right-Wing Populists on Democratic Quality](/abstracts/causal_populist.md) <br> 
 
+[DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data](/abstracts/daca_causal.md) (with Shakil Haider, Darren Hudson and Jamie Pavlik) <br> 
+
+Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties (with Shakil Haider and Darren Hudson and Jamie Pavlik) <br> 
+
 ### Working Papers <br> 
 
 [Comparative Effectiveness of Machine Learning Methods for Causal Inference](/abstracts/causal_ml.md) (with Syed Badruddoza and Modhurima Amin) <br> 
-*Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([Oral presentation](/PPT_Comparative%20effectiveness%20of%20causal%20ML.pdf), [poster](/Poster_Comparative%20effectiveness%20of%20causal%20ML.pdf))* 
+*Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([Presentation](/PPT_Comparative%20effectiveness%20of%20causal%20ML.pdf), [poster](/Poster_Comparative%20effectiveness%20of%20causal%20ML.pdf))* 
 
 [A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA](/abstracts/atlanta_submarkets.md) (with Michael C. Farmer and Abidemi Adisa) *(In prep)*<br> 
-*Presented at Mid-Continent Regional Science Association Meeting 2023 ([Oral presentation](/PPT_Submarket%20separation%20in%20Atlanta.pdf))* 
+*Presented at Mid-Continent Regional Science Association Meeting 2023 ([Presentation](/PPT_Submarket%20separation%20in%20Atlanta.pdf))* 
 
 [Determinants of the Presence, Density, and Popularity of U.S. Food Retailers](/abstracts/food_store.md) (with Syed Badruddoza and Modhurima Amin) *(In process of submission)*<br> 
-*Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([Oral presentation](/PPT_Determinants%20of%20food%20retailer%20location.pdf), [poster](/Poster_Determinants%20of%20food%20retailer%20location.pdf))* 
+*Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([Presentation](/PPT_Determinants%20of%20food%20retailer%20location.pdf), [poster](/Poster_Determinants%20of%20food%20retailer%20location.pdf))* 
 
-[DACA Effect on Labor Market Outcomes: Evidence from U.S. Micro-Level Data](/abstracts/daca_causal.md) (with Shakil Haider and Darren Hudson) *(In process of submission)*<br> 
 
-Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties (with Shakil Haider and Darren Hudson) *(In proces of submission)*<br> 
 
 The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties (with Shakil Haider and Darren Hudson) *(In process of submission)*<br> 
 
