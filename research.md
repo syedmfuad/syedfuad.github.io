@@ -36,10 +36,10 @@ The final paper examines the extent to which a persistent, racial property taxat
 *Presented at AAEA 2023, SEA 2023, Arts and Humanities Conference 2022 & 2023, scheduled for AEA/ASSA 2024 ([poster](/Poster_Strength%20of%20weak%20ties.pdf))* 
 
 [Economic Opportunities of Bioelectricity from Cotton Gin Waste](/abstracts/bioenergy.md) (with Michael C. Farmer) <br> 
-*([Paper](/Paper_Bioenergy.pdf), [Oral presentation](/PPT_Bioenergy.pdf))*
+*([Paper](/Paper_Bioenergy.pdf), [Presentation](/PPT_Bioenergy.pdf))*
 
 [Racial Bias in Property Taxation in Atlanta: The Difficulty of Reversing a Legacy of Discrimination](/abstracts/atlanta_tax.md) (with Michael C. Farmer) <br> 
-*Presented at Mid-Continent Regional Science Association Meeting 2023, scheduled for AEA/ASSA 2024 ([Paper](/Paper_Bias%20in%20Atlanta%20property%20tax.pdf), [Oral presentation](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf))* 
+*Presented at Mid-Continent Regional Science Association Meeting 2023, scheduled for AEA/ASSA 2024 ([Paper](/Paper_Bias%20in%20Atlanta%20property%20tax.pdf), [Presentation](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf))* 
 
 [Populists’ Playbook: Impact of Durable Right-Wing Populists on Democratic Quality](/abstracts/causal_populist.md) <br> 
 
