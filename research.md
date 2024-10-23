@@ -47,16 +47,16 @@ Does Crime Beget Crime? A Spatial Study of Crime in U.S. Counties (with Shakil H
 
 ### Working Papers <br> 
 
-[Comparative Effectiveness of Machine Learning Methods for Causal Inference](/abstracts/causal_ml.md) (with Syed Badruddoza and Modhurima Amin) <br> 
+[Comparative Effectiveness of Machine Learning Methods for Causal Inference](/abstracts/causal_ml.md) (with Syed Badruddoza and Modhurima Amin) *(In process of submission)* <br> 
 *Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([Presentation](/PPT_Comparative%20effectiveness%20of%20causal%20ML.pdf), [poster](/Poster_Comparative%20effectiveness%20of%20causal%20ML.pdf))* 
 
-[A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA](/abstracts/atlanta_submarkets.md) (with Michael C. Farmer and Abidemi Adisa) *(In prep)*<br> 
+[A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA](/abstracts/atlanta_submarkets.md) (with Michael C. Farmer and Abidemi Adisa) *(In prep)* <br> 
 *Presented at Mid-Continent Regional Science Association Meeting 2023 ([Presentation](/PPT_Submarket%20separation%20in%20Atlanta.pdf))* 
 
-[Determinants of the Presence, Density, and Popularity of U.S. Food Retailers](/abstracts/food_store.md) (with Syed Badruddoza and Modhurima Amin) *(In process of submission)*<br> 
+[Determinants of the Presence, Density, and Popularity of U.S. Food Retailers](/abstracts/food_store.md) (with Syed Badruddoza and Modhurima Amin) *(In prep)* <br> 
 *Presented at AAEA 2023 & 2022, and AEA/ASSA 2023 ([Presentation](/PPT_Determinants%20of%20food%20retailer%20location.pdf), [poster](/Poster_Determinants%20of%20food%20retailer%20location.pdf))* 
 
-The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties (with Shakil Haider, Darren Hudson and Jamie Pavlik) *(In process of submission)*<br> 
+The Wretched Refuse? Sanctuary Policies and Crime in U.S. Counties (with Shakil Haider, Darren Hudson and Jamie Pavlik) *(In process of submission)* <br> 
 
 ### Pre-Ph.D. Publications <br>
 Prior to my Ph.D., I worked in policy related to international development economics. My work involved collaborative and grant-specific research with multilateral organizations and international agencies including United Nations, Department for International Development (now the Foreign, Commonwealth and Development Office), British Academy, Overseas Development Institute, etc. Some of my selected works include: 
