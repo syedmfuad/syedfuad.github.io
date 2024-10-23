@@ -4,7 +4,7 @@ title: Research
 permalink: /atlanta-submarkets/
 ---
 
-<img style="width=733px;height=587.2px;float:left;padding:15px;"
+<img style="width=648px;height=381px;float:left;padding:15px;"
 src="/images/atlanta_submarkets.PNG" alt="" width="648" height="381">
 
 
