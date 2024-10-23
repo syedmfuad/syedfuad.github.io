@@ -4,8 +4,8 @@ title: Research
 permalink: /distance-variables/
 ---
 
-<img style="width=654px;height=361px;float:left;padding:15px;"
-src="/images/distance.PNG" alt="" width="654" height="361">
+<img style="width=654px;height=361px;float:left;padding:20px;"
+src="/images/distance.PNG" alt="" width="654" height="361"> 
 
 **A Problem with Distance Variables and Alternatives for their Use** 
 
