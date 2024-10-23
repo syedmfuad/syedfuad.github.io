@@ -31,7 +31,7 @@ The final paper examines the extent to which a persistent, racial property taxat
 ### Papers in Review <br> 
 
 [Who to Fund? Identifying Strategic Collaborations & Stimulative Policies for Dynamic Research Networks](/abstracts/networks.md) (with Michael C. Farmer) <br> 
-*Presented at AAEA 2023, SEA 2023, Arts and Humanities Conference 2022 & 2023, scheduled for AEA/ASSA 2024 ([poster](/Poster_Strength%20of%20weak%20ties.pdf))* 
+*Presented at AAEA 2023, SEA 2023, Arts and Humanities Conference 2022 & 2023, scheduled for AEA/ASSA 2024 ([Poster](/Poster_Strength%20of%20weak%20ties.pdf))* 
 
 [Economic Opportunities of Bioelectricity from Cotton Gin Waste](/abstracts/bioenergy.md) (with Michael C. Farmer) <br> 
 *([Paper](/Paper_Bioenergy.pdf), [Presentation](/PPT_Bioenergy.pdf))*
