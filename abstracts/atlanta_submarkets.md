@@ -5,7 +5,7 @@ permalink: /atlanta-submarkets/
 ---
 
 <img style="width=973px;height=983px;float:left;padding:15px;"
-src="/images/atlanta_submarkets.PNG" alt="" width="973" height="983">
+src="/images/atlanta_submarkets.PNG" alt="" width="973" height="983"> 
 
 
 **A Fully Endogenized Finite Mixture Modeling Approach to Submarket Delineation in Atlanta, GA** 
