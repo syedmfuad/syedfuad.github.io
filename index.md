@@ -4,7 +4,7 @@ layout: default
 <img style="width=209px;height=209px;float:left;padding:15px;"
 src="/images/photo.jpg" alt="" width="209" height="209">
 
-I am currently a Ph.D. candidate in Applied Economics at Texas Tech University. 
+I am currently a Ph.D. candidate in Agricultural and Applied Economics at Texas Tech University. 
 
 My research centers on agricultural and geospatial economics. I leverage high-resolution data and advanced econometric methods to address challenges in managing localized resources. Currently, I am using restricted-access Census of Agriculture data to identify niche markets and industries that attract small and medium-sized beginning farmers. 
 
