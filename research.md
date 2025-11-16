@@ -1,8 +1,10 @@
 ---
 layout: page
-title: Research
+title: Research 
 permalink: /research/
 --- 
+[Last edited Aug 2024] 
+
 As an applied microeconomist, I develop models that utilize high-resolution spatiotemporal data. My current research focuses on productivity and efficiency analysis, applying econometric models to explore the challenges and opportunities faced by beginning farmers using restricted-access Agriculture Census data. 
 
 I am particularly interested in research that requires advanced analytical tools and methods to address these issues in both cross-sectional and intertemporal contexts. I enjoy collaborating with interdisciplinary teams and have experience working with remote sensing data, gridded production data, causal inference, and machine learning, in addition to traditional econometric analysis, modeling, and visualization. 
