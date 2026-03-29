@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAEC 2401 · Agricultural Statistics</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f0;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+#header{background:#1a3a2a;color:#fff;padding:0 20px;display:flex;align-items:center;gap:0;flex-shrink:0;height:56px}
+#header h1{font-size:18px;font-weight:700;letter-spacing:.5px;margin-right:32px;white-space:nowrap}
+.tab-btn{background:none;border:none;color:#a7c4b5;padding:0 18px;height:56px;font-size:14px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
+.tab-btn:hover{color:#fff;background:rgba(255,255,255,.08)}
+.tab-btn.active{color:#fff;border-bottom-color:#4ade80}
+#main{display:flex;flex:1;overflow:hidden}
+.tab-panel{display:none;width:100%;height:100%;flex-direction:row}
+.tab-panel.active{display:flex}
+.sidebar{width:300px;min-width:300px;background:#fff;border-right:1px solid #d1d5db;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:14px}
+.canvas-area{flex:1;background:#f8faf8;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+canvas{display:block}
+.section-hdr{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#16a34a;border-bottom:1px solid #e5e7eb;padding-bottom:4px;margin-bottom:2px}
+.slider-group{display:flex;flex-direction:column;gap:2px}
+.slider-label{display:flex;justify-content:space-between;font-size:13px;color:#374151}
+.slider-label span:last-child{font-weight:700;color:#1a3a2a;min-width:48px;text-align:right}
+input[type=range]{width:100%;height:6px;accent-color:#16a34a;cursor:pointer;margin-top:2px}
+.btn-group{display:flex;flex-wrap:wrap;gap:4px}
+.btn-group button{flex:1;min-width:60px;padding:5px 8px;font-size:12px;font-weight:600;border:1.5px solid #16a34a;background:#fff;color:#16a34a;border-radius:4px;cursor:pointer;transition:all .15s}
+.btn-group button.active,.btn-group button:hover{background:#16a34a;color:#fff}
+.preset-btn{width:100%;padding:7px 10px;font-size:12px;font-weight:600;background:#f0fdf4;border:1px solid #86efac;color:#166534;border-radius:5px;cursor:pointer;text-align:left;transition:all .15s}
+.preset-btn:hover{background:#dcfce7;border-color:#16a34a}
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.metric-card{background:#fff;border:1px solid #e5e7eb;border-left:3px solid #16a34a;border-radius:4px;padding:6px 8px}
+.metric-card .mc-label{font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:.5px}
+.metric-card .mc-value{font-size:16px;font-weight:700;color:#1a3a2a;line-height:1.2}
+.action-btn{width:100%;padding:8px;font-size:13px;font-weight:700;background:#16a34a;color:#fff;border:none;border-radius:5px;cursor:pointer;transition:background .15s}
+.action-btn:hover{background:#15803d}
+.action-btn.secondary{background:#2563eb}
+.action-btn.secondary:hover{background:#1d4ed8}
+.action-btn.danger{background:#dc2626}
+.action-btn.danger:hover{background:#b91c1c}
+select{width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:4px;font-size:13px;color:#374151;background:#fff}
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>AAEC 2401 · Agricultural Statistics</h1>
+  <button class="tab-btn active" onclick="switchTab(0)">1 · Descriptive Stats</button>
+  <button class="tab-btn" onclick="switchTab(1)">2 · Normal & Z-Scores</button>
+  <button class="tab-btn" onclick="switchTab(2)">3 · CLT</button>
+  <button class="tab-btn" onclick="switchTab(3)">4 · Confidence Intervals</button>
+  <button class="tab-btn" onclick="switchTab(4)">5 · Hypothesis Testing</button>
+  <button class="tab-btn" onclick="switchTab(5)">6 · Regression</button>
+</div>
+<div id="main">
+
+<!-- TAB 1: Descriptive Stats -->
+<div class="tab-panel active" id="tab0">
+  <div class="sidebar">
+    <div class="section-hdr">Data Controls</div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Sample Size n</span><span id="t1_n_val">50</span></div>
+      <input type="range" id="t1_n" min="10" max="200" value="50" oninput="t1_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Mean Yield (bu/acre)</span><span id="t1_mean_val">145</span></div>
+      <input type="range" id="t1_mean" min="80" max="200" value="145" oninput="t1_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Std Dev</span><span id="t1_sd_val">25</span></div>
+      <input type="range" id="t1_sd" min="5" max="60" value="25" oninput="t1_update()">
+    </div>
+    <div class="section-hdr">Distribution Shape</div>
+    <div class="btn-group" id="t1_shape_grp">
+      <button class="active" onclick="t1_setShape('symmetric',this)">Symmetric</button>
+      <button onclick="t1_setShape('right',this)">Right-Skewed</button>
+      <button onclick="t1_setShape('left',this)">Left-Skewed</button>
+      <button onclick="t1_setShape('bimodal',this)">Bimodal</button>
+    </div>
+    <div class="section-hdr">Presets</div>
+    <button class="preset-btn" onclick="t1_preset(170,15,50,'symmetric')">High-Yield Season</button>
+    <button class="preset-btn" onclick="t1_preset(95,40,50,'right')">Drought Year</button>
+    <button class="preset-btn" onclick="t1_preset(145,20,80,'bimodal')">Irrigated vs Dryland</button>
+    <button class="preset-btn" onclick="t1_preset(145,25,12,'symmetric')">Small Sample</button>
+    <div class="section-hdr">Statistics</div>
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="mc-label">Mean</div><div class="mc-value" id="t1_m_mean">—</div></div>
+      <div class="metric-card"><div class="mc-label">Median</div><div class="mc-value" id="t1_m_med">—</div></div>
+      <div class="metric-card"><div class="mc-label">Std Dev</div><div class="mc-value" id="t1_m_sd">—</div></div>
+      <div class="metric-card"><div class="mc-label">IQR</div><div class="mc-value" id="t1_m_iqr">—</div></div>
+      <div class="metric-card"><div class="mc-label">Min</div><div class="mc-value" id="t1_m_min">—</div></div>
+      <div class="metric-card"><div class="mc-label">Max</div><div class="mc-value" id="t1_m_max">—</div></div>
+      <div class="metric-card" style="grid-column:span 2"><div class="mc-label">Skewness</div><div class="mc-value" id="t1_m_skew">—</div></div>
+    </div>
+  </div>
+  <div class="canvas-area" id="t1_area"><canvas id="t1_canvas"></canvas></div>
+</div>
+
+<!-- TAB 2: Normal Distribution -->
+<div class="tab-panel" id="tab1">
+  <div class="sidebar">
+    <div class="section-hdr">Population Parameters</div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Mean μ (lbs)</span><span id="t2_mu_val">850</span></div>
+      <input type="range" id="t2_mu" min="400" max="1400" value="850" oninput="t2_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Std Dev σ (lbs)</span><span id="t2_sig_val">80</span></div>
+      <input type="range" id="t2_sig" min="20" max="200" value="80" oninput="t2_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Lower Bound X₁</span><span id="t2_x1_val">770</span></div>
+      <input type="range" id="t2_x1" min="200" max="1600" value="770" step="5" oninput="t2_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Upper Bound X₂</span><span id="t2_x2_val">930</span></div>
+      <input type="range" id="t2_x2" min="200" max="1600" value="930" step="5" oninput="t2_update()">
+    </div>
+    <div class="section-hdr">Shade Type</div>
+    <div class="btn-group" id="t2_shade_grp">
+      <button class="active" style="flex:2" onclick="t2_setShade('between',this)">Between X₁ & X₂</button>
+      <button onclick="t2_setShade('below',this)">Below X₁</button>
+      <button onclick="t2_setShade('above',this)">Above X₂</button>
+      <button onclick="t2_setShade('tails',this)">Tails</button>
+    </div>
+    <div class="section-hdr">Presets</div>
+    <button class="preset-btn" onclick="t2_preset68()">±1 SD (68% rule)</button>
+    <button class="preset-btn" onclick="t2_preset95()">±2 SD (95% rule)</button>
+    <button class="preset-btn" onclick="t2_preset997()">±3 SD (99.7% rule)</button>
+    <button class="preset-btn" onclick="t2_presetUnder()">Find underweight cattle</button>
+    <div class="section-hdr">Results</div>
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="mc-label">Z₁ (X₁)</div><div class="mc-value" id="t2_m_z1">—</div></div>
+      <div class="metric-card"><div class="mc-label">Z₂ (X₂)</div><div class="mc-value" id="t2_m_z2">—</div></div>
+      <div class="metric-card"><div class="mc-label">P (decimal)</div><div class="mc-value" id="t2_m_pd">—</div></div>
+      <div class="metric-card"><div class="mc-label">P (percent)</div><div class="mc-value" id="t2_m_pp">—</div></div>
+    </div>
+  </div>
+  <div class="canvas-area" id="t2_area"><canvas id="t2_canvas"></canvas></div>
+</div>
+
+<!-- TAB 3: CLT -->
+<div class="tab-panel" id="tab2">
+  <div class="sidebar">
+    <div class="section-hdr">Population Shape</div>
+    <div class="btn-group" id="t3_shape_grp">
+      <button onclick="t3_setShape('uniform',this)">Uniform</button>
+      <button class="active" onclick="t3_setShape('normal',this)">Normal</button>
+      <button onclick="t3_setShape('right',this)">Right-Skewed</button>
+      <button onclick="t3_setShape('bimodal',this)">Bimodal</button>
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Sample Size n</span><span id="t3_n_val">5</span></div>
+      <input type="range" id="t3_n" min="2" max="100" value="5" oninput="t3_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Pop. Std Dev σ (bu/acre)</span><span id="t3_sig_val">30</span></div>
+      <input type="range" id="t3_sig" min="10" max="60" value="30" oninput="t3_update()">
+    </div>
+    <div class="section-hdr">Sampling</div>
+    <button class="action-btn" onclick="t3_draw1()">Draw 1 Sample</button>
+    <button class="action-btn secondary" onclick="t3_draw100()" style="margin-top:4px">Draw 100 Samples</button>
+    <button class="action-btn danger" onclick="t3_reset()" style="margin-top:4px">Reset</button>
+    <div class="section-hdr">Presets</div>
+    <button class="preset-btn" onclick="t3_preset(2,'right')">n=2 (few samples)</button>
+    <button class="preset-btn" onclick="t3_preset(10,'right')">n=10 (emerging normality)</button>
+    <button class="preset-btn" onclick="t3_preset(30,'right')">n=30 (CLT kicks in)</button>
+    <button class="preset-btn" onclick="t3_preset(50,'bimodal')">n=50 (clearly normal)</button>
+    <div class="section-hdr">Statistics</div>
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="mc-label">Samples Drawn</div><div class="mc-value" id="t3_m_cnt">0</div></div>
+      <div class="metric-card"><div class="mc-label">Mean of x̄</div><div class="mc-value" id="t3_m_mxbar">—</div></div>
+      <div class="metric-card"><div class="mc-label">Std Error (theory)</div><div class="mc-value" id="t3_m_se">—</div></div>
+      <div class="metric-card"><div class="mc-label">Obs. SD of x̄</div><div class="mc-value" id="t3_m_osd">—</div></div>
+      <div class="metric-card" style="grid-column:span 2"><div class="mc-label">Normality (n≥30)?</div><div class="mc-value" id="t3_m_norm">—</div></div>
+    </div>
+  </div>
+  <div class="canvas-area" id="t3_area"><canvas id="t3_canvas"></canvas></div>
+</div>
+
+<!-- TAB 4: Confidence Intervals -->
+<div class="tab-panel" id="tab3">
+  <div class="sidebar">
+    <div class="section-hdr">Parameters</div>
+    <div class="slider-group">
+      <div class="slider-label"><span>True μ (protein %)</span><span id="t4_mu_val">38</span></div>
+      <input type="range" id="t4_mu" min="30" max="50" value="38" oninput="t4_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Population σ</span><span id="t4_sig_val">3.5</span></div>
+      <input type="range" id="t4_sig" min="1" max="10" value="3.5" step="0.5" oninput="t4_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Sample Size n</span><span id="t4_n_val">25</span></div>
+      <input type="range" id="t4_n" min="5" max="200" value="25" oninput="t4_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Confidence Level</span><span id="t4_cl_val">95%</span></div>
+      <input type="range" id="t4_cl" min="80" max="99" value="95" step="1" oninput="t4_update()">
+    </div>
+    <div class="section-hdr">Variance Known?</div>
+    <div class="btn-group" id="t4_type_grp">
+      <button class="active" onclick="t4_setType('z',this)">Known σ (z*)</button>
+      <button onclick="t4_setType('t',this)">Unknown σ (t*)</button>
+    </div>
+    <button class="action-btn" onclick="t4_simulate()" style="margin-top:4px">Simulate 20 CIs</button>
+    <div class="section-hdr">Presets</div>
+    <button class="preset-btn" onclick="t4_preset(38,3.5,25,95,'z')">95% CI, n=25 (default)</button>
+    <button class="preset-btn" onclick="t4_preset(38,3.5,25,99,'z')">Wider: 99% CI</button>
+    <button class="preset-btn" onclick="t4_preset(38,3.5,100,95,'z')">Narrower: n=100</button>
+    <button class="preset-btn" onclick="t4_preset(38,3.5,8,95,'t')">Small sample t (n=8)</button>
+    <div class="section-hdr">Statistics</div>
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="mc-label">Margin of Error</div><div class="mc-value" id="t4_m_me">—</div></div>
+      <div class="metric-card"><div class="mc-label">Critical Value</div><div class="mc-value" id="t4_m_cv">—</div></div>
+      <div class="metric-card"><div class="mc-label">Lower Bound</div><div class="mc-value" id="t4_m_lo">—</div></div>
+      <div class="metric-card"><div class="mc-label">Upper Bound</div><div class="mc-value" id="t4_m_hi">—</div></div>
+      <div class="metric-card" style="grid-column:span 2"><div class="mc-label">CIs containing μ (of 20)</div><div class="mc-value" id="t4_m_pct">—</div></div>
+    </div>
+  </div>
+  <div class="canvas-area" id="t4_area"><canvas id="t4_canvas"></canvas></div>
+</div>
+
+<!-- TAB 5: Hypothesis Testing -->
+<div class="tab-panel" id="tab4">
+  <div class="sidebar">
+    <div class="section-hdr">Hypothesis Setup</div>
+    <div class="slider-group">
+      <div class="slider-label"><span>H₀: μ₀ (historical, bu/acre)</span><span id="t5_mu0_val">145</span></div>
+      <input type="range" id="t5_mu0" min="100" max="180" value="145" oninput="t5_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Sample Mean x̄</span><span id="t5_xbar_val">155</span></div>
+      <input type="range" id="t5_xbar" min="90" max="200" value="155" oninput="t5_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Sample Std Dev s</span><span id="t5_s_val">28</span></div>
+      <input type="range" id="t5_s" min="10" max="60" value="28" oninput="t5_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Sample Size n</span><span id="t5_n_val">30</span></div>
+      <input type="range" id="t5_n" min="5" max="200" value="30" oninput="t5_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Significance α</span><span id="t5_alpha_val">0.05</span></div>
+      <input type="range" id="t5_alpha" min="0.01" max="0.10" value="0.05" step="0.01" oninput="t5_update()">
+    </div>
+    <div class="section-hdr">Alternative Hypothesis H₁</div>
+    <div class="btn-group" id="t5_tail_grp">
+      <button class="active" onclick="t5_setTail('two',this)">μ ≠ μ₀</button>
+      <button onclick="t5_setTail('right',this)">μ > μ₀</button>
+      <button onclick="t5_setTail('left',this)">μ &lt; μ₀</button>
+    </div>
+    <div class="section-hdr">Presets</div>
+    <button class="preset-btn" onclick="t5_preset(145,155,28,30,0.05,'two')">Yield increase? (two-tailed)</button>
+    <button class="preset-btn" onclick="t5_preset(145,128,35,25,0.05,'left')">Drought effect (left)</button>
+    <button class="preset-btn" onclick="t5_preset(145,162,20,40,0.05,'right')">Record year (right)</button>
+    <button class="preset-btn" onclick="t5_preset(145,151,30,20,0.05,'two')">Borderline case</button>
+    <div class="section-hdr">Results</div>
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="mc-label">t-statistic</div><div class="mc-value" id="t5_m_t">—</div></div>
+      <div class="metric-card"><div class="mc-label">Deg. Freedom</div><div class="mc-value" id="t5_m_df">—</div></div>
+      <div class="metric-card"><div class="mc-label">p-value</div><div class="mc-value" id="t5_m_p">—</div></div>
+      <div class="metric-card"><div class="mc-label">Critical t*</div><div class="mc-value" id="t5_m_tc">—</div></div>
+      <div class="metric-card"><div class="mc-label">Cohen's d</div><div class="mc-value" id="t5_m_d">—</div></div>
+      <div class="metric-card"><div class="mc-label">Decision</div><div class="mc-value" id="t5_m_dec">—</div></div>
+    </div>
+  </div>
+  <div class="canvas-area" id="t5_area"><canvas id="t5_canvas"></canvas></div>
+</div>
+
+<!-- TAB 6: Regression -->
+<div class="tab-panel" id="tab5">
+  <div class="sidebar">
+    <div class="section-hdr">Data Generation</div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Sample Size n</span><span id="t6_n_val">30</span></div>
+      <input type="range" id="t6_n" min="10" max="80" value="30" oninput="t6_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>True Slope β₁ (bu/lb N)</span><span id="t6_b1_val">1.8</span></div>
+      <input type="range" id="t6_b1" min="-2" max="5" value="1.8" step="0.1" oninput="t6_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>True Intercept β₀</span><span id="t6_b0_val">85</span></div>
+      <input type="range" id="t6_b0" min="60" max="120" value="85" oninput="t6_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Error Std Dev σ</span><span id="t6_sig_val">18</span></div>
+      <input type="range" id="t6_sig" min="5" max="50" value="18" oninput="t6_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label"><span>Max N Rate (lbs/acre)</span><span id="t6_xmax_val">120</span></div>
+      <input type="range" id="t6_xmax" min="40" max="200" value="120" oninput="t6_update()">
+    </div>
+    <button class="action-btn" onclick="t6_regen()" style="margin-top:4px">Regenerate Data</button>
+    <div class="section-hdr">Presets</div>
+    <button class="preset-btn" onclick="t6_preset(2.1,85,15,30,120,false)">Strong positive</button>
+    <button class="preset-btn" onclick="t6_preset(0.5,120,40,30,120,false)">Weak relationship</button>
+    <button class="preset-btn" onclick="t6_preset(0,145,30,30,120,false)">No relationship (H₀ true)</button>
+    <button class="preset-btn" onclick="t6_preset(-3,200,20,40,120,true)">Price → Demand (negative)</button>
+    <div class="section-hdr">OLS Results</div>
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="mc-label">β̂₀ (intercept)</div><div class="mc-value" id="t6_m_b0">—</div></div>
+      <div class="metric-card"><div class="mc-label">β̂₁ (slope)</div><div class="mc-value" id="t6_m_b1">—</div></div>
+      <div class="metric-card"><div class="mc-label">R²</div><div class="mc-value" id="t6_m_r2">—</div></div>
+      <div class="metric-card"><div class="mc-label">SE(β̂₁)</div><div class="mc-value" id="t6_m_se">—</div></div>
+      <div class="metric-card"><div class="mc-label">t-stat (slope)</div><div class="mc-value" id="t6_m_t">—</div></div>
+      <div class="metric-card"><div class="mc-label">p-value</div><div class="mc-value" id="t6_m_p">—</div></div>
+    </div>
+    <div style="font-size:11px;color:#374151;background:#f0fdf4;border:1px solid #86efac;border-radius:4px;padding:6px;margin-top:4px" id="t6_interp">—</div>
+  </div>
+  <div class="canvas-area" id="t6_area"><canvas id="t6_canvas"></canvas></div>
+</div>
+
+</div><!-- end main -->
+
+<script>
+// ─── Utilities ──────────────────────────────────────────────────────────────
+function makePRNG(seed) {
+  let s = (seed >>> 0) || 1;
+  return function() {
+    s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
+    return s / 0x100000000;
+  };
+}
+function boxMuller(rand) {
+  let u1 = rand(), u2 = rand();
+  if (u1 < 1e-10) u1 = 1e-10;
+  return Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+}
+function erf(x) {
+  const t = 1 / (1 + 0.3275911 * Math.abs(x));
+  const poly = t * (0.254829592 + t * (-0.284496736 + t * (1.421413741 + t * (-1.453152027 + t * 1.061405429))));
+  const r = 1 - poly * Math.exp(-x * x);
+  return x >= 0 ? r : -r;
+}
+function normalCDF(x) { return 0.5 * (1 + erf(x / Math.sqrt(2))); }
+function normalPDF(x) { return Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI); }
+
+// t-distribution CDF via regularized incomplete beta
+function incompleteBeta(x, a, b) {
+  if (x <= 0) return 0;
+  if (x >= 1) return 1;
+  // Continued fraction (Lentz method truncated)
+  const lbeta = lgamma(a) + lgamma(b) - lgamma(a + b);
+  const front = Math.exp(Math.log(x) * a + Math.log(1 - x) * b - lbeta) / a;
+  // Use symmetry for convergence
+  if (x > (a + 1) / (a + b + 2)) return 1 - incompleteBeta(1 - x, b, a);
+  let C = 1, D = 1 - (a + b) * x / (a + 1); D = 1 / D; let f = D;
+  for (let m = 1; m <= 100; m++) {
+    let num = m * (b - m) * x / ((a + 2 * m - 1) * (a + 2 * m));
+    D = 1 + num * D; if (Math.abs(D) < 1e-30) D = 1e-30;
+    C = 1 + num / C; if (Math.abs(C) < 1e-30) C = 1e-30;
+    D = 1 / D; f *= C * D;
+    num = -(a + m) * (a + b + m) * x / ((a + 2 * m) * (a + 2 * m + 1));
+    D = 1 + num * D; if (Math.abs(D) < 1e-30) D = 1e-30;
+    C = 1 + num / C; if (Math.abs(C) < 1e-30) C = 1e-30;
+    D = 1 / D; const delta = C * D; f *= delta;
+    if (Math.abs(delta - 1) < 1e-10) break;
+  }
+  return front * f;
+}
+function lgamma(x) {
+  const c = [76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,0.1208650973866179e-2,-0.5395239384953e-5];
+  let y = x, tmp = x + 5.5, ser = 1.000000000190015;
+  tmp -= (x + 0.5) * Math.log(tmp);
+  for (let j = 0; j < 6; j++) ser += c[j] / ++y;
+  return -tmp + Math.log(2.5066282746310005 * ser / x);
+}
+function tCDF(t, df) {
+  if (df <= 0) return 0.5;
+  const x = df / (df + t * t);
+  const ib = incompleteBeta(x, df / 2, 0.5);
+  return t < 0 ? ib / 2 : 1 - ib / 2;
+}
+function tPDF(t, df) {
+  const lg = lgamma((df+1)/2) - lgamma(df/2) - 0.5*Math.log(df*Math.PI);
+  return Math.exp(lg) * Math.pow(1 + t*t/df, -(df+1)/2);
+}
+
+// t critical value (inverse t) via bisection
+function tCritical(p, df) {
+  // p is upper tail probability, find t such that P(T > t) = p
+  let lo = 0, hi = 20;
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    if (1 - tCDF(mid, df) > p) lo = mid; else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+function zCritical(p) {
+  // find z such that P(Z > z) = p
+  let lo = 0, hi = 5;
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    if (1 - normalCDF(mid) > p) lo = mid; else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+function setupCanvas(canvas, container) {
+  const dpr = window.devicePixelRatio || 1;
+  const w = container.clientWidth, h = container.clientHeight;
+  canvas.width = w * dpr; canvas.height = h * dpr;
+  canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  return {ctx, w, h};
+}
+
+function switchTab(i) {
+  document.querySelectorAll('.tab-panel').forEach((p,j) => p.classList.toggle('active', j===i));
+  document.querySelectorAll('.tab-btn').forEach((b,j) => b.classList.toggle('active', j===i));
+  setTimeout(() => { [t1_draw, t2_draw, t3_draw, t4_draw, t5_draw, t6_draw][i](); }, 10);
+}
+
+// ─── TAB 1: Descriptive Stats ────────────────────────────────────────────────
+let t1_shape = 'symmetric';
+function t1_setShape(s, btn) {
+  t1_shape = s;
+  document.querySelectorAll('#t1_shape_grp button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  t1_draw();
+}
+function t1_preset(mean, sd, n, shape) {
+  document.getElementById('t1_mean').value = mean;
+  document.getElementById('t1_sd').value = sd;
+  document.getElementById('t1_n').value = n;
+  t1_shape = shape;
+  document.querySelectorAll('#t1_shape_grp button').forEach(b => {
+    b.classList.toggle('active', b.textContent.toLowerCase().replace('-','').replace(' ','') === shape.replace('-',''));
+  });
+  t1_update();
+}
+function t1_update() {
+  document.getElementById('t1_n_val').textContent = document.getElementById('t1_n').value;
+  document.getElementById('t1_mean_val').textContent = document.getElementById('t1_mean').value;
+  document.getElementById('t1_sd_val').textContent = document.getElementById('t1_sd').value;
+  t1_draw();
+}
+function t1_genData(n, mean, sd, shape) {
+  const seed = n * 1000 + Math.floor(mean) * 10 + Math.floor(sd);
+  const rand = makePRNG(seed);
+  const data = [];
+  for (let i = 0; i < n; i++) {
+    let v;
+    if (shape === 'symmetric') {
+      v = mean + sd * boxMuller(rand);
+    } else if (shape === 'right') {
+      // lognormal: find params so E[X]=mean, use v=0.3
+      const mu_ln = Math.log(mean) - 0.15;
+      v = Math.exp(mu_ln + Math.sqrt(0.3) * boxMuller(rand));
+      // scale to correct mean
+      v = v * mean / Math.exp(mu_ln + 0.15);
+    } else if (shape === 'left') {
+      const mu_ln = Math.log(mean) - 0.15;
+      let u = Math.exp(mu_ln + Math.sqrt(0.3) * boxMuller(rand));
+      u = u * mean / Math.exp(mu_ln + 0.15);
+      v = 2 * mean - u;
+    } else if (shape === 'bimodal') {
+      const g = rand() < 0.5 ? -1 : 1;
+      v = (mean + g * 30) + (sd / 2) * boxMuller(rand);
+    }
+    data.push(v);
+  }
+  return data;
+}
+function t1_stats(data) {
+  const sorted = [...data].sort((a,b)=>a-b);
+  const n = data.length;
+  const mean = data.reduce((a,b)=>a+b,0)/n;
+  const med = n%2===0 ? (sorted[n/2-1]+sorted[n/2])/2 : sorted[Math.floor(n/2)];
+  const sd = Math.sqrt(data.reduce((a,b)=>a+(b-mean)**2,0)/(n-1));
+  const q1 = sorted[Math.floor(n*0.25)];
+  const q3 = sorted[Math.floor(n*0.75)];
+  return {mean, med, sd, iqr: q3-q1, min: sorted[0], max: sorted[n-1]};
+}
+function t1_draw() {
+  const n = +document.getElementById('t1_n').value;
+  const mean = +document.getElementById('t1_mean').value;
+  const sd = +document.getElementById('t1_sd').value;
+  const shape = t1_shape;
+  const data = t1_genData(n, mean, sd, shape);
+  const st = t1_stats(data);
+  document.getElementById('t1_m_mean').textContent = st.mean.toFixed(1);
+  document.getElementById('t1_m_med').textContent = st.med.toFixed(1);
+  document.getElementById('t1_m_sd').textContent = st.sd.toFixed(1);
+  document.getElementById('t1_m_iqr').textContent = st.iqr.toFixed(1);
+  document.getElementById('t1_m_min').textContent = st.min.toFixed(1);
+  document.getElementById('t1_m_max').textContent = st.max.toFixed(1);
+  const skewDir = shape === 'right' ? 'Right (positive)' : shape === 'left' ? 'Left (negative)' : shape === 'bimodal' ? 'Bimodal' : 'Symmetric';
+  document.getElementById('t1_m_skew').textContent = skewDir;
+
+  const cnv = document.getElementById('t1_canvas');
+  const area = document.getElementById('t1_area');
+  const {ctx, w, h} = setupCanvas(cnv, area);
+  const PAD = {l:70, r:40, t:50, b:65};
+  const W = w - PAD.l - PAD.r, H = h - PAD.t - PAD.b;
+
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, w, h);
+
+  // Bins
+  const nbins = Math.max(8, Math.min(20, Math.floor(Math.sqrt(n) * 2)));
+  const xmin = st.min - (st.max-st.min)*0.05;
+  const xmax = st.max + (st.max-st.min)*0.05;
+  const bw = (xmax - xmin) / nbins;
+  const counts = new Array(nbins).fill(0);
+  data.forEach(v => {
+    const idx = Math.min(nbins-1, Math.floor((v-xmin)/bw));
+    if (idx >= 0) counts[idx]++;
+  });
+  const maxCount = Math.max(...counts);
+
+  const toX = v => PAD.l + (v - xmin) / (xmax - xmin) * W;
+  const toY = c => PAD.t + H - c / maxCount * H;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  const yticks = 5;
+  for (let i = 0; i <= yticks; i++) {
+    const y = PAD.t + H * (1 - i/yticks);
+    ctx.beginPath(); ctx.moveTo(PAD.l, y); ctx.lineTo(PAD.l+W, y); ctx.stroke();
+    ctx.fillStyle = '#6b7280'; ctx.font = '12px Segoe UI'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxCount * i / yticks), PAD.l - 8, y + 4);
+  }
+
+  // ±1 SD shaded band
+  const sdx1 = toX(st.mean - st.sd), sdx2 = toX(st.mean + st.sd);
+  ctx.fillStyle = 'rgba(37,99,235,0.12)';
+  ctx.fillRect(Math.max(PAD.l, sdx1), PAD.t, Math.min(PAD.l+W, sdx2) - Math.max(PAD.l, sdx1), H);
+
+  // Bars
+  counts.forEach((c, i) => {
+    const x0 = toX(xmin + i * bw), x1 = toX(xmin + (i+1) * bw);
+    const barH = c / maxCount * H;
+    const t = i / nbins;
+    ctx.fillStyle = `rgba(${Math.round(22 + t*20)},${Math.round(163 - t*30)},${Math.round(74)},0.75)`;
+    ctx.fillRect(x0+1, PAD.t+H-barH, x1-x0-2, barH);
+    ctx.strokeStyle = '#15803d'; ctx.lineWidth = 0.5;
+    ctx.strokeRect(x0+1, PAD.t+H-barH, x1-x0-2, barH);
+  });
+
+  // KDE curve
+  const kdePoints = 120;
+  const bwKDE = 1.06 * st.sd * Math.pow(n, -0.2);
+  ctx.beginPath(); ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2.5;
+  for (let p = 0; p <= kdePoints; p++) {
+    const xv = xmin + p/kdePoints*(xmax-xmin);
+    let kde = 0;
+    data.forEach(d => { kde += normalPDF((xv-d)/bwKDE)/bwKDE; });
+    kde /= n;
+    const ky = PAD.t + H - (kde / (maxCount/(bw*n))) * H;
+    p===0 ? ctx.moveTo(toX(xv), ky) : ctx.lineTo(toX(xv), ky);
+  }
+  ctx.stroke();
+
+  // Mean line (blue dashed)
+  ctx.setLineDash([6,4]); ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(toX(st.mean), PAD.t); ctx.lineTo(toX(st.mean), PAD.t+H); ctx.stroke();
+  // Median line (orange dashed)
+  ctx.strokeStyle = '#ea580c';
+  ctx.beginPath(); ctx.moveTo(toX(st.med), PAD.t); ctx.lineTo(toX(st.med), PAD.t+H); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Legend labels
+  ctx.font = 'bold 12px Segoe UI';
+  ctx.fillStyle = '#2563eb'; ctx.textAlign = 'left';
+  ctx.fillText('— Mean = ' + st.mean.toFixed(1), PAD.l+4, PAD.t+16);
+  ctx.fillStyle = '#ea580c';
+  ctx.fillText('— Median = ' + st.med.toFixed(1), PAD.l+4, PAD.t+32);
+  ctx.fillStyle = 'rgba(37,99,235,0.5)';
+  ctx.fillText('▓ ±1 SD', PAD.l+4, PAD.t+48);
+
+  // SD annotation on chart
+  ctx.fillStyle = '#1a3a2a'; ctx.font = 'bold 13px Segoe UI'; ctx.textAlign = 'right';
+  ctx.fillText('SD = ' + st.sd.toFixed(1), PAD.l+W-4, PAD.t+20);
+
+  // Axes
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(PAD.l, PAD.t); ctx.lineTo(PAD.l, PAD.t+H); ctx.lineTo(PAD.l+W, PAD.t+H); ctx.stroke();
+
+  // X ticks & labels
+  const xtick = Math.ceil((xmax-xmin)/8/10)*10 || 10;
+  const xstart = Math.ceil(xmin/xtick)*xtick;
+  ctx.fillStyle = '#374151'; ctx.font = '12px Segoe UI'; ctx.textAlign = 'center';
+  for (let v = xstart; v <= xmax; v += xtick) {
+    const px = toX(v);
+    ctx.beginPath(); ctx.moveTo(px, PAD.t+H); ctx.lineTo(px, PAD.t+H+5); ctx.stroke();
+    ctx.fillText(Math.round(v), px, PAD.t+H+18);
+  }
+
+  // Axis titles
+  ctx.font = 'bold 14px Segoe UI'; ctx.fillStyle = '#1a3a2a'; ctx.textAlign = 'center';
+  ctx.fillText('Yield (bu/acre)', PAD.l + W/2, h - 8);
+  ctx.save(); ctx.translate(16, PAD.t + H/2); ctx.rotate(-Math.PI/2);
+  ctx.fillText('Frequency', 0, 0); ctx.restore();
+
+  // Chart title
+  ctx.font = 'bold 16px Segoe UI'; ctx.textAlign = 'center';
+  ctx.fillText('Corn Yield Distribution — ' + n + ' Texas Farms', PAD.l + W/2, PAD.t - 20);
+}
+
+// ─── TAB 2: Normal & Z-Scores ────────────────────────────────────────────────
+let t2_shade = 'between';
+function t2_setShade(s, btn) {
+  t2_shade = s;
+  document.querySelectorAll('#t2_shade_grp button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  t2_draw();
+}
+function t2_update() {
+  const mu = +document.getElementById('t2_mu').value;
+  const sig = +document.getElementById('t2_sig').value;
+  document.getElementById('t2_mu_val').textContent = mu;
+  document.getElementById('t2_sig_val').textContent = sig;
+  document.getElementById('t2_x1_val').textContent = +document.getElementById('t2_x1').value;
+  document.getElementById('t2_x2_val').textContent = +document.getElementById('t2_x2').value;
+  t2_draw();
+}
+function t2_preset68() {
+  const mu = +document.getElementById('t2_mu').value, sig = +document.getElementById('t2_sig').value;
+  document.getElementById('t2_x1').value = mu - sig; document.getElementById('t2_x2').value = mu + sig;
+  t2_shade = 'between';
+  document.querySelectorAll('#t2_shade_grp button').forEach((b,i) => b.classList.toggle('active', i===0));
+  t2_update();
+}
+function t2_preset95() {
+  const mu = +document.getElementById('t2_mu').value, sig = +document.getElementById('t2_sig').value;
+  document.getElementById('t2_x1').value = mu - 2*sig; document.getElementById('t2_x2').value = mu + 2*sig;
+  t2_shade = 'between';
+  document.querySelectorAll('#t2_shade_grp button').forEach((b,i) => b.classList.toggle('active', i===0));
+  t2_update();
+}
+function t2_preset997() {
+  const mu = +document.getElementById('t2_mu').value, sig = +document.getElementById('t2_sig').value;
+  document.getElementById('t2_x1').value = Math.max(200, mu - 3*sig); document.getElementById('t2_x2').value = Math.min(1600, mu + 3*sig);
+  t2_shade = 'between';
+  document.querySelectorAll('#t2_shade_grp button').forEach((b,i) => b.classList.toggle('active', i===0));
+  t2_update();
+}
+function t2_presetUnder() {
+  document.getElementById('t2_x1').value = 650;
+  t2_shade = 'below';
+  document.querySelectorAll('#t2_shade_grp button').forEach((b,i) => b.classList.toggle('active', i===1));
+  t2_update();
+}
+function t2_draw() {
+  const mu = +document.getElementById('t2_mu').value;
+  const sig = +document.getElementById('t2_sig').value;
+  const x1 = +document.getElementById('t2_x1').value;
+  const x2 = +document.getElementById('t2_x2').value;
+  const shade = t2_shade;
+  const z1 = (x1-mu)/sig, z2 = (x2-mu)/sig;
+
+  // Compute probability
+  let prob;
+  if (shade === 'between') prob = normalCDF(z2) - normalCDF(z1);
+  else if (shade === 'below') prob = normalCDF(z1);
+  else if (shade === 'above') prob = 1 - normalCDF(z2);
+  else prob = normalCDF(z1) + (1 - normalCDF(z2));
+
+  document.getElementById('t2_m_z1').textContent = z1.toFixed(3);
+  document.getElementById('t2_m_z2').textContent = z2.toFixed(3);
+  document.getElementById('t2_m_pd').textContent = prob.toFixed(4);
+  document.getElementById('t2_m_pp').textContent = (prob*100).toFixed(2) + '%';
+
+  const cnv = document.getElementById('t2_canvas');
+  const area = document.getElementById('t2_area');
+  const {ctx, w, h} = setupCanvas(cnv, area);
+  const PAD = {l:70, r:40, t:60, b:80};
+  const W = w - PAD.l - PAD.r, H = h - PAD.t - PAD.b;
+
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, w, h);
+
+  const xlo = mu - 4*sig, xhi = mu + 4*sig;
+  const toX = v => PAD.l + (v-xlo)/(xhi-xlo)*W;
+  const maxPDF = normalPDF(0)/sig;
+  const toY = p => PAD.t + H - p/maxPDF*H;
+
+  // Shaded area
+  const NP = 300;
+  function shadeRegion(a, b, color) {
+    const ax = Math.max(xlo, a), bx = Math.min(xhi, b);
+    if (ax >= bx) return;
+    ctx.beginPath();
+    ctx.moveTo(toX(ax), toY(0));
+    for (let i = 0; i <= NP; i++) {
+      const v = ax + i/NP*(bx-ax);
+      ctx.lineTo(toX(v), toY(normalPDF((v-mu)/sig)/sig));
+    }
+    ctx.lineTo(toX(bx), toY(0));
+    ctx.closePath();
+    ctx.fillStyle = color; ctx.fill();
+  }
+  const shadeColor = 'rgba(37,99,235,0.35)';
+  if (shade === 'between') shadeRegion(x1, x2, shadeColor);
+  else if (shade === 'below') shadeRegion(xlo, x1, shadeColor);
+  else if (shade === 'above') shadeRegion(x2, xhi, shadeColor);
+  else { shadeRegion(xlo, x1, shadeColor); shadeRegion(x2, xhi, shadeColor); }
+
+  // Curve
+  ctx.beginPath(); ctx.strokeStyle = '#1a3a2a'; ctx.lineWidth = 2.5;
+  for (let i = 0; i <= NP; i++) {
+    const v = xlo + i/NP*(xhi-xlo);
+    const py = toY(normalPDF((v-mu)/sig)/sig);
+    i===0 ? ctx.moveTo(toX(v), py) : ctx.lineTo(toX(v), py);
+  }
+  ctx.stroke();
+
+  // μ line
+  ctx.setLineDash([8,5]); ctx.strokeStyle = '#1a3a2a'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(toX(mu), PAD.t); ctx.lineTo(toX(mu), PAD.t+H); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#1a3a2a'; ctx.font = 'bold 13px Segoe UI'; ctx.textAlign = 'center';
+  ctx.fillText('μ='+mu, toX(mu), PAD.t-8);
+
+  // x1, x2 lines
+  function drawValLine(xv, color, label) {
+    ctx.setLineDash([5,4]); ctx.strokeStyle = color; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(toX(xv), PAD.t); ctx.lineTo(toX(xv), PAD.t+H); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = color; ctx.font = 'bold 12px Segoe UI'; ctx.textAlign = 'center';
+    ctx.fillText(label + '=' + xv, toX(xv), PAD.t - 8 + (label==='X₂'?16:0));
+  }
+  if (shade !== 'above') drawValLine(x1, '#dc2626', 'X₁');
+  if (shade !== 'below') drawValLine(x2, '#7c3aed', 'X₂');
+
+  // P label in chart
+  ctx.font = 'bold 24px Segoe UI'; ctx.fillStyle = '#1e40af'; ctx.textAlign = 'center';
+  ctx.fillText('P = ' + (prob*100).toFixed(1) + '%', PAD.l+W/2, PAD.t+H/2);
+
+  // z formula
+  ctx.font = '14px Segoe UI'; ctx.fillStyle = '#374151'; ctx.textAlign = 'right';
+  ctx.fillText('z = (X − μ) / σ', PAD.l+W-8, PAD.t+20);
+
+  // Axes
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(PAD.l, PAD.t+H); ctx.lineTo(PAD.l+W, PAD.t+H); ctx.stroke();
+
+  // X axis labels (raw + z-score)
+  const xticks = [-4,-3,-2,-1,0,1,2,3,4];
+  ctx.font = '12px Segoe UI'; ctx.fillStyle = '#374151';
+  xticks.forEach(z => {
+    const v = mu + z*sig;
+    if (v < xlo || v > xhi) return;
+    const px = toX(v);
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#374151'; ctx.fillText(Math.round(v), px, PAD.t+H+16);
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px Segoe UI';
+    ctx.fillText('z='+z, px, PAD.t+H+30);
+    ctx.font = '12px Segoe UI';
+    ctx.strokeStyle = '#374151'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(px, PAD.t+H); ctx.lineTo(px, PAD.t+H+5); ctx.stroke();
+  });
+
+  ctx.font = 'bold 14px Segoe UI'; ctx.fillStyle = '#1a3a2a'; ctx.textAlign = 'center';
+  ctx.fillText('Weight (lbs)', PAD.l+W/2, h-10);
+  ctx.save(); ctx.translate(16, PAD.t+H/2); ctx.rotate(-Math.PI/2);
+  ctx.fillText('Density', 0, 0); ctx.restore();
+  ctx.font = 'bold 16px Segoe UI';
+  ctx.fillText('Normal Distribution — Texas Feedlot Cattle Weights (μ='+mu+', σ='+sig+')', PAD.l+W/2, PAD.t-30);
+}
+
+// ─── TAB 3: CLT ─────────────────────────────────────────────────────────────
+let t3_shape = 'normal';
+let t3_xbars = [];
+let t3_lastSample = [];
+function t3_setShape(s, btn) {
+  t3_shape = s;
+  document.querySelectorAll('#t3_shape_grp button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  t3_draw();
+}
+function t3_update() {
+  document.getElementById('t3_n_val').textContent = document.getElementById('t3_n').value;
+  document.getElementById('t3_sig_val').textContent = document.getElementById('t3_sig').value;
+  t3_draw();
+}
+function t3_popMu() { return 150; }
+function t3_sampleOne() {
+  const n = +document.getElementById('t3_n').value;
+  const sig = +document.getElementById('t3_sig').value;
+  const mu = t3_popMu();
+  const sample = [];
+  for (let i = 0; i < n; i++) {
+    let v;
+    const r = Math.random, u1 = Math.random(), u2 = Math.random();
+    const bm = Math.sqrt(-2*Math.log(Math.max(u1,1e-10)))*Math.cos(2*Math.PI*u2);
+    if (t3_shape === 'uniform') v = mu - sig*Math.sqrt(3) + Math.random()*2*sig*Math.sqrt(3);
+    else if (t3_shape === 'normal') v = mu + sig*bm;
+    else if (t3_shape === 'right') {
+      const u = Math.random(), u3 = Math.random();
+      const bm2 = Math.sqrt(-2*Math.log(Math.max(u,1e-10)))*Math.cos(2*Math.PI*u3);
+      v = mu + sig * (Math.abs(bm2) - 0.8);
+    } else if (t3_shape === 'bimodal') {
+      const g = Math.random()<0.5?-1:1;
+      v = (mu+g*sig) + sig*0.4*bm;
+    }
+    sample.push(v);
+  }
+  t3_lastSample = sample;
+  return sample.reduce((a,b)=>a+b,0)/sample.length;
+}
+function t3_draw1() {
+  const xbar = t3_sampleOne();
+  t3_xbars.push(xbar);
+  t3_updateMetrics();
+  t3_draw();
+}
+function t3_draw100() {
+  for (let i=0; i<100; i++) {
+    const xbar = t3_sampleOne();
+    t3_xbars.push(xbar);
+  }
+  t3_updateMetrics();
+  t3_draw();
+}
+function t3_reset() {
+  t3_xbars = []; t3_lastSample = [];
+  t3_updateMetrics(); t3_draw();
+}
+function t3_preset(n, shape) {
+  document.getElementById('t3_n').value = n;
+  t3_shape = shape;
+  document.querySelectorAll('#t3_shape_grp button').forEach(b => {
+    const map = {'uniform':'Uniform','normal':'Normal','right':'Right-Skewed','bimodal':'Bimodal'};
+    b.classList.toggle('active', b.textContent === map[shape]);
+  });
+  t3_xbars = []; t3_lastSample = [];
+  t3_update();
+}
+function t3_updateMetrics() {
+  const n = +document.getElementById('t3_n').value;
+  const sig = +document.getElementById('t3_sig').value;
+  const cnt = t3_xbars.length;
+  document.getElementById('t3_m_cnt').textContent = cnt;
+  document.getElementById('t3_m_se').textContent = (sig/Math.sqrt(n)).toFixed(2);
+  document.getElementById('t3_m_norm').textContent = n>=30 ? '✓ Yes (n≥30)' : '✗ Not yet';
+  if (cnt > 1) {
+    const m = t3_xbars.reduce((a,b)=>a+b,0)/cnt;
+    const sd = Math.sqrt(t3_xbars.reduce((a,b)=>a+(b-m)**2,0)/(cnt-1));
+    document.getElementById('t3_m_mxbar').textContent = m.toFixed(2);
+    document.getElementById('t3_m_osd').textContent = sd.toFixed(2);
+  } else {
+    document.getElementById('t3_m_mxbar').textContent = cnt===1?t3_xbars[0].toFixed(2):'—';
+    document.getElementById('t3_m_osd').textContent = '—';
+  }
+}
+function t3_draw() {
+  const n = +document.getElementById('t3_n').value;
+  const sig = +document.getElementById('t3_sig').value;
+  const mu = t3_popMu();
+  const cnv = document.getElementById('t3_canvas');
+  const area = document.getElementById('t3_area');
+  const {ctx, w, h} = setupCanvas(cnv, area);
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle = '#fff'; ctx.fillRect(0,0,w,h);
+
+  const PAD = {l:60, r:30, t:10, b:10};
+  const TW = w - PAD.l - PAD.r;
+  // Panel heights
+  const pH = [Math.floor(h*0.28), Math.floor(h*0.18), Math.floor(h*0.44)];
+  const pY = [PAD.t, PAD.t+pH[0]+10, PAD.t+pH[0]+pH[1]+20];
+
+  // ── Panel 1: Population
+  drawPanelBg(ctx, PAD.l, pY[0], TW, pH[0], '#f0fdf4', 'Population (μ='+mu+', σ='+sig+') — '+t3_shape.charAt(0).toUpperCase()+t3_shape.slice(1));
+  drawPopCurve(ctx, PAD.l, pY[0], TW, pH[0], mu, sig, t3_shape);
+
+  // ── Panel 2: Single sample
+  drawPanelBg(ctx, PAD.l, pY[1], TW, pH[1], '#eff6ff', 'One Sample (n='+n+')');
+  if (t3_lastSample.length > 0) drawSampleDots(ctx, PAD.l, pY[1], TW, pH[1], t3_lastSample, mu, sig);
+
+  // ── Panel 3: Sampling dist
+  drawPanelBg(ctx, PAD.l, pY[2], TW, pH[2], '#fefce8', 'Sampling Distribution of x̄ ('+(t3_xbars.length)+' samples)');
+  drawXbarHist(ctx, PAD.l, pY[2], TW, pH[2], t3_xbars, mu, sig, n);
+
+  function drawPanelBg(ctx, x, y, w, h, bg, title) {
+    ctx.fillStyle = bg; ctx.fillRect(x, y, w, h);
+    ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1;
+    ctx.strokeRect(x, y, w, h);
+    ctx.fillStyle = '#1a3a2a'; ctx.font = 'bold 13px Segoe UI'; ctx.textAlign = 'left';
+    ctx.fillText(title, x+8, y+16);
+  }
+  function drawPopCurve(ctx, x, y, w, h, mu, sig, shape) {
+    const top = y+22, ht = h-26;
+    const xlo = mu-3.5*sig, xhi = mu+3.5*sig;
+    const toX = v => x + (v-xlo)/(xhi-xlo)*w;
+    const NP = 100;
+    const vals = [];
+    for (let i=0;i<=NP;i++) {
+      const v = xlo+i/NP*(xhi-xlo);
+      let d;
+      if (shape==='uniform') d = (v>=xlo&&v<=xhi)?1/(xhi-xlo):0;
+      else if (shape==='normal') d = normalPDF((v-mu)/sig)/sig;
+      else if (shape==='right') { const z=(v-mu+sig*0.8)/(sig*1.2); d = z>0?normalPDF(z/1.2)*2/(sig*1.2):0; }
+      else d = 0.5*normalPDF((v-(mu-sig))/((sig*0.5)+0.01))/(sig*0.5+0.01) + 0.5*normalPDF((v-(mu+sig))/((sig*0.5)+0.01))/(sig*0.5+0.01);
+      vals.push(d);
+    }
+    const maxd = Math.max(...vals)+1e-10;
+    ctx.beginPath(); ctx.strokeStyle='#16a34a'; ctx.lineWidth=2;
+    vals.forEach((d,i)=>{
+      const v=xlo+i/NP*(xhi-xlo), px=toX(v), py=top+ht-d/maxd*ht;
+      i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+    });
+    ctx.stroke();
+    ctx.beginPath(); ctx.strokeStyle='#374151'; ctx.lineWidth=1;
+    ctx.moveTo(x,top+ht); ctx.lineTo(x+w,top+ht); ctx.stroke();
+  }
+  function drawSampleDots(ctx, x, y, w, h, sample, mu, sig) {
+    const top = y+22, ht = h-28;
+    const xlo = mu-3.5*sig, xhi = mu+3.5*sig;
+    const toX = v => x + Math.max(0,Math.min(w,(v-xlo)/(xhi-xlo)*w));
+    ctx.beginPath(); ctx.strokeStyle='#374151'; ctx.lineWidth=1;
+    ctx.moveTo(x,top+ht); ctx.lineTo(x+w,top+ht); ctx.stroke();
+    sample.forEach(v=>{
+      ctx.beginPath(); ctx.arc(toX(v), top+ht-6, 4, 0, 2*Math.PI);
+      ctx.fillStyle='rgba(37,99,235,0.5)'; ctx.fill();
+    });
+    const xbar = sample.reduce((a,b)=>a+b,0)/sample.length;
+    ctx.beginPath(); ctx.arc(toX(xbar), top+ht-6, 7, 0, 2*Math.PI);
+    ctx.fillStyle='#dc2626'; ctx.fill();
+    ctx.fillStyle='#dc2626'; ctx.font='bold 11px Segoe UI'; ctx.textAlign='center';
+    ctx.fillText('x̄='+xbar.toFixed(1), toX(xbar), top+ht-18);
+  }
+  function drawXbarHist(ctx, x, y, w, h, xbars, mu, sig, n) {
+    const top = y+22, ht = h-30;
+    const se = sig/Math.sqrt(n);
+    const xlo = mu-4*se, xhi = mu+4*se;
+    const toX = v => x+(v-xlo)/(xhi-xlo)*w;
+
+    ctx.beginPath(); ctx.strokeStyle='#374151'; ctx.lineWidth=1;
+    ctx.moveTo(x,top+ht); ctx.lineTo(x+w,top+ht); ctx.stroke();
+    ctx.fillStyle='#6b7280'; ctx.font='11px Segoe UI'; ctx.textAlign='center';
+    [-3,-2,-1,0,1,2,3].forEach(z=>{
+      const v=mu+z*se, px=toX(v);
+      if(px<x||px>x+w)return;
+      ctx.fillText(v.toFixed(1),px,top+ht+14);
+      ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(px,top); ctx.lineTo(px,top+ht); ctx.stroke();
+    });
+
+    if (xbars.length === 0) {
+      ctx.fillStyle='#9ca3af'; ctx.font='14px Segoe UI'; ctx.textAlign='center';
+      ctx.fillText('Click "Draw 1 Sample" or "Draw 100 Samples" to start', x+w/2, top+ht/2); return;
+    }
+    const nbins = 20;
+    const bw = (xhi-xlo)/nbins;
+    const counts = new Array(nbins).fill(0);
+    xbars.forEach(v=>{const i=Math.min(nbins-1,Math.max(0,Math.floor((v-xlo)/bw)));counts[i]++;});
+    const maxC = Math.max(...counts);
+    counts.forEach((c,i)=>{
+      if(c===0)return;
+      const bx=toX(xlo+i*bw), bx2=toX(xlo+(i+1)*bw);
+      const bh=c/maxC*ht;
+      ctx.fillStyle='rgba(234,179,8,0.7)';
+      ctx.fillRect(bx+0.5,top+ht-bh,bx2-bx-1,bh);
+    });
+    // Theoretical curve
+    const NP=100;
+    ctx.beginPath(); ctx.strokeStyle='#dc2626'; ctx.lineWidth=2; ctx.setLineDash([6,3]);
+    for(let i=0;i<=NP;i++){
+      const v=xlo+i/NP*(xhi-xlo);
+      const d=normalPDF((v-mu)/se)/se;
+      const scale=maxC/(1/(bw));
+      const py=top+ht-d*scale*ht;
+      i===0?ctx.moveTo(toX(v),py):ctx.lineTo(toX(v),py);
+    }
+    ctx.stroke(); ctx.setLineDash([]);
+    // μ line
+    ctx.strokeStyle='#1a3a2a'; ctx.lineWidth=1.5; ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.moveTo(toX(mu),top); ctx.lineTo(toX(mu),top+ht); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle='#1a3a2a'; ctx.font='bold 11px Segoe UI'; ctx.textAlign='center';
+    ctx.fillText('μ',toX(mu),top-2);
+  }
+}
+
+// ─── TAB 4: Confidence Intervals ────────────────────────────────────────────
+let t4_type = 'z';
+let t4_CIs = [];
+function t4_setType(tp, btn) {
+  t4_type = tp;
+  document.querySelectorAll('#t4_type_grp button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  t4_draw();
+}
+function t4_update() {
+  document.getElementById('t4_mu_val').textContent = document.getElementById('t4_mu').value;
+  document.getElementById('t4_sig_val').textContent = document.getElementById('t4_sig').value;
+  document.getElementById('t4_n_val').textContent = document.getElementById('t4_n').value;
+  document.getElementById('t4_cl_val').textContent = document.getElementById('t4_cl').value + '%';
+  t4_draw();
+}
+function t4_preset(mu, sig, n, cl, type) {
+  document.getElementById('t4_mu').value = mu;
+  document.getElementById('t4_sig').value = sig;
+  document.getElementById('t4_n').value = n;
+  document.getElementById('t4_cl').value = cl;
+  t4_type = type;
+  document.querySelectorAll('#t4_type_grp button').forEach((b,i)=>b.classList.toggle('active',(i===0&&type==='z')||(i===1&&type==='t')));
+  t4_simulate();
+}
+function t4_getCritical() {
+  const cl = +document.getElementById('t4_cl').value / 100;
+  const n = +document.getElementById('t4_n').value;
+  const alpha = 1 - cl;
+  if (t4_type === 'z') return zCritical(alpha/2);
+  else return tCritical(alpha/2, n-1);
+}
+function t4_simulate() {
+  const mu = +document.getElementById('t4_mu').value;
+  const sig = +document.getElementById('t4_sig').value;
+  const n = +document.getElementById('t4_n').value;
+  const crit = t4_getCritical();
+  const me = crit * sig / Math.sqrt(n);
+  t4_CIs = [];
+  for (let i=0;i<20;i++) {
+    let xbar = 0;
+    for (let j=0;j<n;j++) {
+      const u1=Math.random(), u2=Math.random();
+      xbar += mu + sig * Math.sqrt(-2*Math.log(Math.max(u1,1e-10)))*Math.cos(2*Math.PI*u2);
+    }
+    xbar /= n;
+    const sampleSE = sig / Math.sqrt(n);
+    const lo = xbar - crit*sampleSE, hi = xbar + crit*sampleSE;
+    t4_CIs.push({xbar, lo, hi, contains: mu>=lo && mu<=hi});
+  }
+  t4_update_metrics();
+  t4_draw();
+}
+function t4_update_metrics() {
+  const mu = +document.getElementById('t4_mu').value;
+  const sig = +document.getElementById('t4_sig').value;
+  const n = +document.getElementById('t4_n').value;
+  const crit = t4_getCritical();
+  const me = crit * sig / Math.sqrt(n);
+  document.getElementById('t4_m_me').textContent = me.toFixed(3);
+  document.getElementById('t4_m_cv').textContent = crit.toFixed(3);
+  document.getElementById('t4_m_lo').textContent = (mu-me).toFixed(3);
+  document.getElementById('t4_m_hi').textContent = (mu+me).toFixed(3);
+  if (t4_CIs.length > 0) {
+    const cnt = t4_CIs.filter(c=>c.contains).length;
+    document.getElementById('t4_m_pct').textContent = cnt + '/20 (' + (cnt*5) + '%)';
+  }
+}
+function t4_draw() {
+  t4_update_metrics();
+  const mu = +document.getElementById('t4_mu').value;
+  const sig = +document.getElementById('t4_sig').value;
+  const n = +document.getElementById('t4_n').value;
+  const cl = +document.getElementById('t4_cl').value / 100;
+  const crit = t4_getCritical();
+  const me = crit * sig / Math.sqrt(n);
+
+  const cnv = document.getElementById('t4_canvas');
+  const area = document.getElementById('t4_area');
+  const {ctx, w, h} = setupCanvas(cnv, area);
+  ctx.clearRect(0,0,w,h); ctx.fillStyle='#fff'; ctx.fillRect(0,0,w,h);
+
+  const P1 = Math.floor(h*0.42), P2 = h - P1 - 10;
+  const PAD = {l:60, r:30};
+
+  // ── Top panel: CI bars
+  const topH = P1 - 30, topY = 24;
+  const TW = w - PAD.l - PAD.r;
+  const allLo = t4_CIs.length>0 ? Math.min(...t4_CIs.map(c=>c.lo)) : mu-3*me;
+  const allHi = t4_CIs.length>0 ? Math.max(...t4_CIs.map(c=>c.hi)) : mu+3*me;
+  const xlo = allLo - (allHi-allLo)*0.1, xhi = allHi + (allHi-allLo)*0.1;
+  const toX = v => PAD.l + (v-xlo)/(xhi-xlo)*TW;
+
+  ctx.fillStyle='#f0fdf4'; ctx.fillRect(PAD.l, topY, TW, topH);
+  ctx.strokeStyle='#d1d5db'; ctx.lineWidth=1; ctx.strokeRect(PAD.l, topY, TW, topH);
+  ctx.fillStyle='#1a3a2a'; ctx.font='bold 13px Segoe UI'; ctx.textAlign='left';
+  ctx.fillText('20 Simulated Confidence Intervals ('+Math.round(cl*100)+'% CI)', PAD.l+4, topY-6);
+
+  // True μ line
+  ctx.setLineDash([6,4]); ctx.strokeStyle='#374151'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(toX(mu),topY); ctx.lineTo(toX(mu),topY+topH); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle='#374151'; ctx.font='bold 12px Segoe UI'; ctx.textAlign='center';
+  ctx.fillText('μ='+mu, toX(mu), topY+topH+14);
+
+  if (t4_CIs.length > 0) {
+    const rowH = topH / 21;
+    t4_CIs.forEach((ci, i) => {
+      const y = topY + (i+0.5)*rowH + rowH/2;
+      const color = ci.contains ? '#16a34a' : '#dc2626';
+      ctx.strokeStyle = color; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(toX(ci.lo), y); ctx.lineTo(toX(ci.hi), y); ctx.stroke();
+      ctx.fillStyle = color;
+      ctx.beginPath(); ctx.arc(toX(ci.xbar), y, 3, 0, 2*Math.PI); ctx.fill();
+      // caps
+      ctx.beginPath(); ctx.moveTo(toX(ci.lo), y-4); ctx.lineTo(toX(ci.lo), y+4); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(toX(ci.hi), y-4); ctx.lineTo(toX(ci.hi), y+4); ctx.stroke();
+    });
+  } else {
+    ctx.fillStyle='#9ca3af'; ctx.font='14px Segoe UI'; ctx.textAlign='center';
+    ctx.fillText('Click "Simulate 20 CIs"', PAD.l+TW/2, topY+topH/2);
+  }
+
+  // ── Bottom panel: t/z distribution
+  const botY = P1 + 20, botH = P2 - 30;
+  ctx.fillStyle='#eff6ff'; ctx.fillRect(PAD.l, botY, TW, botH);
+  ctx.strokeStyle='#d1d5db'; ctx.lineWidth=1; ctx.strokeRect(PAD.l, botY, TW, botH);
+  ctx.fillStyle='#1a3a2a'; ctx.font='bold 13px Segoe UI'; ctx.textAlign='left';
+  const distLabel = t4_type==='z' ? 'Standard Normal (z) Distribution — Critical Region' : 't Distribution (df='+(n-1)+') — Critical Region';
+  ctx.fillText(distLabel, PAD.l+4, botY-6);
+
+  const df = n-1;
+  const xloZ = -4.5, xhiZ = 4.5;
+  const toXZ = v => PAD.l + (v-xloZ)/(xhiZ-xloZ)*TW;
+  const NP = 200;
+  function getPDF(z) { return t4_type==='z' ? normalPDF(z) : tPDF(z, df); }
+  const maxPDF2 = getPDF(0);
+  const toYZ = p => botY + botH - 8 - p/maxPDF2*(botH-20);
+
+  // shade tails
+  function shadeZ(a, b, color) {
+    const ax=Math.max(xloZ,a), bx=Math.min(xhiZ,b);
+    if(ax>=bx)return;
+    ctx.beginPath(); ctx.moveTo(toXZ(ax), toYZ(0));
+    const steps = 60;
+    for(let i=0;i<=steps;i++){const v=ax+i/steps*(bx-ax);ctx.lineTo(toXZ(v),toYZ(getPDF(v)));}
+    ctx.lineTo(toXZ(bx),toYZ(0)); ctx.closePath();
+    ctx.fillStyle=color; ctx.fill();
+  }
+  shadeZ(xloZ, -crit, 'rgba(220,38,38,0.3)');
+  shadeZ(crit, xhiZ, 'rgba(220,38,38,0.3)');
+
+  ctx.beginPath(); ctx.strokeStyle='#1a3a2a'; ctx.lineWidth=2;
+  for(let i=0;i<=NP;i++){
+    const v=xloZ+i/NP*(xhiZ-xloZ), py=toYZ(getPDF(v));
+    i===0?ctx.moveTo(toXZ(v),py):ctx.lineTo(toXZ(v),py);
+  }
+  ctx.stroke();
+
+  // Critical value lines
+  ctx.setLineDash([5,3]); ctx.strokeStyle='#dc2626'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(toXZ(-crit),botY+8); ctx.lineTo(toXZ(-crit),botY+botH-8); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(toXZ(crit),botY+8); ctx.lineTo(toXZ(crit),botY+botH-8); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle='#dc2626'; ctx.font='bold 11px Segoe UI'; ctx.textAlign='center';
+  ctx.fillText('-'+crit.toFixed(2),toXZ(-crit),botY+botH+12);
+  ctx.fillText('+'+crit.toFixed(2),toXZ(crit),botY+botH+12);
+
+  // X axis
+  ctx.strokeStyle='#374151'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(PAD.l,botY+botH-8); ctx.lineTo(PAD.l+TW,botY+botH-8); ctx.stroke();
+  [-4,-3,-2,-1,0,1,2,3,4].forEach(z=>{
+    ctx.fillStyle='#6b7280'; ctx.font='11px Segoe UI'; ctx.textAlign='center';
+    ctx.fillText(z,toXZ(z),botY+botH+12);
+  });
+}
+
+// ─── TAB 5: Hypothesis Testing ───────────────────────────────────────────────
+let t5_tail = 'two';
+function t5_setTail(t, btn) {
+  t5_tail = t;
+  document.querySelectorAll('#t5_tail_grp button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  t5_draw();
+}
+function t5_update() {
+  document.getElementById('t5_mu0_val').textContent = document.getElementById('t5_mu0').value;
+  document.getElementById('t5_xbar_val').textContent = document.getElementById('t5_xbar').value;
+  document.getElementById('t5_s_val').textContent = document.getElementById('t5_s').value;
+  document.getElementById('t5_n_val').textContent = document.getElementById('t5_n').value;
+  document.getElementById('t5_alpha_val').textContent = (+document.getElementById('t5_alpha').value).toFixed(2);
+  t5_draw();
+}
+function t5_preset(mu0, xbar, s, n, alpha, tail) {
+  document.getElementById('t5_mu0').value = mu0;
+  document.getElementById('t5_xbar').value = xbar;
+  document.getElementById('t5_s').value = s;
+  document.getElementById('t5_n').value = n;
+  document.getElementById('t5_alpha').value = alpha;
+  t5_tail = tail;
+  document.querySelectorAll('#t5_tail_grp button').forEach((b,i)=>{
+    b.classList.toggle('active',(['two','right','left'][i])===tail);
+  });
+  t5_update();
+}
+function t5_draw() {
+  const mu0 = +document.getElementById('t5_mu0').value;
+  const xbar = +document.getElementById('t5_xbar').value;
+  const s = +document.getElementById('t5_s').value;
+  const n = +document.getElementById('t5_n').value;
+  const alpha = +document.getElementById('t5_alpha').value;
+  const tail = t5_tail;
+  const df = n - 1;
+  const tStat = (xbar - mu0) / (s / Math.sqrt(n));
+
+  // p-value
+  let pval;
+  if (tail === 'two') pval = 2*(1-tCDF(Math.abs(tStat), df));
+  else if (tail === 'right') pval = 1-tCDF(tStat, df);
+  else pval = tCDF(tStat, df);
+
+  // critical value
+  let tCrit;
+  if (tail === 'two') tCrit = tCritical(alpha/2, df);
+  else tCrit = tCritical(alpha, df);
+
+  const reject = pval <= alpha;
+  const cohensD = (xbar - mu0) / s;
+
+  document.getElementById('t5_m_t').textContent = tStat.toFixed(3);
+  document.getElementById('t5_m_df').textContent = df;
+  document.getElementById('t5_m_p').textContent = pval < 0.0001 ? '<0.0001' : pval.toFixed(4);
+  document.getElementById('t5_m_tc').textContent = (tail==='two'?'±':tail==='right'?'+':'-') + tCrit.toFixed(3);
+  document.getElementById('t5_m_d').textContent = cohensD.toFixed(3);
+  document.getElementById('t5_m_dec').textContent = reject ? 'REJECT H₀' : 'FAIL TO REJECT';
+  document.getElementById('t5_m_dec').style.color = reject ? '#dc2626' : '#16a34a';
+
+  const cnv = document.getElementById('t5_canvas');
+  const area = document.getElementById('t5_area');
+  const {ctx, w, h} = setupCanvas(cnv, area);
+  ctx.clearRect(0,0,w,h); ctx.fillStyle='#fff'; ctx.fillRect(0,0,w,h);
+
+  const PAD = {l:70, r:40, t:60, b:65};
+  const W = w-PAD.l-PAD.r, H = h-PAD.t-PAD.b;
+
+  const xlo = -4.5, xhi = 4.5;
+  const toX = v => PAD.l+(v-xlo)/(xhi-xlo)*W;
+  const maxPDF = tPDF(0, df);
+  const toY = p => PAD.t+H - p/maxPDF*H;
+  const NP = 200;
+
+  // Shade rejection regions
+  function shadeRej(a, b) {
+    const ax=Math.max(xlo,a), bx=Math.min(xhi,b);
+    if(ax>=bx)return;
+    ctx.beginPath(); ctx.moveTo(toX(ax),toY(0));
+    for(let i=0;i<=80;i++){const v=ax+i/80*(bx-ax);ctx.lineTo(toX(v),toY(tPDF(v,df)));}
+    ctx.lineTo(toX(bx),toY(0)); ctx.closePath();
+    ctx.fillStyle='rgba(220,38,38,0.3)'; ctx.fill();
+  }
+  function shadePVal(a, b) {
+    const ax=Math.max(xlo,a), bx=Math.min(xhi,b);
+    if(ax>=bx)return;
+    ctx.beginPath(); ctx.moveTo(toX(ax),toY(0));
+    for(let i=0;i<=80;i++){const v=ax+i/80*(bx-ax);ctx.lineTo(toX(v),toY(tPDF(v,df)));}
+    ctx.lineTo(toX(bx),toY(0)); ctx.closePath();
+    ctx.fillStyle='rgba(220,38,38,0.55)'; ctx.fill();
+  }
+
+  if (tail==='two') {
+    shadeRej(xlo, -tCrit); shadeRej(tCrit, xhi);
+    if(tStat>0){shadePVal(tStat,xhi);shadePVal(xlo,-tStat);}
+    else{shadePVal(xlo,tStat);shadePVal(-tStat,xhi);}
+  } else if (tail==='right') {
+    shadeRej(tCrit, xhi); shadePVal(tStat, xhi);
+  } else {
+    shadeRej(xlo, -tCrit); shadePVal(xlo, tStat);
+  }
+
+  // Curve
+  ctx.beginPath(); ctx.strokeStyle='#1a3a2a'; ctx.lineWidth=2.5;
+  for(let i=0;i<=NP;i++){
+    const v=xlo+i/NP*(xhi-xlo), py=toY(tPDF(v,df));
+    i===0?ctx.moveTo(toX(v),py):ctx.lineTo(toX(v),py);
+  }
+  ctx.stroke();
+
+  // t_obs line
+  const tobsX = Math.max(xlo+0.1, Math.min(xhi-0.1, tStat));
+  ctx.setLineDash([0]); ctx.strokeStyle='#ea580c'; ctx.lineWidth=2.5;
+  ctx.beginPath(); ctx.moveTo(toX(tobsX),PAD.t); ctx.lineTo(toX(tobsX),PAD.t+H); ctx.stroke();
+  ctx.fillStyle='#ea580c'; ctx.font='bold 12px Segoe UI'; ctx.textAlign=tStat>0?'left':'right';
+  ctx.fillText('t = '+tStat.toFixed(2), toX(tobsX)+(tStat>0?4:-4), PAD.t+20);
+
+  // Critical value lines
+  ctx.setLineDash([6,4]); ctx.strokeStyle='#dc2626'; ctx.lineWidth=1.5;
+  if(tail==='two'||tail==='left'){
+    ctx.beginPath(); ctx.moveTo(toX(-tCrit),PAD.t); ctx.lineTo(toX(-tCrit),PAD.t+H); ctx.stroke();
+  }
+  if(tail==='two'||tail==='right'){
+    ctx.beginPath(); ctx.moveTo(toX(tCrit),PAD.t); ctx.lineTo(toX(tCrit),PAD.t+H); ctx.stroke();
+  }
+  ctx.setLineDash([]);
+
+  // Axes & ticks
+  ctx.strokeStyle='#374151'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(PAD.l,PAD.t+H); ctx.lineTo(PAD.l+W,PAD.t+H); ctx.stroke();
+  const xticks2 = [-4,-3,-2,-1,0,1,2,3,4];
+  ctx.fillStyle='#374151'; ctx.font='12px Segoe UI';
+  xticks2.forEach(v=>{
+    ctx.textAlign='center'; ctx.fillText(v,toX(v),PAD.t+H+18);
+    ctx.strokeStyle='#374151'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(toX(v),PAD.t+H); ctx.lineTo(toX(v),PAD.t+H+5); ctx.stroke();
+  });
+
+  // Axis titles
+  ctx.font='bold 14px Segoe UI'; ctx.fillStyle='#1a3a2a'; ctx.textAlign='center';
+  ctx.fillText('t-statistic (df='+df+')', PAD.l+W/2, h-10);
+  ctx.font='bold 16px Segoe UI';
+  const h1label = tail==='two'?'H₁: μ ≠ '+mu0:tail==='right'?'H₁: μ > '+mu0:'H₁: μ < '+mu0;
+  ctx.fillText('Hypothesis Test — H₀: μ = '+mu0+' bu/acre | '+h1label, PAD.l+W/2, PAD.t-32);
+
+  // p-value label
+  ctx.font='bold 13px Segoe UI'; ctx.fillStyle='#dc2626'; ctx.textAlign='center';
+  ctx.fillText('p-value = '+(pval<0.0001?'<0.0001':pval.toFixed(4)), PAD.l+W/2, PAD.t+40);
+
+  // Decision box
+  const bw2=160, bh2=36, bx=PAD.l+W-bw2-10, by2=PAD.t+10;
+  ctx.fillStyle=reject?'#fef2f2':'#f0fdf4';
+  ctx.strokeStyle=reject?'#dc2626':'#16a34a'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(bx+6,by2); ctx.lineTo(bx+bw2-6,by2); ctx.quadraticCurveTo(bx+bw2,by2,bx+bw2,by2+6); ctx.lineTo(bx+bw2,by2+bh2-6); ctx.quadraticCurveTo(bx+bw2,by2+bh2,bx+bw2-6,by2+bh2); ctx.lineTo(bx+6,by2+bh2); ctx.quadraticCurveTo(bx,by2+bh2,bx,by2+bh2-6); ctx.lineTo(bx,by2+6); ctx.quadraticCurveTo(bx,by2,bx+6,by2); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.fillStyle=reject?'#dc2626':'#16a34a'; ctx.font='bold 15px Segoe UI'; ctx.textAlign='center';
+  ctx.fillText(reject?'REJECT H₀':'FAIL TO REJECT H₀', bx+bw2/2, by2+bh2/2+5);
+
+  // α label
+  ctx.fillStyle='#374151'; ctx.font='13px Segoe UI'; ctx.textAlign='left';
+  ctx.fillText('α = '+alpha.toFixed(2), PAD.l+8, PAD.t+20);
+}
+
+// ─── TAB 6: Regression ──────────────────────────────────────────────────────
+let t6_seed = 42;
+let t6_negMode = false;
+function t6_regen() { t6_seed = Math.floor(Math.random()*9999)+1; t6_draw(); }
+function t6_update() {
+  document.getElementById('t6_n_val').textContent = document.getElementById('t6_n').value;
+  document.getElementById('t6_b1_val').textContent = (+document.getElementById('t6_b1').value).toFixed(1);
+  document.getElementById('t6_b0_val').textContent = document.getElementById('t6_b0').value;
+  document.getElementById('t6_sig_val').textContent = document.getElementById('t6_sig').value;
+  document.getElementById('t6_xmax_val').textContent = document.getElementById('t6_xmax').value;
+  t6_draw();
+}
+function t6_preset(b1, b0, sig, n, xmax, neg) {
+  document.getElementById('t6_b1').value = b1;
+  document.getElementById('t6_b0').value = b0;
+  document.getElementById('t6_sig').value = sig;
+  document.getElementById('t6_n').value = n;
+  document.getElementById('t6_xmax').value = xmax;
+  t6_negMode = neg;
+  t6_update();
+}
+function t6_genData() {
+  const n = +document.getElementById('t6_n').value;
+  const b1 = +document.getElementById('t6_b1').value;
+  const b0 = +document.getElementById('t6_b0').value;
+  const sig = +document.getElementById('t6_sig').value;
+  const xmax = +document.getElementById('t6_xmax').value;
+  const seed = t6_seed * 1000 + Math.round(b1*10) * 100 + Math.round(b0) + Math.round(sig);
+  const rand = makePRNG(seed);
+  const xs = [], ys = [];
+  for (let i=0; i<n; i++) {
+    const x = rand() * xmax;
+    const noise = sig * boxMuller(rand);
+    xs.push(x); ys.push(b0 + b1*x + noise);
+  }
+  return {xs, ys};
+}
+function t6_ols(xs, ys) {
+  const n = xs.length;
+  const mx = xs.reduce((a,b)=>a+b,0)/n;
+  const my = ys.reduce((a,b)=>a+b,0)/n;
+  let sxx=0, sxy=0, syy=0;
+  for(let i=0;i<n;i++){sxx+=(xs[i]-mx)**2;sxy+=(xs[i]-mx)*(ys[i]-my);syy+=(ys[i]-my)**2;}
+  const b1hat = sxy/sxx;
+  const b0hat = my - b1hat*mx;
+  const fitted = xs.map(x=>b0hat+b1hat*x);
+  const resids = ys.map((y,i)=>y-fitted[i]);
+  const sse = resids.reduce((a,b)=>a+b*b,0);
+  const sst = syy;
+  const r2 = 1-sse/sst;
+  const mse = sse/(n-2);
+  const seb1 = Math.sqrt(mse/sxx);
+  const tstat = b1hat/seb1;
+  const df = n-2;
+  const pval = 2*(1-tCDF(Math.abs(tstat),df));
+  return {b0hat,b1hat,r2,seb1,tstat,df,pval,fitted,resids,mx,my,mse,sxx};
+}
+function t6_draw() {
+  const n = +document.getElementById('t6_n').value;
+  const b1true = +document.getElementById('t6_b1').value;
+  const b0true = +document.getElementById('t6_b0').value;
+  const sig = +document.getElementById('t6_sig').value;
+  const xmax = +document.getElementById('t6_xmax').value;
+  const {xs, ys} = t6_genData();
+  const ols = t6_ols(xs, ys);
+
+  document.getElementById('t6_m_b0').textContent = ols.b0hat.toFixed(2);
+  document.getElementById('t6_m_b1').textContent = ols.b1hat.toFixed(3);
+  document.getElementById('t6_m_r2').textContent = ols.r2.toFixed(4);
+  document.getElementById('t6_m_se').textContent = ols.seb1.toFixed(4);
+  document.getElementById('t6_m_t').textContent = ols.tstat.toFixed(3);
+  document.getElementById('t6_m_p').textContent = ols.pval < 0.0001 ? '<0.0001' : ols.pval.toFixed(4);
+  const xLabel = t6_negMode ? 'Price' : 'N rate';
+  const yLabel = t6_negMode ? 'Demand' : 'yield';
+  document.getElementById('t6_interp').textContent =
+    'For each additional unit of '+xLabel+', '+yLabel+' changes by ' + ols.b1hat.toFixed(3) + ' bu/acre (p='+( ols.pval<0.0001?'<0.0001':ols.pval.toFixed(3))+')';
+
+  const cnv = document.getElementById('t6_canvas');
+  const area = document.getElementById('t6_area');
+  const {ctx, w, h} = setupCanvas(cnv, area);
+  ctx.clearRect(0,0,w,h); ctx.fillStyle='#fff'; ctx.fillRect(0,0,w,h);
+
+  const PAD = {l:70, r:30, t:50, b:60};
+  const TW = w-PAD.l-PAD.r;
+  const mainH = Math.floor(h*0.65)-10;
+  const residH = h - mainH - PAD.t - PAD.b - 30;
+  const mainY = PAD.t, residY = PAD.t + mainH + 30;
+
+  // Compute axis ranges
+  const xmin2 = 0, xmax2 = xmax;
+  const allY = [...ys, ols.b0hat, ols.b0hat+ols.b1hat*xmax];
+  const ymin2 = Math.min(...allY) - sig*0.5, ymax2 = Math.max(...allY) + sig*0.5;
+  const toXm = v => PAD.l+(v-xmin2)/(xmax2-xmin2)*TW;
+  const toYm = v => mainY+mainH-(v-ymin2)/(ymax2-ymin2)*mainH;
+
+  // Grid
+  ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+  const yticks3 = 5;
+  for(let i=0;i<=yticks3;i++){
+    const v=ymin2+i/yticks3*(ymax2-ymin2), y=toYm(v);
+    ctx.beginPath(); ctx.moveTo(PAD.l,y); ctx.lineTo(PAD.l+TW,y); ctx.stroke();
+    ctx.fillStyle='#6b7280'; ctx.font='11px Segoe UI'; ctx.textAlign='right';
+    ctx.fillText(Math.round(v),PAD.l-5,y+4);
+  }
+  const xticks3 = 6;
+  for(let i=0;i<=xticks3;i++){
+    const v=xmin2+i/xticks3*(xmax2-xmin2), x=toXm(v);
+    ctx.beginPath(); ctx.moveTo(x,mainY); ctx.lineTo(x,mainY+mainH); ctx.stroke();
+    ctx.fillStyle='#6b7280'; ctx.font='11px Segoe UI'; ctx.textAlign='center';
+    ctx.fillText(Math.round(v),x,mainY+mainH+16);
+  }
+
+  // Confidence band (±2*SE around line)
+  const mse_val = ols.mse, sxx_val = ols.sxx, mx_val = ols.mx;
+  ctx.beginPath();
+  for(let i=0;i<=60;i++){
+    const xv=xmin2+i/60*(xmax2-xmin2);
+    const se_band=Math.sqrt(mse_val*(1/n+(xv-mx_val)**2/sxx_val));
+    const yhat=ols.b0hat+ols.b1hat*xv;
+    ctx.lineTo(toXm(xv), toYm(yhat+2*se_band));
+  }
+  for(let i=60;i>=0;i--){
+    const xv=xmin2+i/60*(xmax2-xmin2);
+    const se_band=Math.sqrt(mse_val*(1/n+(xv-mx_val)**2/sxx_val));
+    const yhat=ols.b0hat+ols.b1hat*xv;
+    ctx.lineTo(toXm(xv), toYm(yhat-2*se_band));
+  }
+  ctx.closePath(); ctx.fillStyle='rgba(37,99,235,0.08)'; ctx.fill();
+
+  // Dashed CI band borders
+  ctx.setLineDash([4,3]); ctx.strokeStyle='#93c5fd'; ctx.lineWidth=1;
+  ctx.beginPath();
+  for(let i=0;i<=60;i++){
+    const xv=xmin2+i/60*(xmax2-xmin2);
+    const se_band=Math.sqrt(mse_val*(1/n+(xv-mx_val)**2/sxx_val));
+    const yhat=ols.b0hat+ols.b1hat*xv;
+    i===0?ctx.moveTo(toXm(xv),toYm(yhat+2*se_band)):ctx.lineTo(toXm(xv),toYm(yhat+2*se_band));
+  }
+  ctx.stroke();
+  ctx.beginPath();
+  for(let i=0;i<=60;i++){
+    const xv=xmin2+i/60*(xmax2-xmin2);
+    const se_band=Math.sqrt(mse_val*(1/n+(xv-mx_val)**2/sxx_val));
+    const yhat=ols.b0hat+ols.b1hat*xv;
+    i===0?ctx.moveTo(toXm(xv),toYm(yhat-2*se_band)):ctx.lineTo(toXm(xv),toYm(yhat-2*se_band));
+  }
+  ctx.stroke(); ctx.setLineDash([]);
+
+  // Regression line
+  ctx.beginPath(); ctx.strokeStyle='#dc2626'; ctx.lineWidth=2.5;
+  ctx.moveTo(toXm(xmin2), toYm(ols.b0hat+ols.b1hat*xmin2));
+  ctx.lineTo(toXm(xmax2), toYm(ols.b0hat+ols.b1hat*xmax2));
+  ctx.stroke();
+
+  // Residual lines
+  xs.forEach((x,i)=>{
+    const yhat=ols.b0hat+ols.b1hat*x;
+    ctx.strokeStyle='rgba(156,163,175,0.5)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(toXm(x),toYm(ys[i])); ctx.lineTo(toXm(x),toYm(yhat)); ctx.stroke();
+  });
+
+  // Data points
+  xs.forEach((x,i)=>{
+    ctx.beginPath(); ctx.arc(toXm(x),toYm(ys[i]),5,0,2*Math.PI);
+    ctx.fillStyle='rgba(22,163,74,0.7)'; ctx.fill();
+    ctx.strokeStyle='#15803d'; ctx.lineWidth=1; ctx.stroke();
+  });
+
+  // (x̄, ȳ) point
+  ctx.beginPath(); ctx.arc(toXm(ols.mx),toYm(ols.my),8,0,2*Math.PI);
+  ctx.fillStyle='#7c3aed'; ctx.fill();
+  ctx.fillStyle='#7c3aed'; ctx.font='bold 11px Segoe UI'; ctx.textAlign='left';
+  ctx.fillText('(x̄,ȳ)',toXm(ols.mx)+10,toYm(ols.my)-4);
+
+  // Equation on chart
+  ctx.fillStyle='#dc2626'; ctx.font='bold 14px Segoe UI'; ctx.textAlign='left';
+  const eq = 'ŷ = '+ols.b0hat.toFixed(1)+' + '+ols.b1hat.toFixed(3)+'x  |  R²='+ols.r2.toFixed(3);
+  ctx.fillText(eq, PAD.l+8, mainY+20);
+
+  // Axes
+  ctx.strokeStyle='#374151'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(PAD.l,mainY); ctx.lineTo(PAD.l,mainY+mainH); ctx.lineTo(PAD.l+TW,mainY+mainH); ctx.stroke();
+
+  // Labels
+  const xLbl = t6_negMode ? 'Price ($/unit)' : 'Fertilizer N Rate (lbs/acre)';
+  const yLbl = t6_negMode ? 'Demand (units)' : 'Corn Yield (bu/acre)';
+  ctx.font='bold 14px Segoe UI'; ctx.fillStyle='#1a3a2a'; ctx.textAlign='center';
+  ctx.fillText(xLbl, PAD.l+TW/2, mainY+mainH+36);
+  ctx.save(); ctx.translate(16,mainY+mainH/2); ctx.rotate(-Math.PI/2);
+  ctx.fillText(yLbl, 0, 0); ctx.restore();
+  ctx.font='bold 16px Segoe UI';
+  ctx.fillText((t6_negMode?'Price → Demand':'Fertilizer Rate → Corn Yield')+' — OLS Regression (n='+n+')', PAD.l+TW/2, mainY-20);
+
+  // ── Residual plot
+  const toXr = v => PAD.l+(v-xmin2)/(xmax2-xmin2)*TW;
+  const residRange = Math.max(...ols.resids.map(r=>Math.abs(r)))*1.3 || 20;
+  const toYr = v => residY+residH/2 - v/residRange*(residH/2);
+
+  ctx.fillStyle='#fafafa'; ctx.fillRect(PAD.l,residY,TW,residH);
+  ctx.strokeStyle='#d1d5db'; ctx.lineWidth=1; ctx.strokeRect(PAD.l,residY,TW,residH);
+  ctx.fillStyle='#1a3a2a'; ctx.font='bold 12px Segoe UI'; ctx.textAlign='left';
+  ctx.fillText('Residual Plot (residuals vs. fitted values)', PAD.l+4, residY-6);
+
+  // Zero line
+  ctx.strokeStyle='#374151'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(PAD.l,toYr(0)); ctx.lineTo(PAD.l+TW,toYr(0)); ctx.stroke();
+  ctx.fillStyle='#6b7280'; ctx.font='11px Segoe UI'; ctx.textAlign='right';
+  ctx.fillText('0',PAD.l-4,toYr(0)+4);
+
+  // Grid
+  ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+  [-1,1].forEach(m=>{
+    const y=toYr(m*residRange*0.5);
+    ctx.beginPath(); ctx.moveTo(PAD.l,y); ctx.lineTo(PAD.l+TW,y); ctx.stroke();
+    ctx.fillStyle='#9ca3af'; ctx.font='10px Segoe UI'; ctx.textAlign='right';
+    ctx.fillText((m>0?'+':'')+Math.round(m*residRange*0.5),PAD.l-4,y+4);
+  });
+
+  xs.forEach((x,i)=>{
+    const yhat=ols.fitted[i];
+    ctx.beginPath(); ctx.arc(toXr(x),toYr(ols.resids[i]),4,0,2*Math.PI);
+    ctx.fillStyle=ols.resids[i]>0?'rgba(22,163,74,0.7)':'rgba(220,38,38,0.6)'; ctx.fill();
+  });
+  ctx.font='bold 12px Segoe UI'; ctx.fillStyle='#1a3a2a'; ctx.textAlign='center';
+  ctx.fillText('Fitted Values (N Rate)', PAD.l+TW/2, residY+residH+14);
+}
+
+// ─── Init ────────────────────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  t1_draw();
+  // Setup ResizeObservers
+  const panels = [
+    {area:'t1_area', draw:t1_draw},
+    {area:'t2_area', draw:t2_draw},
+    {area:'t3_area', draw:t3_draw},
+    {area:'t4_area', draw:t4_draw},
+    {area:'t5_area', draw:t5_draw},
+    {area:'t6_area', draw:t6_draw},
+  ];
+  panels.forEach(p => {
+    const el = document.getElementById(p.area);
+    if (el && window.ResizeObserver) {
+      new ResizeObserver(() => { p.draw(); }).observe(el);
+    }
+  });
+  // Initialize CI simulation
+  t4_simulate();
+});
+</script>
+</body>
+</html>
