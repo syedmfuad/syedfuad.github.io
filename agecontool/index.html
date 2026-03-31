@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agricultural Economics 101</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f0;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+#header{background:#1a3a2a;color:#fff;padding:0 16px;display:flex;align-items:center;gap:16px;height:52px;flex-shrink:0}
+#header h1{font-size:1.15rem;font-weight:700;white-space:nowrap}
+#tabs{display:flex;gap:3px}
+.tab-btn{background:rgba(255,255,255,0.12);color:#cde8d0;border:none;padding:7px 11px;border-radius:6px 6px 0 0;cursor:pointer;font-size:0.75rem;font-weight:600;white-space:nowrap;transition:background 0.15s}
+.tab-btn:hover{background:rgba(255,255,255,0.22)}
+.tab-btn.active{background:#fff;color:#1a3a2a}
+#main{display:flex;flex:1;overflow:hidden;min-height:0}
+.sidebar{width:290px;min-width:290px;background:#fff;border-right:2px solid #d1e7d8;display:flex;flex-direction:column;padding:12px;gap:10px;overflow-y:auto}
+.sidebar h2{font-size:.97rem;font-weight:700;color:#1a3a2a;border-bottom:2px solid #d1e7d8;padding-bottom:5px}
+.preset-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.preset-btn{background:#e8f5e9;border:1.5px solid #4caf50;color:#1a3a2a;padding:6px 6px;border-radius:6px;cursor:pointer;font-size:0.7rem;font-weight:600;text-align:center;transition:background 0.15s;line-height:1.2}
+.preset-btn:hover{background:#c8e6c9}
+.preset-btn.active{background:#2e7d32;color:#fff;border-color:#1a3a2a}
+.slider-group{display:flex;flex-direction:column;gap:2px}
+.slider-label{font-size:0.73rem;font-weight:600;color:#374151;display:flex;justify-content:space-between}
+.slider-val{color:#1a3a2a;font-weight:700}
+input[type=range]{width:100%;accent-color:#2e7d32;height:5px;cursor:pointer}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.metric-card{background:#f0fdf4;border:1.5px solid #86efac;border-radius:7px;padding:7px 8px;text-align:center}
+.metric-label{font-size:0.65rem;color:#374151;font-weight:600;margin-bottom:1px}
+.metric-value{font-size:1rem;font-weight:700;color:#14532d}
+.metric-value.neg{color:#b91c1c}
+.canvas-wrap{flex:1;background:#f7faf7;display:flex;align-items:stretch;padding:12px;overflow:hidden;min-width:0}
+canvas{border-radius:10px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.08);display:block;width:100%;height:100%}
+.module{display:none;width:100%;height:100%;overflow:hidden}
+.module.active{display:flex}
+.sec-title{font-size:0.67rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+.toggle-row{display:flex;gap:4px}
+.toggle-btn{flex:1;padding:6px 3px;border:1.5px solid #4caf50;background:#e8f5e9;color:#1a3a2a;border-radius:6px;cursor:pointer;font-size:0.68rem;font-weight:600;text-align:center}
+.toggle-btn.active{background:#2e7d32;color:#fff;border-color:#1a3a2a}
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>AAEC 2305 · Fundamentals of Ag &amp; Applied Economics</h1>
+  <div id="tabs">
+    <button class="tab-btn active" onclick="switchTab(0)">1. Supply &amp; Demand</button>
+    <button class="tab-btn" onclick="switchTab(1)">2. Elasticity</button>
+    <button class="tab-btn" onclick="switchTab(2)">3. Dim. Returns</button>
+    <button class="tab-btn" onclick="switchTab(3)">4. Cost Curves</button>
+    <button class="tab-btn" onclick="switchTab(4)">5. Price Policy</button>
+    <button class="tab-btn" onclick="switchTab(5)">6. Trade &amp; Tariff</button>
+  </div>
+</div>
+<div id="main">
+
+<!-- MOD 0: Supply & Demand -->
+<div class="module active" id="mod0">
+  <div class="sidebar">
+    <h2>Supply &amp; Demand</h2>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn active" onclick="m1preset(0)">Baseline</button>
+      <button class="preset-btn" onclick="m1preset(1)">2012 Drought</button>
+      <button class="preset-btn" onclick="m1preset(2)">Ethanol Mandate</button>
+      <button class="preset-btn" onclick="m1preset(3)">Export Boom</button>
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Demand Shift <span class="slider-val" id="m1ds-v">0</span></div>
+      <input type="range" id="m1ds" min="-80" max="80" value="0" step="1" oninput="m1upd()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Supply Shift <span class="slider-val" id="m1ss-v">0</span></div>
+      <input type="range" id="m1ss" min="-80" max="80" value="0" step="1" oninput="m1upd()">
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Price P*</div><div class="metric-value" id="m1p">$6.00</div></div>
+      <div class="metric-card"><div class="metric-label">Quantity Q*</div><div class="metric-value" id="m1q">80 mil bu</div></div>
+      <div class="metric-card"><div class="metric-label">Consumer Surplus</div><div class="metric-value" id="m1cs">$320</div></div>
+      <div class="metric-card"><div class="metric-label">Producer Surplus</div><div class="metric-value" id="m1ps">$160</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c1"></canvas></div>
+</div>
+
+<!-- MOD 1: Elasticity -->
+<div class="module" id="mod1">
+  <div class="sidebar">
+    <h2>Elasticity &amp; Revenue</h2>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn" onclick="m2preset(0)">Staple E=−0.3</button>
+      <button class="preset-btn" onclick="m2preset(1)">Beef E=−0.6</button>
+      <button class="preset-btn" onclick="m2preset(2)">Fresh Fruit E=−1.3</button>
+      <button class="preset-btn" onclick="m2preset(3)">Restaurant E=−2.2</button>
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Price Change ΔP <span class="slider-val" id="m2dp-v">+1.50</span></div>
+      <input type="range" id="m2dp" min="-3" max="3" value="1.5" step="0.1" oninput="m2upd()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Elasticity E <span class="slider-val" id="m2el-v">-0.40</span></div>
+      <input type="range" id="m2el" min="-3.0" max="-0.1" value="-0.4" step="0.05" oninput="m2upd()">
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Old Revenue</div><div class="metric-value" id="m2r0">$480</div></div>
+      <div class="metric-card"><div class="metric-label">New Revenue</div><div class="metric-value" id="m2r1">$480</div></div>
+      <div class="metric-card"><div class="metric-label">Rev Change ($)</div><div class="metric-value" id="m2rd">$0</div></div>
+      <div class="metric-card"><div class="metric-label">Rev Change (%)</div><div class="metric-value" id="m2rp">0%</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c2"></canvas></div>
+</div>
+
+<!-- MOD 2: Diminishing Returns -->
+<div class="module" id="mod2">
+  <div class="sidebar">
+    <h2>Diminishing Returns</h2>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn" onclick="m3preset(0)">Cheap N</button>
+      <button class="preset-btn" onclick="m3preset(1)">Costly N</button>
+      <button class="preset-btn" onclick="m3preset(2)">High Corn</button>
+      <button class="preset-btn" onclick="m3preset(3)">Low Corn</button>
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Nitrogen (lbs/acre) <span class="slider-val" id="m3n-v">120</span></div>
+      <input type="range" id="m3n" min="0" max="200" value="120" step="1" oninput="m3upd()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Corn Price ($/bu) <span class="slider-val" id="m3pc-v">5.00</span></div>
+      <input type="range" id="m3pc" min="3" max="8" value="5" step="0.25" oninput="m3upd()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">N Price ($/lb) <span class="slider-val" id="m3pn-v">0.55</span></div>
+      <input type="range" id="m3pn" min="0.30" max="1.50" value="0.55" step="0.05" oninput="m3upd()">
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Yield at N (bu/ac)</div><div class="metric-value" id="m3y">-</div></div>
+      <div class="metric-card"><div class="metric-label">Marginal Product</div><div class="metric-value" id="m3mp">-</div></div>
+      <div class="metric-card"><div class="metric-label">Optimal N (lbs/ac)</div><div class="metric-value" id="m3on">-</div></div>
+      <div class="metric-card"><div class="metric-label">Profit from N ($)</div><div class="metric-value" id="m3pr">-</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c3"></canvas></div>
+</div>
+
+<!-- MOD 3: Cost Curves -->
+<div class="module" id="mod3">
+  <div class="sidebar">
+    <h2>Cost Curves &amp; Profit</h2>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn" onclick="m4preset(0)">Strong ($7)</button>
+      <button class="preset-btn active" onclick="m4preset(1)">Average ($5)</button>
+      <button class="preset-btn" onclick="m4preset(2)">Weak ($3.50)</button>
+      <button class="preset-btn" onclick="m4preset(3)">Price Crash ($2.20)</button>
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Market Price ($/bu) <span class="slider-val" id="m4p-v">$5.00</span></div>
+      <input type="range" id="m4p" min="1.50" max="9.00" value="5.00" step="0.25" oninput="m4upd()">
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Optimal Q* (bu/ac)</div><div class="metric-value" id="m4q">225</div></div>
+      <div class="metric-card"><div class="metric-label">Revenue/acre</div><div class="metric-value" id="m4rev">$1125</div></div>
+      <div class="metric-card"><div class="metric-label">Total Cost/acre</div><div class="metric-value" id="m4tc">$975</div></div>
+      <div class="metric-card"><div class="metric-label">Profit/acre</div><div class="metric-value" id="m4pr">$150</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c4"></canvas></div>
+</div>
+
+<!-- MOD 4: Price Policy -->
+<div class="module" id="mod4">
+  <div class="sidebar">
+    <h2>Price Floor &amp; Ceiling</h2>
+    <div class="sec-title">Policy Type</div>
+    <div class="toggle-row">
+      <button class="toggle-btn" id="pol-free" onclick="m5pol('free')">Free Market</button>
+      <button class="toggle-btn active" id="pol-floor" onclick="m5pol('floor')">Floor</button>
+      <button class="toggle-btn" id="pol-ceil" onclick="m5pol('ceil')">Ceiling</button>
+    </div>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn" onclick="m5preset(0)">Free Market</button>
+      <button class="preset-btn active" onclick="m5preset(1)">Loan Rate ($8)</button>
+      <button class="preset-btn" onclick="m5preset(2)">Mod. Floor ($7)</button>
+      <button class="preset-btn" onclick="m5preset(3)">Price Cap ($4)</button>
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Policy Price ($/bu) <span class="slider-val" id="m5pp-v">$8.00</span></div>
+      <input type="range" id="m5pp" min="2" max="10" value="8" step="0.25" oninput="m5upd()">
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Policy Price</div><div class="metric-value" id="m5pp2">$8.00</div></div>
+      <div class="metric-card"><div class="metric-label">Surplus/Shortage</div><div class="metric-value" id="m5ss">80 mil bu</div></div>
+      <div class="metric-card"><div class="metric-label">Farmer Rev Change</div><div class="metric-value" id="m5rc">+$320</div></div>
+      <div class="metric-card"><div class="metric-label">DWL</div><div class="metric-value" id="m5dwl">$80</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c5"></canvas></div>
+</div>
+
+<!-- MOD 5: Trade -->
+<div class="module" id="mod5">
+  <div class="sidebar">
+    <h2>Trade &amp; Tariff</h2>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn active" onclick="m6preset(0)">Free Trade</button>
+      <button class="preset-btn" onclick="m6preset(1)">Mod. Tariff</button>
+      <button class="preset-btn" onclick="m6preset(2)">Prohibitive Tariff</button>
+      <button class="preset-btn" onclick="m6preset(3)">Export Market</button>
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">World Price ($/bu) <span class="slider-val" id="m6pw-v">$4.00</span></div>
+      <input type="range" id="m6pw" min="2.00" max="9.00" value="4.00" step="0.25" oninput="m6upd()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Tariff ($/bu) <span class="slider-val" id="m6t-v">$0.00</span></div>
+      <input type="range" id="m6t" min="0" max="4" value="0" step="0.25" oninput="m6upd()">
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Imports/Exports</div><div class="metric-value" id="m6ie">80 mil bu</div></div>
+      <div class="metric-card"><div class="metric-label">Consumer Surplus</div><div class="metric-value" id="m6cs">-</div></div>
+      <div class="metric-card"><div class="metric-label">Gov't Revenue</div><div class="metric-value" id="m6gr">$0</div></div>
+      <div class="metric-card"><div class="metric-label">Net DWL</div><div class="metric-value" id="m6dwl">$0</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c6"></canvas></div>
+</div>
+
+</div><!-- #main -->
+<script>
+"use strict";
+// ===================== TAB SWITCHING =====================
+let activeTab = 0;
+function switchTab(n) {
+  document.querySelectorAll('.module').forEach((m,i)=>m.classList.toggle('active',i===n));
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  activeTab = n;
+  setTimeout(()=>DRAWS[n](), 20);
+}
+
+// ===================== CANVAS UTILS =====================
+function setupCanvas(id) {
+  const canvas = document.getElementById(id);
+  const wrap = canvas.parentElement;
+  const dpr = window.devicePixelRatio || 1;
+  const W = wrap.clientWidth - 24; // accounting for padding
+  const H = wrap.clientHeight - 24;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  canvas.width = Math.round(W * dpr);
+  canvas.height = Math.round(H * dpr);
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  return {ctx, W, H};
+}
+
+// Build a standard plot area and return coordinate converters
+function plotArea(ctx, W, H, pL, pR, pT, pB, xMin, xMax, yMin, yMax, xStep, yStep) {
+  const pw = W - pL - pR;
+  const ph = H - pT - pB;
+  const tx = v => pL + (v - xMin) / (xMax - xMin) * pw;
+  const ty = v => pT + (yMax - v) / (yMax - yMin) * ph;
+
+  // white bg
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, W, H);
+
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let y = yMin; y <= yMax + 0.001; y += yStep) {
+    const py = ty(y);
+    ctx.beginPath(); ctx.moveTo(pL, py); ctx.lineTo(W - pR, py); ctx.stroke();
+  }
+  for (let x = xMin; x <= xMax + 0.001; x += xStep) {
+    const px = tx(x);
+    ctx.beginPath(); ctx.moveTo(px, pT); ctx.lineTo(px, H - pB); ctx.stroke();
+  }
+
+  // axes
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(pL, pT); ctx.lineTo(pL, H - pB); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(pL, H - pB); ctx.lineTo(W - pR, H - pB); ctx.stroke();
+
+  // y ticks
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 12px Arial'; ctx.textAlign = 'right';
+  for (let y = yMin; y <= yMax + 0.001; y += yStep) {
+    ctx.beginPath(); ctx.moveTo(pL-4, ty(y)); ctx.lineTo(pL, ty(y)); ctx.stroke();
+    ctx.fillText(y % 1 === 0 ? y : y.toFixed(1), pL - 7, ty(y) + 4);
+  }
+  // x ticks
+  ctx.textAlign = 'center';
+  for (let x = xMin; x <= xMax + 0.001; x += xStep) {
+    ctx.beginPath(); ctx.moveTo(tx(x), H-pB); ctx.lineTo(tx(x), H-pB+4); ctx.stroke();
+    ctx.fillText(x, tx(x), H - pB + 17);
+  }
+  return {tx, ty, pw, ph};
+}
+
+function axisLabels(ctx, W, H, pL, pT, xLbl, yLbl) {
+  ctx.save();
+  ctx.fillStyle = '#1a3a2a'; ctx.font = 'bold 13px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText(xLbl, pL + (W - pL - 30) / 2, H - 2);
+  ctx.translate(14, pT + (H - pT - 30) / 2);
+  ctx.rotate(-Math.PI/2);
+  ctx.fillText(yLbl, 0, 0);
+  ctx.restore();
+}
+
+function dot(ctx, x, y, r, fill, stroke) {
+  ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2);
+  ctx.fillStyle = fill; ctx.fill();
+  if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth=2; ctx.stroke(); }
+}
+
+function hline(ctx, x1, x2, y, color, lw, dash) {
+  ctx.beginPath(); ctx.moveTo(x1, y); ctx.lineTo(x2, y);
+  ctx.strokeStyle = color; ctx.lineWidth = lw;
+  if (dash) ctx.setLineDash(dash); else ctx.setLineDash([]);
+  ctx.stroke(); ctx.setLineDash([]);
+}
+
+function vline(ctx, x, y1, y2, color, lw, dash) {
+  ctx.beginPath(); ctx.moveTo(x, y1); ctx.lineTo(x, y2);
+  ctx.strokeStyle = color; ctx.lineWidth = lw;
+  if (dash) ctx.setLineDash(dash); else ctx.setLineDash([]);
+  ctx.stroke(); ctx.setLineDash([]);
+}
+
+// ===================== MODULE 1: SUPPLY & DEMAND =====================
+const m1 = {ds:0, ss:0};
+
+function m1preset(n) {
+  const P = [{ds:0,ss:0},{ds:0,ss:-60},{ds:50,ss:0},{ds:30,ss:20}];
+  Object.assign(m1, P[n]);
+  document.getElementById('m1ds').value = m1.ds;
+  document.getElementById('m1ss').value = m1.ss;
+  document.querySelectorAll('#mod0 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  m1upd();
+}
+
+function m1upd() {
+  m1.ds = +document.getElementById('m1ds').value;
+  m1.ss = +document.getElementById('m1ss').value;
+  document.getElementById('m1ds-v').textContent = (m1.ds>=0?'+':'')+m1.ds;
+  document.getElementById('m1ss-v').textContent = (m1.ss>=0?'+':'')+m1.ss;
+  m1draw();
+}
+
+function m1calc() {
+  // Qd = (200+ds) - 20P, Qs = 20P - 40 + ss
+  // Eq: (200+ds) - 20P = 20P - 40 + ss => P = (240+ds-ss)/40
+  const Ps = (240 + m1.ds - m1.ss) / 40;
+  const Qs = 20*Ps - 40 + m1.ss;
+  const PmaxD = (200 + m1.ds) / 20;
+  const PminS = (40 - m1.ss) / 20;
+  const CS = Qs > 0 && Ps >= 0 ? 0.5 * Qs * (PmaxD - Ps) : 0;
+  const PS = Qs > 0 && Ps >= 0 ? 0.5 * Qs * (Ps - Math.max(0,PminS)) : 0;
+  return {Ps, Qs, PmaxD, PminS, CS, PS};
+}
+
+function m1draw() {
+  const {ctx,W,H} = setupCanvas('c1');
+  const pL=65,pR=35,pT=35,pB=52;
+  const {tx,ty} = plotArea(ctx,W,H,pL,pR,pT,pB,0,200,0,12,20,1);
+  axisLabels(ctx,W,H,pL,pT,'Quantity (million bu)','Price ($/bu)');
+
+  const {Ps,Qs,PmaxD,PminS,CS,PS} = m1calc();
+  const clampP = p=>Math.max(0,Math.min(12,p));
+  const Qd = P => Math.max(0,(200+m1.ds)-20*P);
+  const QsF = P => Math.max(0,20*P-40+m1.ss);
+
+  // CS triangle
+  if (Ps>=0 && Ps<=12 && Qs>=0) {
+    ctx.beginPath();
+    ctx.moveTo(tx(0), ty(clampP(PmaxD)));
+    ctx.lineTo(tx(Math.min(200,Qs)), ty(Ps));
+    ctx.lineTo(tx(0), ty(Ps));
+    ctx.closePath();
+    ctx.fillStyle='rgba(191,219,254,0.55)'; ctx.fill();
+    ctx.strokeStyle='rgba(37,99,235,0.3)'; ctx.lineWidth=1; ctx.stroke();
+  }
+
+  // PS triangle
+  if (Ps>=0 && Ps<=12 && Qs>=0) {
+    ctx.beginPath();
+    ctx.moveTo(tx(0), ty(clampP(Math.max(0,PminS))));
+    ctx.lineTo(tx(Math.min(200,Qs)), ty(Ps));
+    ctx.lineTo(tx(0), ty(Ps));
+    ctx.closePath();
+    ctx.fillStyle='rgba(187,247,208,0.55)'; ctx.fill();
+    ctx.strokeStyle='rgba(22,163,74,0.3)'; ctx.lineWidth=1; ctx.stroke();
+  }
+
+  // Demand line
+  const dQ0=0, dP0=clampP(PmaxD), dQ1=Math.min(200,200+m1.ds), dP1=0;
+  ctx.beginPath(); ctx.moveTo(tx(dQ0),ty(dP0)); ctx.lineTo(tx(dQ1),ty(dP1));
+  ctx.strokeStyle='#2563eb'; ctx.lineWidth=3; ctx.stroke();
+  ctx.fillStyle='#2563eb'; ctx.font='bold 15px Arial'; ctx.textAlign='left';
+  const dLQ=Math.min(175,dQ1-10);
+  if (dLQ>0) ctx.fillText('D',tx(dLQ)+5,ty((200+m1.ds-dLQ)/20)-6);
+
+  // Supply line — find visible range [0..12] for P
+  const sP0c=clampP(PminS), sP1c=12;
+  const sQ0c=QsF(sP0c), sQ1c=QsF(sP1c);
+  if (sQ1c>=0 && sQ1c<=200) {
+    ctx.beginPath(); ctx.moveTo(tx(Math.max(0,sQ0c)),ty(sP0c)); ctx.lineTo(tx(Math.min(200,sQ1c)),ty(sP1c));
+    ctx.strokeStyle='#16a34a'; ctx.lineWidth=3; ctx.stroke();
+    ctx.fillStyle='#16a34a'; ctx.font='bold 15px Arial'; ctx.textAlign='left';
+    ctx.fillText('S',tx(Math.min(200,sQ1c)-10)+5,ty(sP1c*0.97)-6);
+  }
+
+  // Dashed lines + equilibrium dot
+  if (Ps>=0 && Ps<=12 && Qs>=0 && Qs<=200) {
+    vline(ctx, tx(Qs), ty(Ps), ty(0), '#6b7280', 1.5, [6,4]);
+    hline(ctx, tx(0), tx(Qs), ty(Ps), '#6b7280', 1.5, [6,4]);
+    dot(ctx, tx(Qs), ty(Ps), 7, '#1a3a2a');
+    dot(ctx, tx(Qs), ty(Ps), 4, '#fff');
+    ctx.fillStyle='#1a3a2a'; ctx.font='bold 13px Arial'; ctx.textAlign='left';
+    ctx.fillText(`P*=$${Ps.toFixed(2)}, Q*=${Qs.toFixed(0)}`, tx(Qs)+10, ty(Ps)-8);
+
+    // CS / PS labels
+    ctx.font='bold 14px Arial';
+    if (PmaxD>Ps+0.5) { ctx.fillStyle='#1d4ed8'; ctx.textAlign='center'; ctx.fillText('CS',tx(Qs*0.22),ty((Ps+clampP(PmaxD))/2)); }
+    if (Ps>Math.max(0,PminS)+0.3) { ctx.fillStyle='#15803d'; ctx.textAlign='center'; ctx.fillText('PS',tx(Qs*0.22),ty((Math.max(0,PminS)+Ps)/2)); }
+  }
+
+  // Metrics
+  document.getElementById('m1p').textContent='$'+Ps.toFixed(2);
+  document.getElementById('m1q').textContent=Qs.toFixed(1)+' mil bu';
+  document.getElementById('m1cs').textContent='$'+Math.round(CS);
+  document.getElementById('m1ps').textContent='$'+Math.round(PS);
+}
+
+// ===================== MODULE 2: ELASTICITY =====================
+const m2 = {dp:1.5, el:-0.4};
+
+function m2preset(n) {
+  const P=[{dp:1.5,el:-0.3},{dp:1.5,el:-0.6},{dp:1.5,el:-1.3},{dp:1.5,el:-2.2}];
+  Object.assign(m2, P[n]);
+  document.getElementById('m2dp').value=m2.dp;
+  document.getElementById('m2el').value=m2.el;
+  document.querySelectorAll('#mod1 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  m2upd();
+}
+
+function m2upd() {
+  m2.dp = +document.getElementById('m2dp').value;
+  m2.el = +document.getElementById('m2el').value;
+  document.getElementById('m2dp-v').textContent=(m2.dp>=0?'+':'')+m2.dp.toFixed(2);
+  document.getElementById('m2el-v').textContent=m2.el.toFixed(2);
+  m2draw();
+}
+
+function m2draw() {
+  const {ctx,W,H} = setupCanvas('c2');
+  const pL=65,pR=40,pT=40,pB=55;
+
+  const {dp,el} = m2;
+  const Q0=80, P0=6;
+  // slope so that |Ed| = (dQ/dP)*(P0/Q0) => dQ/dP = -slope, Ed = -slope*(P0/Q0)
+  const slope = (Q0/P0)*Math.abs(el);
+  const Qint = Q0 + slope*P0; // Q when P=0
+  const Pint = Qint/slope;    // P when Q=0
+  const Qat = P => Math.max(0, Qint - slope*P);
+  const P1 = P0 + dp;
+  const Q1 = Qat(P1);
+  const R0 = P0*Q0, R1 = P1*Q1;
+
+  const xMax = Math.min(300, Math.max(180, Qint*1.05));
+  const yMax = Math.min(18, Math.max(12, Pint*1.05));
+  const xStep = xMax<=200?20:40;
+  const yStep = yMax<=12?1:2;
+
+  const {tx,ty} = plotArea(ctx,W,H,pL,pR,pT,pB,0,xMax,0,yMax,xStep,yStep);
+  axisLabels(ctx,W,H,pL,pT,'Quantity (million bu)','Price ($/bu)');
+
+  const pLo=Math.min(P0,P1), pHi=Math.max(P0,P1);
+  const qLo=Qat(pLo), qHi=Qat(pHi);
+
+  // Old rev rect
+  ctx.fillStyle='rgba(37,99,235,0.18)';
+  ctx.fillRect(tx(0),ty(P0),tx(Q0)-tx(0),ty(0)-ty(P0));
+  ctx.strokeStyle='#2563eb'; ctx.lineWidth=2;
+  ctx.strokeRect(tx(0),ty(P0),tx(Q0)-tx(0),ty(0)-ty(P0));
+
+  // New rev rect
+  ctx.fillStyle='rgba(22,163,74,0.18)';
+  ctx.fillRect(tx(0),ty(P1),tx(Q1)-tx(0),ty(0)-ty(P1));
+  ctx.strokeStyle='#16a34a'; ctx.lineWidth=2;
+  ctx.strokeRect(tx(0),ty(P1),tx(Q1)-tx(0),ty(0)-ty(P1));
+
+  // Demand curve
+  const dP0c=Math.min(yMax,Pint), dQ0c=Qat(dP0c);
+  ctx.beginPath();
+  ctx.moveTo(tx(0),ty(Math.min(yMax,Pint)));
+  ctx.lineTo(tx(Math.min(xMax,Qint)),ty(0));
+  ctx.strokeStyle='#2563eb'; ctx.lineWidth=3; ctx.stroke();
+  ctx.fillStyle='#2563eb'; ctx.font='bold 15px Arial'; ctx.textAlign='left';
+  ctx.fillText('D', tx(Math.min(xMax,Qint)*0.82)+5, ty(Math.min(yMax,Pint)*0.12)-5);
+
+  // P0 and P1 lines
+  hline(ctx,tx(0),tx(xMax),ty(P0),'#2563eb',2,[6,3]);
+  ctx.fillStyle='#2563eb'; ctx.font='bold 12px Arial'; ctx.textAlign='right';
+  ctx.fillText(`P₀=$${P0.toFixed(2)}`,tx(xMax)-5,ty(P0)-6);
+
+  if (Math.abs(dp)>0.05) {
+    hline(ctx,tx(0),tx(xMax),ty(P1),'#16a34a',2,[6,3]);
+    ctx.fillStyle='#16a34a'; ctx.font='bold 12px Arial'; ctx.textAlign='right';
+    ctx.fillText(`P₁=$${P1.toFixed(2)}`,tx(xMax)-5,ty(P1)-6);
+  }
+
+  dot(ctx,tx(Q0),ty(P0),6,'#2563eb');
+  if (Q1>=0 && P1>=0 && P1<=yMax) dot(ctx,tx(Math.min(xMax,Q1)),ty(P1),6,'#16a34a');
+
+  // Revenue labels
+  ctx.font='bold 13px Arial'; ctx.textAlign='center';
+  const rw0=tx(Q0)-tx(0), rh0=ty(0)-ty(P0);
+  if (rw0>50&&rh0>18) { ctx.fillStyle='#1e3a8a'; ctx.fillText(`R₀=$${Math.round(R0)}`,tx(Q0/2),(ty(P0)+ty(0))/2+5); }
+  const rw1=tx(Math.min(xMax,Q1))-tx(0), rh1=ty(0)-ty(Math.max(0,P1));
+  if (rw1>50&&rh1>18) {
+    ctx.fillStyle='#14532d';
+    const ly=(ty(P1)+ty(0))/2+(dp>0?-18:18);
+    ctx.fillText(`R₁=$${Math.round(R1)}`,tx(Math.min(xMax,Q1)/2),ly);
+  }
+
+  // Elasticity info
+  const etype=Math.abs(el)<1?'Inelastic (|E|<1)':Math.abs(el)>1?'Elastic (|E|>1)':'Unit Elastic';
+  ctx.fillStyle='#1a3a2a'; ctx.font='bold 14px Arial'; ctx.textAlign='left';
+  ctx.fillText(`E = ${el.toFixed(2)}  →  ${etype}`, pL+10, pT+20);
+  const rd=R1-R0, rp=(rd/R0)*100;
+  const arrow=rd>0?'↑ Revenue rises':'↓ Revenue falls';
+  ctx.fillStyle=rd>=0?'#15803d':'#b91c1c';
+  ctx.fillText(arrow, pL+10, pT+38);
+
+  // Metrics
+  document.getElementById('m2r0').textContent='$'+Math.round(R0);
+  document.getElementById('m2r1').textContent='$'+Math.round(R1);
+  const rdE=document.getElementById('m2rd');
+  rdE.textContent=(rd>=0?'+':'')+'$'+Math.round(rd);
+  rdE.className='metric-value'+(rd<0?' neg':'');
+  const rpE=document.getElementById('m2rp');
+  rpE.textContent=(rp>=0?'+':'')+rp.toFixed(1)+'%';
+  rpE.className='metric-value'+(rp<0?' neg':'');
+}
+
+// ===================== MODULE 3: DIMINISHING RETURNS =====================
+const m3 = {n:120, pc:5, pn:0.55};
+
+function m3preset(n) {
+  const P=[{n:150,pc:5,pn:0.35},{n:100,pc:5,pn:1.20},{n:160,pc:7.5,pn:0.60},{n:80,pc:3.5,pn:0.60}];
+  Object.assign(m3, P[n]);
+  document.getElementById('m3n').value=m3.n;
+  document.getElementById('m3pc').value=m3.pc;
+  document.getElementById('m3pn').value=m3.pn;
+  document.querySelectorAll('#mod2 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  m3upd();
+}
+
+function m3upd() {
+  m3.n=+document.getElementById('m3n').value;
+  m3.pc=+document.getElementById('m3pc').value;
+  m3.pn=+document.getElementById('m3pn').value;
+  document.getElementById('m3n-v').textContent=m3.n;
+  document.getElementById('m3pc-v').textContent=m3.pc.toFixed(2);
+  document.getElementById('m3pn-v').textContent=m3.pn.toFixed(2);
+  m3draw();
+}
+
+function m3draw() {
+  const {ctx,W,H} = setupCanvas('c3');
+  const {n,pc,pn} = m3;
+
+  const Y = N=>80+0.9*N-0.003*N*N;
+  const MP = N=>0.9-0.006*N;
+  const ratio = pn/pc;
+  const Nopt = Math.max(0,Math.min(200,(0.9-ratio)/0.006));
+  const yN=Y(n), mpN=MP(n);
+  const profit = pc*(yN-Y(0)) - pn*n;
+
+  // split panels
+  const topH = Math.round(H*0.57);
+  const botH = H - topH - 8;
+  const pL=65,pR=30,pT=28,pB=38;
+
+  // --- TOP: Yield Response ---
+  const yMax=160, yStep=20;
+  const tpW=W-pL-pR, tpH=topH-pT-pB;
+  const tx=v=>pL+v/200*tpW;
+  const tyTop=v=>pT+(yMax-v)/yMax*tpH;
+
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,topH);
+  // grid
+  ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+  for(let y=0;y<=yMax;y+=yStep){const py=tyTop(y);ctx.beginPath();ctx.moveTo(pL,py);ctx.lineTo(W-pR,py);ctx.stroke();}
+  for(let x=0;x<=200;x+=40){const px=tx(x);ctx.beginPath();ctx.moveTo(px,pT);ctx.lineTo(px,topH-pB);ctx.stroke();}
+  // axes
+  ctx.strokeStyle='#374151'; ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(pL,pT);ctx.lineTo(pL,topH-pB);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pL,topH-pB);ctx.lineTo(W-pR,topH-pB);ctx.stroke();
+  // labels
+  ctx.fillStyle='#374151'; ctx.font='bold 11px Arial'; ctx.textAlign='right';
+  for(let y=0;y<=yMax;y+=yStep)ctx.fillText(y,pL-6,tyTop(y)+4);
+  ctx.textAlign='center';
+  for(let x=0;x<=200;x+=40)ctx.fillText(x,tx(x),topH-pB+15);
+
+  // Yield fill under curve up to N
+  ctx.beginPath();
+  ctx.moveTo(tx(0),tyTop(Y(0)));
+  for(let i=0;i<=n;i++)ctx.lineTo(tx(i),tyTop(Math.max(0,Y(i))));
+  ctx.lineTo(tx(n),tyTop(0));ctx.lineTo(tx(0),tyTop(0));
+  ctx.closePath();
+  ctx.fillStyle='rgba(187,247,208,0.35)';ctx.fill();
+
+  // Yield curve
+  ctx.beginPath();
+  for(let i=0;i<=200;i++){
+    const yv=Y(i);
+    if(yv>yMax||yv<0){ctx.beginPath();continue;}
+    i===0?ctx.moveTo(tx(i),tyTop(yv)):ctx.lineTo(tx(i),tyTop(yv));
+  }
+  // draw full curve
+  ctx.beginPath();
+  let started=false;
+  for(let i=0;i<=200;i++){
+    const yv=Y(i);
+    const cyv=Math.max(0,Math.min(yMax,yv));
+    if(!started){ctx.moveTo(tx(i),tyTop(cyv));started=true;}
+    else ctx.lineTo(tx(i),tyTop(cyv));
+  }
+  ctx.strokeStyle='#16a34a';ctx.lineWidth=3;ctx.stroke();
+
+  // Current N line
+  vline(ctx,tx(n),pT,topH-pB,'#dc2626',2.5,[5,4]);
+  ctx.fillStyle='#dc2626';ctx.font='bold 12px Arial';ctx.textAlign='center';
+  ctx.fillText('N='+n,tx(n),pT+13);
+
+  // Optimal N line
+  if(Nopt>1&&Nopt<=200){
+    vline(ctx,tx(Nopt),pT,topH-pB,'#ea580c',2.5,[8,4]);
+    ctx.fillStyle='#ea580c';ctx.font='bold 12px Arial';ctx.textAlign='center';
+    ctx.fillText('N*='+Nopt.toFixed(0),tx(Nopt),pT+27);
+  }
+
+  // Dot at current yield
+  dot(ctx,tx(n),tyTop(Math.max(0,Math.min(yMax,yN))),5,'#dc2626');
+
+  // Curve label
+  ctx.fillStyle='#16a34a';ctx.font='bold 14px Arial';ctx.textAlign='left';
+  ctx.fillText('Y(N)',W-pR-45,pT+18);
+
+  // Axis labels top
+  ctx.fillStyle='#1a3a2a';ctx.font='bold 12px Arial';ctx.textAlign='center';
+  ctx.fillText('Nitrogen Rate (lbs/acre)',pL+tpW/2,topH-5);
+  ctx.save();ctx.translate(14,topH/2);ctx.rotate(-Math.PI/2);ctx.fillText('Yield (bu/acre)',0,0);ctx.restore();
+  ctx.fillStyle='#1a3a2a';ctx.font='bold 13px Arial';ctx.textAlign='center';
+  ctx.fillText('Yield Response to Nitrogen (Y = 80 + 0.9N − 0.003N²)',pL+tpW/2,pT-10);
+
+  // --- BOTTOM: Marginal Product ---
+  const bTop=topH+8;
+  const mpMax=1.0, mpMin=-0.32;
+  const bpH=botH-pT-pB;
+  const tyBot=v=>bTop+pT+(mpMax-v)/(mpMax-mpMin)*bpH;
+
+  ctx.fillStyle='#f8fdf9';ctx.fillRect(0,bTop,W,botH);
+  ctx.fillStyle='#fff';ctx.fillRect(pL,bTop+pT,tpW,bpH);
+  // grid
+  ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+  [-0.3,-0.2,-0.1,0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0].forEach(y=>{
+    if(y<mpMin||y>mpMax)return;
+    const py=tyBot(y);
+    ctx.beginPath();ctx.moveTo(pL,py);ctx.lineTo(W-pR,py);ctx.stroke();
+  });
+  for(let x=0;x<=200;x+=40){const px=tx(x);ctx.beginPath();ctx.moveTo(px,bTop+pT);ctx.lineTo(px,bTop+pT+bpH);ctx.stroke();}
+  // axes
+  ctx.strokeStyle='#374151';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(pL,bTop+pT);ctx.lineTo(pL,bTop+pT+bpH);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pL,bTop+pT+bpH);ctx.lineTo(W-pR,bTop+pT+bpH);ctx.stroke();
+  // y ticks
+  ctx.fillStyle='#374151';ctx.font='bold 11px Arial';ctx.textAlign='right';
+  [-0.2,0,0.2,0.4,0.6,0.8,1.0].forEach(y=>{if(y<mpMin||y>mpMax)return;ctx.fillText(y.toFixed(1),pL-6,tyBot(y)+4);});
+  ctx.textAlign='center';
+  for(let x=0;x<=200;x+=40)ctx.fillText(x,tx(x),bTop+pT+bpH+15);
+
+  // Zero line
+  hline(ctx,pL,W-pR,tyBot(0),'#9ca3af',1);
+
+  // MP line
+  ctx.beginPath();
+  ctx.moveTo(tx(0),tyBot(Math.min(mpMax,MP(0))));
+  ctx.lineTo(tx(200),tyBot(Math.max(mpMin,MP(200))));
+  ctx.strokeStyle='#7c3aed';ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle='#7c3aed';ctx.font='bold 14px Arial';ctx.textAlign='left';
+  ctx.fillText('MP = dY/dN',W-pR-130,tyBot(0.75));
+
+  // Price ratio line
+  if(ratio>=mpMin && ratio<=mpMax){
+    hline(ctx,pL,W-pR,tyBot(ratio),'#ea580c',2.5,[6,3]);
+    ctx.fillStyle='#ea580c';ctx.font='bold 12px Arial';ctx.textAlign='right';
+    ctx.fillText(`Pₙ/Pc = ${ratio.toFixed(3)}`,W-pR-5,tyBot(ratio)-5);
+  }
+
+  // Current N dot on MP
+  const mpDot=MP(n);
+  if(mpDot>=mpMin&&mpDot<=mpMax) dot(ctx,tx(n),tyBot(mpDot),6,'#dc2626');
+  // Optimal N dot
+  if(Nopt>=0&&Nopt<=200&&ratio>=mpMin&&ratio<=mpMax) dot(ctx,tx(Nopt),tyBot(ratio),6,'#ea580c');
+
+  // Axis labels bot
+  ctx.fillStyle='#1a3a2a';ctx.font='bold 12px Arial';ctx.textAlign='center';
+  ctx.fillText('Nitrogen Rate (lbs/acre)',pL+tpW/2,bTop+pT+bpH+30);
+  ctx.save();ctx.translate(14,bTop+botH/2);ctx.rotate(-Math.PI/2);ctx.fillText('MP (bu/lb N)',0,0);ctx.restore();
+  ctx.fillText('Marginal Product of Nitrogen',pL+tpW/2,bTop+pT-10);
+
+  // Metrics
+  document.getElementById('m3y').textContent=yN.toFixed(1)+' bu/ac';
+  document.getElementById('m3mp').textContent=mpN.toFixed(3)+' bu/lb';
+  document.getElementById('m3on').textContent=Nopt.toFixed(0)+' lbs/ac';
+  const prE=document.getElementById('m3pr');
+  prE.textContent=(profit>=0?'+':'')+'$'+Math.round(profit);
+  prE.className='metric-value'+(profit<0?' neg':'');
+}
+
+// ===================== MODULE 4: COST CURVES =====================
+const m4={p:5};
+
+function m4preset(n) {
+  const P=[7,5,3.5,2.2];
+  m4.p=P[n];
+  document.getElementById('m4p').value=m4.p;
+  document.querySelectorAll('#mod3 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  m4upd();
+}
+
+function m4upd() {
+  m4.p=+document.getElementById('m4p').value;
+  document.getElementById('m4p-v').textContent='$'+m4.p.toFixed(2);
+  m4draw();
+}
+
+function m4draw() {
+  const {ctx,W,H} = setupCanvas('c4');
+  const pL=65,pR=50,pT=35,pB=52;
+  const {tx,ty} = plotArea(ctx,W,H,pL,pR,pT,pB,50,250,0,12,20,1);
+  axisLabels(ctx,W,H,pL,pT,'Output (bu/acre)','Cost / Price ($/bu)');
+
+  const {p} = m4;
+  const FC=150;
+  const VC=Q=>2*Q+Q*Q/150;
+  const TC=Q=>FC+VC(Q);
+  const ATC=Q=>TC(Q)/Q;
+  const AVC=Q=>VC(Q)/Q;  // = 2 + Q/150
+  const MC=Q=>2+Q/75;
+  // Qstar where P=MC: Q=(P-2)*75
+  const Qraw=(p-2)*75;
+  const Qstar=Math.max(50,Math.min(250,Qraw));
+  const inMarket=Qraw>=50;
+
+  const atcStar=ATC(Qstar);
+  const revenue=p*Qstar;
+  const tc=TC(Qstar);
+  const profit=revenue-tc;
+
+  // Profit/loss shading between P line and ATC
+  if(inMarket && Qstar>50) {
+    ctx.beginPath();
+    ctx.moveTo(tx(50),ty(Math.min(12,ATC(50))));
+    for(let Q=50;Q<=Qstar;Q+=1){
+      const v=ATC(Q);
+      if(v<=12)ctx.lineTo(tx(Q),ty(v));
+    }
+    ctx.lineTo(tx(Qstar),ty(Math.min(12,p)));
+    ctx.lineTo(tx(50),ty(Math.min(12,p)));
+    ctx.closePath();
+    ctx.fillStyle=profit>=0?'rgba(187,247,208,0.5)':'rgba(254,202,202,0.55)';
+    ctx.fill();
+  }
+
+  // AVC curve (= 2 + Q/150)
+  ctx.beginPath();
+  for(let Q=50;Q<=250;Q+=2){
+    const v=AVC(Q);if(v>12)break;
+    Q===50?ctx.moveTo(tx(Q),ty(v)):ctx.lineTo(tx(Q),ty(v));
+  }
+  ctx.strokeStyle='#f59e0b';ctx.lineWidth=2.5;ctx.stroke();
+  ctx.fillStyle='#d97706';ctx.font='bold 13px Arial';ctx.textAlign='left';
+  ctx.fillText('AVC',tx(220),ty(AVC(220))-7);
+
+  // ATC curve
+  ctx.beginPath();
+  for(let Q=50;Q<=250;Q+=2){
+    const v=ATC(Q);if(v>12)break;
+    Q===50?ctx.moveTo(tx(Q),ty(v)):ctx.lineTo(tx(Q),ty(v));
+  }
+  ctx.strokeStyle='#7c3aed';ctx.lineWidth=2.5;ctx.stroke();
+  ctx.fillStyle='#6d28d9';ctx.font='bold 13px Arial';ctx.textAlign='left';
+  ctx.fillText('ATC',tx(55),ty(ATC(55))-8);
+
+  // MC curve
+  ctx.beginPath();
+  for(let Q=50;Q<=250;Q+=2){
+    const v=MC(Q);if(v>12)break;
+    Q===50?ctx.moveTo(tx(Q),ty(v)):ctx.lineTo(tx(Q),ty(v));
+  }
+  ctx.strokeStyle='#dc2626';ctx.lineWidth=2.5;ctx.stroke();
+  ctx.fillStyle='#dc2626';ctx.font='bold 13px Arial';ctx.textAlign='left';
+  if(MC(250)<=12)ctx.fillText('MC',tx(235),ty(MC(235))-7);
+
+  // Price line
+  if(p<=12){
+    hline(ctx,tx(50),tx(250),ty(p),'#2563eb',2.5,[7,4]);
+    ctx.fillStyle='#2563eb';ctx.font='bold 13px Arial';ctx.textAlign='right';
+    ctx.fillText(`P = $${p.toFixed(2)}`,tx(250)-4,ty(p)-7);
+  }
+
+  // Min ATC marker (Q=150, ATC=$4)
+  const QminATC=150, minATC=ATC(150);
+  if(minATC<=12){
+    dot(ctx,tx(QminATC),ty(minATC),7,'#6d28d9');
+    dot(ctx,tx(QminATC),ty(minATC),4,'#fff');
+    ctx.fillStyle='#6d28d9';ctx.font='bold 11px Arial';ctx.textAlign='center';
+    ctx.fillText(`Break-even Q=${QminATC}, ATC=$${minATC.toFixed(2)}`,tx(QminATC),ty(minATC)-12);
+  }
+
+  // Shutdown line at P=2
+  hline(ctx,tx(50),tx(250),ty(2),'#f59e0b',1.5,[4,3]);
+  ctx.fillStyle='#b45309';ctx.font='bold 11px Arial';ctx.textAlign='left';
+  ctx.fillText('Shutdown P=$2.00',tx(55),ty(2)-5);
+
+  // Q* dot
+  if(inMarket && p<=12){
+    dot(ctx,tx(Qstar),ty(p),7,'#1a3a2a');
+    dot(ctx,tx(Qstar),ty(p),4,'#fff');
+    ctx.fillStyle='#1a3a2a';ctx.font='bold 13px Arial';ctx.textAlign='left';
+    ctx.fillText(`Q* = ${Qstar.toFixed(0)}`,tx(Qstar)+9,ty(p)-7);
+  } else if(!inMarket) {
+    ctx.fillStyle='#b91c1c';ctx.font='bold 14px Arial';ctx.textAlign='center';
+    ctx.fillText('SHUT DOWN (P < min AVC)',tx(150),ty(6));
+  }
+
+  // Profit label
+  ctx.font='bold 14px Arial';ctx.textAlign='center';
+  ctx.fillStyle=profit>=0?'#14532d':'#b91c1c';
+  if(inMarket) ctx.fillText(profit>=0?`Profit: $${Math.round(profit)}/acre`:`Loss: $${Math.abs(Math.round(profit))}/acre`,
+    pL+(W-pL-pR)*0.7,pT+22);
+
+  document.getElementById('m4q').textContent=inMarket?Qstar.toFixed(0)+' bu/ac':'0 (shutdown)';
+  document.getElementById('m4rev').textContent='$'+Math.round(inMarket?revenue:0);
+  document.getElementById('m4tc').textContent='$'+Math.round(inMarket?tc:FC);
+  const prE=document.getElementById('m4pr');
+  const profitDisp=inMarket?profit:-FC;
+  prE.textContent=(profitDisp>=0?'+':'')+'$'+Math.round(profitDisp);
+  prE.className='metric-value'+(profitDisp<0?' neg':'');
+}
+
+// ===================== MODULE 5: PRICE POLICY =====================
+const m5={pol:'floor',pp:8};
+
+function m5pol(pol) {
+  m5.pol=pol;
+  ['free','floor','ceil'].forEach(p=>document.getElementById('pol-'+p).classList.toggle('active',p===pol));
+  m5draw();
+}
+
+function m5preset(n) {
+  const P=[{pol:'free',pp:6},{pol:'floor',pp:8},{pol:'floor',pp:7},{pol:'ceil',pp:4}];
+  Object.assign(m5, P[n]);
+  document.getElementById('m5pp').value=m5.pp;
+  document.getElementById('m5pp-v').textContent='$'+m5.pp.toFixed(2);
+  ['free','floor','ceil'].forEach(p=>document.getElementById('pol-'+p).classList.toggle('active',p===m5.pol));
+  document.querySelectorAll('#mod4 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  m5draw();
+}
+
+function m5upd() {
+  m5.pp=+document.getElementById('m5pp').value;
+  document.getElementById('m5pp-v').textContent='$'+m5.pp.toFixed(2);
+  if(m5.pp>6.01) m5.pol='floor';
+  else if(m5.pp<5.99) m5.pol='ceil';
+  else m5.pol='free';
+  ['free','floor','ceil'].forEach(p=>document.getElementById('pol-'+p).classList.toggle('active',p===m5.pol));
+  m5draw();
+}
+
+function m5draw() {
+  const {ctx,W,H} = setupCanvas('c5');
+  const pL=65,pR=35,pT=35,pB=52;
+  const {tx,ty} = plotArea(ctx,W,H,pL,pR,pT,pB,0,200,0,12,20,1);
+  axisLabels(ctx,W,H,pL,pT,'Quantity (million bu)','Price ($/bu)');
+
+  const Peq=6,Qeq=80;
+  const PmaxD=10,PminS=2;
+  const Qd=P=>Math.max(0,200-20*P);
+  const Qs=P=>Math.max(0,20*P-40);
+  const {pol,pp} = m5;
+
+  // base CS/PS light shading
+  ctx.beginPath();ctx.moveTo(tx(0),ty(PmaxD));ctx.lineTo(tx(Qeq),ty(Peq));ctx.lineTo(tx(0),ty(Peq));ctx.closePath();
+  ctx.fillStyle='rgba(191,219,254,0.28)';ctx.fill();
+  ctx.beginPath();ctx.moveTo(tx(0),ty(PminS));ctx.lineTo(tx(Qeq),ty(Peq));ctx.lineTo(tx(0),ty(Peq));ctx.closePath();
+  ctx.fillStyle='rgba(187,247,208,0.28)';ctx.fill();
+
+  const Qd_pp=Qd(pp), Qs_pp=Qs(pp);
+  let ssVal=0, rcVal=0, dwlVal=0;
+
+  if(pol==='floor' && pp>Peq) {
+    const surplus=Qs_pp-Qd_pp;
+    ssVal=surplus;
+    rcVal=pp*Qd_pp - Peq*Qeq;
+    dwlVal=0.5*(pp-Peq)*surplus;
+
+    // DWL triangle
+    ctx.beginPath();
+    ctx.moveTo(tx(Qd_pp),ty(pp));ctx.lineTo(tx(Qeq),ty(Peq));ctx.lineTo(tx(Qs_pp),ty(pp));
+    ctx.closePath();ctx.fillStyle='rgba(254,202,202,0.75)';ctx.fill();
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=1.5;ctx.stroke();
+
+    // Surplus arrow
+    const ay=ty(pp)+32;
+    ctx.beginPath();ctx.moveTo(tx(Qd_pp),ay);ctx.lineTo(tx(Qs_pp),ay);
+    ctx.strokeStyle='#ea580c';ctx.lineWidth=3;ctx.stroke();
+    [[tx(Qd_pp),1],[tx(Qs_pp),-1]].forEach(([x,dir])=>{
+      ctx.beginPath();ctx.moveTo(x,ay);ctx.lineTo(x+dir*12,ay-5);ctx.lineTo(x+dir*12,ay+5);ctx.closePath();
+      ctx.fillStyle='#ea580c';ctx.fill();
+    });
+    ctx.fillStyle='#ea580c';ctx.font='bold 13px Arial';ctx.textAlign='center';
+    ctx.fillText(`SURPLUS: ${surplus.toFixed(0)} mil bu`,tx((Qd_pp+Qs_pp)/2),ay+18);
+
+    ctx.fillStyle='#dc2626';ctx.font='bold 13px Arial';ctx.textAlign='center';
+    ctx.fillText('DWL',tx((Qd_pp+Qs_pp)/2),ty((pp+Peq)/2+0.5));
+
+    // Policy line
+    hline(ctx,tx(0),tx(200),ty(pp),'#ea580c',3);
+    ctx.fillStyle='#ea580c';ctx.font='bold 13px Arial';ctx.textAlign='left';
+    ctx.fillText(`Price Floor = $${pp.toFixed(2)}`,tx(5),ty(pp)-9);
+    vline(ctx,tx(Qd_pp),ty(pp),ty(0),'#2563eb',1.5,[4,3]);
+    vline(ctx,tx(Qs_pp),ty(pp),ty(0),'#16a34a',1.5,[4,3]);
+    ctx.fillStyle='#2563eb';ctx.font='bold 11px Arial';ctx.textAlign='center';ctx.fillText('Qd='+Qd_pp.toFixed(0),tx(Qd_pp),ty(0)+12);
+    ctx.fillStyle='#16a34a';ctx.textAlign='center';ctx.fillText('Qs='+Qs_pp.toFixed(0),tx(Qs_pp),ty(0)+12);
+
+  } else if(pol==='ceil' && pp<Peq) {
+    const shortage=Qd_pp-Qs_pp;
+    ssVal=-shortage;
+    rcVal=pp*Qs_pp - Peq*Qeq;
+    dwlVal=0.5*(Peq-pp)*shortage;
+
+    ctx.beginPath();
+    ctx.moveTo(tx(Qs_pp),ty(pp));ctx.lineTo(tx(Qeq),ty(Peq));ctx.lineTo(tx(Qd_pp),ty(pp));
+    ctx.closePath();ctx.fillStyle='rgba(254,202,202,0.75)';ctx.fill();
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=1.5;ctx.stroke();
+
+    const ay=ty(pp)+32;
+    ctx.beginPath();ctx.moveTo(tx(Qs_pp),ay);ctx.lineTo(tx(Qd_pp),ay);
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=3;ctx.stroke();
+    [[tx(Qs_pp),1],[tx(Qd_pp),-1]].forEach(([x,dir])=>{
+      ctx.beginPath();ctx.moveTo(x,ay);ctx.lineTo(x+dir*12,ay-5);ctx.lineTo(x+dir*12,ay+5);ctx.closePath();
+      ctx.fillStyle='#2563eb';ctx.fill();
+    });
+    ctx.fillStyle='#2563eb';ctx.font='bold 13px Arial';ctx.textAlign='center';
+    ctx.fillText(`SHORTAGE: ${shortage.toFixed(0)} mil bu`,tx((Qs_pp+Qd_pp)/2),ay+18);
+
+    ctx.fillStyle='#dc2626';ctx.font='bold 13px Arial';ctx.textAlign='center';
+    ctx.fillText('DWL',tx((Qs_pp+Qd_pp)/2),ty((pp+Peq)/2+0.5));
+
+    hline(ctx,tx(0),tx(200),ty(pp),'#2563eb',3);
+    ctx.fillStyle='#2563eb';ctx.font='bold 13px Arial';ctx.textAlign='left';
+    ctx.fillText(`Price Ceiling = $${pp.toFixed(2)}`,tx(5),ty(pp)-9);
+    vline(ctx,tx(Qs_pp),ty(pp),ty(0),'#16a34a',1.5,[4,3]);
+    vline(ctx,tx(Qd_pp),ty(pp),ty(0),'#2563eb',1.5,[4,3]);
+    ctx.fillStyle='#16a34a';ctx.font='bold 11px Arial';ctx.textAlign='center';ctx.fillText('Qs='+Qs_pp.toFixed(0),tx(Qs_pp),ty(0)+12);
+    ctx.fillStyle='#2563eb';ctx.textAlign='center';ctx.fillText('Qd='+Qd_pp.toFixed(0),tx(Qd_pp),ty(0)+12);
+  } else {
+    ctx.fillStyle='#1a3a2a';ctx.font='bold 14px Arial';ctx.textAlign='center';
+    ctx.fillText('FREE MARKET — No intervention',pL+(W-pL-pR)/2,pT+22);
+  }
+
+  // Demand
+  ctx.beginPath();ctx.moveTo(tx(0),ty(PmaxD));ctx.lineTo(tx(200),ty(0));
+  ctx.strokeStyle='#2563eb';ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle='#2563eb';ctx.font='bold 15px Arial';ctx.textAlign='left';ctx.fillText('D',tx(183),ty(1.7)-5);
+
+  // Supply
+  ctx.beginPath();ctx.moveTo(tx(0),ty(PminS));ctx.lineTo(tx(200),ty(12));
+  ctx.strokeStyle='#16a34a';ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle='#16a34a';ctx.font='bold 15px Arial';ctx.textAlign='left';ctx.fillText('S',tx(170),ty(11.5)-5);
+
+  // Eq dashed + dot
+  vline(ctx,tx(Qeq),ty(Peq),ty(0),'#6b7280',1.5,[6,4]);
+  hline(ctx,tx(0),tx(Qeq),ty(Peq),'#6b7280',1.5,[6,4]);
+  dot(ctx,tx(Qeq),ty(Peq),7,'#1a3a2a');dot(ctx,tx(Qeq),ty(Peq),4,'#fff');
+  ctx.fillStyle='#1a3a2a';ctx.font='bold 13px Arial';ctx.textAlign='left';
+  ctx.fillText('P*=$6, Q*=80',tx(Qeq)+9,ty(Peq)-8);
+
+  // Metrics
+  document.getElementById('m5pp2').textContent='$'+pp.toFixed(2);
+  if(pol==='floor'&&pp>Peq){
+    document.getElementById('m5ss').textContent=ssVal.toFixed(0)+' mil bu surplus';
+  } else if(pol==='ceil'&&pp<Peq){
+    document.getElementById('m5ss').textContent=Math.abs(ssVal).toFixed(0)+' mil bu shortage';
+  } else {
+    document.getElementById('m5ss').textContent='0 (free market)';
+  }
+  const rcE=document.getElementById('m5rc');
+  rcE.textContent=(rcVal>=0?'+':'')+'$'+Math.round(rcVal);
+  rcE.className='metric-value'+(rcVal<0?' neg':'');
+  document.getElementById('m5dwl').textContent='$'+Math.round(dwlVal);
+}
+
+// ===================== MODULE 6: TRADE & TARIFF =====================
+const m6={pw:4,t:0};
+
+function m6preset(n) {
+  const P=[{pw:4,t:0},{pw:4,t:1},{pw:4,t:2},{pw:8,t:0}];
+  Object.assign(m6,P[n]);
+  document.getElementById('m6pw').value=m6.pw;
+  document.getElementById('m6t').value=m6.t;
+  document.querySelectorAll('#mod5 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  m6upd();
+}
+
+function m6upd() {
+  m6.pw=+document.getElementById('m6pw').value;
+  m6.t=+document.getElementById('m6t').value;
+  document.getElementById('m6pw-v').textContent='$'+m6.pw.toFixed(2);
+  document.getElementById('m6t-v').textContent='$'+m6.t.toFixed(2);
+  m6draw();
+}
+
+function m6draw() {
+  const {ctx,W,H} = setupCanvas('c6');
+  const pL=65,pR=35,pT=35,pB=52;
+  const {tx,ty} = plotArea(ctx,W,H,pL,pR,pT,pB,0,200,0,12,20,1);
+  axisLabels(ctx,W,H,pL,pT,'Quantity (million bu)','Price ($/bu)');
+
+  const {pw,t} = m6;
+  const Peq=6, Qeq=80;
+  const PmaxD=10, PminS=2;
+  const Qd=P=>Math.max(0,200-20*P);
+  const Qs=P=>Math.max(0,20*P-40);
+  const Pt=Math.min(Peq,pw+t); // effective tariff price, capped at eq
+  const isImport=pw<Peq;
+
+  // Quantities
+  const Qd_w=Qd(pw), Qs_w=Qs(pw);
+  const Qd_t=Qd(Pt), Qs_t=Qs(Pt);
+
+  if(isImport){
+    const Qd_free=Qd(pw), Qs_free=Qs(pw);
+    // CS at effective price Pt (with tariff)
+    const CS_t = 0.5*Qd_t*(PmaxD-Pt);
+    const PS_t = 0.5*Qs_t*(Pt-PminS);
+    const imports_t=Math.max(0,Qd_t-Qs_t);
+    const govRev=t>0&&Pt<Peq ? t*imports_t : 0;
+    const dwl = t>0&&Pt<Peq ? 0.5*t*(Qs_t-Qs_free)+0.5*t*(Qd_free-Qd_t) : 0;
+
+    // CS at free trade
+    const CS_free=0.5*Qd_free*(PmaxD-pw);
+
+    // Shade CS area at tariff price
+    ctx.beginPath();ctx.moveTo(tx(0),ty(PmaxD));ctx.lineTo(tx(Qd_t),ty(Pt));ctx.lineTo(tx(0),ty(Pt));ctx.closePath();
+    ctx.fillStyle='rgba(191,219,254,0.4)';ctx.fill();
+
+    if(t>0&&Pt<Peq){
+      // CS loss trapezoid (between pw and Pt)
+      ctx.beginPath();
+      ctx.moveTo(tx(0),ty(Pt));ctx.lineTo(tx(Qd_t),ty(Pt));
+      ctx.lineTo(tx(Qd_free),ty(pw));ctx.lineTo(tx(0),ty(pw));
+      ctx.closePath();ctx.fillStyle='rgba(191,219,254,0.5)';ctx.fill();
+      ctx.strokeStyle='#2563eb';ctx.lineWidth=1;ctx.stroke();
+      ctx.fillStyle='#1e3a8a';ctx.font='bold 11px Arial';ctx.textAlign='center';
+      if(Qd_free>30)ctx.fillText('CS Loss',tx(15),ty((pw+Pt)/2));
+
+      // PS gain (between pw and Pt, supply side)
+      ctx.beginPath();
+      ctx.moveTo(tx(0),ty(pw));ctx.lineTo(tx(Qs_free),ty(pw));
+      ctx.lineTo(tx(Qs_t),ty(Pt));ctx.lineTo(tx(0),ty(Pt));
+      ctx.closePath();ctx.fillStyle='rgba(187,247,208,0.7)';ctx.fill();
+      ctx.strokeStyle='#16a34a';ctx.lineWidth=1;ctx.stroke();
+      if(Qs_t>10){
+        ctx.fillStyle='#14532d';ctx.font='bold 11px Arial';ctx.textAlign='center';
+        ctx.fillText('PS Gain',tx(Qs_t/2),ty((pw+Pt)/2+0.3));
+      }
+
+      // Gov't rev rectangle
+      if(imports_t>0){
+        ctx.fillStyle='rgba(156,163,175,0.55)';
+        ctx.fillRect(tx(Qs_t),ty(Pt),tx(Qd_t)-tx(Qs_t),ty(pw)-ty(Pt));
+        ctx.strokeStyle='#6b7280';ctx.lineWidth=1.5;
+        ctx.strokeRect(tx(Qs_t),ty(Pt),tx(Qd_t)-tx(Qs_t),ty(pw)-ty(Pt));
+        ctx.fillStyle='#374151';ctx.font='bold 11px Arial';ctx.textAlign='center';
+        const gx=tx((Qs_t+Qd_t)/2), gy=(ty(pw)+ty(Pt))/2;
+        if(tx(Qd_t)-tx(Qs_t)>30)ctx.fillText(`Govt $${Math.round(govRev)}`,gx,gy+4);
+      }
+
+      // DWL triangles
+      // Left (production)
+      ctx.beginPath();ctx.moveTo(tx(Qs_free),ty(pw));ctx.lineTo(tx(Qs_t),ty(Pt));ctx.lineTo(tx(Qs_t),ty(pw));ctx.closePath();
+      ctx.fillStyle='rgba(254,202,202,0.85)';ctx.fill();ctx.strokeStyle='#dc2626';ctx.lineWidth=1.5;ctx.stroke();
+      // Right (consumption)
+      ctx.beginPath();ctx.moveTo(tx(Qd_t),ty(Pt));ctx.lineTo(tx(Qd_free),ty(pw));ctx.lineTo(tx(Qd_t),ty(pw));ctx.closePath();
+      ctx.fillStyle='rgba(254,202,202,0.85)';ctx.fill();ctx.strokeStyle='#dc2626';ctx.lineWidth=1.5;ctx.stroke();
+      ctx.fillStyle='#dc2626';ctx.font='bold 12px Arial';ctx.textAlign='center';
+      ctx.fillText('DWL',tx(Qs_t+3),ty(pw)-8);
+    } else {
+      // Free trade, shade PS
+      ctx.beginPath();ctx.moveTo(tx(0),ty(PminS));ctx.lineTo(tx(Qs_free),ty(pw));ctx.lineTo(tx(0),ty(pw));ctx.closePath();
+      ctx.fillStyle='rgba(187,247,208,0.45)';ctx.fill();
+      ctx.fillStyle='#14532d';ctx.font='bold 13px Arial';ctx.textAlign='center';
+      if(Qs_free>20)ctx.fillText('PS',tx(Qs_free*0.3),ty((PminS+pw)/2));
+      ctx.fillStyle='#1d4ed8';ctx.textAlign='center';
+      if(Qd_free>40)ctx.fillText('CS',tx(Qd_free*0.25),ty((pw+PmaxD)/2));
+    }
+
+    // Metrics
+    const imLabel=imports_t<0.5?'0 (prohibitive tariff)':imports_t.toFixed(0)+' mil bu imported';
+    document.getElementById('m6ie').textContent=imLabel;
+    document.getElementById('m6cs').textContent='$'+Math.round(CS_t);
+    document.getElementById('m6gr').textContent='$'+Math.round(govRev);
+    document.getElementById('m6dwl').textContent='$'+Math.round(dwl);
+
+  } else {
+    // Exporting scenario
+    const CS_e=0.5*Qd_w*(PmaxD-pw);
+    const PS_e=0.5*Qs_w*(pw-PminS);
+    ctx.beginPath();ctx.moveTo(tx(0),ty(PmaxD));ctx.lineTo(tx(Qd_w),ty(pw));ctx.lineTo(tx(0),ty(pw));ctx.closePath();
+    ctx.fillStyle='rgba(191,219,254,0.45)';ctx.fill();
+    ctx.beginPath();ctx.moveTo(tx(0),ty(PminS));ctx.lineTo(tx(Qs_w),ty(pw));ctx.lineTo(tx(0),ty(pw));ctx.closePath();
+    ctx.fillStyle='rgba(187,247,208,0.45)';ctx.fill();
+    ctx.fillStyle='#1d4ed8';ctx.font='bold 13px Arial';ctx.textAlign='center';
+    if(Qd_w>20)ctx.fillText('CS',tx(Qd_w*0.25),ty((pw+PmaxD)/2));
+    ctx.fillStyle='#14532d';
+    if(Qs_w>20)ctx.fillText('PS',tx(Qs_w*0.25),ty((PminS+pw)/2));
+
+    const exports=Qs_w-Qd_w;
+    // Export arrow
+    const ay=ty(pw)+32;
+    if(Qs_w<=200&&Qd_w>=0&&Qs_w>Qd_w){
+      ctx.beginPath();ctx.moveTo(tx(Qd_w),ay);ctx.lineTo(tx(Qs_w),ay);
+      ctx.strokeStyle='#16a34a';ctx.lineWidth=3;ctx.stroke();
+      ctx.beginPath();ctx.moveTo(tx(Qs_w),ay);ctx.lineTo(tx(Qs_w)-12,ay-5);ctx.lineTo(tx(Qs_w)-12,ay+5);ctx.closePath();
+      ctx.fillStyle='#16a34a';ctx.fill();
+      ctx.fillStyle='#14532d';ctx.font='bold 13px Arial';ctx.textAlign='center';
+      ctx.fillText(`EXPORTS: ${exports.toFixed(0)} mil bu`,tx((Qd_w+Qs_w)/2),ay+18);
+    }
+
+    document.getElementById('m6ie').textContent=exports.toFixed(0)+' mil bu exported';
+    document.getElementById('m6cs').textContent='$'+Math.round(CS_e);
+    document.getElementById('m6gr').textContent='$0 (exporter)';
+    document.getElementById('m6dwl').textContent='$0';
+  }
+
+  // World price line
+  if(pw>=0&&pw<=12){
+    hline(ctx,tx(0),tx(200),ty(pw),'#ea580c',2.5);
+    ctx.fillStyle='#ea580c';ctx.font='bold 13px Arial';ctx.textAlign='right';
+    ctx.fillText(`World P = $${pw.toFixed(2)}`,tx(200)-5,ty(pw)-7);
+  }
+
+  // Tariff price line
+  if(t>0&&Pt<=12&&Pt>pw){
+    hline(ctx,tx(0),tx(200),ty(Pt),'#dc2626',2.5,[8,4]);
+    ctx.fillStyle='#dc2626';ctx.font='bold 13px Arial';ctx.textAlign='right';
+    ctx.fillText(`P + Tariff = $${Pt.toFixed(2)}`,tx(200)-5,ty(Pt)+16);
+  }
+
+  // Demand curve
+  ctx.beginPath();ctx.moveTo(tx(0),ty(PmaxD));ctx.lineTo(tx(200),ty(0));
+  ctx.strokeStyle='#2563eb';ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle='#2563eb';ctx.font='bold 15px Arial';ctx.textAlign='left';ctx.fillText('D',tx(183),ty(1.7)-5);
+
+  // Supply curve
+  ctx.beginPath();ctx.moveTo(tx(0),ty(PminS));ctx.lineTo(tx(200),ty(12));
+  ctx.strokeStyle='#16a34a';ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle='#16a34a';ctx.font='bold 15px Arial';ctx.textAlign='left';ctx.fillText('S',tx(170),ty(11.5)-5);
+
+  // Eq point
+  vline(ctx,tx(Qeq),ty(Peq),ty(0),'#6b7280',1.5,[6,4]);
+  hline(ctx,tx(0),tx(Qeq),ty(Peq),'#6b7280',1.5,[6,4]);
+  dot(ctx,tx(Qeq),ty(Peq),6,'#1a3a2a');dot(ctx,tx(Qeq),ty(Peq),3.5,'#fff');
+  ctx.fillStyle='#1a3a2a';ctx.font='bold 12px Arial';ctx.textAlign='left';
+  ctx.fillText('P*=$6, Q*=80',tx(Qeq)+8,ty(Peq)-7);
+
+  // Qty markers at world price
+  if(pw>=0&&pw<=12){
+    const qd=Qd(pw),qs=Qs(pw);
+    if(qd<=200){vline(ctx,tx(qd),ty(pw),ty(0),'#9ca3af',1.5,[4,3]);}
+    if(qs<=200){vline(ctx,tx(qs),ty(pw),ty(0),'#9ca3af',1.5,[4,3]);}
+  }
+}
+
+// ===================== DRAWS ARRAY & INIT =====================
+const DRAWS = [m1draw, m2draw, m3draw, m4draw, m5draw, m6draw];
+
+// ResizeObserver
+document.querySelectorAll('.canvas-wrap').forEach((wrap,i)=>{
+  const ro=new ResizeObserver(()=>{if(activeTab===i)DRAWS[i]();});
+  ro.observe(wrap);
+});
+
+window.addEventListener('resize',()=>DRAWS[activeTab]());
+
+window.addEventListener('load',()=>{
+  m1draw();
+  // trigger slider display updates
+  m2upd(); m3upd(); m4upd(); m5draw(); m6draw();
+});
+</script>
+</body>
+</html>
