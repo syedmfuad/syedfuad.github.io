@@ -1,0 +1,58 @@
+{
+  "all_years": {
+    "desert": {
+      "avg_poverty_rate": 0.3161,
+      "avg_median_income": -3258434.8648,
+      "avg_unemployment_rate": 0.1249,
+      "avg_pct_black": 0.6597,
+      "avg_pct_hispanic": 0.045,
+      "avg_pct_no_vehicle": 0.1372,
+      "avg_pct_public_transit": 0.0147,
+      "avg_vacancy_rate": 0.2046,
+      "avg_density": 2057.4151,
+      "avg_snap_rate": 0.3008,
+      "avg_pct_bachelors_plus": 0.1493
+    },
+    "non_desert": {
+      "avg_poverty_rate": 0.1701,
+      "avg_median_income": -5376989.1492,
+      "avg_unemployment_rate": 0.0705,
+      "avg_pct_black": 0.2456,
+      "avg_pct_hispanic": 0.0414,
+      "avg_pct_no_vehicle": 0.0582,
+      "avg_pct_public_transit": 0.0036,
+      "avg_vacancy_rate": 0.1567,
+      "avg_density": 805.7932,
+      "avg_snap_rate": 0.1369,
+      "avg_pct_bachelors_plus": 0.2484
+    }
+  },
+  "latest_year": {
+    "desert": {
+      "avg_poverty_rate": 0.2931,
+      "avg_median_income": -6077174.1651,
+      "avg_unemployment_rate": 0.0816,
+      "avg_pct_black": 0.6594,
+      "avg_pct_hispanic": 0.0545,
+      "avg_pct_no_vehicle": 0.1235,
+      "avg_pct_public_transit": 0.0102,
+      "avg_vacancy_rate": 0.1913,
+      "avg_density": 2005.5147,
+      "avg_snap_rate": 0.3013,
+      "avg_pct_bachelors_plus": 0.1726
+    },
+    "non_desert": {
+      "avg_poverty_rate": 0.156,
+      "avg_median_income": -5954269.9483,
+      "avg_unemployment_rate": 0.0485,
+      "avg_pct_black": 0.2318,
+      "avg_pct_hispanic": 0.0501,
+      "avg_pct_no_vehicle": 0.0503,
+      "avg_pct_public_transit": 0.0034,
+      "avg_vacancy_rate": 0.1468,
+      "avg_density": 805.6935,
+      "avg_snap_rate": 0.1267,
+      "avg_pct_bachelors_plus": 0.2734
+    }
+  }
+}

@@ -1,0 +1,3503 @@
+{
+  "summary": {
+    "persistently_desert": 123,
+    "never_desert": 1145,
+    "newly_desert": 77,
+    "recovered": 34,
+    "intermittent": 57
+  },
+  "tracts": [
+    {
+      "GEOID": "01001020200",
+      "NAMELSAD": "Census Tract 202",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01001020600",
+      "NAMELSAD": "Census Tract 206",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01001021000",
+      "NAMELSAD": "Census Tract 210",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01001021100",
+      "NAMELSAD": "Census Tract 211",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01005950400",
+      "NAMELSAD": "Census Tract 9504",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01011952100",
+      "NAMELSAD": "Census Tract 9521",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01011952500",
+      "NAMELSAD": "Census Tract 9525",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01015000200",
+      "NAMELSAD": "Census Tract 2",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01015000300",
+      "NAMELSAD": "Census Tract 3",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01015000500",
+      "NAMELSAD": "Census Tract 5",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01015000800",
+      "NAMELSAD": "Census Tract 8",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01015001201",
+      "NAMELSAD": "Census Tract 12.01",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01015001300",
+      "NAMELSAD": "Census Tract 13",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01019955702",
+      "NAMELSAD": "Census Tract 9557.02",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01025957601",
+      "NAMELSAD": "Census Tract 9576.01",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01025957700",
+      "NAMELSAD": "Census Tract 9577",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01029959500",
+      "NAMELSAD": "Census Tract 9595",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01029959800",
+      "NAMELSAD": "Census Tract 9598",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01033020100",
+      "NAMELSAD": "Census Tract 201",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01033020200",
+      "NAMELSAD": "Census Tract 202",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01033020300",
+      "NAMELSAD": "Census Tract 203",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01033020600",
+      "NAMELSAD": "Census Tract 206",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01035960200",
+      "NAMELSAD": "Census Tract 9602",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01035960600",
+      "NAMELSAD": "Census Tract 9606",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01037961100",
+      "NAMELSAD": "Census Tract 9611",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01039962900",
+      "NAMELSAD": "Census Tract 9629",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01041963400",
+      "NAMELSAD": "Census Tract 9634",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01041963500",
+      "NAMELSAD": "Census Tract 9635",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01041963800",
+      "NAMELSAD": "Census Tract 9638",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01041963900",
+      "NAMELSAD": "Census Tract 9639",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01043964800",
+      "NAMELSAD": "Census Tract 9648",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01047956500",
+      "NAMELSAD": "Census Tract 9565",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01047956600",
+      "NAMELSAD": "Census Tract 9566",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01047957000",
+      "NAMELSAD": "Census Tract 9570",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01051030801",
+      "NAMELSAD": "Census Tract 308.01",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01053970300",
+      "NAMELSAD": "Census Tract 9703",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01055000300",
+      "NAMELSAD": "Census Tract 3",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01055000500",
+      "NAMELSAD": "Census Tract 5",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01055000600",
+      "NAMELSAD": "Census Tract 6",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01055000700",
+      "NAMELSAD": "Census Tract 7",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01055001000",
+      "NAMELSAD": "Census Tract 10",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01055001200",
+      "NAMELSAD": "Census Tract 12",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01059973600",
+      "NAMELSAD": "Census Tract 9736",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01063060000",
+      "NAMELSAD": "Census Tract 600",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01063060200",
+      "NAMELSAD": "Census Tract 602",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01065040000",
+      "NAMELSAD": "Census Tract 400",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01065040500",
+      "NAMELSAD": "Census Tract 405",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01069040301",
+      "NAMELSAD": "Census Tract 403.01",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01069040302",
+      "NAMELSAD": "Census Tract 403.02",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01069040700",
+      "NAMELSAD": "Census Tract 407",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01069041000",
+      "NAMELSAD": "Census Tract 410",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01069041100",
+      "NAMELSAD": "Census Tract 411",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01069041200",
+      "NAMELSAD": "Census Tract 412",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073000100",
+      "NAMELSAD": "Census Tract 1",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01073000300",
+      "NAMELSAD": "Census Tract 3",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073000400",
+      "NAMELSAD": "Census Tract 4",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073000500",
+      "NAMELSAD": "Census Tract 5",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073000700",
+      "NAMELSAD": "Census Tract 7",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073001100",
+      "NAMELSAD": "Census Tract 11",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073001400",
+      "NAMELSAD": "Census Tract 14",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073001500",
+      "NAMELSAD": "Census Tract 15",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073001600",
+      "NAMELSAD": "Census Tract 16",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073002000",
+      "NAMELSAD": "Census Tract 20",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073002100",
+      "NAMELSAD": "Census Tract 21",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073002200",
+      "NAMELSAD": "Census Tract 22",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073002303",
+      "NAMELSAD": "Census Tract 23.03",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073002900",
+      "NAMELSAD": "Census Tract 29",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073003001",
+      "NAMELSAD": "Census Tract 30.01",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01073003002",
+      "NAMELSAD": "Census Tract 30.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073003100",
+      "NAMELSAD": "Census Tract 31",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073003200",
+      "NAMELSAD": "Census Tract 32",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073003300",
+      "NAMELSAD": "Census Tract 33",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01073003500",
+      "NAMELSAD": "Census Tract 35",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01073003600",
+      "NAMELSAD": "Census Tract 36",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073003700",
+      "NAMELSAD": "Census Tract 37",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073003802",
+      "NAMELSAD": "Census Tract 38.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073003900",
+      "NAMELSAD": "Census Tract 39",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01073004000",
+      "NAMELSAD": "Census Tract 40",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073004200",
+      "NAMELSAD": "Census Tract 42",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073005101",
+      "NAMELSAD": "Census Tract 51.01",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073005103",
+      "NAMELSAD": "Census Tract 51.03",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073005104",
+      "NAMELSAD": "Census Tract 51.04",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01073005200",
+      "NAMELSAD": "Census Tract 52",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073005701",
+      "NAMELSAD": "Census Tract 57.01",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073005702",
+      "NAMELSAD": "Census Tract 57.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073005800",
+      "NAMELSAD": "Census Tract 58",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01073005903",
+      "NAMELSAD": "Census Tract 59.03",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01073005905",
+      "NAMELSAD": "Census Tract 59.05",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073005907",
+      "NAMELSAD": "Census Tract 59.07",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073005908",
+      "NAMELSAD": "Census Tract 59.08",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073005909",
+      "NAMELSAD": "Census Tract 59.09",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01073005910",
+      "NAMELSAD": "Census Tract 59.10",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073010001",
+      "NAMELSAD": "Census Tract 100.01",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073010100",
+      "NAMELSAD": "Census Tract 101",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073010301",
+      "NAMELSAD": "Census Tract 103.01",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073010302",
+      "NAMELSAD": "Census Tract 103.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073010401",
+      "NAMELSAD": "Census Tract 104.01",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073010402",
+      "NAMELSAD": "Census Tract 104.02",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073010500",
+      "NAMELSAD": "Census Tract 105",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073010604",
+      "NAMELSAD": "Census Tract 106.04",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073010605",
+      "NAMELSAD": "Census Tract 106.05",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01073010701",
+      "NAMELSAD": "Census Tract 107.01",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01073011112",
+      "NAMELSAD": "Census Tract 111.12",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073011207",
+      "NAMELSAD": "Census Tract 112.07",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073011208",
+      "NAMELSAD": "Census Tract 112.08",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073011209",
+      "NAMELSAD": "Census Tract 112.09",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073011210",
+      "NAMELSAD": "Census Tract 112.10",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01073011803",
+      "NAMELSAD": "Census Tract 118.03",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073011804",
+      "NAMELSAD": "Census Tract 118.04",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073011806",
+      "NAMELSAD": "Census Tract 118.06",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073012200",
+      "NAMELSAD": "Census Tract 122",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073012401",
+      "NAMELSAD": "Census Tract 124.01",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073013002",
+      "NAMELSAD": "Census Tract 130.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073013100",
+      "NAMELSAD": "Census Tract 131",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073013200",
+      "NAMELSAD": "Census Tract 132",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01073013300",
+      "NAMELSAD": "Census Tract 133",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073013400",
+      "NAMELSAD": "Census Tract 134",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01073013601",
+      "NAMELSAD": "Census Tract 136.01",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01077010100",
+      "NAMELSAD": "Census Tract 101",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01077010200",
+      "NAMELSAD": "Census Tract 102",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01077010300",
+      "NAMELSAD": "Census Tract 103",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01077010600",
+      "NAMELSAD": "Census Tract 106",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01077010700",
+      "NAMELSAD": "Census Tract 107",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01077010800",
+      "NAMELSAD": "Census Tract 108",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01077010902",
+      "NAMELSAD": "Census Tract 109.02",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01079979202",
+      "NAMELSAD": "Census Tract 9792.02",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01081040602",
+      "NAMELSAD": "Census Tract 406.02",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": true,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01081040603",
+      "NAMELSAD": "Census Tract 406.03",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01081041102",
+      "NAMELSAD": "Census Tract 411.02",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01081041400",
+      "NAMELSAD": "Census Tract 414",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01081041600",
+      "NAMELSAD": "Census Tract 416",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01083020500",
+      "NAMELSAD": "Census Tract 205",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01083020600",
+      "NAMELSAD": "Census Tract 206",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01083021000",
+      "NAMELSAD": "Census Tract 210",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01085781100",
+      "NAMELSAD": "Census Tract 7811",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01087231700",
+      "NAMELSAD": "Census Tract 2317",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01087232200",
+      "NAMELSAD": "Census Tract 2322",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01089000203",
+      "NAMELSAD": "Census Tract 2.03",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01089000301",
+      "NAMELSAD": "Census Tract 3.01",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01089000302",
+      "NAMELSAD": "Census Tract 3.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01089000501",
+      "NAMELSAD": "Census Tract 5.01",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01089000502",
+      "NAMELSAD": "Census Tract 5.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01089000503",
+      "NAMELSAD": "Census Tract 5.03",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01089000602",
+      "NAMELSAD": "Census Tract 6.02",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01089001200",
+      "NAMELSAD": "Census Tract 12",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01089001301",
+      "NAMELSAD": "Census Tract 13.01",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01089001302",
+      "NAMELSAD": "Census Tract 13.02",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01089001500",
+      "NAMELSAD": "Census Tract 15",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01089002100",
+      "NAMELSAD": "Census Tract 21",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01089002200",
+      "NAMELSAD": "Census Tract 22",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01089002300",
+      "NAMELSAD": "Census Tract 23",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01089002400",
+      "NAMELSAD": "Census Tract 24",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01089002501",
+      "NAMELSAD": "Census Tract 25.01",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01089002502",
+      "NAMELSAD": "Census Tract 25.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01089003000",
+      "NAMELSAD": "Census Tract 30",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01089003100",
+      "NAMELSAD": "Census Tract 31",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01089010625",
+      "NAMELSAD": "Census Tract 106.25",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01091973100",
+      "NAMELSAD": "Census Tract 9731",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01091973300",
+      "NAMELSAD": "Census Tract 9733",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01093964100",
+      "NAMELSAD": "Census Tract 9641",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01093964500",
+      "NAMELSAD": "Census Tract 9645",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01095030903",
+      "NAMELSAD": "Census Tract 309.03",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01097000401",
+      "NAMELSAD": "Census Tract 4.01",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097000402",
+      "NAMELSAD": "Census Tract 4.02",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097000500",
+      "NAMELSAD": "Census Tract 5",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097000600",
+      "NAMELSAD": "Census Tract 6",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097000702",
+      "NAMELSAD": "Census Tract 7.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097000801",
+      "NAMELSAD": "Census Tract 8.01",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097000802",
+      "NAMELSAD": "Census Tract 8.02",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097000901",
+      "NAMELSAD": "Census Tract 9.01",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097001100",
+      "NAMELSAD": "Census Tract 11",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097001302",
+      "NAMELSAD": "Census Tract 13.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097001400",
+      "NAMELSAD": "Census Tract 14",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097001501",
+      "NAMELSAD": "Census Tract 15.01",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097001502",
+      "NAMELSAD": "Census Tract 15.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097001800",
+      "NAMELSAD": "Census Tract 18",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01097001901",
+      "NAMELSAD": "Census Tract 19.01",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01097001902",
+      "NAMELSAD": "Census Tract 19.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097002100",
+      "NAMELSAD": "Census Tract 21",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097002200",
+      "NAMELSAD": "Census Tract 22",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01097002301",
+      "NAMELSAD": "Census Tract 23.01",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097002302",
+      "NAMELSAD": "Census Tract 23.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097002400",
+      "NAMELSAD": "Census Tract 24",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097002800",
+      "NAMELSAD": "Census Tract 28",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097002900",
+      "NAMELSAD": "Census Tract 29",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097003203",
+      "NAMELSAD": "Census Tract 32.03",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": false,
+        "2018": true,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097003205",
+      "NAMELSAD": "Census Tract 32.05",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097003207",
+      "NAMELSAD": "Census Tract 32.07",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01097003404",
+      "NAMELSAD": "Census Tract 34.04",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097003408",
+      "NAMELSAD": "Census Tract 34.08",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01097003602",
+      "NAMELSAD": "Census Tract 36.02",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097003607",
+      "NAMELSAD": "Census Tract 36.07",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01097003608",
+      "NAMELSAD": "Census Tract 36.08",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01097003703",
+      "NAMELSAD": "Census Tract 37.03",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01097003707",
+      "NAMELSAD": "Census Tract 37.07",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097003711",
+      "NAMELSAD": "Census Tract 37.11",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097003901",
+      "NAMELSAD": "Census Tract 39.01",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097003902",
+      "NAMELSAD": "Census Tract 39.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097004000",
+      "NAMELSAD": "Census Tract 40",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097004100",
+      "NAMELSAD": "Census Tract 41",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097004800",
+      "NAMELSAD": "Census Tract 48",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097005000",
+      "NAMELSAD": "Census Tract 50",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097005100",
+      "NAMELSAD": "Census Tract 51",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097005300",
+      "NAMELSAD": "Census Tract 53",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097006902",
+      "NAMELSAD": "Census Tract 69.02",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01097006903",
+      "NAMELSAD": "Census Tract 69.03",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01097006904",
+      "NAMELSAD": "Census Tract 69.04",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01097007700",
+      "NAMELSAD": "Census Tract 77",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01099075600",
+      "NAMELSAD": "Census Tract 756",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01099075700",
+      "NAMELSAD": "Census Tract 757",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01101000100",
+      "NAMELSAD": "Census Tract 1",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101000200",
+      "NAMELSAD": "Census Tract 2",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101000400",
+      "NAMELSAD": "Census Tract 4",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101000600",
+      "NAMELSAD": "Census Tract 6",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101000700",
+      "NAMELSAD": "Census Tract 7",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101001000",
+      "NAMELSAD": "Census Tract 10",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01101001100",
+      "NAMELSAD": "Census Tract 11",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101001200",
+      "NAMELSAD": "Census Tract 12",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101001700",
+      "NAMELSAD": "Census Tract 17",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01101001800",
+      "NAMELSAD": "Census Tract 18",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101002100",
+      "NAMELSAD": "Census Tract 21",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101002202",
+      "NAMELSAD": "Census Tract 22.02",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01101002300",
+      "NAMELSAD": "Census Tract 23",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101002400",
+      "NAMELSAD": "Census Tract 24",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101002500",
+      "NAMELSAD": "Census Tract 25",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101002600",
+      "NAMELSAD": "Census Tract 26",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101002700",
+      "NAMELSAD": "Census Tract 27",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101002901",
+      "NAMELSAD": "Census Tract 29.01",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101002902",
+      "NAMELSAD": "Census Tract 29.02",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101003100",
+      "NAMELSAD": "Census Tract 31",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101003200",
+      "NAMELSAD": "Census Tract 32",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101003303",
+      "NAMELSAD": "Census Tract 33.03",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01101003304",
+      "NAMELSAD": "Census Tract 33.04",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101005102",
+      "NAMELSAD": "Census Tract 51.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101005302",
+      "NAMELSAD": "Census Tract 53.02",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101005402",
+      "NAMELSAD": "Census Tract 54.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101005403",
+      "NAMELSAD": "Census Tract 54.03",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101005410",
+      "NAMELSAD": "Census Tract 54.10",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101005606",
+      "NAMELSAD": "Census Tract 56.06",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101005613",
+      "NAMELSAD": "Census Tract 56.13",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101005614",
+      "NAMELSAD": "Census Tract 56.14",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101005700",
+      "NAMELSAD": "Census Tract 57",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101005800",
+      "NAMELSAD": "Census Tract 58",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01101005902",
+      "NAMELSAD": "Census Tract 59.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01103000100",
+      "NAMELSAD": "Census Tract 1",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01103000300",
+      "NAMELSAD": "Census Tract 3",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01103000600",
+      "NAMELSAD": "Census Tract 6",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01103000700",
+      "NAMELSAD": "Census Tract 7",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01103000900",
+      "NAMELSAD": "Census Tract 9",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01103001000",
+      "NAMELSAD": "Census Tract 10",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01103005106",
+      "NAMELSAD": "Census Tract 51.06",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01103005109",
+      "NAMELSAD": "Census Tract 51.09",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01105686800",
+      "NAMELSAD": "Census Tract 6868",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01105687001",
+      "NAMELSAD": "Census Tract 6870.01",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01109189101",
+      "NAMELSAD": "Census Tract 1891.01",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01113030300",
+      "NAMELSAD": "Census Tract 303",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01113030403",
+      "NAMELSAD": "Census Tract 304.03",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01113030404",
+      "NAMELSAD": "Census Tract 304.04",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01113030500",
+      "NAMELSAD": "Census Tract 305",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": true,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01113030602",
+      "NAMELSAD": "Census Tract 306.02",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01113030700",
+      "NAMELSAD": "Census Tract 307",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01113031100",
+      "NAMELSAD": "Census Tract 311",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01119011400",
+      "NAMELSAD": "Census Tract 114",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01119011500",
+      "NAMELSAD": "Census Tract 115",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01119011600",
+      "NAMELSAD": "Census Tract 116",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01121010600",
+      "NAMELSAD": "Census Tract 106",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01121010900",
+      "NAMELSAD": "Census Tract 109",
+      "status": "intermittent",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01125010304",
+      "NAMELSAD": "Census Tract 103.04",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01125010404",
+      "NAMELSAD": "Census Tract 104.04",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01125010803",
+      "NAMELSAD": "Census Tract 108.03",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01125011200",
+      "NAMELSAD": "Census Tract 112",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01125011600",
+      "NAMELSAD": "Census Tract 116",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01125011701",
+      "NAMELSAD": "Census Tract 117.01",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01125011703",
+      "NAMELSAD": "Census Tract 117.03",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01125011800",
+      "NAMELSAD": "Census Tract 118",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01125011901",
+      "NAMELSAD": "Census Tract 119.01",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01125011902",
+      "NAMELSAD": "Census Tract 119.02",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01125012101",
+      "NAMELSAD": "Census Tract 121.01",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01125012304",
+      "NAMELSAD": "Census Tract 123.04",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01125012306",
+      "NAMELSAD": "Census Tract 123.06",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01125012404",
+      "NAMELSAD": "Census Tract 124.04",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01125012406",
+      "NAMELSAD": "Census Tract 124.06",
+      "status": "newly_desert",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": false,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01125012600",
+      "NAMELSAD": "Census Tract 126",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": false,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01125012700",
+      "NAMELSAD": "Census Tract 127",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01125012800",
+      "NAMELSAD": "Census Tract 128",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01129044100",
+      "NAMELSAD": "Census Tract 441",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01129044300",
+      "NAMELSAD": "Census Tract 443",
+      "status": "intermittent",
+      "years": {
+        "2012": false,
+        "2015": true,
+        "2018": true,
+        "2021": false,
+        "2023": false
+      }
+    },
+    {
+      "GEOID": "01131034700",
+      "NAMELSAD": "Census Tract 347",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01131035100",
+      "NAMELSAD": "Census Tract 351",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01131035200",
+      "NAMELSAD": "Census Tract 352",
+      "status": "persistently_desert",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": true,
+        "2021": true,
+        "2023": true
+      }
+    },
+    {
+      "GEOID": "01133965501",
+      "NAMELSAD": "Census Tract 9655.01",
+      "status": "recovered",
+      "years": {
+        "2012": true,
+        "2015": true,
+        "2018": false,
+        "2021": false,
+        "2023": false
+      }
+    }
+  ]
+}

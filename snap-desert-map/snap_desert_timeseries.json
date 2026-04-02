@@ -1,0 +1,67 @@
+[
+  {
+    "year": 2012,
+    "total_tracts": 1436,
+    "desert_tracts": 175,
+    "desert_pct": 12.2,
+    "n_moderate": 78,
+    "n_severe": 50,
+    "n_critical": 47,
+    "desert_population": 526785,
+    "avg_snap_rate": 0.1705,
+    "avg_poverty_rate": 0.2119,
+    "n_active_fs_stores": 791
+  },
+  {
+    "year": 2015,
+    "total_tracts": 1436,
+    "desert_tracts": 209,
+    "desert_pct": 14.6,
+    "n_moderate": 83,
+    "n_severe": 52,
+    "n_critical": 74,
+    "desert_population": 617195,
+    "avg_snap_rate": 0.1958,
+    "avg_poverty_rate": 0.2233,
+    "n_active_fs_stores": 776
+  },
+  {
+    "year": 2018,
+    "total_tracts": 1436,
+    "desert_tracts": 200,
+    "desert_pct": 13.9,
+    "n_moderate": 84,
+    "n_severe": 60,
+    "n_critical": 56,
+    "desert_population": 590328,
+    "avg_snap_rate": 0.1789,
+    "avg_poverty_rate": 0.2119,
+    "n_active_fs_stores": 759
+  },
+  {
+    "year": 2021,
+    "total_tracts": 1436,
+    "desert_tracts": 211,
+    "desert_pct": 14.7,
+    "n_moderate": 93,
+    "n_severe": 59,
+    "n_critical": 59,
+    "desert_population": 619946,
+    "avg_snap_rate": 0.1489,
+    "avg_poverty_rate": 0.1776,
+    "n_active_fs_stores": 740
+  },
+  {
+    "year": 2023,
+    "total_tracts": 1436,
+    "desert_tracts": 218,
+    "desert_pct": 15.2,
+    "n_moderate": 91,
+    "n_severe": 65,
+    "n_critical": 62,
+    "desert_population": 648914,
+    "avg_snap_rate": 0.1533,
+    "avg_poverty_rate": 0.1769,
+    "n_active_fs_stores": 746
+  }
+]

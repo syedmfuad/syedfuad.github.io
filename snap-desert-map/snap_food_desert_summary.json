@@ -1,0 +1,129 @@
+{
+  "counts": {
+    "both": 161,
+    "snap_only": 56,
+    "food_only": 196,
+    "neither": 1023
+  },
+  "pcts": {
+    "both": 11.2,
+    "snap_only": 3.9,
+    "food_only": 13.6,
+    "neither": 71.2
+  },
+  "total_tracts": 1436,
+  "n_unmatched_fara": 503,
+  "key_finding": {
+    "snap_deserts_total": 217,
+    "snap_only_count": 56,
+    "snap_only_pct": 25.8,
+    "both_count": 161,
+    "both_pct": 74.2
+  },
+  "profiles": {
+    "both": {
+      "poverty_rate": 0.3048,
+      "median_income": -4104079.0062,
+      "unemployment_rate": 0.086,
+      "pct_black": 0.7131,
+      "pct_hispanic": 0.0597,
+      "pct_no_vehicle": 0.1337,
+      "pct_public_transit": 0.0126,
+      "vacancy_rate": 0.2002,
+      "snap_rate": 0.3199,
+      "pct_bachelors_plus": 0.1513,
+      "density": 1990.4273,
+      "dist_to_fs_miles": 2.6396,
+      "n_tracts": 161,
+      "n_pct": 11.2,
+      "population": 456565,
+      "snap_households": 54848
+    },
+    "snap_only": {
+      "poverty_rate": 0.2669,
+      "median_income": -11859034.9107,
+      "unemployment_rate": 0.071,
+      "pct_black": 0.5177,
+      "pct_hispanic": 0.0411,
+      "pct_no_vehicle": 0.0965,
+      "pct_public_transit": 0.0034,
+      "vacancy_rate": 0.1654,
+      "snap_rate": 0.2522,
+      "pct_bachelors_plus": 0.2326,
+      "density": 2214.1071,
+      "dist_to_fs_miles": 3.4057,
+      "n_tracts": 56,
+      "n_pct": 3.9,
+      "population": 191411,
+      "snap_households": 17459
+    },
+    "food_only": {
+      "poverty_rate": 0.2429,
+      "median_income": -6757642.3622,
+      "unemployment_rate": 0.0708,
+      "pct_black": 0.4681,
+      "pct_hispanic": 0.0558,
+      "pct_no_vehicle": 0.0891,
+      "pct_public_transit": 0.0095,
+      "vacancy_rate": 0.1944,
+      "snap_rate": 0.2041,
+      "pct_bachelors_plus": 0.2014,
+      "density": 1216.0755,
+      "dist_to_fs_miles": 2.7614,
+      "n_tracts": 196,
+      "n_pct": 13.6,
+      "population": 571129,
+      "snap_households": 44633
+    },
+    "neither": {
+      "poverty_rate": 0.1389,
+      "median_income": -5794490.8964,
+      "unemployment_rate": 0.0441,
+      "pct_black": 0.1859,
+      "pct_hispanic": 0.049,
+      "pct_no_vehicle": 0.0427,
+      "pct_public_transit": 0.0022,
+      "vacancy_rate": 0.1377,
+      "snap_rate": 0.1116,
+      "pct_bachelors_plus": 0.2873,
+      "density": 719.1111,
+      "dist_to_fs_miles": 3.4131,
+      "n_tracts": 1023,
+      "n_pct": 71.2,
+      "population": 3835148,
+      "snap_households": 150215
+    }
+  },
+  "urban_rural": {
+    "both": {
+      "n": 161,
+      "n_urban": 142,
+      "n_rural": 19,
+      "pct_urban": 88.2,
+      "pct_rural": 11.8
+    },
+    "snap_only": {
+      "n": 56,
+      "n_urban": 44,
+      "n_rural": 12,
+      "pct_urban": 78.6,
+      "pct_rural": 21.4
+    },
+    "food_only": {
+      "n": 196,
+      "n_urban": 74,
+      "n_rural": 122,
+      "pct_urban": 37.8,
+      "pct_rural": 62.2
+    },
+    "neither": {
+      "n": 1023,
+      "n_urban": 236,
+      "n_rural": 787,
+      "pct_urban": 23.1,
+      "pct_rural": 76.9
+    },
+    "total_urban_tracts": 496,
+    "total_rural_tracts": 940
+  }
+}

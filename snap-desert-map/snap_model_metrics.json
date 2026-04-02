@@ -1,0 +1,113 @@
+{
+  "models": [
+    {
+      "name": "LogisticRegression",
+      "accuracy": 0.7119,
+      "roc_auc": 0.74,
+      "precision": 0.5714,
+      "recall": 0.3947,
+      "f1": 0.4669
+    },
+    {
+      "name": "RandomForest",
+      "accuracy": 0.6961,
+      "roc_auc": 0.7372,
+      "precision": 0.5333,
+      "recall": 0.3947,
+      "f1": 0.4537
+    },
+    {
+      "name": "GradientBoosting",
+      "accuracy": 0.7224,
+      "roc_auc": 0.7699,
+      "precision": 0.5855,
+      "recall": 0.4507,
+      "f1": 0.5093
+    }
+  ],
+  "best_model": "GradientBoosting",
+  "cv_roc_auc_mean": 0.7811,
+  "cv_roc_auc_std": 0.0214,
+  "feature_importance": [
+    {
+      "feature": "type_Convenience Store",
+      "importance": 0.317932
+    },
+    {
+      "feature": "auth_duration_days",
+      "importance": 0.28374
+    },
+    {
+      "feature": "lon",
+      "importance": 0.053671
+    },
+    {
+      "feature": "type_Small Grocery Store",
+      "importance": 0.049651
+    },
+    {
+      "feature": "lat",
+      "importance": 0.043746
+    },
+    {
+      "feature": "snap_rate",
+      "importance": 0.040226
+    },
+    {
+      "feature": "density",
+      "importance": 0.028942
+    },
+    {
+      "feature": "pct_no_vehicle_2019",
+      "importance": 0.027296
+    },
+    {
+      "feature": "dist_to_fs_miles",
+      "importance": 0.026133
+    },
+    {
+      "feature": "median_income_2019",
+      "importance": 0.023323
+    },
+    {
+      "feature": "unemployment_rate_2019",
+      "importance": 0.017052
+    },
+    {
+      "feature": "reauth_count",
+      "importance": 0.015673
+    },
+    {
+      "feature": "pct_black_2019",
+      "importance": 0.014568
+    },
+    {
+      "feature": "poverty_rate_2019",
+      "importance": 0.013604
+    },
+    {
+      "feature": "population_2019",
+      "importance": 0.01237
+    },
+    {
+      "feature": "type_Medium Grocery Store",
+      "importance": 0.008242
+    },
+    {
+      "feature": "type_Other",
+      "importance": 0.00808
+    },
+    {
+      "feature": "desert_tier_enc",
+      "importance": 0.005012
+    },
+    {
+      "feature": "type_Super Store",
+      "importance": 0.004761
+    },
+    {
+      "feature": "type_Large Grocery Store",
+      "importance": 0.003339
+    }
+  ]
+}
