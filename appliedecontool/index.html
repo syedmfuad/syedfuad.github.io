@@ -1,0 +1,2133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microeconomics 101</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+#header{background:#1a2a3a;color:#fff;padding:0 16px;display:flex;align-items:center;gap:16px;height:52px;flex-shrink:0}
+#header h1{font-size:1.15rem;font-weight:700;white-space:nowrap}
+#tabs{display:flex;gap:3px}
+.tab-btn{background:rgba(255,255,255,0.12);color:#c0d8e8;border:none;padding:7px 11px;border-radius:6px 6px 0 0;cursor:pointer;font-size:0.75rem;font-weight:600;white-space:nowrap;transition:background 0.15s}
+.tab-btn:hover{background:rgba(255,255,255,0.22)}
+.tab-btn.active{background:#fff;color:#1a2a3a}
+#main{display:flex;flex:1;overflow:hidden;min-height:0}
+.sidebar{width:290px;min-width:290px;background:#fff;border-right:2px solid #d1dbe7;display:flex;flex-direction:column;padding:12px;gap:10px;overflow-y:auto}
+.sidebar h2{font-size:.97rem;font-weight:700;color:#1a2a3a;border-bottom:2px solid #d1dbe7;padding-bottom:5px}
+.preset-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.preset-btn{background:#e8f0f5;border:1.5px solid #4a90d9;color:#1a2a3a;padding:6px 6px;border-radius:6px;cursor:pointer;font-size:0.7rem;font-weight:600;text-align:center;transition:background 0.15s;line-height:1.2}
+.preset-btn:hover{background:#c8ddf0}
+.preset-btn.active{background:#2e6db4;color:#fff;border-color:#1a2a3a}
+.slider-group{display:flex;flex-direction:column;gap:2px}
+.slider-label{font-size:0.73rem;font-weight:600;color:#374151;display:flex;justify-content:space-between}
+.slider-val{color:#1a2a3a;font-weight:700}
+input[type=range]{width:100%;accent-color:#2e6db4;height:5px;cursor:pointer}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.metric-card{background:#f0f5fd;border:1.5px solid #86b0ef;border-radius:7px;padding:7px 8px;text-align:center}
+.metric-label{font-size:0.65rem;color:#374151;font-weight:600;margin-bottom:1px}
+.metric-value{font-size:1rem;font-weight:700;color:#14324d}
+.metric-value.neg{color:#b91c1c}
+.canvas-wrap{flex:1;background:#f7f9fb;display:flex;align-items:stretch;padding:12px;overflow:hidden;min-width:0}
+canvas{border-radius:10px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.08);display:block;width:100%;height:100%}
+.module{display:none;width:100%;height:100%;overflow:hidden}
+.module.active{display:flex}
+.sec-title{font-size:0.67rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+.toggle-row{display:flex;gap:4px}
+.toggle-btn{flex:1;padding:6px 3px;border:1.5px solid #4a90d9;background:#e8f0f5;color:#1a2a3a;border-radius:6px;cursor:pointer;font-size:0.68rem;font-weight:600;text-align:center}
+.toggle-btn.active{background:#2e6db4;color:#fff;border-color:#1a2a3a}
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>ECON 2301 &middot; Principles of Microeconomics</h1>
+  <div id="tabs">
+    <button class="tab-btn active" onclick="switchTab(0)">1. Supply &amp; Demand</button>
+    <button class="tab-btn" onclick="switchTab(1)">2. Elasticity</button>
+    <button class="tab-btn" onclick="switchTab(2)">3. Dim. Returns</button>
+    <button class="tab-btn" onclick="switchTab(3)">4. Cost Curves</button>
+    <button class="tab-btn" onclick="switchTab(4)">5. Price Policy</button>
+    <button class="tab-btn" onclick="switchTab(5)">6. Trade &amp; Tariff</button>
+    <button class="tab-btn" onclick="switchTab(6)">7 &middot; PPF</button>
+    <button class="tab-btn" onclick="switchTab(7)">8 &middot; Tax</button>
+    <button class="tab-btn" onclick="switchTab(8)">9 &middot; Externalities</button>
+    <button class="tab-btn" onclick="switchTab(9)">10 &middot; Consumer Choice</button>
+    <button class="tab-btn" onclick="switchTab(10)">11 &middot; Monopoly</button>
+  </div>
+</div>
+<div id="main">
+
+<!-- MOD 0: Supply & Demand -->
+<div class="module active" id="mod0">
+  <div class="sidebar">
+    <h2>Supply &amp; Demand</h2>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn active" onclick="m1preset(0)">Baseline</button>
+      <button class="preset-btn" onclick="m1preset(1)">Recession</button>
+      <button class="preset-btn" onclick="m1preset(2)">Gov't Subsidy</button>
+      <button class="preset-btn" onclick="m1preset(3)">Tech Boom</button>
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Demand Shift <span class="slider-val" id="m1ds-v">0</span></div>
+      <input type="range" id="m1ds" min="-80" max="80" value="0" step="1" oninput="m1upd()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Supply Shift <span class="slider-val" id="m1ss-v">0</span></div>
+      <input type="range" id="m1ss" min="-80" max="80" value="0" step="1" oninput="m1upd()">
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Price P*</div><div class="metric-value" id="m1p">$6.00</div></div>
+      <div class="metric-card"><div class="metric-label">Quantity Q*</div><div class="metric-value" id="m1q">80 k units</div></div>
+      <div class="metric-card"><div class="metric-label">Consumer Surplus</div><div class="metric-value" id="m1cs">$320</div></div>
+      <div class="metric-card"><div class="metric-label">Producer Surplus</div><div class="metric-value" id="m1ps">$160</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c1"></canvas></div>
+</div>
+
+<!-- MOD 1: Elasticity -->
+<div class="module" id="mod1">
+  <div class="sidebar">
+    <h2>Elasticity &amp; Revenue</h2>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn" onclick="m2preset(0)">Gasoline E=&minus;0.3</button>
+      <button class="preset-btn" onclick="m2preset(1)">Clothing E=&minus;0.6</button>
+      <button class="preset-btn" onclick="m2preset(2)">Electronics E=&minus;1.3</button>
+      <button class="preset-btn" onclick="m2preset(3)">Dining Out E=&minus;2.2</button>
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Price Change &Delta;P <span class="slider-val" id="m2dp-v">+1.50</span></div>
+      <input type="range" id="m2dp" min="-3" max="3" value="1.5" step="0.1" oninput="m2upd()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Elasticity E <span class="slider-val" id="m2el-v">-0.40</span></div>
+      <input type="range" id="m2el" min="-3.0" max="-0.1" value="-0.4" step="0.05" oninput="m2upd()">
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Old Revenue</div><div class="metric-value" id="m2r0">$480</div></div>
+      <div class="metric-card"><div class="metric-label">New Revenue</div><div class="metric-value" id="m2r1">$480</div></div>
+      <div class="metric-card"><div class="metric-label">Rev Change ($)</div><div class="metric-value" id="m2rd">$0</div></div>
+      <div class="metric-card"><div class="metric-label">Rev Change (%)</div><div class="metric-value" id="m2rp">0%</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c2"></canvas></div>
+</div>
+
+<!-- MOD 2: Diminishing Returns -->
+<div class="module" id="mod2">
+  <div class="sidebar">
+    <h2>Diminishing Returns</h2>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn" onclick="m3preset(0)">Low Wage</button>
+      <button class="preset-btn" onclick="m3preset(1)">High Wage</button>
+      <button class="preset-btn" onclick="m3preset(2)">High Price</button>
+      <button class="preset-btn" onclick="m3preset(3)">Low Price</button>
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Workers (# employees) <span class="slider-val" id="m3n-v">120</span></div>
+      <input type="range" id="m3n" min="0" max="200" value="120" step="1" oninput="m3upd()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Output Price ($/unit) <span class="slider-val" id="m3pc-v">5.00</span></div>
+      <input type="range" id="m3pc" min="3" max="8" value="5" step="0.25" oninput="m3upd()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Wage ($/worker) <span class="slider-val" id="m3pn-v">0.55</span></div>
+      <input type="range" id="m3pn" min="0.30" max="1.50" value="0.55" step="0.05" oninput="m3upd()">
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Output at L (units)</div><div class="metric-value" id="m3y">-</div></div>
+      <div class="metric-card"><div class="metric-label">Marginal Product</div><div class="metric-value" id="m3mp">-</div></div>
+      <div class="metric-card"><div class="metric-label">Optimal L (workers)</div><div class="metric-value" id="m3on">-</div></div>
+      <div class="metric-card"><div class="metric-label">Profit from Labor ($)</div><div class="metric-value" id="m3pr">-</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c3"></canvas></div>
+</div>
+
+<!-- MOD 3: Cost Curves -->
+<div class="module" id="mod3">
+  <div class="sidebar">
+    <h2>Cost Curves &amp; Profit</h2>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn" onclick="m4preset(0)">Strong ($7)</button>
+      <button class="preset-btn active" onclick="m4preset(1)">Average ($5)</button>
+      <button class="preset-btn" onclick="m4preset(2)">Weak ($3.50)</button>
+      <button class="preset-btn" onclick="m4preset(3)">Price Crash ($2.20)</button>
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Market Price ($/unit) <span class="slider-val" id="m4p-v">$5.00</span></div>
+      <input type="range" id="m4p" min="1.50" max="9.00" value="5.00" step="0.25" oninput="m4upd()">
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Optimal Q* (units)</div><div class="metric-value" id="m4q">225</div></div>
+      <div class="metric-card"><div class="metric-label">Revenue</div><div class="metric-value" id="m4rev">$1125</div></div>
+      <div class="metric-card"><div class="metric-label">Total Cost</div><div class="metric-value" id="m4tc">$975</div></div>
+      <div class="metric-card"><div class="metric-label">Profit</div><div class="metric-value" id="m4pr">$150</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c4"></canvas></div>
+</div>
+
+<!-- MOD 4: Price Policy -->
+<div class="module" id="mod4">
+  <div class="sidebar">
+    <h2>Price Floor &amp; Ceiling</h2>
+    <div class="sec-title">Policy Type</div>
+    <div class="toggle-row">
+      <button class="toggle-btn" id="pol-free" onclick="m5pol('free')">Free Market</button>
+      <button class="toggle-btn active" id="pol-floor" onclick="m5pol('floor')">Floor</button>
+      <button class="toggle-btn" id="pol-ceil" onclick="m5pol('ceil')">Ceiling</button>
+    </div>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn" onclick="m5preset(0)">Free Market</button>
+      <button class="preset-btn active" onclick="m5preset(1)">Min Wage ($8)</button>
+      <button class="preset-btn" onclick="m5preset(2)">Mod. Floor ($7)</button>
+      <button class="preset-btn" onclick="m5preset(3)">Rent Control ($4)</button>
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Policy Price ($/unit) <span class="slider-val" id="m5pp-v">$8.00</span></div>
+      <input type="range" id="m5pp" min="2" max="10" value="8" step="0.25" oninput="m5upd()">
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Policy Price</div><div class="metric-value" id="m5pp2">$8.00</div></div>
+      <div class="metric-card"><div class="metric-label">Surplus/Shortage</div><div class="metric-value" id="m5ss">80 k units</div></div>
+      <div class="metric-card"><div class="metric-label">Seller Rev Change</div><div class="metric-value" id="m5rc">+$320</div></div>
+      <div class="metric-card"><div class="metric-label">DWL</div><div class="metric-value" id="m5dwl">$80</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c5"></canvas></div>
+</div>
+
+<!-- MOD 5: Trade -->
+<div class="module" id="mod5">
+  <div class="sidebar">
+    <h2>Trade &amp; Tariff</h2>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn active" onclick="m6preset(0)">Free Trade</button>
+      <button class="preset-btn" onclick="m6preset(1)">Mod. Tariff</button>
+      <button class="preset-btn" onclick="m6preset(2)">Prohibitive Tariff</button>
+      <button class="preset-btn" onclick="m6preset(3)">Export Market</button>
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">World Price ($/unit) <span class="slider-val" id="m6pw-v">$4.00</span></div>
+      <input type="range" id="m6pw" min="2.00" max="9.00" value="4.00" step="0.25" oninput="m6upd()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Tariff ($/unit) <span class="slider-val" id="m6t-v">$0.00</span></div>
+      <input type="range" id="m6t" min="0" max="4" value="0" step="0.25" oninput="m6upd()">
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Imports/Exports</div><div class="metric-value" id="m6ie">80 k units</div></div>
+      <div class="metric-card"><div class="metric-label">Consumer Surplus</div><div class="metric-value" id="m6cs">-</div></div>
+      <div class="metric-card"><div class="metric-label">Gov't Revenue</div><div class="metric-value" id="m6gr">$0</div></div>
+      <div class="metric-card"><div class="metric-label">Net DWL</div><div class="metric-value" id="m6dwl">$0</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c6"></canvas></div>
+</div>
+
+
+<!-- MOD 6: Production Possibilities Frontier -->
+<div class="module" id="mod6">
+  <div class="sidebar">
+    <h2>Production Possibilities Frontier</h2>
+    <div style="font-size:0.72rem;color:#6b7280;margin-top:-4px">Opportunity Cost &amp; Economic Growth</div>
+    <div class="sec-title">Resources</div>
+    <div class="slider-group">
+      <div class="slider-label">Total Resources (units) <span class="slider-val" id="t9_res-v">300</span></div>
+      <input type="range" id="t9_res" min="100" max="500" value="300" step="1" oninput="t9_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Cars Productivity <span class="slider-val" id="t9_cp-v">2.5</span> <span style="font-weight:400;color:#9ca3af">cars/res unit</span></div>
+      <input type="range" id="t9_cp" min="1" max="5" value="2.5" step="0.1" oninput="t9_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Computers Productivity <span class="slider-val" id="t9_sp-v">2.0</span> <span style="font-weight:400;color:#9ca3af">comp/res unit</span></div>
+      <input type="range" id="t9_sp" min="1" max="5" value="2.0" step="0.1" oninput="t9_update()">
+    </div>
+    <div class="sec-title">Current Allocation</div>
+    <div class="slider-group">
+      <div class="slider-label">% Resources &rarr; Cars <span class="slider-val" id="t9_alloc-v">50% Cars / 50% Computers</span></div>
+      <input type="range" id="t9_alloc" min="0" max="100" value="50" step="1" oninput="t9_update()">
+    </div>
+    <div class="sec-title">Growth Scenario</div>
+    <div class="toggle-row" id="t9_growth_grp">
+      <button class="toggle-btn active" onclick="t9_setgrowth(0)">No Growth</button>
+      <button class="toggle-btn" onclick="t9_setgrowth(1)">Tech (Cars)</button>
+      <button class="toggle-btn" onclick="t9_setgrowth(2)">Tech (Both)</button>
+      <button class="toggle-btn" onclick="t9_setgrowth(3)">More Res.</button>
+    </div>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn active" onclick="t9_preset(0)">Balanced Economy</button>
+      <button class="preset-btn" onclick="t9_preset(1)">Car Specialist</button>
+      <button class="preset-btn" onclick="t9_preset(2)">Tech Breakthrough</button>
+      <button class="preset-btn" onclick="t9_preset(3)">Scarcity</button>
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Cars Output</div><div class="metric-value" id="t9_m_corn">375</div></div>
+      <div class="metric-card"><div class="metric-label">Computers Output</div><div class="metric-value" id="t9_m_soy">300</div></div>
+      <div class="metric-card"><div class="metric-label">Opp. Cost 1 Car</div><div class="metric-value" id="t9_m_oc_corn">0.80 comp</div></div>
+      <div class="metric-card"><div class="metric-label">Opp. Cost 1 Computer</div><div class="metric-value" id="t9_m_oc_soy">1.25 cars</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c7"></canvas></div>
+</div>
+
+<!-- MOD 7: Tax Incidence -->
+<div class="module" id="mod7">
+  <div class="sidebar">
+    <h2>Tax Incidence</h2>
+    <div style="font-size:0.72rem;color:#6b7280;margin-top:-4px">Who Really Pays the Tax?</div>
+    <div class="sec-title">Market Setup</div>
+    <div class="slider-group">
+      <div class="slider-label">Demand Slope <span class="slider-val" id="t10_dslope-v">15</span> <span style="font-weight:400;color:#9ca3af">&uarr; slope = &darr; elasticity</span></div>
+      <input type="range" id="t10_dslope" min="5" max="25" value="15" step="1" oninput="t10_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Supply Slope <span class="slider-val" id="t10_sslope-v">10</span></div>
+      <input type="range" id="t10_sslope" min="5" max="25" value="10" step="1" oninput="t10_update()">
+    </div>
+    <div class="sec-title">Tax</div>
+    <div class="slider-group">
+      <div class="slider-label">Tax per unit ($/unit) <span class="slider-val" id="t10_tax-v">1.50</span></div>
+      <input type="range" id="t10_tax" min="0" max="4" value="1.5" step="0.1" oninput="t10_update()">
+    </div>
+    <div class="toggle-row" id="t10_who_grp">
+      <button class="toggle-btn active" onclick="t10_setwho(0)">Tax on Buyers</button>
+      <button class="toggle-btn" onclick="t10_setwho(1)">Tax on Sellers</button>
+    </div>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn active" onclick="t10_preset(0)">No Tax</button>
+      <button class="preset-btn" onclick="t10_preset(1)">Small Tax ($0.50)</button>
+      <button class="preset-btn" onclick="t10_preset(2)">Large Tax ($3)</button>
+      <button class="preset-btn" onclick="t10_preset(3)">Inelastic Demand</button>
+      <button class="preset-btn" onclick="t10_preset(4)">Elastic Demand</button>
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Price Buyers Pay</div><div class="metric-value" id="t10_m_pb">-</div></div>
+      <div class="metric-card"><div class="metric-label">Price Sellers Receive</div><div class="metric-value" id="t10_m_ps">-</div></div>
+      <div class="metric-card"><div class="metric-label">Tax Revenue</div><div class="metric-value" id="t10_m_rev">-</div></div>
+      <div class="metric-card"><div class="metric-label">Deadweight Loss</div><div class="metric-value" id="t10_m_dwl">-</div></div>
+      <div class="metric-card"><div class="metric-label">Buyer's Tax Share</div><div class="metric-value" id="t10_m_bs">-</div></div>
+      <div class="metric-card"><div class="metric-label">Seller's Tax Share</div><div class="metric-value" id="t10_m_ss">-</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c8"></canvas></div>
+</div>
+
+<!-- MOD 8: Externalities -->
+<div class="module" id="mod8">
+  <div class="sidebar">
+    <h2>Externalities &amp; Market Failure</h2>
+    <div style="font-size:0.72rem;color:#6b7280;margin-top:-4px">Pollution, Social Cost &amp; Policy</div>
+    <div class="sec-title">Market</div>
+    <div class="slider-group">
+      <div class="slider-label">External Cost ($/unit) <span class="slider-val" id="t11_ext-v">2.0</span> <span style="font-weight:400;color:#9ca3af">pollution damage/unit</span></div>
+      <input type="range" id="t11_ext" min="0" max="5" value="2.0" step="0.1" oninput="t11_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Pigou Tax ($/unit) <span class="slider-val" id="t11_ptax-v">0.0</span> <span style="font-weight:400;color:#9ca3af">corrective tax applied</span></div>
+      <input type="range" id="t11_ptax" min="0" max="5" value="0.0" step="0.1" oninput="t11_update()">
+    </div>
+    <div class="toggle-row" id="t11_type_grp">
+      <button class="toggle-btn active" onclick="t11_settype(0)">Negative Externality</button>
+      <button class="toggle-btn" onclick="t11_settype(1)">Positive Externality</button>
+    </div>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn active" onclick="t11_preset(0)">No Policy</button>
+      <button class="preset-btn" onclick="t11_preset(1)">Partial Tax</button>
+      <button class="preset-btn" onclick="t11_preset(2)">Optimal Pigou</button>
+      <button class="preset-btn" onclick="t11_preset(3)">Positive Ext.</button>
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Market Output Q</div><div class="metric-value" id="t11_m_qm">-</div></div>
+      <div class="metric-card"><div class="metric-label">Socially Optimal Q</div><div class="metric-value" id="t11_m_qo">-</div></div>
+      <div class="metric-card"><div class="metric-label">Deadweight Loss ($)</div><div class="metric-value" id="t11_m_dwl">-</div></div>
+      <div class="metric-card"><div class="metric-label">Tax Revenue ($)</div><div class="metric-value" id="t11_m_rev">-</div></div>
+      <div class="metric-card"><div class="metric-label">Over/Under Production</div><div class="metric-value" id="t11_m_diff">-</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c9"></canvas></div>
+</div>
+
+<!-- MOD 9: Budget Line & Consumer Choice -->
+<div class="module" id="mod9">
+  <div class="sidebar">
+    <h2>Budget Line &amp; Consumer Choice</h2>
+    <div style="font-size:0.72rem;color:#6b7280;margin-top:-4px">Utility Maximization</div>
+    <div class="sec-title">Budget Constraint</div>
+    <div class="slider-group">
+      <div class="slider-label">Income ($/week) <span class="slider-val" id="t12_inc-v">80</span></div>
+      <input type="range" id="t12_inc" min="20" max="200" value="80" step="1" oninput="t12_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Price of Food ($/unit) <span class="slider-val" id="t12_pf-v">5</span></div>
+      <input type="range" id="t12_pf" min="1" max="20" value="5" step="1" oninput="t12_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Price of Clothing ($/unit) <span class="slider-val" id="t12_pc-v">8</span></div>
+      <input type="range" id="t12_pc" min="1" max="20" value="8" step="1" oninput="t12_update()">
+    </div>
+    <div class="sec-title">Consumer Choice</div>
+    <div class="slider-group">
+      <div class="slider-label">% Spent on Food <span class="slider-val" id="t12_alloc-v">50%</span></div>
+      <input type="range" id="t12_alloc" min="5" max="95" value="50" step="1" oninput="t12_update()">
+    </div>
+    <div class="toggle-row" id="t12_event_grp">
+      <button class="toggle-btn active" onclick="t12_setevent(0)">Baseline</button>
+      <button class="toggle-btn" onclick="t12_setevent(1)">Income &uarr; 50%</button>
+      <button class="toggle-btn" onclick="t12_setevent(2)">Food P &darr; 50%</button>
+      <button class="toggle-btn" onclick="t12_setevent(3)">Cloth P &uarr; 50%</button>
+    </div>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn active" onclick="t12_preset(0)">Baseline</button>
+      <button class="preset-btn" onclick="t12_preset(1)">Higher Income</button>
+      <button class="preset-btn" onclick="t12_preset(2)">Food Cheaper</button>
+      <button class="preset-btn" onclick="t12_preset(3)">Tight Budget</button>
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Units of Food</div><div class="metric-value" id="t12_m_food">-</div></div>
+      <div class="metric-card"><div class="metric-label">Units of Clothing</div><div class="metric-value" id="t12_m_cloth">-</div></div>
+      <div class="metric-card"><div class="metric-label">Utility (&radic;food&middot;&radic;cloth)</div><div class="metric-value" id="t12_m_util">-</div></div>
+      <div class="metric-card"><div class="metric-label">MU_food / P_food</div><div class="metric-value" id="t12_m_muf">-</div></div>
+      <div class="metric-card"><div class="metric-label">MU_cloth / P_cloth</div><div class="metric-value" id="t12_m_muc">-</div></div>
+      <div class="metric-card"><div class="metric-label">Optimal?</div><div class="metric-value" id="t12_m_opt">-</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c10"></canvas></div>
+</div>
+
+<!-- MOD 10: Monopoly vs Competition -->
+<div class="module" id="mod10">
+  <div class="sidebar">
+    <h2>Monopoly vs. Perfect Competition</h2>
+    <div style="font-size:0.72rem;color:#6b7280;margin-top:-4px">Market Power &amp; Deadweight Loss</div>
+    <div class="sec-title">Market</div>
+    <div class="slider-group">
+      <div class="slider-label">Demand Intercept <span class="slider-val" id="t13_di-v">15</span> <span style="font-weight:400;color:#9ca3af">Max WTP $/unit</span></div>
+      <input type="range" id="t13_di" min="10" max="20" value="15" step="1" oninput="t13_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Demand Slope <span class="slider-val" id="t13_ds-v">0.06</span></div>
+      <input type="range" id="t13_ds" min="0.02" max="0.15" value="0.06" step="0.01" oninput="t13_update()">
+    </div>
+    <div class="slider-group">
+      <div class="slider-label">Marginal Cost ($/unit) <span class="slider-val" id="t13_mc-v">4</span> <span style="font-weight:400;color:#9ca3af">constant MC=ATC</span></div>
+      <input type="range" id="t13_mc" min="1" max="8" value="4" step="1" oninput="t13_update()">
+    </div>
+    <div class="toggle-row" id="t13_mode_grp">
+      <button class="toggle-btn active" onclick="t13_setmode(0)">Competition</button>
+      <button class="toggle-btn" onclick="t13_setmode(1)">Monopoly</button>
+      <button class="toggle-btn" onclick="t13_setmode(2)">Compare Both</button>
+    </div>
+    <div class="sec-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn active" onclick="t13_preset(0)">Competitive Mkt</button>
+      <button class="preset-btn" onclick="t13_preset(1)">Monopoly Power</button>
+      <button class="preset-btn" onclick="t13_preset(2)">High MC</button>
+      <button class="preset-btn" onclick="t13_preset(3)">Compare Both</button>
+    </div>
+    <div class="sec-title">Metrics</div>
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Price (PC / Mono)</div><div class="metric-value" id="t13_m_p">-</div></div>
+      <div class="metric-card"><div class="metric-label">Quantity (PC / Mono)</div><div class="metric-value" id="t13_m_q">-</div></div>
+      <div class="metric-card"><div class="metric-label">Consumer Surplus</div><div class="metric-value" id="t13_m_cs">-</div></div>
+      <div class="metric-card"><div class="metric-label">Producer Surplus / Profit</div><div class="metric-value" id="t13_m_ps">-</div></div>
+      <div class="metric-card"><div class="metric-label">Deadweight Loss</div><div class="metric-value" id="t13_m_dwl">-</div></div>
+      <div class="metric-card"><div class="metric-label">Price Markup</div><div class="metric-value" id="t13_m_mk">-</div></div>
+    </div>
+  </div>
+  <div class="canvas-wrap"><canvas id="c11"></canvas></div>
+</div>
+
+</div><!-- #main -->
+<script>
+"use strict";
+// ===================== TAB SWITCHING =====================
+let activeTab = 0;
+function switchTab(n) {
+  document.querySelectorAll('.module').forEach((m,i)=>m.classList.toggle('active',i===n));
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  activeTab = n;
+  setTimeout(()=>DRAWS[n](), 20);
+}
+
+// ===================== CANVAS UTILS =====================
+function setupCanvas(id) {
+  const canvas = document.getElementById(id);
+  const wrap = canvas.parentElement;
+  const dpr = window.devicePixelRatio || 1;
+  const W = wrap.clientWidth - 24;
+  const H = wrap.clientHeight - 24;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  canvas.width = Math.round(W * dpr);
+  canvas.height = Math.round(H * dpr);
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  return {ctx, W, H};
+}
+
+function plotArea(ctx, W, H, pL, pR, pT, pB, xMin, xMax, yMin, yMax, xStep, yStep) {
+  const pw = W - pL - pR;
+  const ph = H - pT - pB;
+  const tx = v => pL + (v - xMin) / (xMax - xMin) * pw;
+  const ty = v => pT + (yMax - v) / (yMax - yMin) * ph;
+
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let y = yMin; y <= yMax + 0.001; y += yStep) {
+    const py = ty(y);
+    ctx.beginPath(); ctx.moveTo(pL, py); ctx.lineTo(W - pR, py); ctx.stroke();
+  }
+  for (let x = xMin; x <= xMax + 0.001; x += xStep) {
+    const px = tx(x);
+    ctx.beginPath(); ctx.moveTo(px, pT); ctx.lineTo(px, H - pB); ctx.stroke();
+  }
+
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(pL, pT); ctx.lineTo(pL, H - pB); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(pL, H - pB); ctx.lineTo(W - pR, H - pB); ctx.stroke();
+
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 12px Arial'; ctx.textAlign = 'right';
+  for (let y = yMin; y <= yMax + 0.001; y += yStep) {
+    ctx.beginPath(); ctx.moveTo(pL-4, ty(y)); ctx.lineTo(pL, ty(y)); ctx.stroke();
+    ctx.fillText(y % 1 === 0 ? y : y.toFixed(1), pL - 7, ty(y) + 4);
+  }
+  ctx.textAlign = 'center';
+  for (let x = xMin; x <= xMax + 0.001; x += xStep) {
+    ctx.beginPath(); ctx.moveTo(tx(x), H-pB); ctx.lineTo(tx(x), H-pB+4); ctx.stroke();
+    ctx.fillText(x, tx(x), H - pB + 17);
+  }
+  return {tx, ty, pw, ph};
+}
+
+function axisLabels(ctx, W, H, pL, pT, xLbl, yLbl) {
+  ctx.save();
+  ctx.fillStyle = '#1a2a3a'; ctx.font = 'bold 13px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText(xLbl, pL + (W - pL - 30) / 2, H - 2);
+  ctx.translate(14, pT + (H - pT - 30) / 2);
+  ctx.rotate(-Math.PI/2);
+  ctx.fillText(yLbl, 0, 0);
+  ctx.restore();
+}
+
+function dot(ctx, x, y, r, fill, stroke) {
+  ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2);
+  ctx.fillStyle = fill; ctx.fill();
+  if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth=2; ctx.stroke(); }
+}
+
+function hline(ctx, x1, x2, y, color, lw, dash) {
+  ctx.beginPath(); ctx.moveTo(x1, y); ctx.lineTo(x2, y);
+  ctx.strokeStyle = color; ctx.lineWidth = lw;
+  if (dash) ctx.setLineDash(dash); else ctx.setLineDash([]);
+  ctx.stroke(); ctx.setLineDash([]);
+}
+
+function vline(ctx, x, y1, y2, color, lw, dash) {
+  ctx.beginPath(); ctx.moveTo(x, y1); ctx.lineTo(x, y2);
+  ctx.strokeStyle = color; ctx.lineWidth = lw;
+  if (dash) ctx.setLineDash(dash); else ctx.setLineDash([]);
+  ctx.stroke(); ctx.setLineDash([]);
+}
+
+// ===================== MODULE 1: SUPPLY & DEMAND =====================
+const m1 = {ds:0, ss:0};
+
+function m1preset(n) {
+  const P = [{ds:0,ss:0},{ds:-50,ss:0},{ds:0,ss:40},{ds:30,ss:20}];
+  Object.assign(m1, P[n]);
+  document.getElementById('m1ds').value = m1.ds;
+  document.getElementById('m1ss').value = m1.ss;
+  document.querySelectorAll('#mod0 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  m1upd();
+}
+
+function m1upd() {
+  m1.ds = +document.getElementById('m1ds').value;
+  m1.ss = +document.getElementById('m1ss').value;
+  document.getElementById('m1ds-v').textContent = (m1.ds>=0?'+':'')+m1.ds;
+  document.getElementById('m1ss-v').textContent = (m1.ss>=0?'+':'')+m1.ss;
+  m1draw();
+}
+
+function m1calc() {
+  const Ps = (240 + m1.ds - m1.ss) / 40;
+  const Qs = 20*Ps - 40 + m1.ss;
+  const PmaxD = (200 + m1.ds) / 20;
+  const PminS = (40 - m1.ss) / 20;
+  const CS = Qs > 0 && Ps >= 0 ? 0.5 * Qs * (PmaxD - Ps) : 0;
+  const PS = Qs > 0 && Ps >= 0 ? 0.5 * Qs * (Ps - Math.max(0,PminS)) : 0;
+  return {Ps, Qs, PmaxD, PminS, CS, PS};
+}
+
+function m1draw() {
+  const {ctx,W,H} = setupCanvas('c1');
+  const pL=65,pR=35,pT=35,pB=52;
+  const {tx,ty} = plotArea(ctx,W,H,pL,pR,pT,pB,0,200,0,12,20,1);
+  axisLabels(ctx,W,H,pL,pT,'Quantity (thousands of units)','Price ($/unit)');
+
+  const {Ps,Qs,PmaxD,PminS,CS,PS} = m1calc();
+  const clampP = p=>Math.max(0,Math.min(12,p));
+  const Qd = P => Math.max(0,(200+m1.ds)-20*P);
+  const QsF = P => Math.max(0,20*P-40+m1.ss);
+
+  if (Ps>=0 && Ps<=12 && Qs>=0) {
+    ctx.beginPath();
+    ctx.moveTo(tx(0), ty(clampP(PmaxD)));
+    ctx.lineTo(tx(Math.min(200,Qs)), ty(Ps));
+    ctx.lineTo(tx(0), ty(Ps));
+    ctx.closePath();
+    ctx.fillStyle='rgba(191,219,254,0.55)'; ctx.fill();
+    ctx.strokeStyle='rgba(37,99,235,0.3)'; ctx.lineWidth=1; ctx.stroke();
+  }
+
+  if (Ps>=0 && Ps<=12 && Qs>=0) {
+    ctx.beginPath();
+    ctx.moveTo(tx(0), ty(clampP(Math.max(0,PminS))));
+    ctx.lineTo(tx(Math.min(200,Qs)), ty(Ps));
+    ctx.lineTo(tx(0), ty(Ps));
+    ctx.closePath();
+    ctx.fillStyle='rgba(187,247,208,0.55)'; ctx.fill();
+    ctx.strokeStyle='rgba(22,163,74,0.3)'; ctx.lineWidth=1; ctx.stroke();
+  }
+
+  const dQ0=0, dP0=clampP(PmaxD), dQ1=Math.min(200,200+m1.ds), dP1=0;
+  ctx.beginPath(); ctx.moveTo(tx(dQ0),ty(dP0)); ctx.lineTo(tx(dQ1),ty(dP1));
+  ctx.strokeStyle='#2563eb'; ctx.lineWidth=3; ctx.stroke();
+  ctx.fillStyle='#2563eb'; ctx.font='bold 15px Arial'; ctx.textAlign='left';
+  const dLQ=Math.min(175,dQ1-10);
+  if (dLQ>0) ctx.fillText('D',tx(dLQ)+5,ty((200+m1.ds-dLQ)/20)-6);
+
+  const sP0c=clampP(PminS), sP1c=12;
+  const sQ0c=QsF(sP0c), sQ1c=QsF(sP1c);
+  if (sQ1c>=0 && sQ1c<=200) {
+    ctx.beginPath(); ctx.moveTo(tx(Math.max(0,sQ0c)),ty(sP0c)); ctx.lineTo(tx(Math.min(200,sQ1c)),ty(sP1c));
+    ctx.strokeStyle='#16a34a'; ctx.lineWidth=3; ctx.stroke();
+    ctx.fillStyle='#16a34a'; ctx.font='bold 15px Arial'; ctx.textAlign='left';
+    ctx.fillText('S',tx(Math.min(200,sQ1c)-10)+5,ty(sP1c*0.97)-6);
+  }
+
+  if (Ps>=0 && Ps<=12 && Qs>=0 && Qs<=200) {
+    vline(ctx, tx(Qs), ty(Ps), ty(0), '#6b7280', 1.5, [6,4]);
+    hline(ctx, tx(0), tx(Qs), ty(Ps), '#6b7280', 1.5, [6,4]);
+    dot(ctx, tx(Qs), ty(Ps), 7, '#1a2a3a');
+    dot(ctx, tx(Qs), ty(Ps), 4, '#fff');
+    ctx.fillStyle='#1a2a3a'; ctx.font='bold 13px Arial'; ctx.textAlign='left';
+    ctx.fillText(`P*=$${Ps.toFixed(2)}, Q*=${Qs.toFixed(0)}`, tx(Qs)+10, ty(Ps)-8);
+
+    ctx.font='bold 14px Arial';
+    if (PmaxD>Ps+0.5) { ctx.fillStyle='#1d4ed8'; ctx.textAlign='center'; ctx.fillText('CS',tx(Qs*0.22),ty((Ps+clampP(PmaxD))/2)); }
+    if (Ps>Math.max(0,PminS)+0.3) { ctx.fillStyle='#15803d'; ctx.textAlign='center'; ctx.fillText('PS',tx(Qs*0.22),ty((Math.max(0,PminS)+Ps)/2)); }
+  }
+
+  document.getElementById('m1p').textContent='$'+Ps.toFixed(2);
+  document.getElementById('m1q').textContent=Qs.toFixed(1)+' k units';
+  document.getElementById('m1cs').textContent='$'+Math.round(CS);
+  document.getElementById('m1ps').textContent='$'+Math.round(PS);
+}
+
+// ===================== MODULE 2: ELASTICITY =====================
+const m2 = {dp:1.5, el:-0.4};
+
+function m2preset(n) {
+  const P=[{dp:1.5,el:-0.3},{dp:1.5,el:-0.6},{dp:1.5,el:-1.3},{dp:1.5,el:-2.2}];
+  Object.assign(m2, P[n]);
+  document.getElementById('m2dp').value=m2.dp;
+  document.getElementById('m2el').value=m2.el;
+  document.querySelectorAll('#mod1 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  m2upd();
+}
+
+function m2upd() {
+  m2.dp = +document.getElementById('m2dp').value;
+  m2.el = +document.getElementById('m2el').value;
+  document.getElementById('m2dp-v').textContent=(m2.dp>=0?'+':'')+m2.dp.toFixed(2);
+  document.getElementById('m2el-v').textContent=m2.el.toFixed(2);
+  m2draw();
+}
+
+function m2draw() {
+  const {ctx,W,H} = setupCanvas('c2');
+  const pL=65,pR=40,pT=40,pB=55;
+
+  const {dp,el} = m2;
+  const Q0=80, P0=6;
+  const slope = (Q0/P0)*Math.abs(el);
+  const Qint = Q0 + slope*P0;
+  const Pint = Qint/slope;
+  const Qat = P => Math.max(0, Qint - slope*P);
+  const P1 = P0 + dp;
+  const Q1 = Qat(P1);
+  const R0 = P0*Q0, R1 = P1*Q1;
+
+  const xMax = Math.min(300, Math.max(180, Qint*1.05));
+  const yMax = Math.min(18, Math.max(12, Pint*1.05));
+  const xStep = xMax<=200?20:40;
+  const yStep = yMax<=12?1:2;
+
+  const {tx,ty} = plotArea(ctx,W,H,pL,pR,pT,pB,0,xMax,0,yMax,xStep,yStep);
+  axisLabels(ctx,W,H,pL,pT,'Quantity (thousands of units)','Price ($/unit)');
+
+  ctx.fillStyle='rgba(37,99,235,0.18)';
+  ctx.fillRect(tx(0),ty(P0),tx(Q0)-tx(0),ty(0)-ty(P0));
+  ctx.strokeStyle='#2563eb'; ctx.lineWidth=2;
+  ctx.strokeRect(tx(0),ty(P0),tx(Q0)-tx(0),ty(0)-ty(P0));
+
+  ctx.fillStyle='rgba(22,163,74,0.18)';
+  ctx.fillRect(tx(0),ty(P1),tx(Q1)-tx(0),ty(0)-ty(P1));
+  ctx.strokeStyle='#16a34a'; ctx.lineWidth=2;
+  ctx.strokeRect(tx(0),ty(P1),tx(Q1)-tx(0),ty(0)-ty(P1));
+
+  ctx.beginPath();
+  ctx.moveTo(tx(0),ty(Math.min(yMax,Pint)));
+  ctx.lineTo(tx(Math.min(xMax,Qint)),ty(0));
+  ctx.strokeStyle='#2563eb'; ctx.lineWidth=3; ctx.stroke();
+  ctx.fillStyle='#2563eb'; ctx.font='bold 15px Arial'; ctx.textAlign='left';
+  ctx.fillText('D', tx(Math.min(xMax,Qint)*0.82)+5, ty(Math.min(yMax,Pint)*0.12)-5);
+
+  hline(ctx,tx(0),tx(xMax),ty(P0),'#2563eb',2,[6,3]);
+  ctx.fillStyle='#2563eb'; ctx.font='bold 12px Arial'; ctx.textAlign='right';
+  ctx.fillText(`P\u2080=$${P0.toFixed(2)}`,tx(xMax)-5,ty(P0)-6);
+
+  if (Math.abs(dp)>0.05) {
+    hline(ctx,tx(0),tx(xMax),ty(P1),'#16a34a',2,[6,3]);
+    ctx.fillStyle='#16a34a'; ctx.font='bold 12px Arial'; ctx.textAlign='right';
+    ctx.fillText(`P\u2081=$${P1.toFixed(2)}`,tx(xMax)-5,ty(P1)-6);
+  }
+
+  dot(ctx,tx(Q0),ty(P0),6,'#2563eb');
+  if (Q1>=0 && P1>=0 && P1<=yMax) dot(ctx,tx(Math.min(xMax,Q1)),ty(P1),6,'#16a34a');
+
+  ctx.font='bold 13px Arial'; ctx.textAlign='center';
+  const rw0=tx(Q0)-tx(0), rh0=ty(0)-ty(P0);
+  if (rw0>50&&rh0>18) { ctx.fillStyle='#1e3a8a'; ctx.fillText(`R\u2080=$${Math.round(R0)}`,tx(Q0/2),(ty(P0)+ty(0))/2+5); }
+  const rw1=tx(Math.min(xMax,Q1))-tx(0), rh1=ty(0)-ty(Math.max(0,P1));
+  if (rw1>50&&rh1>18) {
+    ctx.fillStyle='#14532d';
+    const ly=(ty(P1)+ty(0))/2+(dp>0?-18:18);
+    ctx.fillText(`R\u2081=$${Math.round(R1)}`,tx(Math.min(xMax,Q1)/2),ly);
+  }
+
+  const etype=Math.abs(el)<1?'Inelastic (|E|<1)':Math.abs(el)>1?'Elastic (|E|>1)':'Unit Elastic';
+  ctx.fillStyle='#1a2a3a'; ctx.font='bold 14px Arial'; ctx.textAlign='left';
+  ctx.fillText(`E = ${el.toFixed(2)}  \u2014  ${etype}`, pL+10, pT+20);
+  const rd=R1-R0;
+  const arrow=rd>0?'\u2191 Revenue rises':'\u2193 Revenue falls';
+  ctx.fillStyle=rd>=0?'#15803d':'#b91c1c';
+  ctx.fillText(arrow, pL+10, pT+38);
+
+  document.getElementById('m2r0').textContent='$'+Math.round(R0);
+  document.getElementById('m2r1').textContent='$'+Math.round(R1);
+  const rdE=document.getElementById('m2rd');
+  rdE.textContent=(rd>=0?'+':'')+'$'+Math.round(rd);
+  rdE.className='metric-value'+(rd<0?' neg':'');
+  const rp=(rd/R0)*100;
+  const rpE=document.getElementById('m2rp');
+  rpE.textContent=(rp>=0?'+':'')+rp.toFixed(1)+'%';
+  rpE.className='metric-value'+(rp<0?' neg':'');
+}
+
+// ===================== MODULE 3: DIMINISHING RETURNS =====================
+const m3 = {n:120, pc:5, pn:0.55};
+
+function m3preset(n) {
+  const P=[{n:150,pc:5,pn:0.35},{n:100,pc:5,pn:1.20},{n:160,pc:7.5,pn:0.60},{n:80,pc:3.5,pn:0.60}];
+  Object.assign(m3, P[n]);
+  document.getElementById('m3n').value=m3.n;
+  document.getElementById('m3pc').value=m3.pc;
+  document.getElementById('m3pn').value=m3.pn;
+  document.querySelectorAll('#mod2 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  m3upd();
+}
+
+function m3upd() {
+  m3.n=+document.getElementById('m3n').value;
+  m3.pc=+document.getElementById('m3pc').value;
+  m3.pn=+document.getElementById('m3pn').value;
+  document.getElementById('m3n-v').textContent=m3.n;
+  document.getElementById('m3pc-v').textContent=m3.pc.toFixed(2);
+  document.getElementById('m3pn-v').textContent=m3.pn.toFixed(2);
+  m3draw();
+}
+
+function m3draw() {
+  const {ctx,W,H} = setupCanvas('c3');
+  const {n,pc,pn} = m3;
+
+  const Y = N=>80+0.9*N-0.003*N*N;
+  const MP = N=>0.9-0.006*N;
+  const ratio = pn/pc;
+  const Nopt = Math.max(0,Math.min(200,(0.9-ratio)/0.006));
+  const yN=Y(n), mpN=MP(n);
+  const profit = pc*(yN-Y(0)) - pn*n;
+
+  const topH = Math.round(H*0.57);
+  const botH = H - topH - 8;
+  const pL=65,pR=30,pT=28,pB=38;
+
+  const yMax=160, yStep=20;
+  const tpW=W-pL-pR, tpH=topH-pT-pB;
+  const tx=v=>pL+v/200*tpW;
+  const tyTop=v=>pT+(yMax-v)/yMax*tpH;
+
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,topH);
+  ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+  for(let y=0;y<=yMax;y+=yStep){const py=tyTop(y);ctx.beginPath();ctx.moveTo(pL,py);ctx.lineTo(W-pR,py);ctx.stroke();}
+  for(let x=0;x<=200;x+=40){const px=tx(x);ctx.beginPath();ctx.moveTo(px,pT);ctx.lineTo(px,topH-pB);ctx.stroke();}
+  ctx.strokeStyle='#374151'; ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(pL,pT);ctx.lineTo(pL,topH-pB);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pL,topH-pB);ctx.lineTo(W-pR,topH-pB);ctx.stroke();
+  ctx.fillStyle='#374151'; ctx.font='bold 11px Arial'; ctx.textAlign='right';
+  for(let y=0;y<=yMax;y+=yStep)ctx.fillText(y,pL-6,tyTop(y)+4);
+  ctx.textAlign='center';
+  for(let x=0;x<=200;x+=40)ctx.fillText(x,tx(x),topH-pB+15);
+
+  ctx.beginPath();
+  ctx.moveTo(tx(0),tyTop(Y(0)));
+  for(let i=0;i<=n;i++)ctx.lineTo(tx(i),tyTop(Math.max(0,Y(i))));
+  ctx.lineTo(tx(n),tyTop(0));ctx.lineTo(tx(0),tyTop(0));
+  ctx.closePath();
+  ctx.fillStyle='rgba(187,247,208,0.35)';ctx.fill();
+
+  ctx.beginPath();
+  let started=false;
+  for(let i=0;i<=200;i++){
+    const yv=Y(i);
+    const cyv=Math.max(0,Math.min(yMax,yv));
+    if(!started){ctx.moveTo(tx(i),tyTop(cyv));started=true;}
+    else ctx.lineTo(tx(i),tyTop(cyv));
+  }
+  ctx.strokeStyle='#16a34a';ctx.lineWidth=3;ctx.stroke();
+
+  vline(ctx,tx(n),pT,topH-pB,'#dc2626',2.5,[5,4]);
+  ctx.fillStyle='#dc2626';ctx.font='bold 12px Arial';ctx.textAlign='center';
+  ctx.fillText('L='+n,tx(n),pT+13);
+
+  if(Nopt>1&&Nopt<=200){
+    vline(ctx,tx(Nopt),pT,topH-pB,'#ea580c',2.5,[8,4]);
+    ctx.fillStyle='#ea580c';ctx.font='bold 12px Arial';ctx.textAlign='center';
+    ctx.fillText('L*='+Nopt.toFixed(0),tx(Nopt),pT+27);
+  }
+
+  dot(ctx,tx(n),tyTop(Math.max(0,Math.min(yMax,yN))),5,'#dc2626');
+
+  ctx.fillStyle='#16a34a';ctx.font='bold 14px Arial';ctx.textAlign='left';
+  ctx.fillText('Q(L)',W-pR-45,pT+18);
+
+  ctx.fillStyle='#1a2a3a';ctx.font='bold 12px Arial';ctx.textAlign='center';
+  ctx.fillText('Number of Workers',pL+tpW/2,topH-5);
+  ctx.save();ctx.translate(14,topH/2);ctx.rotate(-Math.PI/2);ctx.fillText('Output (units)',0,0);ctx.restore();
+  ctx.fillStyle='#1a2a3a';ctx.font='bold 13px Arial';ctx.textAlign='center';
+  ctx.fillText('Production Function (Q = 80 + 0.9L \u2013 0.003L\u00B2)',pL+tpW/2,pT-10);
+
+  const bTop=topH+8;
+  const mpMax=1.0, mpMin=-0.32;
+  const bpH=botH-pT-pB;
+  const tyBot=v=>bTop+pT+(mpMax-v)/(mpMax-mpMin)*bpH;
+
+  ctx.fillStyle='#f8fdf9';ctx.fillRect(0,bTop,W,botH);
+  ctx.fillStyle='#fff';ctx.fillRect(pL,bTop+pT,tpW,bpH);
+  ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+  [-0.3,-0.2,-0.1,0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0].forEach(y=>{
+    if(y<mpMin||y>mpMax)return;
+    const py=tyBot(y);
+    ctx.beginPath();ctx.moveTo(pL,py);ctx.lineTo(W-pR,py);ctx.stroke();
+  });
+  for(let x=0;x<=200;x+=40){const px=tx(x);ctx.beginPath();ctx.moveTo(px,bTop+pT);ctx.lineTo(px,bTop+pT+bpH);ctx.stroke();}
+  ctx.strokeStyle='#374151';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(pL,bTop+pT);ctx.lineTo(pL,bTop+pT+bpH);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pL,bTop+pT+bpH);ctx.lineTo(W-pR,bTop+pT+bpH);ctx.stroke();
+  ctx.fillStyle='#374151';ctx.font='bold 11px Arial';ctx.textAlign='right';
+  [-0.2,0,0.2,0.4,0.6,0.8,1.0].forEach(y=>{if(y<mpMin||y>mpMax)return;ctx.fillText(y.toFixed(1),pL-6,tyBot(y)+4);});
+  ctx.textAlign='center';
+  for(let x=0;x<=200;x+=40)ctx.fillText(x,tx(x),bTop+pT+bpH+15);
+
+  hline(ctx,pL,W-pR,tyBot(0),'#9ca3af',1);
+
+  ctx.beginPath();
+  ctx.moveTo(tx(0),tyBot(Math.min(mpMax,MP(0))));
+  ctx.lineTo(tx(200),tyBot(Math.max(mpMin,MP(200))));
+  ctx.strokeStyle='#7c3aed';ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle='#7c3aed';ctx.font='bold 14px Arial';ctx.textAlign='left';
+  ctx.fillText('MP = dQ/dL',W-pR-130,tyBot(0.75));
+
+  if(ratio>=mpMin && ratio<=mpMax){
+    hline(ctx,pL,W-pR,tyBot(ratio),'#ea580c',2.5,[6,3]);
+    ctx.fillStyle='#ea580c';ctx.font='bold 12px Arial';ctx.textAlign='right';
+    ctx.fillText(`W/P = ${ratio.toFixed(3)}`,W-pR-5,tyBot(ratio)-5);
+  }
+
+  const mpDot=MP(n);
+  if(mpDot>=mpMin&&mpDot<=mpMax) dot(ctx,tx(n),tyBot(mpDot),6,'#dc2626');
+  if(Nopt>=0&&Nopt<=200&&ratio>=mpMin&&ratio<=mpMax) dot(ctx,tx(Nopt),tyBot(ratio),6,'#ea580c');
+
+  ctx.fillStyle='#1a2a3a';ctx.font='bold 12px Arial';ctx.textAlign='center';
+  ctx.fillText('Number of Workers',pL+tpW/2,bTop+pT+bpH+30);
+  ctx.save();ctx.translate(14,bTop+botH/2);ctx.rotate(-Math.PI/2);ctx.fillText('MP (units/worker)',0,0);ctx.restore();
+  ctx.fillText('Marginal Product of Labor',pL+tpW/2,bTop+pT-10);
+
+  document.getElementById('m3y').textContent=yN.toFixed(1)+' units';
+  document.getElementById('m3mp').textContent=mpN.toFixed(3)+' u/wkr';
+  document.getElementById('m3on').textContent=Nopt.toFixed(0)+' workers';
+  const prE=document.getElementById('m3pr');
+  prE.textContent=(profit>=0?'+':'')+'$'+Math.round(profit);
+  prE.className='metric-value'+(profit<0?' neg':'');
+}
+
+// ===================== MODULE 4: COST CURVES =====================
+const m4={p:5};
+
+function m4preset(n) {
+  const P=[7,5,3.5,2.2];
+  m4.p=P[n];
+  document.getElementById('m4p').value=m4.p;
+  document.querySelectorAll('#mod3 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  m4upd();
+}
+
+function m4upd() {
+  m4.p=+document.getElementById('m4p').value;
+  document.getElementById('m4p-v').textContent='$'+m4.p.toFixed(2);
+  m4draw();
+}
+
+function m4draw() {
+  const {ctx,W,H} = setupCanvas('c4');
+  const pL=65,pR=50,pT=35,pB=52;
+  const {tx,ty} = plotArea(ctx,W,H,pL,pR,pT,pB,50,250,0,12,20,1);
+  axisLabels(ctx,W,H,pL,pT,'Output (units)','Cost / Price ($/unit)');
+
+  const {p} = m4;
+  const FC=150;
+  const VC=Q=>2*Q+Q*Q/150;
+  const TC=Q=>FC+VC(Q);
+  const ATC=Q=>TC(Q)/Q;
+  const AVC=Q=>VC(Q)/Q;
+  const MC=Q=>2+Q/75;
+  const Qraw=(p-2)*75;
+  const Qstar=Math.max(50,Math.min(250,Qraw));
+  const inMarket=Qraw>=50;
+
+  const revenue=p*Qstar;
+  const tc=TC(Qstar);
+  const profit=revenue-tc;
+
+  if(inMarket && Qstar>50) {
+    ctx.beginPath();
+    ctx.moveTo(tx(50),ty(Math.min(12,ATC(50))));
+    for(let Q=50;Q<=Qstar;Q+=1){
+      const v=ATC(Q);
+      if(v<=12)ctx.lineTo(tx(Q),ty(v));
+    }
+    ctx.lineTo(tx(Qstar),ty(Math.min(12,p)));
+    ctx.lineTo(tx(50),ty(Math.min(12,p)));
+    ctx.closePath();
+    ctx.fillStyle=profit>=0?'rgba(187,247,208,0.5)':'rgba(254,202,202,0.55)';
+    ctx.fill();
+  }
+
+  ctx.beginPath();
+  for(let Q=50;Q<=250;Q+=2){
+    const v=AVC(Q);if(v>12)break;
+    Q===50?ctx.moveTo(tx(Q),ty(v)):ctx.lineTo(tx(Q),ty(v));
+  }
+  ctx.strokeStyle='#f59e0b';ctx.lineWidth=2.5;ctx.stroke();
+  ctx.fillStyle='#d97706';ctx.font='bold 13px Arial';ctx.textAlign='left';
+  ctx.fillText('AVC',tx(220),ty(AVC(220))-7);
+
+  ctx.beginPath();
+  for(let Q=50;Q<=250;Q+=2){
+    const v=ATC(Q);if(v>12)break;
+    Q===50?ctx.moveTo(tx(Q),ty(v)):ctx.lineTo(tx(Q),ty(v));
+  }
+  ctx.strokeStyle='#7c3aed';ctx.lineWidth=2.5;ctx.stroke();
+  ctx.fillStyle='#6d28d9';ctx.font='bold 13px Arial';ctx.textAlign='left';
+  ctx.fillText('ATC',tx(55),ty(ATC(55))-8);
+
+  ctx.beginPath();
+  for(let Q=50;Q<=250;Q+=2){
+    const v=MC(Q);if(v>12)break;
+    Q===50?ctx.moveTo(tx(Q),ty(v)):ctx.lineTo(tx(Q),ty(v));
+  }
+  ctx.strokeStyle='#dc2626';ctx.lineWidth=2.5;ctx.stroke();
+  ctx.fillStyle='#dc2626';ctx.font='bold 13px Arial';ctx.textAlign='left';
+  if(MC(250)<=12)ctx.fillText('MC',tx(235),ty(MC(235))-7);
+
+  if(p<=12){
+    hline(ctx,tx(50),tx(250),ty(p),'#2563eb',2.5,[7,4]);
+    ctx.fillStyle='#2563eb';ctx.font='bold 13px Arial';ctx.textAlign='right';
+    ctx.fillText(`P = $${p.toFixed(2)}`,tx(250)-4,ty(p)-7);
+  }
+
+  const QminATC=150, minATC=ATC(150);
+  if(minATC<=12){
+    dot(ctx,tx(QminATC),ty(minATC),7,'#6d28d9');
+    dot(ctx,tx(QminATC),ty(minATC),4,'#fff');
+    ctx.fillStyle='#6d28d9';ctx.font='bold 11px Arial';ctx.textAlign='center';
+    ctx.fillText(`Break-even Q=${QminATC}, ATC=$${minATC.toFixed(2)}`,tx(QminATC),ty(minATC)-12);
+  }
+
+  hline(ctx,tx(50),tx(250),ty(2),'#f59e0b',1.5,[4,3]);
+  ctx.fillStyle='#b45309';ctx.font='bold 11px Arial';ctx.textAlign='left';
+  ctx.fillText('Shutdown P=$2.00',tx(55),ty(2)-5);
+
+  if(inMarket && p<=12){
+    dot(ctx,tx(Qstar),ty(p),7,'#1a2a3a');
+    dot(ctx,tx(Qstar),ty(p),4,'#fff');
+    ctx.fillStyle='#1a2a3a';ctx.font='bold 13px Arial';ctx.textAlign='left';
+    ctx.fillText(`Q* = ${Qstar.toFixed(0)}`,tx(Qstar)+9,ty(p)-7);
+  } else if(!inMarket) {
+    ctx.fillStyle='#b91c1c';ctx.font='bold 14px Arial';ctx.textAlign='center';
+    ctx.fillText('SHUT DOWN (P < min AVC)',tx(150),ty(6));
+  }
+
+  ctx.font='bold 14px Arial';ctx.textAlign='center';
+  ctx.fillStyle=profit>=0?'#14532d':'#b91c1c';
+  if(inMarket) ctx.fillText(profit>=0?`Profit: $${Math.round(profit)}`:`Loss: $${Math.abs(Math.round(profit))}`,
+    pL+(W-pL-pR)*0.7,pT+22);
+
+  document.getElementById('m4q').textContent=inMarket?Qstar.toFixed(0)+' units':'0 (shutdown)';
+  document.getElementById('m4rev').textContent='$'+Math.round(inMarket?revenue:0);
+  document.getElementById('m4tc').textContent='$'+Math.round(inMarket?tc:FC);
+  const prE=document.getElementById('m4pr');
+  const profitDisp=inMarket?profit:-FC;
+  prE.textContent=(profitDisp>=0?'+':'')+'$'+Math.round(profitDisp);
+  prE.className='metric-value'+(profitDisp<0?' neg':'');
+}
+
+// ===================== MODULE 5: PRICE POLICY =====================
+const m5={pol:'floor',pp:8};
+
+function m5pol(pol) {
+  m5.pol=pol;
+  ['free','floor','ceil'].forEach(p=>document.getElementById('pol-'+p).classList.toggle('active',p===pol));
+  m5draw();
+}
+
+function m5preset(n) {
+  const P=[{pol:'free',pp:6},{pol:'floor',pp:8},{pol:'floor',pp:7},{pol:'ceil',pp:4}];
+  Object.assign(m5, P[n]);
+  document.getElementById('m5pp').value=m5.pp;
+  document.getElementById('m5pp-v').textContent='$'+m5.pp.toFixed(2);
+  ['free','floor','ceil'].forEach(p=>document.getElementById('pol-'+p).classList.toggle('active',p===m5.pol));
+  document.querySelectorAll('#mod4 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  m5draw();
+}
+
+function m5upd() {
+  m5.pp=+document.getElementById('m5pp').value;
+  document.getElementById('m5pp-v').textContent='$'+m5.pp.toFixed(2);
+  if(m5.pp>6.01) m5.pol='floor';
+  else if(m5.pp<5.99) m5.pol='ceil';
+  else m5.pol='free';
+  ['free','floor','ceil'].forEach(p=>document.getElementById('pol-'+p).classList.toggle('active',p===m5.pol));
+  m5draw();
+}
+
+function m5draw() {
+  const {ctx,W,H} = setupCanvas('c5');
+  const pL=65,pR=35,pT=35,pB=52;
+  const {tx,ty} = plotArea(ctx,W,H,pL,pR,pT,pB,0,200,0,12,20,1);
+  axisLabels(ctx,W,H,pL,pT,'Quantity (thousands of units)','Price ($/unit)');
+
+  const Peq=6,Qeq=80;
+  const PmaxD=10,PminS=2;
+  const Qd=P=>Math.max(0,200-20*P);
+  const Qs=P=>Math.max(0,20*P-40);
+  const {pol,pp} = m5;
+
+  ctx.beginPath();ctx.moveTo(tx(0),ty(PmaxD));ctx.lineTo(tx(Qeq),ty(Peq));ctx.lineTo(tx(0),ty(Peq));ctx.closePath();
+  ctx.fillStyle='rgba(191,219,254,0.28)';ctx.fill();
+  ctx.beginPath();ctx.moveTo(tx(0),ty(PminS));ctx.lineTo(tx(Qeq),ty(Peq));ctx.lineTo(tx(0),ty(Peq));ctx.closePath();
+  ctx.fillStyle='rgba(187,247,208,0.28)';ctx.fill();
+
+  const Qd_pp=Qd(pp), Qs_pp=Qs(pp);
+  let ssVal=0, rcVal=0, dwlVal=0;
+
+  if(pol==='floor' && pp>Peq) {
+    const surplus=Qs_pp-Qd_pp;
+    ssVal=surplus;
+    rcVal=pp*Qd_pp - Peq*Qeq;
+    dwlVal=0.5*(pp-Peq)*surplus;
+
+    ctx.beginPath();
+    ctx.moveTo(tx(Qd_pp),ty(pp));ctx.lineTo(tx(Qeq),ty(Peq));ctx.lineTo(tx(Qs_pp),ty(pp));
+    ctx.closePath();ctx.fillStyle='rgba(254,202,202,0.75)';ctx.fill();
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=1.5;ctx.stroke();
+
+    const ay=ty(pp)+32;
+    ctx.beginPath();ctx.moveTo(tx(Qd_pp),ay);ctx.lineTo(tx(Qs_pp),ay);
+    ctx.strokeStyle='#ea580c';ctx.lineWidth=3;ctx.stroke();
+    [[tx(Qd_pp),1],[tx(Qs_pp),-1]].forEach(([x,dir])=>{
+      ctx.beginPath();ctx.moveTo(x,ay);ctx.lineTo(x+dir*12,ay-5);ctx.lineTo(x+dir*12,ay+5);ctx.closePath();
+      ctx.fillStyle='#ea580c';ctx.fill();
+    });
+    ctx.fillStyle='#ea580c';ctx.font='bold 13px Arial';ctx.textAlign='center';
+    ctx.fillText(`SURPLUS: ${surplus.toFixed(0)} k units`,tx((Qd_pp+Qs_pp)/2),ay+18);
+
+    ctx.fillStyle='#dc2626';ctx.font='bold 13px Arial';ctx.textAlign='center';
+    ctx.fillText('DWL',tx((Qd_pp+Qs_pp)/2),ty((pp+Peq)/2+0.5));
+
+    hline(ctx,tx(0),tx(200),ty(pp),'#ea580c',3);
+    ctx.fillStyle='#ea580c';ctx.font='bold 13px Arial';ctx.textAlign='left';
+    ctx.fillText(`Price Floor = $${pp.toFixed(2)}`,tx(5),ty(pp)-9);
+    vline(ctx,tx(Qd_pp),ty(pp),ty(0),'#2563eb',1.5,[4,3]);
+    vline(ctx,tx(Qs_pp),ty(pp),ty(0),'#16a34a',1.5,[4,3]);
+    ctx.fillStyle='#2563eb';ctx.font='bold 11px Arial';ctx.textAlign='center';ctx.fillText('Qd='+Qd_pp.toFixed(0),tx(Qd_pp),ty(0)+12);
+    ctx.fillStyle='#16a34a';ctx.textAlign='center';ctx.fillText('Qs='+Qs_pp.toFixed(0),tx(Qs_pp),ty(0)+12);
+
+  } else if(pol==='ceil' && pp<Peq) {
+    const shortage=Qd_pp-Qs_pp;
+    ssVal=-shortage;
+    rcVal=pp*Qs_pp - Peq*Qeq;
+    dwlVal=0.5*(Peq-pp)*shortage;
+
+    ctx.beginPath();
+    ctx.moveTo(tx(Qs_pp),ty(pp));ctx.lineTo(tx(Qeq),ty(Peq));ctx.lineTo(tx(Qd_pp),ty(pp));
+    ctx.closePath();ctx.fillStyle='rgba(254,202,202,0.75)';ctx.fill();
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=1.5;ctx.stroke();
+
+    const ay=ty(pp)+32;
+    ctx.beginPath();ctx.moveTo(tx(Qs_pp),ay);ctx.lineTo(tx(Qd_pp),ay);
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=3;ctx.stroke();
+    [[tx(Qs_pp),1],[tx(Qd_pp),-1]].forEach(([x,dir])=>{
+      ctx.beginPath();ctx.moveTo(x,ay);ctx.lineTo(x+dir*12,ay-5);ctx.lineTo(x+dir*12,ay+5);ctx.closePath();
+      ctx.fillStyle='#2563eb';ctx.fill();
+    });
+    ctx.fillStyle='#2563eb';ctx.font='bold 13px Arial';ctx.textAlign='center';
+    ctx.fillText(`SHORTAGE: ${shortage.toFixed(0)} k units`,tx((Qs_pp+Qd_pp)/2),ay+18);
+
+    ctx.fillStyle='#dc2626';ctx.font='bold 13px Arial';ctx.textAlign='center';
+    ctx.fillText('DWL',tx((Qs_pp+Qd_pp)/2),ty((pp+Peq)/2+0.5));
+
+    hline(ctx,tx(0),tx(200),ty(pp),'#2563eb',3);
+    ctx.fillStyle='#2563eb';ctx.font='bold 13px Arial';ctx.textAlign='left';
+    ctx.fillText(`Price Ceiling = $${pp.toFixed(2)}`,tx(5),ty(pp)-9);
+    vline(ctx,tx(Qs_pp),ty(pp),ty(0),'#16a34a',1.5,[4,3]);
+    vline(ctx,tx(Qd_pp),ty(pp),ty(0),'#2563eb',1.5,[4,3]);
+    ctx.fillStyle='#16a34a';ctx.font='bold 11px Arial';ctx.textAlign='center';ctx.fillText('Qs='+Qs_pp.toFixed(0),tx(Qs_pp),ty(0)+12);
+    ctx.fillStyle='#2563eb';ctx.textAlign='center';ctx.fillText('Qd='+Qd_pp.toFixed(0),tx(Qd_pp),ty(0)+12);
+  } else {
+    ctx.fillStyle='#1a2a3a';ctx.font='bold 14px Arial';ctx.textAlign='center';
+    ctx.fillText('FREE MARKET \u2014 No intervention',pL+(W-pL-pR)/2,pT+22);
+  }
+
+  ctx.beginPath();ctx.moveTo(tx(0),ty(PmaxD));ctx.lineTo(tx(200),ty(0));
+  ctx.strokeStyle='#2563eb';ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle='#2563eb';ctx.font='bold 15px Arial';ctx.textAlign='left';ctx.fillText('D',tx(183),ty(1.7)-5);
+
+  ctx.beginPath();ctx.moveTo(tx(0),ty(PminS));ctx.lineTo(tx(200),ty(12));
+  ctx.strokeStyle='#16a34a';ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle='#16a34a';ctx.font='bold 15px Arial';ctx.textAlign='left';ctx.fillText('S',tx(170),ty(11.5)-5);
+
+  vline(ctx,tx(Qeq),ty(Peq),ty(0),'#6b7280',1.5,[6,4]);
+  hline(ctx,tx(0),tx(Qeq),ty(Peq),'#6b7280',1.5,[6,4]);
+  dot(ctx,tx(Qeq),ty(Peq),7,'#1a2a3a');dot(ctx,tx(Qeq),ty(Peq),4,'#fff');
+  ctx.fillStyle='#1a2a3a';ctx.font='bold 13px Arial';ctx.textAlign='left';
+  ctx.fillText('P*=$6, Q*=80',tx(Qeq)+9,ty(Peq)-8);
+
+  document.getElementById('m5pp2').textContent='$'+pp.toFixed(2);
+  if(pol==='floor'&&pp>Peq){
+    document.getElementById('m5ss').textContent=ssVal.toFixed(0)+' k units surplus';
+  } else if(pol==='ceil'&&pp<Peq){
+    document.getElementById('m5ss').textContent=Math.abs(ssVal).toFixed(0)+' k units shortage';
+  } else {
+    document.getElementById('m5ss').textContent='0 (free market)';
+  }
+  const rcE=document.getElementById('m5rc');
+  rcE.textContent=(rcVal>=0?'+':'')+'$'+Math.round(rcVal);
+  rcE.className='metric-value'+(rcVal<0?' neg':'');
+  document.getElementById('m5dwl').textContent='$'+Math.round(dwlVal);
+}
+
+// ===================== MODULE 6: TRADE & TARIFF =====================
+const m6={pw:4,t:0};
+
+function m6preset(n) {
+  const P=[{pw:4,t:0},{pw:4,t:1},{pw:4,t:2},{pw:8,t:0}];
+  Object.assign(m6,P[n]);
+  document.getElementById('m6pw').value=m6.pw;
+  document.getElementById('m6t').value=m6.t;
+  document.querySelectorAll('#mod5 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  m6upd();
+}
+
+function m6upd() {
+  m6.pw=+document.getElementById('m6pw').value;
+  m6.t=+document.getElementById('m6t').value;
+  document.getElementById('m6pw-v').textContent='$'+m6.pw.toFixed(2);
+  document.getElementById('m6t-v').textContent='$'+m6.t.toFixed(2);
+  m6draw();
+}
+
+function m6draw() {
+  const {ctx,W,H} = setupCanvas('c6');
+  const pL=65,pR=35,pT=35,pB=52;
+  const {tx,ty} = plotArea(ctx,W,H,pL,pR,pT,pB,0,200,0,12,20,1);
+  axisLabels(ctx,W,H,pL,pT,'Quantity (thousands of units)','Price ($/unit)');
+
+  const {pw,t} = m6;
+  const Peq=6, Qeq=80;
+  const PmaxD=10, PminS=2;
+  const Qd=P=>Math.max(0,200-20*P);
+  const Qs=P=>Math.max(0,20*P-40);
+  const Pt=Math.min(Peq,pw+t);
+  const isImport=pw<Peq;
+
+  const Qd_w=Qd(pw), Qs_w=Qs(pw);
+  const Qd_t=Qd(Pt), Qs_t=Qs(Pt);
+
+  if(isImport){
+    const Qd_free=Qd(pw), Qs_free=Qs(pw);
+    const CS_t = 0.5*Qd_t*(PmaxD-Pt);
+    const PS_t = 0.5*Qs_t*(Pt-PminS);
+    const imports_t=Math.max(0,Qd_t-Qs_t);
+    const govRev=t>0&&Pt<Peq ? t*imports_t : 0;
+    const dwl = t>0&&Pt<Peq ? 0.5*t*(Qs_t-Qs_free)+0.5*t*(Qd_free-Qd_t) : 0;
+
+    const CS_free=0.5*Qd_free*(PmaxD-pw);
+
+    ctx.beginPath();ctx.moveTo(tx(0),ty(PmaxD));ctx.lineTo(tx(Qd_t),ty(Pt));ctx.lineTo(tx(0),ty(Pt));ctx.closePath();
+    ctx.fillStyle='rgba(191,219,254,0.4)';ctx.fill();
+
+    if(t>0&&Pt<Peq){
+      ctx.beginPath();
+      ctx.moveTo(tx(0),ty(Pt));ctx.lineTo(tx(Qd_t),ty(Pt));
+      ctx.lineTo(tx(Qd_free),ty(pw));ctx.lineTo(tx(0),ty(pw));
+      ctx.closePath();ctx.fillStyle='rgba(191,219,254,0.5)';ctx.fill();
+      ctx.strokeStyle='#2563eb';ctx.lineWidth=1;ctx.stroke();
+      ctx.fillStyle='#1e3a8a';ctx.font='bold 11px Arial';ctx.textAlign='center';
+      if(Qd_free>30)ctx.fillText('CS Loss',tx(15),ty((pw+Pt)/2));
+
+      ctx.beginPath();
+      ctx.moveTo(tx(0),ty(pw));ctx.lineTo(tx(Qs_free),ty(pw));
+      ctx.lineTo(tx(Qs_t),ty(Pt));ctx.lineTo(tx(0),ty(Pt));
+      ctx.closePath();ctx.fillStyle='rgba(187,247,208,0.7)';ctx.fill();
+      ctx.strokeStyle='#16a34a';ctx.lineWidth=1;ctx.stroke();
+      if(Qs_t>10){
+        ctx.fillStyle='#14532d';ctx.font='bold 11px Arial';ctx.textAlign='center';
+        ctx.fillText('PS Gain',tx(Qs_t/2),ty((pw+Pt)/2+0.3));
+      }
+
+      if(imports_t>0){
+        ctx.fillStyle='rgba(156,163,175,0.55)';
+        ctx.fillRect(tx(Qs_t),ty(Pt),tx(Qd_t)-tx(Qs_t),ty(pw)-ty(Pt));
+        ctx.strokeStyle='#6b7280';ctx.lineWidth=1.5;
+        ctx.strokeRect(tx(Qs_t),ty(Pt),tx(Qd_t)-tx(Qs_t),ty(pw)-ty(Pt));
+        ctx.fillStyle='#374151';ctx.font='bold 11px Arial';ctx.textAlign='center';
+        const gx=tx((Qs_t+Qd_t)/2), gy=(ty(pw)+ty(Pt))/2;
+        if(tx(Qd_t)-tx(Qs_t)>30)ctx.fillText(`Govt $${Math.round(govRev)}`,gx,gy+4);
+      }
+
+      ctx.beginPath();ctx.moveTo(tx(Qs_free),ty(pw));ctx.lineTo(tx(Qs_t),ty(Pt));ctx.lineTo(tx(Qs_t),ty(pw));ctx.closePath();
+      ctx.fillStyle='rgba(254,202,202,0.85)';ctx.fill();ctx.strokeStyle='#dc2626';ctx.lineWidth=1.5;ctx.stroke();
+      ctx.beginPath();ctx.moveTo(tx(Qd_t),ty(Pt));ctx.lineTo(tx(Qd_free),ty(pw));ctx.lineTo(tx(Qd_t),ty(pw));ctx.closePath();
+      ctx.fillStyle='rgba(254,202,202,0.85)';ctx.fill();ctx.strokeStyle='#dc2626';ctx.lineWidth=1.5;ctx.stroke();
+      ctx.fillStyle='#dc2626';ctx.font='bold 12px Arial';ctx.textAlign='center';
+      ctx.fillText('DWL',tx(Qs_t+3),ty(pw)-8);
+    } else {
+      ctx.beginPath();ctx.moveTo(tx(0),ty(PminS));ctx.lineTo(tx(Qs_free),ty(pw));ctx.lineTo(tx(0),ty(pw));ctx.closePath();
+      ctx.fillStyle='rgba(187,247,208,0.45)';ctx.fill();
+      ctx.fillStyle='#14532d';ctx.font='bold 13px Arial';ctx.textAlign='center';
+      if(Qs_free>20)ctx.fillText('PS',tx(Qs_free*0.3),ty((PminS+pw)/2));
+      ctx.fillStyle='#1d4ed8';ctx.textAlign='center';
+      if(Qd_free>40)ctx.fillText('CS',tx(Qd_free*0.25),ty((pw+PmaxD)/2));
+    }
+
+    const imLabel=imports_t<0.5?'0 (prohibitive tariff)':imports_t.toFixed(0)+' k units imported';
+    document.getElementById('m6ie').textContent=imLabel;
+    document.getElementById('m6cs').textContent='$'+Math.round(CS_t);
+    document.getElementById('m6gr').textContent='$'+Math.round(govRev);
+    document.getElementById('m6dwl').textContent='$'+Math.round(dwl);
+
+  } else {
+    const CS_e=0.5*Qd_w*(PmaxD-pw);
+    const PS_e=0.5*Qs_w*(pw-PminS);
+    ctx.beginPath();ctx.moveTo(tx(0),ty(PmaxD));ctx.lineTo(tx(Qd_w),ty(pw));ctx.lineTo(tx(0),ty(pw));ctx.closePath();
+    ctx.fillStyle='rgba(191,219,254,0.45)';ctx.fill();
+    ctx.beginPath();ctx.moveTo(tx(0),ty(PminS));ctx.lineTo(tx(Qs_w),ty(pw));ctx.lineTo(tx(0),ty(pw));ctx.closePath();
+    ctx.fillStyle='rgba(187,247,208,0.45)';ctx.fill();
+    ctx.fillStyle='#1d4ed8';ctx.font='bold 13px Arial';ctx.textAlign='center';
+    if(Qd_w>20)ctx.fillText('CS',tx(Qd_w*0.25),ty((pw+PmaxD)/2));
+    ctx.fillStyle='#14532d';
+    if(Qs_w>20)ctx.fillText('PS',tx(Qs_w*0.25),ty((PminS+pw)/2));
+
+    const exports=Qs_w-Qd_w;
+    const ay=ty(pw)+32;
+    if(Qs_w<=200&&Qd_w>=0&&Qs_w>Qd_w){
+      ctx.beginPath();ctx.moveTo(tx(Qd_w),ay);ctx.lineTo(tx(Qs_w),ay);
+      ctx.strokeStyle='#16a34a';ctx.lineWidth=3;ctx.stroke();
+      ctx.beginPath();ctx.moveTo(tx(Qs_w),ay);ctx.lineTo(tx(Qs_w)-12,ay-5);ctx.lineTo(tx(Qs_w)-12,ay+5);ctx.closePath();
+      ctx.fillStyle='#16a34a';ctx.fill();
+      ctx.fillStyle='#14532d';ctx.font='bold 13px Arial';ctx.textAlign='center';
+      ctx.fillText(`EXPORTS: ${exports.toFixed(0)} k units`,tx((Qd_w+Qs_w)/2),ay+18);
+    }
+
+    document.getElementById('m6ie').textContent=exports.toFixed(0)+' k units exported';
+    document.getElementById('m6cs').textContent='$'+Math.round(CS_e);
+    document.getElementById('m6gr').textContent='$0 (exporter)';
+    document.getElementById('m6dwl').textContent='$0';
+  }
+
+  if(pw>=0&&pw<=12){
+    hline(ctx,tx(0),tx(200),ty(pw),'#ea580c',2.5);
+    ctx.fillStyle='#ea580c';ctx.font='bold 13px Arial';ctx.textAlign='right';
+    ctx.fillText(`World P = $${pw.toFixed(2)}`,tx(200)-5,ty(pw)-7);
+  }
+
+  if(t>0&&Pt<=12&&Pt>pw){
+    hline(ctx,tx(0),tx(200),ty(Pt),'#dc2626',2.5,[8,4]);
+    ctx.fillStyle='#dc2626';ctx.font='bold 13px Arial';ctx.textAlign='right';
+    ctx.fillText(`P + Tariff = $${Pt.toFixed(2)}`,tx(200)-5,ty(Pt)+16);
+  }
+
+  ctx.beginPath();ctx.moveTo(tx(0),ty(PmaxD));ctx.lineTo(tx(200),ty(0));
+  ctx.strokeStyle='#2563eb';ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle='#2563eb';ctx.font='bold 15px Arial';ctx.textAlign='left';ctx.fillText('D',tx(183),ty(1.7)-5);
+
+  ctx.beginPath();ctx.moveTo(tx(0),ty(PminS));ctx.lineTo(tx(200),ty(12));
+  ctx.strokeStyle='#16a34a';ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle='#16a34a';ctx.font='bold 15px Arial';ctx.textAlign='left';ctx.fillText('S',tx(170),ty(11.5)-5);
+
+  vline(ctx,tx(Qeq),ty(Peq),ty(0),'#6b7280',1.5,[6,4]);
+  hline(ctx,tx(0),tx(Qeq),ty(Peq),'#6b7280',1.5,[6,4]);
+  dot(ctx,tx(Qeq),ty(Peq),6,'#1a2a3a');dot(ctx,tx(Qeq),ty(Peq),3.5,'#fff');
+  ctx.fillStyle='#1a2a3a';ctx.font='bold 12px Arial';ctx.textAlign='left';
+  ctx.fillText('P*=$6, Q*=80',tx(Qeq)+8,ty(Peq)-7);
+
+  if(pw>=0&&pw<=12){
+    const qd=Qd(pw),qs=Qs(pw);
+    if(qd<=200){vline(ctx,tx(qd),ty(pw),ty(0),'#9ca3af',1.5,[4,3]);}
+    if(qs<=200){vline(ctx,tx(qs),ty(pw),ty(0),'#9ca3af',1.5,[4,3]);}
+  }
+}
+
+// ===================== MODULE 7 (TAB 6): PRODUCTION POSSIBILITIES FRONTIER =====================
+const t9 = {res:300, cp:2.5, sp:2.0, alloc:50, growth:0};
+
+function t9_setgrowth(n) {
+  t9.growth = n;
+  document.querySelectorAll('#t9_growth_grp .toggle-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  t9_draw();
+}
+
+function t9_preset(n) {
+  const P = [
+    {res:300,cp:2.5,sp:2,alloc:50,growth:0},
+    {res:300,cp:4,sp:1.5,alloc:80,growth:0},
+    {res:300,cp:2.5,sp:2,alloc:50,growth:2},
+    {res:150,cp:2,sp:2,alloc:50,growth:0}
+  ];
+  Object.assign(t9, P[n]);
+  document.getElementById('t9_res').value = t9.res;
+  document.getElementById('t9_cp').value = t9.cp;
+  document.getElementById('t9_sp').value = t9.sp;
+  document.getElementById('t9_alloc').value = t9.alloc;
+  document.querySelectorAll('#mod6 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  document.querySelectorAll('#t9_growth_grp .toggle-btn').forEach((b,i)=>b.classList.toggle('active',i===t9.growth));
+  t9_update();
+}
+
+function t9_update() {
+  t9.res = +document.getElementById('t9_res').value;
+  t9.cp = +document.getElementById('t9_cp').value;
+  t9.sp = +document.getElementById('t9_sp').value;
+  t9.alloc = +document.getElementById('t9_alloc').value;
+  document.getElementById('t9_res-v').textContent = t9.res;
+  document.getElementById('t9_cp-v').textContent = t9.cp.toFixed(1);
+  document.getElementById('t9_sp-v').textContent = t9.sp.toFixed(1);
+  document.getElementById('t9_alloc-v').textContent = t9.alloc + '% Cars / ' + (100-t9.alloc) + '% Computers';
+  t9_draw();
+}
+
+function t9_draw() {
+  const {ctx,W,H} = setupCanvas('c7');
+  const {res, cp, sp, alloc, growth} = t9;
+  const maxCars = res * cp;
+  const maxComp = res * sp;
+  const carsOut = alloc/100 * res * cp;
+  const compOut = (1 - alloc/100) * res * sp;
+  const ocCars = sp/cp;
+  const ocComp = cp/sp;
+
+  const pL=65, pR=40, pT=45, pB=55;
+  const xMax = maxCars * 1.25;
+  const yMax = maxComp * 1.25;
+  const xStep = Math.ceil(xMax/6/50)*50;
+  const yStep = Math.ceil(yMax/6/50)*50;
+  const pw = W - pL - pR;
+  const ph = H - pT - pB;
+  const tx = v => pL + v/xMax*pw;
+  const ty = v => pT + (yMax-v)/yMax*ph;
+
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+  for(let x=0;x<=xMax;x+=xStep){ctx.beginPath();ctx.moveTo(tx(x),pT);ctx.lineTo(tx(x),H-pB);ctx.stroke();}
+  for(let y=0;y<=yMax;y+=yStep){ctx.beginPath();ctx.moveTo(pL,ty(y));ctx.lineTo(W-pR,ty(y));ctx.stroke();}
+  ctx.strokeStyle='#374151';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(pL,pT);ctx.lineTo(pL,H-pB);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pL,H-pB);ctx.lineTo(W-pR,H-pB);ctx.stroke();
+  ctx.fillStyle='#374151'; ctx.font='bold 11px Arial'; ctx.textAlign='right';
+  for(let y=0;y<=yMax;y+=yStep){ctx.fillText(Math.round(y),pL-6,ty(y)+4);}
+  ctx.textAlign='center';
+  for(let x=0;x<=xMax;x+=xStep){ctx.fillText(Math.round(x),tx(x),H-pB+15);}
+
+  ctx.beginPath();
+  ctx.moveTo(tx(0),ty(0));
+  ctx.lineTo(tx(0),ty(maxComp));
+  ctx.lineTo(tx(maxCars),ty(0));
+  ctx.closePath();
+  ctx.fillStyle='rgba(220,234,252,0.4)'; ctx.fill();
+
+  ctx.beginPath();ctx.moveTo(tx(maxCars),ty(0));ctx.lineTo(tx(0),ty(maxComp));
+  ctx.strokeStyle='#1a2a3a'; ctx.lineWidth=3; ctx.setLineDash([]); ctx.stroke();
+
+  if(growth > 0) {
+    let gx = maxCars, gy = maxComp;
+    if(growth===1){gx=maxCars*2;gy=maxComp;}
+    else if(growth===2){gx=maxCars*1.4;gy=maxComp*1.4;}
+    else if(growth===3){gx=maxCars*1.3;gy=maxComp*1.3;}
+    ctx.beginPath();ctx.moveTo(tx(gx),ty(0));ctx.lineTo(tx(0),ty(gy));
+    ctx.strokeStyle='#ea580c'; ctx.lineWidth=2.5; ctx.setLineDash([8,4]); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle='#ea580c'; ctx.font='bold 13px Arial'; ctx.textAlign='left';
+    const midX=(gx)*0.35, midY=(gy)*0.55;
+    ctx.fillText('Growth!',tx(midX)+8,ty(midY)-8);
+    const ox=maxCars*0.3, oy=maxComp*0.6;
+    const nx=gx*0.3, ny=gy*0.6;
+    ctx.beginPath();ctx.moveTo(tx(ox),ty(oy));
+    ctx.lineTo(tx(nx),ty(ny));
+    ctx.strokeStyle='#ea580c'; ctx.lineWidth=2; ctx.setLineDash([4,3]); ctx.stroke();
+    ctx.setLineDash([]);
+    const angle=Math.atan2(ty(ny)-ty(oy),tx(nx)-tx(ox));
+    ctx.beginPath();
+    ctx.moveTo(tx(nx),ty(ny));
+    ctx.lineTo(tx(nx)-10*Math.cos(angle-0.4),ty(ny)-10*Math.sin(angle-0.4));
+    ctx.lineTo(tx(nx)-10*Math.cos(angle+0.4),ty(ny)-10*Math.sin(angle+0.4));
+    ctx.closePath();ctx.fillStyle='#ea580c';ctx.fill();
+  }
+
+  ctx.fillStyle='rgba(37,99,235,0.7)'; ctx.font='bold 13px Arial'; ctx.textAlign='center';
+  ctx.fillText('Attainable',tx(maxCars*0.18),ty(maxComp*0.18));
+  ctx.fillStyle='rgba(185,28,28,0.65)'; ctx.font='bold 13px Arial';
+  ctx.fillText('Unattainable',tx(maxCars*0.7),ty(maxComp*0.7));
+
+  if(carsOut<=xMax && compOut<=yMax) {
+    ctx.setLineDash([5,4]);
+    ctx.strokeStyle='#2563eb'; ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(tx(carsOut),ty(compOut));ctx.lineTo(tx(carsOut),ty(0));ctx.stroke();
+    ctx.beginPath();ctx.moveTo(tx(carsOut),ty(compOut));ctx.lineTo(tx(0),ty(compOut));ctx.stroke();
+    ctx.setLineDash([]);
+    dot(ctx,tx(carsOut),ty(compOut),8,'#2563eb','#fff');
+    dot(ctx,tx(carsOut),ty(compOut),5,'#2563eb');
+    ctx.fillStyle='#1e3a8a'; ctx.font='bold 12px Arial'; ctx.textAlign='left';
+    ctx.fillText('A: ('+Math.round(carsOut)+' cars, '+Math.round(compOut)+' comp)',tx(carsOut)+10,ty(compOut)-10);
+  }
+
+  ctx.save();ctx.fillStyle='#1a2a3a';ctx.font='bold 13px Arial';ctx.textAlign='center';
+  ctx.fillText('Cars Output',pL+pw/2,H-3);
+  ctx.translate(14,pT+ph/2);ctx.rotate(-Math.PI/2);ctx.fillText('Computers Output',0,0);ctx.restore();
+
+  ctx.fillStyle='#1a2a3a'; ctx.font='bold 14px Arial'; ctx.textAlign='center';
+  ctx.fillText('Production Possibilities Frontier \u2014 Cars vs. Computers',pL+pw/2,pT-25);
+
+  document.getElementById('t9_m_corn').textContent = Math.round(carsOut);
+  document.getElementById('t9_m_soy').textContent = Math.round(compOut);
+  document.getElementById('t9_m_oc_corn').textContent = ocCars.toFixed(2)+' comp';
+  document.getElementById('t9_m_oc_soy').textContent = ocComp.toFixed(2)+' cars';
+}
+
+// ===================== MODULE 8 (TAB 7): TAX INCIDENCE =====================
+const t10 = {dslope:15, sslope:10, tax:1.5, who:0};
+
+function t10_setwho(n) {
+  t10.who = n;
+  document.querySelectorAll('#t10_who_grp .toggle-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  t10_draw();
+}
+
+function t10_preset(n) {
+  const P = [
+    {dslope:15,sslope:10,tax:0,who:0},
+    {dslope:15,sslope:10,tax:0.5,who:0},
+    {dslope:15,sslope:10,tax:3,who:0},
+    {dslope:25,sslope:10,tax:1.5,who:0},
+    {dslope:5,sslope:10,tax:1.5,who:0}
+  ];
+  Object.assign(t10, P[n]);
+  document.getElementById('t10_dslope').value = t10.dslope;
+  document.getElementById('t10_sslope').value = t10.sslope;
+  document.getElementById('t10_tax').value = t10.tax;
+  document.querySelectorAll('#mod7 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  document.querySelectorAll('#t10_who_grp .toggle-btn').forEach((b,i)=>b.classList.toggle('active',i===t10.who));
+  t10_update();
+}
+
+function t10_update() {
+  t10.dslope = +document.getElementById('t10_dslope').value;
+  t10.sslope = +document.getElementById('t10_sslope').value;
+  t10.tax = +document.getElementById('t10_tax').value;
+  document.getElementById('t10_dslope-v').textContent = t10.dslope;
+  document.getElementById('t10_sslope-v').textContent = t10.sslope;
+  document.getElementById('t10_tax-v').textContent = t10.tax.toFixed(2);
+  t10_draw();
+}
+
+function t10_draw() {
+  const {ctx,W,H} = setupCanvas('c8');
+  const {dslope, sslope, tax} = t10;
+  const pL=65, pR=40, pT=45, pB=55;
+  const {tx,ty} = plotArea(ctx,W,H,pL,pR,pT,pB,0,200,0,12,20,1);
+  axisLabels(ctx,W,H,pL,pT,'Quantity (units)','Price ($/unit)');
+
+  const P_free = 240/(dslope+sslope);
+  const Q_free = 200 - dslope*P_free;
+  const P_buyers = (240 + sslope*tax)/(dslope+sslope);
+  const P_sellers = P_buyers - tax;
+  const Q_tax = Math.max(0, 200 - dslope*P_buyers);
+  const taxRev = tax * Q_tax;
+  const dwl = 0.5 * tax * (Q_free - Q_tax);
+
+  const buyerShare = tax > 0.001 ? (P_buyers - P_free)/tax*100 : 0;
+  const sellerShare = tax > 0.001 ? (P_free - P_sellers)/tax*100 : 0;
+
+  if(tax > 0.01 && Q_tax > 0 && P_sellers >= 0 && P_buyers <= 12) {
+    ctx.fillStyle='rgba(254,243,199,0.7)';
+    ctx.fillRect(tx(0),ty(P_buyers),tx(Q_tax)-tx(0),ty(P_sellers)-ty(P_buyers));
+    ctx.strokeStyle='#d97706'; ctx.lineWidth=1.5;
+    ctx.strokeRect(tx(0),ty(P_buyers),tx(Q_tax)-tx(0),ty(P_sellers)-ty(P_buyers));
+
+    if(P_buyers > P_free) {
+      ctx.fillStyle='rgba(219,234,254,0.6)';
+      ctx.fillRect(tx(0),ty(P_buyers),tx(Q_tax)-tx(0),ty(P_free)-ty(P_buyers));
+    }
+    if(P_free > P_sellers) {
+      ctx.fillStyle='rgba(220,252,231,0.6)';
+      ctx.fillRect(tx(0),ty(P_free),tx(Q_tax)-tx(0),ty(P_sellers)-ty(P_free));
+    }
+
+    ctx.fillStyle='#92400e'; ctx.font='bold 12px Arial'; ctx.textAlign='center';
+    const bandMid = (ty(P_buyers)+ty(P_sellers))/2;
+    if(ty(P_sellers)-ty(P_buyers) > 14) ctx.fillText('Tax = $'+tax.toFixed(2)+'/unit', tx(Q_tax/2), bandMid+5);
+
+    if(Q_free > Q_tax) {
+      ctx.beginPath();
+      ctx.moveTo(tx(Q_tax),ty(P_buyers));
+      ctx.lineTo(tx(Q_free),ty(P_free));
+      ctx.lineTo(tx(Q_tax),ty(P_sellers));
+      ctx.closePath();
+      ctx.fillStyle='rgba(254,202,202,0.7)'; ctx.fill();
+      ctx.strokeStyle='#dc2626'; ctx.lineWidth=1.5; ctx.stroke();
+      ctx.fillStyle='#dc2626'; ctx.font='bold 12px Arial'; ctx.textAlign='left';
+      ctx.fillText('DWL',tx(Q_tax)+4,ty((P_buyers+P_sellers)/2));
+    }
+
+    const bx=tx(Q_tax)+8;
+    ctx.fillStyle='#1e3a8a'; ctx.font='bold 11px Arial'; ctx.textAlign='left';
+    ctx.fillText('Buyers: +$'+(P_buyers-P_free).toFixed(2),bx,ty((P_buyers+P_free)/2)+4);
+    ctx.fillStyle='#14532d';
+    ctx.fillText('Sellers: -$'+(P_free-P_sellers).toFixed(2),bx,ty((P_sellers+P_free)/2)+4);
+
+    hline(ctx,tx(0),tx(200),ty(P_buyers),'#2563eb',2,[5,3]);
+    ctx.fillStyle='#2563eb'; ctx.font='bold 12px Arial'; ctx.textAlign='right';
+    ctx.fillText('P_b=$'+P_buyers.toFixed(2),tx(200)-4,ty(P_buyers)-5);
+    hline(ctx,tx(0),tx(200),ty(P_sellers),'#16a34a',2,[5,3]);
+    ctx.fillStyle='#16a34a'; ctx.font='bold 12px Arial'; ctx.textAlign='right';
+    ctx.fillText('P_s=$'+P_sellers.toFixed(2),tx(200)-4,ty(P_sellers)+14);
+
+    vline(ctx,tx(Q_tax),pT,H-pB,'#374151',1.5,[5,3]);
+    if(Q_free > Q_tax) vline(ctx,tx(Q_free),pT,H-pB,'#9ca3af',1.5,[5,3]);
+    dot(ctx,tx(Q_tax),ty(P_buyers),6,'#2563eb');
+    dot(ctx,tx(Q_tax),ty(P_sellers),6,'#16a34a');
+  }
+
+  hline(ctx,tx(0),tx(200),ty(P_free),'#6b7280',1.5,[4,3]);
+  dot(ctx,tx(Q_free),ty(P_free),7,'#1a2a3a'); dot(ctx,tx(Q_free),ty(P_free),4,'#fff');
+  ctx.fillStyle='#1a2a3a'; ctx.font='bold 12px Arial'; ctx.textAlign='left';
+  ctx.fillText('P*=$'+P_free.toFixed(2)+', Q*='+Q_free.toFixed(0),tx(Q_free)+8,ty(P_free)-8);
+
+  const Pd_int = Math.min(12, 200/dslope);
+  ctx.beginPath();
+  ctx.moveTo(tx(0),ty(Pd_int));
+  ctx.lineTo(tx(Math.min(200, 200)),ty(Math.max(0,(200-200)/dslope)));
+  ctx.strokeStyle='#2563eb'; ctx.lineWidth=3; ctx.setLineDash([]); ctx.stroke();
+  ctx.fillStyle='#2563eb'; ctx.font='bold 15px Arial'; ctx.textAlign='left';
+  ctx.fillText('D',tx(170),ty(200/dslope*0.1)-5);
+
+  const Ps_int = 40/sslope;
+  ctx.beginPath();
+  ctx.moveTo(tx(0),ty(Math.min(12,Ps_int)));
+  ctx.lineTo(tx(Math.min(200,sslope*12-40)),ty(12));
+  ctx.strokeStyle='#16a34a'; ctx.lineWidth=3; ctx.setLineDash([]); ctx.stroke();
+  ctx.fillStyle='#16a34a'; ctx.font='bold 15px Arial'; ctx.textAlign='left';
+  ctx.fillText('S',tx(Math.min(190,sslope*12-40)-10),ty(11.5)-5);
+
+  ctx.fillStyle='#1a2a3a'; ctx.font='bold 14px Arial'; ctx.textAlign='center';
+  ctx.fillText('Tax Incidence \u2014 Who Bears the Burden?',pL+(W-pL-40)/2,pT-25);
+
+  document.getElementById('t10_m_pb').textContent = '$'+P_buyers.toFixed(2);
+  document.getElementById('t10_m_ps').textContent = '$'+P_sellers.toFixed(2);
+  document.getElementById('t10_m_rev').textContent = '$'+taxRev.toFixed(1);
+  document.getElementById('t10_m_dwl').textContent = '$'+dwl.toFixed(1);
+  document.getElementById('t10_m_bs').textContent = tax>0.001 ? buyerShare.toFixed(0)+'%' : 'n/a';
+  document.getElementById('t10_m_ss').textContent = tax>0.001 ? sellerShare.toFixed(0)+'%' : 'n/a';
+}
+
+// ===================== MODULE 9 (TAB 8): EXTERNALITIES =====================
+const t11 = {ext:2.0, ptax:0.0, type:0};
+
+function t11_settype(n) {
+  t11.type = n;
+  document.querySelectorAll('#t11_type_grp .toggle-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  t11_draw();
+}
+
+function t11_preset(n) {
+  const P = [
+    {ext:2,ptax:0,type:0},
+    {ext:2,ptax:1,type:0},
+    {ext:2,ptax:2,type:0},
+    {ext:1.5,ptax:0,type:1}
+  ];
+  Object.assign(t11, P[n]);
+  document.getElementById('t11_ext').value = t11.ext;
+  document.getElementById('t11_ptax').value = t11.ptax;
+  document.querySelectorAll('#mod8 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  document.querySelectorAll('#t11_type_grp .toggle-btn').forEach((b,i)=>b.classList.toggle('active',i===t11.type));
+  t11_update();
+}
+
+function t11_update() {
+  t11.ext = +document.getElementById('t11_ext').value;
+  t11.ptax = +document.getElementById('t11_ptax').value;
+  document.getElementById('t11_ext-v').textContent = t11.ext.toFixed(1);
+  document.getElementById('t11_ptax-v').textContent = t11.ptax.toFixed(1);
+  t11_draw();
+}
+
+function t11_draw() {
+  const {ctx,W,H} = setupCanvas('c9');
+  const {ext, ptax, type} = t11;
+  const pL=65, pR=50, pT=50, pB=55;
+
+  const Qmax = 140, Pmax = 14;
+  const pw = W-pL-pR, ph = H-pT-pB;
+  const tx = v => pL + v/Qmax*pw;
+  const ty = v => pT + (Pmax-v)/Pmax*ph;
+
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+  for(let x=0;x<=Qmax;x+=20){ctx.beginPath();ctx.moveTo(tx(x),pT);ctx.lineTo(tx(x),H-pB);ctx.stroke();}
+  for(let y=0;y<=Pmax;y+=1){ctx.beginPath();ctx.moveTo(pL,ty(y));ctx.lineTo(W-pR,ty(y));ctx.stroke();}
+  ctx.strokeStyle='#374151'; ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(pL,pT);ctx.lineTo(pL,H-pB);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pL,H-pB);ctx.lineTo(W-pR,H-pB);ctx.stroke();
+  ctx.fillStyle='#374151'; ctx.font='bold 11px Arial'; ctx.textAlign='right';
+  for(let y=0;y<=Pmax;y+=1)ctx.fillText(y,pL-6,ty(y)+4);
+  ctx.textAlign='center';
+  for(let x=0;x<=Qmax;x+=20)ctx.fillText(x,tx(x),H-pB+15);
+
+  const PMB = Q => 10 - Q/20;
+  const PMC = Q => 1 + Q/20;
+  const Q_market = 90;
+  const P_market = PMB(Q_market);
+
+  let Q_optimal, P_optimal, dwl, titleStr;
+
+  if(type===0) {
+    const SMC = Q => 1 + Q/20 + ext;
+    Q_optimal = Math.max(0,(9-ext)*10);
+    P_optimal = PMB(Q_optimal);
+
+    if(Q_optimal < Q_market) {
+      ctx.beginPath();
+      ctx.moveTo(tx(Q_optimal),ty(P_optimal));
+      ctx.lineTo(tx(Q_market),ty(P_market));
+      ctx.lineTo(tx(Q_market),ty(SMC(Q_market)));
+      ctx.closePath();
+      ctx.fillStyle='rgba(254,202,202,0.65)'; ctx.fill();
+      ctx.strokeStyle='#dc2626'; ctx.lineWidth=1; ctx.stroke();
+    }
+
+    if(ptax > 0.01) {
+      ctx.beginPath();
+      for(let q=0;q<=Qmax;q+=2){
+        const p=PMC(q)+ptax;
+        if(p>Pmax)break;
+        q===0?ctx.moveTo(tx(q),ty(p)):ctx.lineTo(tx(q),ty(p));
+      }
+      ctx.strokeStyle='#16a34a'; ctx.lineWidth=2; ctx.setLineDash([6,3]); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle='#14532d'; ctx.font='bold 12px Arial'; ctx.textAlign='left';
+      ctx.fillText('PMC+Tax',tx(55),ty(PMC(55)+ptax)-7);
+    }
+
+    ctx.beginPath();
+    for(let q=0;q<=Qmax;q+=2){const p=SMC(q);if(p>Pmax)break;q===0?ctx.moveTo(tx(q),ty(p)):ctx.lineTo(tx(q),ty(p));}
+    ctx.strokeStyle='#dc2626'; ctx.lineWidth=2.5; ctx.setLineDash([8,4]); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle='#dc2626'; ctx.font='bold 12px Arial'; ctx.textAlign='left';
+    const smcLabelQ=60;
+    ctx.fillText('SMC = PMC + Ext. Cost',tx(smcLabelQ)+5,ty(SMC(smcLabelQ))-8);
+
+    const arrowQ=70;
+    const pmcY=ty(PMC(arrowQ)), smcY=ty(SMC(arrowQ));
+    if(smcY < pmcY-4) {
+      ctx.strokeStyle='#dc2626'; ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(tx(arrowQ)+20,pmcY);ctx.lineTo(tx(arrowQ)+20,smcY);ctx.stroke();
+      ctx.fillStyle='#dc2626'; ctx.font='bold 11px Arial'; ctx.textAlign='left';
+      ctx.fillText('Ext. Cost $'+ext.toFixed(1)+'/unit',tx(arrowQ)+24,(pmcY+smcY)/2+4);
+    }
+
+    dwl = Q_optimal < Q_market ? 0.5*ext*(Q_market-Q_optimal) : 0;
+    titleStr = 'Negative Externality \u2014 Factory Pollution';
+
+    vline(ctx,tx(Q_market),pT,H-pB,'#1a2a3a',1.5,[5,3]);
+    ctx.fillStyle='#1a2a3a'; ctx.font='bold 11px Arial'; ctx.textAlign='center';
+    ctx.fillText('Q_mkt='+Q_market,tx(Q_market),pT+12);
+    if(Q_optimal<Q_market-2){
+      vline(ctx,tx(Q_optimal),pT,H-pB,'#dc2626',1.5,[5,3]);
+      ctx.fillStyle='#dc2626'; ctx.font='bold 11px Arial'; ctx.textAlign='center';
+      ctx.fillText('Q*='+Q_optimal.toFixed(0),tx(Q_optimal),pT+24);
+    }
+    if(Q_market-Q_optimal>5){
+      ctx.fillStyle='#dc2626'; ctx.font='bold 12px Arial'; ctx.textAlign='center';
+      ctx.fillText('Market produces TOO MUCH',tx((Q_optimal+Q_market)/2),ty(2.5));
+    }
+    dot(ctx,tx(Q_market),ty(P_market),7,'#1a2a3a'); dot(ctx,tx(Q_market),ty(P_market),4,'#fff');
+    dot(ctx,tx(Q_optimal),ty(P_optimal),7,'#dc2626'); dot(ctx,tx(Q_optimal),ty(P_optimal),4,'#fff');
+
+  } else {
+    const SMB = Q => 10 - Q/20 + ext;
+    Q_optimal = Math.max(0,(9+ext)*10);
+    P_optimal = PMC(Q_optimal);
+
+    if(Q_optimal > Q_market && Q_optimal <= Qmax) {
+      ctx.beginPath();
+      ctx.moveTo(tx(Q_market),ty(P_market));
+      ctx.lineTo(tx(Q_optimal),ty(P_optimal));
+      ctx.lineTo(tx(Q_market),ty(PMB(Q_market)));
+      ctx.closePath();
+      ctx.fillStyle='rgba(254,202,202,0.65)'; ctx.fill();
+      ctx.strokeStyle='#dc2626'; ctx.lineWidth=1; ctx.stroke();
+    }
+
+    ctx.beginPath();
+    for(let q=0;q<=Qmax;q+=2){
+      const p=SMB(q);
+      if(p<0||p>Pmax)break;
+      q===0?ctx.moveTo(tx(q),ty(p)):ctx.lineTo(tx(q),ty(p));
+    }
+    ctx.strokeStyle='#2563eb'; ctx.lineWidth=2.5; ctx.setLineDash([8,4]); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle='#1e3a8a'; ctx.font='bold 12px Arial'; ctx.textAlign='left';
+    ctx.fillText('SMB = PMB + Ext.',tx(10),ty(SMB(10))-8);
+
+    dwl = Q_optimal > Q_market && Q_optimal<=Qmax ? 0.5*ext*(Q_optimal-Q_market) : 0;
+    titleStr = 'Positive Externality \u2014 Education & R&D Spillovers';
+
+    vline(ctx,tx(Q_market),pT,H-pB,'#1a2a3a',1.5,[5,3]);
+    ctx.fillStyle='#1a2a3a'; ctx.font='bold 11px Arial'; ctx.textAlign='center';
+    ctx.fillText('Q_mkt='+Q_market,tx(Q_market),pT+12);
+    if(Q_optimal<=Qmax && Q_optimal>Q_market+2){
+      vline(ctx,tx(Q_optimal),pT,H-pB,'#2563eb',1.5,[5,3]);
+      ctx.fillStyle='#2563eb'; ctx.font='bold 11px Arial'; ctx.textAlign='center';
+      ctx.fillText('Q*='+Q_optimal.toFixed(0),tx(Q_optimal),pT+24);
+      ctx.fillStyle='#2563eb'; ctx.font='bold 12px Arial';
+      ctx.fillText('Market UNDER-produces',tx((Q_market+Q_optimal)/2),ty(2.5));
+    }
+    dot(ctx,tx(Q_market),ty(P_market),7,'#1a2a3a'); dot(ctx,tx(Q_market),ty(P_market),4,'#fff');
+    if(Q_optimal<=Qmax){dot(ctx,tx(Q_optimal),ty(P_optimal),7,'#2563eb'); dot(ctx,tx(Q_optimal),ty(P_optimal),4,'#fff');}
+  }
+
+  ctx.beginPath();
+  for(let q=0;q<=Qmax;q+=2){const p=PMB(q);if(p<0)break;q===0?ctx.moveTo(tx(q),ty(p)):ctx.lineTo(tx(q),ty(p));}
+  ctx.strokeStyle='#2563eb'; ctx.lineWidth=3; ctx.setLineDash([]); ctx.stroke();
+  ctx.fillStyle='#2563eb'; ctx.font='bold 13px Arial'; ctx.textAlign='left';
+  ctx.fillText('PMB (Demand)',tx(100)+5,ty(PMB(100))-8);
+
+  ctx.beginPath();
+  for(let q=0;q<=Qmax;q+=2){const p=PMC(q);if(p>Pmax)break;q===0?ctx.moveTo(tx(q),ty(p)):ctx.lineTo(tx(q),ty(p));}
+  ctx.strokeStyle='#16a34a'; ctx.lineWidth=3; ctx.setLineDash([]); ctx.stroke();
+  ctx.fillStyle='#16a34a'; ctx.font='bold 13px Arial'; ctx.textAlign='left';
+  ctx.fillText('PMC (Supply)',tx(80)+5,ty(PMC(80))+14);
+
+  ctx.fillStyle='#1a2a3a'; ctx.font='bold 13px Arial'; ctx.textAlign='center';
+  ctx.fillText(titleStr, pL+pw/2, pT-30);
+  ctx.fillText('Quantity (units)', pL+pw/2, H-3);
+  ctx.save(); ctx.translate(14,pT+ph/2); ctx.rotate(-Math.PI/2); ctx.fillText('Price ($/unit)',0,0); ctx.restore();
+
+  const taxRev11 = ptax > 0.01 ? ptax*Q_market : 0;
+  document.getElementById('t11_m_qm').textContent = Q_market.toFixed(0)+' units';
+  document.getElementById('t11_m_qo').textContent = Math.min(Q_optimal,Qmax).toFixed(0)+' units';
+  document.getElementById('t11_m_dwl').textContent = '$'+dwl.toFixed(1);
+  document.getElementById('t11_m_rev').textContent = '$'+taxRev11.toFixed(1);
+  const diff = type===0 ? Q_market-Q_optimal : Q_optimal-Q_market;
+  document.getElementById('t11_m_diff').textContent = (type===0?'Over: +':'Under: +')+Math.abs(diff).toFixed(0)+' units';
+}
+
+// ===================== MODULE 10 (TAB 9): BUDGET LINE & CONSUMER CHOICE =====================
+const t12 = {inc:80, pf:5, pc:8, alloc:50, event:0};
+
+function t12_setevent(n) {
+  t12.event = n;
+  document.querySelectorAll('#t12_event_grp .toggle-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  t12_draw();
+}
+
+function t12_preset(n) {
+  const P = [
+    {inc:80,pf:5,pc:8,alloc:50,event:0},
+    {inc:120,pf:5,pc:8,alloc:50,event:0},
+    {inc:80,pf:3,pc:8,alloc:50,event:0},
+    {inc:40,pf:6,pc:10,alloc:50,event:0}
+  ];
+  Object.assign(t12, P[n]);
+  document.getElementById('t12_inc').value = t12.inc;
+  document.getElementById('t12_pf').value = t12.pf;
+  document.getElementById('t12_pc').value = t12.pc;
+  document.getElementById('t12_alloc').value = t12.alloc;
+  document.querySelectorAll('#mod9 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  document.querySelectorAll('#t12_event_grp .toggle-btn').forEach((b,i)=>b.classList.toggle('active',i===t12.event));
+  t12_update();
+}
+
+function t12_update() {
+  t12.inc = +document.getElementById('t12_inc').value;
+  t12.pf = +document.getElementById('t12_pf').value;
+  t12.pc = +document.getElementById('t12_pc').value;
+  t12.alloc = +document.getElementById('t12_alloc').value;
+  document.getElementById('t12_inc-v').textContent = t12.inc;
+  document.getElementById('t12_pf-v').textContent = t12.pf;
+  document.getElementById('t12_pc-v').textContent = t12.pc;
+  document.getElementById('t12_alloc-v').textContent = t12.alloc+'%';
+  t12_draw();
+}
+
+function t12_draw() {
+  const {ctx,W,H} = setupCanvas('c10');
+  const {inc, pf, pc, alloc, event} = t12;
+  const pL=65, pR=50, pT=50, pB=60;
+
+  const maxFood = inc/pf;
+  const maxCloth = inc/pc;
+  const xMax = maxFood * 1.35;
+  const yMax = maxCloth * 1.35;
+  const xStep = Math.max(1, Math.ceil(xMax/6/2)*2);
+  const yStep = Math.max(1, Math.ceil(yMax/6/2)*2);
+  const pw = W-pL-pR, ph = H-pT-pB;
+  const tx = v => pL + v/xMax*pw;
+  const ty = v => pT + (yMax-v)/yMax*ph;
+
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+  for(let x=0;x<=xMax;x+=xStep){ctx.beginPath();ctx.moveTo(tx(x),pT);ctx.lineTo(tx(x),H-pB);ctx.stroke();}
+  for(let y=0;y<=yMax;y+=yStep){ctx.beginPath();ctx.moveTo(pL,ty(y));ctx.lineTo(W-pR,ty(y));ctx.stroke();}
+  ctx.strokeStyle='#374151'; ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(pL,pT);ctx.lineTo(pL,H-pB);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pL,H-pB);ctx.lineTo(W-pR,H-pB);ctx.stroke();
+  ctx.fillStyle='#374151'; ctx.font='bold 11px Arial'; ctx.textAlign='right';
+  for(let y=0;y<=yMax;y+=yStep)ctx.fillText(Math.round(y),pL-6,ty(y)+4);
+  ctx.textAlign='center';
+  for(let x=0;x<=xMax;x+=xStep)ctx.fillText(Math.round(x),tx(x),H-pB+15);
+
+  const foodOpt = inc/(2*pf);
+  const clothOpt = inc/(2*pc);
+  const Uopt = Math.sqrt(foodOpt*clothOpt);
+
+  const drawIC = (U, color, dash) => {
+    ctx.beginPath(); let started=false;
+    for(let f=0.2;f<=xMax;f+=xMax/200){
+      const c = U*U/f;
+      if(c<=0||c>yMax*1.5)continue;
+      if(!started){ctx.moveTo(tx(f),ty(Math.min(yMax,c)));started=true;}
+      else if(c<=yMax) ctx.lineTo(tx(f),ty(c));
+    }
+    ctx.strokeStyle=color; ctx.lineWidth=2; ctx.setLineDash(dash||[]); ctx.stroke(); ctx.setLineDash([]);
+  };
+  drawIC(Uopt*0.5,'#9ca3af',[5,4]);
+  drawIC(Uopt,'#2563eb',[]);
+  drawIC(Uopt*1.3,'#9ca3af',[5,4]);
+
+  const icLabelF = xMax*0.15;
+  ctx.font='bold 11px Arial'; ctx.textAlign='left';
+  ctx.fillStyle='#6b7280'; ctx.fillText('IC (lower)',tx(icLabelF)+3,ty(Uopt*Uopt*0.25/icLabelF)-8);
+  ctx.fillStyle='#2563eb'; ctx.fillText('IC (optimal)',tx(icLabelF)+3,ty(Uopt*Uopt/icLabelF)-8);
+  ctx.fillStyle='#6b7280'; ctx.fillText('IC (higher, unattainable)',tx(icLabelF)+3,ty(Uopt*Uopt*1.69/icLabelF)-8);
+
+  if(event > 0) {
+    let inc2=inc, pf2=pf, pc2=pc;
+    if(event===1){inc2=inc*1.5;}
+    else if(event===2){pf2=pf*0.5;}
+    else if(event===3){pc2=pc*1.5;}
+    ctx.beginPath();
+    ctx.moveTo(tx(0),ty(inc2/pc2));
+    ctx.lineTo(tx(inc2/pf2),ty(0));
+    ctx.strokeStyle='#ea580c'; ctx.lineWidth=2; ctx.setLineDash([8,4]); ctx.stroke(); ctx.setLineDash([]);
+  }
+
+  ctx.beginPath();
+  ctx.moveTo(tx(0),ty(maxCloth));
+  ctx.lineTo(tx(maxFood),ty(0));
+  ctx.strokeStyle='#1a2a3a'; ctx.lineWidth=3; ctx.setLineDash([]); ctx.stroke();
+
+  const foodChosen = inc * alloc/100 / pf;
+  const clothChosen = inc * (1-alloc/100) / pc;
+  if(foodChosen<=xMax && clothChosen<=yMax) {
+    ctx.setLineDash([4,3]);
+    ctx.strokeStyle='#ea580c'; ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(tx(foodChosen),ty(clothChosen));ctx.lineTo(tx(foodChosen),ty(0));ctx.stroke();
+    ctx.beginPath();ctx.moveTo(tx(foodChosen),ty(clothChosen));ctx.lineTo(tx(0),ty(clothChosen));ctx.stroke();
+    ctx.setLineDash([]);
+    dot(ctx,tx(foodChosen),ty(clothChosen),8,'#ea580c');
+    ctx.fillStyle='#c2410c'; ctx.font='bold 12px Arial'; ctx.textAlign='left';
+    ctx.fillText('Current Choice',tx(foodChosen)+10,ty(clothChosen)-10);
+  }
+
+  if(foodOpt<=xMax && clothOpt<=yMax) {
+    ctx.setLineDash([4,3]);
+    ctx.strokeStyle='#16a34a'; ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(tx(foodOpt),ty(clothOpt));ctx.lineTo(tx(foodOpt),ty(0));ctx.stroke();
+    ctx.beginPath();ctx.moveTo(tx(foodOpt),ty(clothOpt));ctx.lineTo(tx(0),ty(clothOpt));ctx.stroke();
+    ctx.setLineDash([]);
+    dot(ctx,tx(foodOpt),ty(clothOpt),9,'#16a34a');
+    ctx.fillStyle='#14532d'; ctx.font='bold 12px Arial'; ctx.textAlign='right';
+    ctx.fillText('Optimal Bundle \u2190',tx(foodOpt)-10,ty(clothOpt)-12);
+  }
+
+  const MUf_Pf = foodChosen > 0.01 && clothChosen > 0.01 ? (0.5*Math.pow(foodChosen,-0.5)*Math.pow(clothChosen,0.5))/pf : 0;
+  const MUc_Pc = foodChosen > 0.01 && clothChosen > 0.01 ? (0.5*Math.pow(clothChosen,-0.5)*Math.pow(foodChosen,0.5))/pc : 0;
+  const ratio = MUc_Pc > 0.0001 ? MUf_Pf/MUc_Pc : 1;
+  const isOptimal = Math.abs(ratio-1) < 0.12;
+  ctx.fillStyle='#1a2a3a'; ctx.font='bold 12px Arial'; ctx.textAlign='left';
+  ctx.fillText('MU_f/P_f = '+MUf_Pf.toFixed(3), pL+8, pT+18);
+  ctx.fillText('MU_c/P_c = '+MUc_Pc.toFixed(3), pL+8, pT+34);
+  ctx.fillStyle = isOptimal ? '#14532d' : '#b91c1c';
+  ctx.fillText(isOptimal ? '= Utility Maximized!' : (MUf_Pf > MUc_Pc ? '\u2192 Buy more food' : '\u2192 Buy more clothing'), pL+8, pT+50);
+
+  ctx.fillStyle='#1a2a3a'; ctx.font='bold 13px Arial'; ctx.textAlign='center';
+  ctx.fillText('Budget Line & Indifference Curves \u2014 Food vs. Clothing', pL+pw/2, pT-30);
+  ctx.fillText('Food (units)', pL+pw/2, H-3);
+  ctx.save(); ctx.translate(14,pT+ph/2); ctx.rotate(-Math.PI/2); ctx.fillText('Clothing (units)',0,0); ctx.restore();
+
+  const foodU = Math.floor(inc*alloc/100/pf);
+  const clothU = Math.floor(inc*(1-alloc/100)/pc);
+  const utility = foodU>0&&clothU>0 ? Math.sqrt(foodU*clothU).toFixed(2) : '0';
+  document.getElementById('t12_m_food').textContent = foodU;
+  document.getElementById('t12_m_cloth').textContent = clothU;
+  document.getElementById('t12_m_util').textContent = utility;
+  document.getElementById('t12_m_muf').textContent = MUf_Pf.toFixed(4);
+  document.getElementById('t12_m_muc').textContent = MUc_Pc.toFixed(4);
+  document.getElementById('t12_m_opt').textContent = isOptimal ? 'Yes \u2713' : (MUf_Pf > MUc_Pc ? 'Buy more food' : 'Buy more clothing');
+}
+
+// ===================== MODULE 11 (TAB 10): MONOPOLY VS. COMPETITION =====================
+const t13 = {di:15, ds:0.06, mc:4, mode:0};
+
+function t13_setmode(n) {
+  t13.mode = n;
+  document.querySelectorAll('#t13_mode_grp .toggle-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  t13_draw();
+}
+
+function t13_preset(n) {
+  const P = [
+    {di:15,ds:0.06,mc:4,mode:0},
+    {di:15,ds:0.06,mc:4,mode:1},
+    {di:15,ds:0.06,mc:7,mode:1},
+    {di:15,ds:0.06,mc:4,mode:2}
+  ];
+  Object.assign(t13, P[n]);
+  document.getElementById('t13_di').value = t13.di;
+  document.getElementById('t13_ds').value = t13.ds;
+  document.getElementById('t13_mc').value = t13.mc;
+  document.querySelectorAll('#mod10 .preset-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  document.querySelectorAll('#t13_mode_grp .toggle-btn').forEach((b,i)=>b.classList.toggle('active',i===t13.mode));
+  t13_update();
+}
+
+function t13_update() {
+  t13.di = +document.getElementById('t13_di').value;
+  t13.ds = +document.getElementById('t13_ds').value;
+  t13.mc = +document.getElementById('t13_mc').value;
+  document.getElementById('t13_di-v').textContent = t13.di;
+  document.getElementById('t13_ds-v').textContent = t13.ds.toFixed(2);
+  document.getElementById('t13_mc-v').textContent = t13.mc;
+  t13_draw();
+}
+
+function t13_draw() {
+  const {ctx,W,H} = setupCanvas('c11');
+  const {di, ds, mc, mode} = t13;
+  const pL=65, pR=50, pT=50, pB=55;
+
+  const Q_pc = (di - mc) / ds;
+  const P_pc = mc;
+  const Q_m = (di - mc) / (2 * ds);
+  const P_m = di - ds * Q_m;
+  const CS_pc = 0.5 * (di - P_pc) * Q_pc;
+  const CS_m = 0.5 * (di - P_m) * Q_m;
+  const profit_m = (P_m - mc) * Q_m;
+  const dwl_m = 0.5 * (P_m - mc) * (Q_pc - Q_m);
+
+  const xMax = Q_pc * 1.25;
+  const yMax = di * 1.15;
+  const xStep = Math.ceil(xMax/6/10)*10;
+  const yStep = Math.max(1, Math.ceil(yMax/8));
+  const pw = W-pL-pR, ph = H-pT-pB;
+  const tx = v => pL + v/xMax*pw;
+  const ty = v => pT + (yMax-v)/yMax*ph;
+
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+  for(let x=0;x<=xMax;x+=xStep){ctx.beginPath();ctx.moveTo(tx(x),pT);ctx.lineTo(tx(x),H-pB);ctx.stroke();}
+  for(let y=0;y<=yMax;y+=yStep){ctx.beginPath();ctx.moveTo(pL,ty(y));ctx.lineTo(W-pR,ty(y));ctx.stroke();}
+  ctx.strokeStyle='#374151'; ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(pL,pT);ctx.lineTo(pL,H-pB);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pL,H-pB);ctx.lineTo(W-pR,H-pB);ctx.stroke();
+  ctx.fillStyle='#374151'; ctx.font='bold 11px Arial'; ctx.textAlign='right';
+  for(let y=0;y<=yMax;y+=yStep)ctx.fillText(y,pL-6,ty(y)+4);
+  ctx.textAlign='center';
+  for(let x=0;x<=xMax;x+=xStep)ctx.fillText(Math.round(x),tx(x),H-pB+15);
+
+  if(mode===0) {
+    ctx.beginPath();ctx.moveTo(tx(0),ty(di));ctx.lineTo(tx(Q_pc),ty(P_pc));ctx.lineTo(tx(0),ty(P_pc));ctx.closePath();
+    ctx.fillStyle='rgba(219,234,254,0.5)'; ctx.fill(); ctx.strokeStyle='#2563eb'; ctx.lineWidth=1; ctx.stroke();
+    ctx.fillStyle='#1d4ed8'; ctx.font='bold 14px Arial'; ctx.textAlign='center';
+    ctx.fillText('CS',tx(Q_pc*0.2),ty((di+P_pc)/2));
+
+    hline(ctx,tx(0),tx(xMax),ty(mc),'#16a34a',2.5);
+    ctx.fillStyle='#15803d'; ctx.font='bold 13px Arial'; ctx.textAlign='right';
+    ctx.fillText('MC = P = $'+mc.toFixed(0),tx(xMax)-5,ty(mc)-7);
+
+    vline(ctx,tx(Q_pc),pT,H-pB,'#6b7280',1.5,[5,3]);
+    hline(ctx,tx(0),tx(Q_pc),ty(P_pc),'#6b7280',1.5,[5,3]);
+    dot(ctx,tx(Q_pc),ty(P_pc),7,'#1a2a3a'); dot(ctx,tx(Q_pc),ty(P_pc),4,'#fff');
+    ctx.fillStyle='#1a2a3a'; ctx.font='bold 12px Arial'; ctx.textAlign='left';
+    ctx.fillText('Q*='+Math.round(Q_pc)+', P*=$'+P_pc,tx(Q_pc)+8,ty(P_pc)-8);
+    ctx.fillStyle='#14532d'; ctx.font='bold 15px Arial'; ctx.textAlign='center';
+    ctx.fillText('P = MC: Efficient!',pL+pw/2,pT+22);
+
+  } else if(mode===1 || mode===2) {
+    ctx.fillStyle='rgba(254,243,199,0.65)';
+    ctx.fillRect(tx(0),ty(P_m),tx(Q_m)-tx(0),ty(mc)-ty(P_m));
+    ctx.strokeStyle='#d97706'; ctx.lineWidth=1.5;
+    ctx.strokeRect(tx(0),ty(P_m),tx(Q_m)-tx(0),ty(mc)-ty(P_m));
+    ctx.fillStyle='#92400e'; ctx.font='bold 13px Arial'; ctx.textAlign='center';
+    ctx.fillText('Profit',tx(Q_m/2),(ty(P_m)+ty(mc))/2+5);
+
+    ctx.beginPath();ctx.moveTo(tx(0),ty(di));ctx.lineTo(tx(Q_m),ty(P_m));ctx.lineTo(tx(0),ty(P_m));ctx.closePath();
+    ctx.fillStyle='rgba(219,234,254,0.5)'; ctx.fill(); ctx.strokeStyle='#93c5fd'; ctx.lineWidth=1; ctx.stroke();
+    ctx.fillStyle='#1d4ed8'; ctx.font='bold 13px Arial'; ctx.textAlign='center';
+    ctx.fillText('CS',tx(Q_m*0.22),ty((di+P_m)/2));
+
+    ctx.beginPath();ctx.moveTo(tx(Q_m),ty(P_m));ctx.lineTo(tx(Q_pc),ty(mc));ctx.lineTo(tx(Q_m),ty(mc));ctx.closePath();
+    ctx.fillStyle='rgba(254,202,202,0.7)'; ctx.fill(); ctx.strokeStyle='#dc2626'; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.fillStyle='#dc2626'; ctx.font='bold 12px Arial'; ctx.textAlign='left';
+    ctx.fillText('DWL',tx(Q_m)+4,ty((P_m+mc)/2)+5);
+
+    hline(ctx,tx(0),tx(xMax),ty(mc),'#16a34a',2.5);
+    ctx.fillStyle='#15803d'; ctx.font='bold 13px Arial'; ctx.textAlign='right';
+    ctx.fillText('MC=$'+mc.toFixed(0),tx(xMax)-5,ty(mc)-7);
+
+    vline(ctx,tx(Q_pc),pT,H-pB,'#6b7280',1.5,[5,3]);
+    ctx.fillStyle='#6b7280'; ctx.font='bold 11px Arial'; ctx.textAlign='center';
+    ctx.fillText('Q_pc='+Math.round(Q_pc),tx(Q_pc),pT+12);
+
+    vline(ctx,tx(Q_m),ty(P_m),H-pB,'#1a2a3a',1.5,[5,3]);
+    hline(ctx,tx(0),tx(Q_m),ty(P_m),'#1a2a3a',1.5,[5,3]);
+    dot(ctx,tx(Q_m),ty(P_m),7,'#dc2626'); dot(ctx,tx(Q_m),ty(P_m),4,'#fff');
+    ctx.fillStyle='#dc2626'; ctx.font='bold 12px Arial'; ctx.textAlign='left';
+    ctx.fillText('Q_m='+Math.round(Q_m)+', P_m=$'+P_m.toFixed(1),tx(Q_m)+8,ty(P_m)-8);
+
+    ctx.fillStyle='#7c3aed'; ctx.font='bold 11px Arial'; ctx.textAlign='center';
+    ctx.fillText('MR=MC here',tx(Q_m),ty(mc)+20);
+
+    ctx.fillStyle='#dc2626'; ctx.font='bold 14px Arial'; ctx.textAlign='center';
+    ctx.fillText('P > MC: Inefficient!',pL+pw*0.65,pT+22);
+
+    ctx.beginPath();
+    for(let q=0;q<=xMax;q+=2){
+      const p=di-2*ds*q;
+      if(p<-2)break;
+      const cy=Math.max(ty(0)-5, ty(p));
+      q===0?ctx.moveTo(tx(q),cy):ctx.lineTo(tx(q),cy);
+    }
+    ctx.strokeStyle='#7c3aed'; ctx.lineWidth=2.5; ctx.setLineDash([]); ctx.stroke();
+    ctx.fillStyle='#7c3aed'; ctx.font='bold 13px Arial'; ctx.textAlign='left';
+    ctx.fillText('MR',tx(Q_m*0.8)+5,ty(di-2*ds*Q_m*0.8)-8);
+  }
+
+  ctx.beginPath();
+  for(let q=0;q<=xMax;q+=2){const p=di-ds*q;if(p<0)break;q===0?ctx.moveTo(tx(q),ty(p)):ctx.lineTo(tx(q),ty(p));}
+  ctx.strokeStyle='#2563eb'; ctx.lineWidth=3; ctx.setLineDash([]); ctx.stroke();
+  ctx.fillStyle='#2563eb'; ctx.font='bold 15px Arial'; ctx.textAlign='left';
+  ctx.fillText('D',tx(xMax*0.88)+5,ty(di-ds*xMax*0.88)-8);
+
+  const modeStr = mode===0?'Perfect Competition':mode===1?'Monopoly':'Comparison: PC vs. Monopoly';
+  ctx.fillStyle='#1a2a3a'; ctx.font='bold 13px Arial'; ctx.textAlign='center';
+  ctx.fillText(modeStr+' \u2014 Market Analysis', pL+pw/2, pT-30);
+  ctx.fillText('Quantity (units)', pL+pw/2, H-3);
+  ctx.save(); ctx.translate(14,pT+ph/2); ctx.rotate(-Math.PI/2); ctx.fillText('Price ($/unit)',0,0); ctx.restore();
+
+  const markup = mc>0 ? (mode===0?0:(P_m-mc)/mc*100) : 0;
+  if(mode===0){
+    document.getElementById('t13_m_p').textContent = '$'+P_pc.toFixed(2);
+    document.getElementById('t13_m_q').textContent = Math.round(Q_pc)+' units';
+    document.getElementById('t13_m_cs').textContent = '$'+CS_pc.toFixed(0);
+    document.getElementById('t13_m_ps').textContent = '$0 (PC)';
+    document.getElementById('t13_m_dwl').textContent = '$0';
+    document.getElementById('t13_m_mk').textContent = '0% (P=MC)';
+  } else {
+    document.getElementById('t13_m_p').textContent = '$'+P_pc.toFixed(1)+' / $'+P_m.toFixed(1);
+    document.getElementById('t13_m_q').textContent = Math.round(Q_pc)+' / '+Math.round(Q_m)+' units';
+    document.getElementById('t13_m_cs').textContent = '$'+CS_pc.toFixed(0)+' / $'+CS_m.toFixed(0);
+    document.getElementById('t13_m_ps').textContent = '$0 / $'+profit_m.toFixed(0);
+    document.getElementById('t13_m_dwl').textContent = '$0 / $'+dwl_m.toFixed(0);
+    document.getElementById('t13_m_mk').textContent = '0% / '+markup.toFixed(0)+'%';
+  }
+}
+
+// ===================== DRAWS ARRAY & INIT =====================
+const DRAWS = [m1draw, m2draw, m3draw, m4draw, m5draw, m6draw, t9_draw, t10_draw, t11_draw, t12_draw, t13_draw];
+
+document.querySelectorAll('.canvas-wrap').forEach((wrap,i)=>{
+  const ro=new ResizeObserver(()=>{if(activeTab===i)DRAWS[i]();});
+  ro.observe(wrap);
+});
+
+window.addEventListener('resize',()=>DRAWS[activeTab]());
+
+window.addEventListener('load',()=>{
+  m1draw();
+  m2upd(); m3upd(); m4upd(); m5draw(); m6draw();
+  t9_update(); t10_update(); t11_update(); t12_update(); t13_update();
+});
+</script>
+</body>
+</html>
