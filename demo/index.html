@@ -1,0 +1,2510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The $400K Question · Ag Finance Demo</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-dark: #1a3a2a;
+    --green: #16a34a;
+    --green-light: #4ade80;
+    --amber: #d97706;
+    --amber-light: #fbbf24;
+    --cream: #fefce8;
+    --red: #ef4444;
+    --blue: #3b82f6;
+    --gray: #6b7280;
+    --border: #e5e7eb;
+    --sidebar-w: 320px;
+  }
+
+  html, body {
+    width: 100%; height: 100%; overflow: hidden;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #f3f4f6;
+    font-size: 15px;
+  }
+
+  /* ── HEADER ── */
+  #header {
+    background: var(--green-dark);
+    color: white;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 12px;
+    flex-shrink: 0;
+    z-index: 10;
+  }
+  #header-title {
+    font-size: 17px;
+    font-weight: 700;
+    white-space: nowrap;
+    color: var(--green-light);
+    min-width: 260px;
+  }
+  #header-nav {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .nav-btn {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 5px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.15s;
+  }
+  .nav-btn:hover { background: rgba(255,255,255,0.28); }
+  .nav-btn:disabled { opacity: 0.35; cursor: default; }
+  #slide-counter { font-size: 14px; color: #d1fae5; min-width: 40px; text-align: center; }
+  #slide-name { font-size: 13px; color: #86efac; min-width: 110px; text-align: center; }
+  #timer {
+    font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums;
+    padding: 4px 12px; border-radius: 5px;
+    background: rgba(255,255,255,0.1);
+    min-width: 70px; text-align: center;
+  }
+  #timer.green { color: #4ade80; }
+  #timer.amber { color: #fbbf24; }
+  #timer.red   { color: #f87171; }
+
+  /* ── PROGRESS BAR ── */
+  #progress-bar {
+    display: flex;
+    height: 6px;
+    background: #2d5a3e;
+    flex-shrink: 0;
+  }
+  .prog-seg {
+    flex: 1;
+    background: #2d5a3e;
+    transition: background 0.25s;
+  }
+  .prog-seg.active { background: var(--green-light); }
+  .prog-seg + .prog-seg { border-left: 1px solid #1a3a2a; }
+
+  /* ── MAIN AREA ── */
+  #app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  #slides-container {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+  .slide {
+    display: none;
+    width: 100%; height: 100%;
+    flex-direction: row;
+  }
+  .slide.active { display: flex; }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-w);
+    min-width: var(--sidebar-w);
+    background: white;
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 14px 14px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .sidebar::-webkit-scrollbar { width: 5px; }
+  .sidebar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+  .s-section {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--gray);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 3px;
+    margin-top: 4px;
+  }
+
+  .s-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #374151;
+  }
+
+  /* Sliders */
+  .slider-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .slider-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .slider-label { font-size: 13px; color: #374151; }
+  .slider-val { font-size: 14px; font-weight: 700; color: var(--green-dark); }
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%; height: 5px;
+    border-radius: 3px;
+    background: #d1fae5;
+    outline: none;
+    cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--green);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+
+  /* Metric cards */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+  .metric-card {
+    background: #f9fafb;
+    border-left: 3px solid var(--green);
+    border-radius: 4px;
+    padding: 7px 9px;
+  }
+  .metric-card.full { grid-column: 1/-1; }
+  .metric-card.red-card { border-left-color: var(--red); }
+  .metric-card.amber-card { border-left-color: var(--amber); }
+  .metric-card.blue-card { border-left-color: var(--blue); }
+  .mc-label { font-size: 11px; color: var(--gray); margin-bottom: 2px; }
+  .mc-val { font-size: 17px; font-weight: 700; color: var(--green); }
+  .mc-val.neg { color: var(--red); }
+  .mc-val.amber { color: var(--amber); }
+
+  /* Vote buttons */
+  .vote-btn {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; padding: 10px 14px;
+    border: none; border-radius: 6px; cursor: pointer;
+    font-size: 14px; font-weight: 600;
+    transition: opacity 0.15s, transform 0.08s;
+  }
+  .vote-btn:active { transform: scale(0.97); }
+  .vote-btn.green { background: #dcfce7; color: #14532d; border: 1.5px solid #86efac; }
+  .vote-btn.amber { background: #fef3c7; color: #78350f; border: 1.5px solid #fcd34d; }
+  .vote-btn.gray  { background: #f3f4f6; color: #374151; border: 1.5px solid #d1d5db; }
+  .vote-count { font-size: 18px; font-weight: 800; }
+
+  .vote-bars { display: flex; flex-direction: column; gap: 5px; }
+  .vote-bar-row { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+  .vote-bar-label { width: 72px; color: var(--gray); text-align: right; flex-shrink: 0; }
+  .vote-bar-track { flex: 1; height: 14px; background: #e5e7eb; border-radius: 7px; overflow: hidden; }
+  .vote-bar-fill  { height: 100%; border-radius: 7px; transition: width 0.35s ease; min-width: 2px; }
+  .vote-bar-fill.green { background: var(--green); }
+  .vote-bar-fill.amber { background: var(--amber); }
+  .vote-bar-fill.gray  { background: #9ca3af; }
+  .vote-bar-num { width: 20px; font-weight: 700; color: #374151; }
+
+  /* Formula box */
+  .formula-box {
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+    border-radius: 5px;
+    padding: 9px 10px;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    color: #14532d;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .insight-box {
+    background: var(--cream);
+    border: 1px solid #fcd34d;
+    border-radius: 5px;
+    padding: 9px 10px;
+    font-size: 12.5px;
+    color: #78350f;
+    line-height: 1.5;
+  }
+
+  .reset-link {
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray);
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .reset-link:hover { color: var(--red); }
+
+  /* ── CANVAS AREA ── */
+  .canvas-area {
+    flex: 1;
+    background: #f8fafc;
+    position: relative;
+    overflow: hidden;
+  }
+  .canvas-area canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+
+  /* Summary cards for slide 5 */
+  .summary-card {
+    border: 1.5px solid var(--border);
+    border-radius: 7px;
+    padding: 9px 11px;
+    background: #fafafa;
+  }
+  .summary-card-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .summary-card-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 2px; }
+  .summary-card-row .label { color: var(--gray); }
+  .summary-card-row .val { font-weight: 600; }
+  .sc-pro { font-size: 12px; color: var(--green); }
+  .sc-con { font-size: 12px; color: var(--red); }
+
+  .verdict-insight {
+    background: var(--green-dark);
+    color: #d1fae5;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* ── GUESS THE PAYMENT (Slide 2) ── */
+  .guess-box {
+    background: #eff6ff;
+    border: 2px solid #3b82f6;
+    border-radius: 8px;
+    padding: 10px 12px;
+    text-align: center;
+  }
+  .guess-box label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 6px;
+  }
+  .guess-input-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .guess-input-row input[type=number] {
+    flex: 1;
+    padding: 8px 10px;
+    border: 2px solid #93c5fd;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    outline: none;
+    font-family: inherit;
+  }
+  .guess-input-row input[type=number]:focus { border-color: #3b82f6; }
+  .guess-reveal-btn {
+    padding: 8px 16px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .guess-reveal-btn:hover { background: #2563eb; }
+  .guess-reveal-btn:disabled { background: #93c5fd; cursor: default; }
+  .guess-result {
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    display: none;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .guess-result.show { display: block; }
+  .guess-result.hot { background: #dcfce7; color: #14532d; border: 1px solid #86efac; }
+  .guess-result.warm { background: #fef3c7; color: #78350f; border: 1px solid #fcd34d; }
+  .guess-result.cold { background: #fee2e2; color: #7f1d1d; border: 1px solid #fca5a5; }
+  .s2-hidden { display: none !important; }
+
+  /* ── SCENARIO PRESETS (Slide 3) ── */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+  }
+  .scenario-btn {
+    padding: 7px 6px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.15s;
+    background: white;
+    line-height: 1.3;
+  }
+  .scenario-btn:hover { transform: scale(1.03); }
+  .scenario-btn.active { border-width: 2px; }
+  .scenario-btn[data-id="drought"] { color: #92400e; border-color: #f59e0b; }
+  .scenario-btn[data-id="drought"].active { background: #fef3c7; }
+  .scenario-btn[data-id="boom"] { color: #14532d; border-color: #16a34a; }
+  .scenario-btn[data-id="boom"].active { background: #dcfce7; }
+  .scenario-btn[data-id="crash"] { color: #7f1d1d; border-color: #ef4444; }
+  .scenario-btn[data-id="crash"].active { background: #fee2e2; }
+  .scenario-btn[data-id="reset"] { color: #374151; border-color: #9ca3af; }
+
+  /* ── SURVIVAL CHALLENGE ── */
+  .challenge-box {
+    background: #1a1a2e;
+    border: 2px solid #ef4444;
+    border-radius: 8px;
+    padding: 10px 12px;
+    text-align: center;
+    display: none;
+  }
+  .challenge-box.active { display: block; }
+  .challenge-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: #f87171;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .challenge-desc {
+    font-size: 12px;
+    color: #d1d5db;
+    margin: 4px 0;
+    line-height: 1.4;
+  }
+  .challenge-timer-bar {
+    height: 6px;
+    background: #374151;
+    border-radius: 3px;
+    margin: 6px 0;
+    overflow: hidden;
+  }
+  .challenge-timer-fill {
+    height: 100%;
+    background: #ef4444;
+    border-radius: 3px;
+    transition: width 1s linear;
+  }
+  .challenge-status {
+    font-size: 14px;
+    font-weight: 800;
+    margin-top: 4px;
+    min-height: 20px;
+  }
+  .challenge-status.win { color: #4ade80; }
+  .challenge-status.lose { color: #f87171; }
+  .challenge-start-btn {
+    padding: 8px 16px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .challenge-start-btn:hover { background: #dc2626; }
+
+  /* ── QUIZ MODAL ── */
+  .quiz-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .quiz-overlay.show { display: flex; }
+  .quiz-card {
+    background: white;
+    border-radius: 12px;
+    padding: 28px 32px;
+    max-width: 520px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    text-align: center;
+  }
+  .quiz-badge {
+    display: inline-block;
+    background: #3b82f6;
+    color: white;
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .quiz-question {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a3a2a;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .quiz-opt {
+    padding: 10px 14px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    background: #f9fafb;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    transition: all 0.15s;
+  }
+  .quiz-opt:hover { border-color: #3b82f6; background: #eff6ff; }
+  .quiz-opt.correct { border-color: #16a34a; background: #dcfce7; color: #14532d; font-weight: 700; }
+  .quiz-opt.wrong { border-color: #ef4444; background: #fee2e2; color: #7f1d1d; }
+  .quiz-opt.disabled { pointer-events: none; opacity: 0.6; }
+  .quiz-explain {
+    display: none;
+    font-size: 13px;
+    color: #374151;
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 8px;
+    line-height: 1.5;
+    text-align: left;
+  }
+  .quiz-explain.show { display: block; }
+  .quiz-close-btn {
+    margin-top: 12px;
+    padding: 8px 24px;
+    background: var(--green-dark);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: none;
+  }
+  .quiz-close-btn.show { display: inline-block; }
+  .quiz-score {
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 6px;
+  }
+
+  /* ── DISCUSSION TIMER ── */
+  .discuss-btn {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .discuss-btn:hover { background: rgba(255,255,255,0.28); }
+  .discuss-btn.running { background: #d97706; border-color: #d97706; animation: pulse-discuss 1.5s infinite; }
+  @keyframes pulse-discuss {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+</style>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- HEADER -->
+  <div id="header">
+    <div id="header-title">The $400K Question · Ag Finance Demo</div>
+    <div id="header-nav">
+      <button class="nav-btn" id="btn-prev" onclick="navigate(-1)">← Previous</button>
+      <span id="slide-counter">1 / 5</span>
+      <span id="slide-name">Hook</span>
+      <button class="nav-btn" id="btn-next" onclick="navigate(1)">Next →</button>
+    </div>
+    <button class="discuss-btn" id="discuss-btn" onclick="toggleDiscussTimer()">Discuss 60s</button>
+    <div id="timer" class="green">00:00</div>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div id="progress-bar">
+    <div class="prog-seg active" id="ps0"></div>
+    <div class="prog-seg" id="ps1"></div>
+    <div class="prog-seg" id="ps2"></div>
+    <div class="prog-seg" id="ps3"></div>
+    <div class="prog-seg" id="ps4"></div>
+  </div>
+
+  <div id="slides-container">
+
+    <!-- ══════════════════════════════════════════
+         SLIDE 1: THE HOOK
+    ══════════════════════════════════════════ -->
+    <div class="slide active" id="slide-1">
+      <div class="sidebar">
+        <div class="s-section">The Scenario</div>
+        <div class="s-text" style="font-size:15px; line-height:1.65; color:#1a3a2a; font-weight:500;">
+          You just inherited <strong>600 acres</strong> in West Texas. A dealer is offering you a brand-new
+          <strong>John Deere S780</strong> combine for <strong style="color:#d97706;">$400,000</strong>.
+          You have <strong>$40,000</strong> saved. What do you do?
+        </div>
+
+        <div class="s-section">Cast Your Vote</div>
+        <button class="vote-btn green" onclick="castVote('finance')">
+          <span>💰 Finance It</span>
+          <span class="vote-count" id="v1-finance">0</span>
+        </button>
+        <button class="vote-btn amber" onclick="castVote('coop')">
+          <span>🤝 Find Co-op Partners</span>
+          <span class="vote-count" id="v1-coop">0</span>
+        </button>
+        <button class="vote-btn gray" onclick="castVote('custom')">
+          <span>❌ Hire Custom Operator</span>
+          <span class="vote-count" id="v1-custom">0</span>
+        </button>
+
+        <div class="vote-bars" id="vote-bars-1">
+          <div class="vote-bar-row">
+            <span class="vote-bar-label">Finance</span>
+            <div class="vote-bar-track"><div class="vote-bar-fill green" id="vb-finance" style="width:0%"></div></div>
+            <span class="vote-bar-num" id="vbn-finance">0</span>
+          </div>
+          <div class="vote-bar-row">
+            <span class="vote-bar-label">Co-op</span>
+            <div class="vote-bar-track"><div class="vote-bar-fill amber" id="vb-coop" style="width:0%"></div></div>
+            <span class="vote-bar-num" id="vbn-coop">0</span>
+          </div>
+          <div class="vote-bar-row">
+            <span class="vote-bar-label">Custom Hire</span>
+            <div class="vote-bar-track"><div class="vote-bar-fill gray" id="vb-custom" style="width:0%"></div></div>
+            <span class="vote-bar-num" id="vbn-custom">0</span>
+          </div>
+        </div>
+
+        <div class="s-text" style="font-size:12px; color:#6b7280; font-style:italic; text-align:center;">
+          We'll revisit your votes at the end!
+        </div>
+        <div class="reset-link" onclick="resetVotes()">Reset Votes</div>
+      </div>
+      <div class="canvas-area">
+        <canvas id="canvas-1"></canvas>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SLIDE 2: AMORTIZATION
+    ══════════════════════════════════════════ -->
+    <div class="slide" id="slide-2">
+      <div class="sidebar">
+        <div class="s-section">Loan Parameters</div>
+
+        <div class="slider-row">
+          <div class="slider-label-row">
+            <span class="slider-label">Loan Amount</span>
+            <span class="slider-val" id="s2-loan-val">$360,000</span>
+          </div>
+          <input type="range" id="s2-loan" min="200000" max="400000" step="5000" value="360000"
+            oninput="updateSlide2()">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-label-row">
+            <span class="slider-label">Annual Interest Rate</span>
+            <span class="slider-val" id="s2-rate-val">7.5%</span>
+          </div>
+          <input type="range" id="s2-rate" min="3" max="14" step="0.25" value="7.5"
+            oninput="updateSlide2()">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-label-row">
+            <span class="slider-label">Loan Term</span>
+            <span class="slider-val" id="s2-term-val">7 years</span>
+          </div>
+          <input type="range" id="s2-term" min="3" max="15" step="1" value="7"
+            oninput="updateSlide2()">
+        </div>
+
+        <div class="s-section">Guess the Payment!</div>
+        <div class="guess-box" id="guess-box">
+          <label>What do you think the annual payment is?</label>
+          <div class="guess-input-row">
+            <span style="font-size:18px;font-weight:700;color:#1e40af;">$</span>
+            <input type="number" id="guess-input" placeholder="e.g. 55000" min="0" max="500000" step="1000">
+            <button class="guess-reveal-btn" id="guess-btn" onclick="revealPayment()">Reveal!</button>
+          </div>
+          <div class="guess-result" id="guess-result"></div>
+        </div>
+
+        <div class="s-section">PMT Formula</div>
+        <div class="formula-box">
+          PMT = P × [r(1+r)ⁿ] / [(1+r)ⁿ − 1]<br>
+          <span style="font-size:11px;color:#6b7280;">P=principal · r=annual rate · n=years</span>
+        </div>
+
+        <div class="s-section s2-hideable s2-hidden">Payment Summary</div>
+        <div class="metric-grid s2-hideable s2-hidden">
+          <div class="metric-card full">
+            <div class="mc-label">Annual Payment</div>
+            <div class="mc-val" id="s2-annual-pmt">$—</div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-label">Monthly Payment</div>
+            <div class="mc-val" id="s2-monthly-pmt">$—</div>
+          </div>
+          <div class="metric-card red-card">
+            <div class="mc-label">Total Interest Paid</div>
+            <div class="mc-val amber" id="s2-total-int">$—</div>
+          </div>
+          <div class="metric-card amber-card">
+            <div class="mc-label">Total Cost of Machine</div>
+            <div class="mc-val" id="s2-total-cost">$—</div>
+          </div>
+        </div>
+
+        <div class="insight-box s2-hideable s2-hidden" id="s2-insight">
+          At $50/acre custom hire × 600 acres = $30,000/yr saved (vs hiring out). Your annual payment is <strong id="s2-pmt-inline">$—</strong>. The machine pays for itself if you can cover the difference — and harvest on your own schedule.
+        </div>
+      </div>
+      <div class="canvas-area">
+        <canvas id="canvas-2"></canvas>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SLIDE 3: BREAK-EVEN & CASH FLOW
+    ══════════════════════════════════════════ -->
+    <div class="slide" id="slide-3">
+      <div class="sidebar">
+        <div class="s-section">Scenarios</div>
+        <div class="scenario-grid">
+          <button class="scenario-btn" data-id="drought" onclick="loadScenario('drought')">Drought Year<br><span style="font-size:10px;font-weight:400;">Low yield, high cost</span></button>
+          <button class="scenario-btn" data-id="boom" onclick="loadScenario('boom')">Boom Year<br><span style="font-size:10px;font-weight:400;">$7 corn, high yield</span></button>
+          <button class="scenario-btn" data-id="crash" onclick="loadScenario('crash')">2008 Crisis<br><span style="font-size:10px;font-weight:400;">$3 corn, rising costs</span></button>
+          <button class="scenario-btn" data-id="reset" onclick="loadScenario('reset')">Reset<br><span style="font-size:10px;font-weight:400;">Back to defaults</span></button>
+        </div>
+
+        <button class="challenge-start-btn" id="challenge-start" onclick="startSurvivalChallenge()" style="width:100%;margin-top:2px;">SURVIVAL CHALLENGE</button>
+        <div class="challenge-box" id="challenge-box">
+          <div class="challenge-title">SURVIVAL MODE</div>
+          <div class="challenge-desc" id="challenge-desc">Corn crashed to $3.00/bu! Adjust the sliders to get Net Cash Flow above $0 before time runs out!</div>
+          <div class="challenge-timer-bar"><div class="challenge-timer-fill" id="challenge-fill" style="width:100%"></div></div>
+          <div class="challenge-status" id="challenge-status"></div>
+        </div>
+
+        <div class="s-section">Your Farm Revenue</div>
+
+        <div class="slider-row">
+          <div class="slider-label-row">
+            <span class="slider-label">Corn Price ($/bu)</span>
+            <span class="slider-val" id="s3-price-val">$4.50/bu</span>
+          </div>
+          <input type="range" id="s3-price" min="2.5" max="8.0" step="0.1" value="4.5"
+            oninput="updateSlide3()">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-label-row">
+            <span class="slider-label">Corn Yield (bu/acre)</span>
+            <span class="slider-val" id="s3-yield-val">160 bu/acre</span>
+          </div>
+          <input type="range" id="s3-yield" min="100" max="220" step="5" value="160"
+            oninput="updateSlide3()">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-label-row">
+            <span class="slider-label">Acres Harvested</span>
+            <span class="slider-val" id="s3-acres-val">600 acres</span>
+          </div>
+          <input type="range" id="s3-acres" min="200" max="1000" step="50" value="600"
+            oninput="updateSlide3()">
+        </div>
+
+        <div class="s-section">Your Costs</div>
+
+        <div class="slider-row">
+          <div class="slider-label-row">
+            <span class="slider-label" style="font-size:12px;">Operating Cost ($/acre) <span style="color:#9ca3af;">(seed, fert, chemicals, rent)</span></span>
+            <span class="slider-val" id="s3-opcost-val">$300/acre</span>
+          </div>
+          <input type="range" id="s3-opcost" min="250" max="400" step="10" value="300"
+            oninput="updateSlide3()">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-label-row">
+            <span class="slider-label">Machine Maintenance ($/yr)</span>
+            <span class="slider-val" id="s3-maint-val">$8,000/yr</span>
+          </div>
+          <input type="range" id="s3-maint" min="3000" max="20000" step="500" value="8000"
+            oninput="updateSlide3()">
+        </div>
+
+        <div class="s-section">Loan Payment (Slide 2 Defaults)</div>
+        <div class="metric-card blue-card full">
+          <div class="mc-label">Annual Loan Payment ($360K · 7.5% · 7yr)</div>
+          <div class="mc-val" id="s3-loan-pmt" style="color:#3b82f6;">$—</div>
+        </div>
+
+        <div class="s-section">Bottom Line</div>
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="mc-label">Annual Revenue</div>
+            <div class="mc-val" id="s3-revenue">$—</div>
+          </div>
+          <div class="metric-card red-card">
+            <div class="mc-label">Annual Total Costs</div>
+            <div class="mc-val amber" id="s3-costs">$—</div>
+          </div>
+          <div class="metric-card full">
+            <div class="mc-label">Net Cash Flow</div>
+            <div class="mc-val" id="s3-ncf">$—</div>
+          </div>
+          <div class="metric-card amber-card">
+            <div class="mc-label">Break-Even Corn Price</div>
+            <div class="mc-val" id="s3-bep">$—</div>
+          </div>
+          <div class="metric-card blue-card">
+            <div class="mc-label">Payback Period</div>
+            <div class="mc-val" id="s3-payback">— yrs</div>
+          </div>
+        </div>
+      </div>
+      <div class="canvas-area">
+        <canvas id="canvas-3"></canvas>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SLIDE 4: COOPERATIVE TWIST
+    ══════════════════════════════════════════ -->
+    <div class="slide" id="slide-4">
+      <div class="sidebar">
+        <div class="s-section">The Co-op Scenario</div>
+        <div class="s-text">
+          What if you and your neighbors pooled resources to buy the same <strong>$400K combine</strong> together? Each member takes a share of the loan — and the risk.
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-label-row">
+            <span class="slider-label">Number of Co-op Members</span>
+            <span class="slider-val" id="s4-members-val">5 farmers</span>
+          </div>
+          <input type="range" id="s4-members" min="2" max="8" step="1" value="5"
+            oninput="updateSlide4()">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-label-row">
+            <span class="slider-label">Acres per Member</span>
+            <span class="slider-val" id="s4-acres-val">120 acres</span>
+          </div>
+          <input type="range" id="s4-acres" min="100" max="300" step="20" value="120"
+            oninput="updateSlide4()">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-label-row">
+            <span class="slider-label">Corn Price ($/bu)</span>
+            <span class="slider-val" id="s4-price-val">$4.50/bu</span>
+          </div>
+          <input type="range" id="s4-price" min="2.5" max="8.0" step="0.1" value="4.5"
+            oninput="updateSlide4()">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-label-row">
+            <span class="slider-label">Annual Interest Rate (%)</span>
+            <span class="slider-val" id="s4-rate-val">7.5%</span>
+          </div>
+          <input type="range" id="s4-rate" min="3" max="14" step="0.25" value="7.5"
+            oninput="updateSlide4()">
+        </div>
+
+        <div class="s-section">Co-op Results (Per Member)</div>
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="mc-label">Loan Share</div>
+            <div class="mc-val" id="s4-loan-share">$—</div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-label">Annual Payment Share</div>
+            <div class="mc-val" id="s4-pmt-share">$—</div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-label">Annual Revenue</div>
+            <div class="mc-val" id="s4-revenue">$—</div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-label">Net Cash Flow</div>
+            <div class="mc-val" id="s4-ncf">$—</div>
+          </div>
+          <div class="metric-card full">
+            <div class="mc-label">Savings vs Buying Alone</div>
+            <div class="mc-val" id="s4-savings" style="color:#16a34a;">+$—</div>
+          </div>
+        </div>
+
+        <div class="s-section">Patronage Dividends</div>
+        <div class="s-text" style="font-size:12.5px;">
+          If the co-op earns $5,000 surplus by hiring the combine to non-members, each member receives a proportional patronage dividend.
+        </div>
+        <div class="metric-card blue-card">
+          <div class="mc-label">Patronage Dividend per Member</div>
+          <div class="mc-val" id="s4-patronage" style="color:#3b82f6;">$—</div>
+        </div>
+      </div>
+      <div class="canvas-area">
+        <canvas id="canvas-4"></canvas>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SLIDE 5: THE VERDICT
+    ══════════════════════════════════════════ -->
+    <div class="slide" id="slide-5">
+      <div class="sidebar">
+        <div class="s-section">Summary: Your 3 Options</div>
+
+        <div class="summary-card" style="border-left: 4px solid #16a34a;">
+          <div class="summary-card-title" style="color:#14532d;">💰 Finance Alone</div>
+          <div class="summary-card-row"><span class="label">Annual Cost</span><span class="val" id="s5-alone-cost">$—</span></div>
+          <div class="summary-card-row"><span class="label">Net Cash Flow</span><span class="val" id="s5-alone-ncf">$—</span></div>
+          <div class="sc-pro">✓ You own the machine outright</div>
+          <div class="sc-con">✗ Highest debt — $360K loan</div>
+        </div>
+
+        <div class="summary-card" style="border-left: 4px solid #d97706;">
+          <div class="summary-card-title" style="color:#78350f;">🤝 Co-op (5 members)</div>
+          <div class="summary-card-row"><span class="label">Annual Cost/Member</span><span class="val" id="s5-coop-cost">$—</span></div>
+          <div class="summary-card-row"><span class="label">Net Cash Flow</span><span class="val" id="s5-coop-ncf">$—</span></div>
+          <div class="sc-pro">✓ Lower debt burden per farmer</div>
+          <div class="sc-con">✗ Coordination & scheduling risk</div>
+        </div>
+
+        <div class="summary-card" style="border-left: 4px solid #9ca3af;">
+          <div class="summary-card-title" style="color:#374151;">🚜 Custom Hire Operator</div>
+          <div class="summary-card-row"><span class="label">Annual Cost</span><span class="val" id="s5-custom-cost">$—</span></div>
+          <div class="summary-card-row"><span class="label">Net Cash Flow</span><span class="val" id="s5-custom-ncf">$—</span></div>
+          <div class="sc-pro">✓ Zero capital outlay — use $40K elsewhere</div>
+          <div class="sc-con">✗ No equity, price risk each year</div>
+        </div>
+
+        <div class="s-section">Cast Your Final Vote</div>
+        <button class="vote-btn green" onclick="castFinalVote('finance')">
+          <span>💰 FINAL: Finance It</span>
+          <span class="vote-count" id="fv-finance">0</span>
+        </button>
+        <button class="vote-btn amber" onclick="castFinalVote('coop')">
+          <span>🤝 FINAL: Co-op</span>
+          <span class="vote-count" id="fv-coop">0</span>
+        </button>
+        <button class="vote-btn gray" onclick="castFinalVote('custom')">
+          <span>❌ FINAL: Custom Hire</span>
+          <span class="vote-count" id="fv-custom">0</span>
+        </button>
+
+        <div class="vote-bars">
+          <div style="font-size:11px;color:#6b7280;margin-top:2px;">Opening → Final comparison:</div>
+          <div class="vote-bar-row" style="gap:4px;">
+            <span class="vote-bar-label" style="width:60px;">Finance</span>
+            <div class="vote-bar-track" style="flex:1;">
+              <div class="vote-bar-fill green" id="fvb-finance" style="width:0%;opacity:0.5;"></div>
+            </div>
+            <span class="vote-bar-num" id="fvbn-finance">0</span>
+          </div>
+          <div class="vote-bar-row" style="gap:4px;">
+            <span class="vote-bar-label" style="width:60px;">Co-op</span>
+            <div class="vote-bar-track" style="flex:1;">
+              <div class="vote-bar-fill amber" id="fvb-coop" style="width:0%;opacity:0.5;"></div>
+            </div>
+            <span class="vote-bar-num" id="fvbn-coop">0</span>
+          </div>
+          <div class="vote-bar-row" style="gap:4px;">
+            <span class="vote-bar-label" style="width:60px;">Custom</span>
+            <div class="vote-bar-track" style="flex:1;">
+              <div class="vote-bar-fill gray" id="fvb-custom" style="width:0%;opacity:0.5;"></div>
+            </div>
+            <span class="vote-bar-num" id="fvbn-custom">0</span>
+          </div>
+        </div>
+
+        <div class="verdict-insight" id="s5-insight">
+          The math shows: at current corn prices, ALL THREE options are financially viable. The real question is: risk tolerance, capital access, and relationships.
+        </div>
+      </div>
+      <div class="canvas-area">
+        <canvas id="canvas-5"></canvas>
+      </div>
+    </div>
+
+  </div><!-- /slides-container -->
+</div><!-- /app -->
+
+<!-- QUIZ MODAL -->
+<div class="quiz-overlay" id="quiz-overlay">
+  <div class="quiz-card">
+    <div class="quiz-badge" id="quiz-badge">Quick Check</div>
+    <div class="quiz-question" id="quiz-question"></div>
+    <div class="quiz-options" id="quiz-options"></div>
+    <div class="quiz-explain" id="quiz-explain"></div>
+    <button class="quiz-close-btn" id="quiz-close" onclick="closeQuiz()">Continue &rarr;</button>
+    <div class="quiz-score" id="quiz-score"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// GLOBAL STATE
+// ══════════════════════════════════════════════════════
+let currentSlide = 1;
+const SLIDE_NAMES = ['Hook', 'Amortization', 'Cash Flow', 'Cooperative', 'Verdict'];
+
+const votes = { finance: 0, coop: 0, custom: 0 };
+const finalVotes = { finance: 0, coop: 0, custom: 0 };
+
+// Timer
+const startTime = Date.now();
+setInterval(updateTimer, 1000);
+
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const m = String(Math.floor(elapsed / 60)).padStart(2,'0');
+  const s = String(elapsed % 60).padStart(2,'0');
+  const el = document.getElementById('timer');
+  el.textContent = `${m}:${s}`;
+  if (elapsed < 1800) { el.className = 'green'; }
+  else if (elapsed < 2280) { el.className = 'amber'; }
+  else { el.className = 'red'; }
+}
+
+// ══════════════════════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════════════════════
+function navigate(dir) {
+  const next = currentSlide + dir;
+  if (next < 1 || next > 5) return;
+
+  // Show quiz when advancing from slides 2, 3, or 4
+  if (dir === 1 && quizzes[currentSlide] && !quizzes[currentSlide]._shown) {
+    quizzes[currentSlide]._shown = true;
+    showQuiz(currentSlide);
+  }
+
+  document.getElementById(`slide-${currentSlide}`).classList.remove('active');
+  currentSlide = next;
+  document.getElementById(`slide-${currentSlide}`).classList.add('active');
+  updateNav();
+  renderCurrentSlide();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   navigate(-1);
+});
+
+function updateNav() {
+  document.getElementById('slide-counter').textContent = `${currentSlide} / 5`;
+  document.getElementById('slide-name').textContent = SLIDE_NAMES[currentSlide-1];
+  document.getElementById('btn-prev').disabled = currentSlide === 1;
+  document.getElementById('btn-next').disabled = currentSlide === 5;
+  for (let i = 0; i < 5; i++) {
+    document.getElementById(`ps${i}`).className = 'prog-seg' + (i < currentSlide ? ' active' : '');
+  }
+}
+
+function renderCurrentSlide() {
+  if (currentSlide === 1) drawSlide1();
+  if (currentSlide === 2) { updateSlide2(); }
+  if (currentSlide === 3) { updateSlide3(); }
+  if (currentSlide === 4) { updateSlide4(); }
+  if (currentSlide === 5) { updateSlide5(); drawSlide5(); }
+}
+
+// ══════════════════════════════════════════════════════
+// CANVAS UTILITIES
+// ══════════════════════════════════════════════════════
+function setupCanvas(id) {
+  const canvas = document.getElementById(id);
+  const container = canvas.parentElement;
+  const dpr = window.devicePixelRatio || 1;
+  const w = container.clientWidth;
+  const h = container.clientHeight;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, w, h);
+  return { ctx, w, h };
+}
+
+function fmtDollar(n, short) {
+  if (short) {
+    if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(1) + 'M';
+    if (Math.abs(n) >= 1e3) return '$' + Math.round(n/1e3) + 'K';
+    return '$' + Math.round(n);
+  }
+  return '$' + Math.abs(Math.round(n)).toLocaleString();
+}
+
+function drawGrid(ctx, x0, y0, x1, y1, nX, nY) {
+  ctx.save();
+  ctx.strokeStyle = '#e5e7eb';
+  ctx.lineWidth = 0.8;
+  for (let i = 0; i <= nY; i++) {
+    const y = y0 + (y1-y0) * i / nY;
+    ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke();
+  }
+  for (let i = 0; i <= nX; i++) {
+    const x = x0 + (x1-x0) * i / nX;
+    ctx.beginPath(); ctx.moveTo(x, y0); ctx.lineTo(x, y1); ctx.stroke();
+  }
+  ctx.restore();
+}
+
+// ══════════════════════════════════════════════════════
+// MATH
+// ══════════════════════════════════════════════════════
+function pmt(principal, annualRate, years) {
+  if (annualRate === 0) return principal / years;
+  const r = annualRate / 100;
+  return principal * r * Math.pow(1+r, years) / (Math.pow(1+r, years) - 1);
+}
+
+function buildAmortization(principal, annualRate, years) {
+  const payment = pmt(principal, annualRate, years);
+  const r = annualRate / 100;
+  let balance = principal;
+  const schedule = [];
+  for (let i = 1; i <= years; i++) {
+    const interest = balance * r;
+    const principalPaid = payment - interest;
+    balance -= principalPaid;
+    schedule.push({ year: i, interest, principalPaid, balance: Math.max(0, balance), payment });
+  }
+  return schedule;
+}
+
+// ══════════════════════════════════════════════════════
+// VOTE SYSTEM
+// ══════════════════════════════════════════════════════
+function castVote(option) {
+  votes[option]++;
+  updateVoteBars();
+}
+
+function castFinalVote(option) {
+  finalVotes[option]++;
+  updateFinalVoteBars();
+}
+
+function resetVotes() {
+  votes.finance = votes.coop = votes.custom = 0;
+  updateVoteBars();
+}
+
+function updateVoteBars() {
+  const total = votes.finance + votes.coop + votes.custom || 1;
+  ['finance','coop','custom'].forEach(k => {
+    document.getElementById(`v1-${k}`).textContent = votes[k];
+    document.getElementById(`vb-${k}`).style.width = (votes[k]/total*100) + '%';
+    document.getElementById(`vbn-${k}`).textContent = votes[k];
+  });
+}
+
+function updateFinalVoteBars() {
+  const total = finalVotes.finance + finalVotes.coop + finalVotes.custom || 1;
+  ['finance','coop','custom'].forEach(k => {
+    document.getElementById(`fv-${k}`).textContent = finalVotes[k];
+    document.getElementById(`fvb-${k}`).style.width = (finalVotes[k]/total*100) + '%';
+    document.getElementById(`fvbn-${k}`).textContent = finalVotes[k];
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// SLIDE 1: DRAW CANVAS
+// ══════════════════════════════════════════════════════
+function drawSlide1() {
+  const { ctx, w, h } = setupCanvas('canvas-1');
+
+  // Background
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(0, 0, w, h);
+
+  // Title banner
+  ctx.fillStyle = '#1a3a2a';
+  ctx.fillRect(0, 0, w, 70);
+  ctx.fillStyle = '#4ade80';
+  ctx.font = 'bold 22px "Segoe UI", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('JD S780 Combine — What Are My Options?', w/2, 44);
+
+  // Main machine card
+  const cx = w/2, cardW = Math.min(w - 60, 520);
+  roundRect(ctx, cx - cardW/2, 90, cardW, 130, 10, '#fffbeb', '#d97706', 2);
+  ctx.fillStyle = '#1a3a2a';
+  ctx.font = 'bold 20px "Segoe UI", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('John Deere S780 Combine Harvester', cx, 125);
+  ctx.fillStyle = '#d97706';
+  ctx.font = 'bold 52px "Segoe UI", sans-serif';
+  ctx.fillText('$400,000', cx, 185);
+  ctx.fillStyle = '#6b7280';
+  ctx.font = '14px "Segoe UI", sans-serif';
+  ctx.fillText('Brand New · Dealer Financing Available', cx, 208);
+
+  // Three info cards
+  const cardH = 100;
+  const cardGap = 16;
+  const threeW = (w - 80 - 2*cardGap) / 3;
+  const startX = 40;
+  const startY = 250;
+
+  const cards = [
+    { color: '#16a34a', bg: '#f0fdf4', title: 'Your Farm', lines: ['600 acres', 'West Texas corn', '~160 bu/acre avg'] },
+    { color: '#3b82f6', bg: '#eff6ff', title: 'Your Savings', lines: ['$40,000 saved', '= 10% down payment', '$360,000 to finance'] },
+    { color: '#d97706', bg: '#fffbeb', title: 'Custom Hire Rate', lines: ['$50 / acre', '−18 bu/ac yield', '(late harvest)'] },
+  ];
+
+  cards.forEach((card, i) => {
+    const cx2 = startX + i * (threeW + cardGap);
+    roundRect(ctx, cx2, startY, threeW, cardH, 8, card.bg, card.color, 2);
+    ctx.fillStyle = card.color;
+    ctx.font = 'bold 14px "Segoe UI", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(card.title, cx2 + threeW/2, startY + 22);
+    ctx.fillStyle = '#374151';
+    ctx.font = '13px "Segoe UI", sans-serif';
+    card.lines.forEach((line, j) => {
+      ctx.fillText(line, cx2 + threeW/2, startY + 42 + j*18);
+    });
+  });
+
+  // Decision tree
+  const treeY = startY + cardH + 30;
+  const treeH = Math.max(h - treeY - 20, 120);
+
+  ctx.fillStyle = '#374151';
+  ctx.font = 'bold 16px "Segoe UI", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Your Decision:', w/2, treeY + 20);
+
+  const opts = [
+    { label: '💰 Finance It', sub: 'Borrow $360K', color: '#16a34a', bg: '#dcfce7' },
+    { label: '🤝 Co-op Partners', sub: 'Share the machine', color: '#d97706', bg: '#fef3c7' },
+    { label: '❌ Custom Hire', sub: '$50/ac · −18 bu/ac', color: '#6b7280', bg: '#f3f4f6' },
+  ];
+
+  const boxW = Math.min(160, (w - 120) / 3);
+  const boxH = 60;
+  const bY = treeY + 40;
+  const bGap = 20;
+  const totalBW = opts.length * boxW + (opts.length-1)*bGap;
+  const bStartX = w/2 - totalBW/2;
+
+  // Lines from center
+  ctx.strokeStyle = '#9ca3af';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4,3]);
+  opts.forEach((opt, i) => {
+    const bx = bStartX + i*(boxW+bGap) + boxW/2;
+    ctx.beginPath(); ctx.moveTo(w/2, treeY + 28); ctx.lineTo(bx, bY); ctx.stroke();
+  });
+  ctx.setLineDash([]);
+
+  opts.forEach((opt, i) => {
+    const bx = bStartX + i*(boxW+bGap);
+    roundRect(ctx, bx, bY, boxW, boxH, 8, opt.bg, opt.color, 2);
+    ctx.fillStyle = opt.color;
+    ctx.font = 'bold 13px "Segoe UI", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(opt.label, bx + boxW/2, bY + 24);
+    ctx.fillStyle = '#6b7280';
+    ctx.font = '11px "Segoe UI", sans-serif';
+    ctx.fillText(opt.sub, bx + boxW/2, bY + 42);
+
+    // Question marks
+    ctx.fillStyle = opt.color + 'aa';
+    ctx.font = 'bold 20px "Segoe UI", sans-serif';
+    ctx.fillText('?', bx + boxW/2, bY + boxH + 28);
+  });
+
+  ctx.fillStyle = '#9ca3af';
+  ctx.font = 'italic 13px "Segoe UI", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('No math yet — just the drama. Vote first, then we crunch numbers!', w/2, h - 20);
+}
+
+function roundRect(ctx, x, y, w, h, r, fill, stroke, sw) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y); ctx.arcTo(x+w, y, x+w, y+r, r);
+  ctx.lineTo(x+w, y+h-r); ctx.arcTo(x+w, y+h, x+w-r, y+h, r);
+  ctx.lineTo(x+r, y+h); ctx.arcTo(x, y+h, x, y+h-r, r);
+  ctx.lineTo(x, y+r); ctx.arcTo(x, y, x+r, y, r);
+  ctx.closePath();
+  if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+  if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = sw||1; ctx.stroke(); }
+}
+
+// ══════════════════════════════════════════════════════
+// SLIDE 2: AMORTIZATION
+// ══════════════════════════════════════════════════════
+function updateSlide2() {
+  const loan = +document.getElementById('s2-loan').value;
+  const rate = +document.getElementById('s2-rate').value;
+  const term = +document.getElementById('s2-term').value;
+
+  document.getElementById('s2-loan-val').textContent = '$' + loan.toLocaleString();
+  document.getElementById('s2-rate-val').textContent = rate.toFixed(2) + '%';
+  document.getElementById('s2-term-val').textContent = term + ' years';
+
+  const schedule = buildAmortization(loan, rate, term);
+  const annualPmt = schedule[0].payment;
+  const totalPaid = annualPmt * term;
+  const totalInterest = totalPaid - loan;
+  const totalCost = totalPaid + 40000; // +down payment
+
+  document.getElementById('s2-annual-pmt').textContent = fmtDollar(annualPmt);
+  document.getElementById('s2-monthly-pmt').textContent = fmtDollar(annualPmt/12);
+  document.getElementById('s2-total-int').textContent = fmtDollar(totalInterest);
+  document.getElementById('s2-total-cost').textContent = fmtDollar(totalCost);
+  document.getElementById('s2-pmt-inline').textContent = fmtDollar(annualPmt);
+
+  drawSlide2(schedule, loan, rate, term, annualPmt);
+}
+
+function drawSlide2(schedule, loan, rate, term, annualPmt) {
+  const { ctx, w, h } = setupCanvas('canvas-2');
+  const PAD = { l: 70, r: 90, t: 60, b: 70 };
+  const bottomH = 80;
+  const mainH = h - bottomH - 20;
+
+  // Background
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(0, 0, w, h);
+
+  // Title
+  ctx.fillStyle = '#1a3a2a';
+  ctx.font = 'bold 16px "Segoe UI", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Amortization Schedule — Year by Year', w/2, 32);
+
+  const chartX0 = PAD.l;
+  const chartX1 = w - PAD.r;
+  const chartY0 = PAD.t;
+  const chartY1 = mainH - PAD.b;
+  const chartW = chartX1 - chartX0;
+  const chartH2 = chartY1 - chartY0;
+
+  const maxBar = schedule[0].interest + schedule[0].principalPaid;
+  const maxBalance = loan;
+
+  const n = schedule.length;
+  const barW = Math.max(10, (chartW - 10) / n - 4);
+  const barGap = (chartW - barW * n) / (n + 1);
+
+  // Grid
+  drawGrid(ctx, chartX0, chartY0, chartX1, chartY1, n, 5);
+
+  // Y-axis labels (left)
+  ctx.fillStyle = '#6b7280';
+  ctx.font = '12px "Segoe UI", sans-serif';
+  ctx.textAlign = 'right';
+  for (let i = 0; i <= 5; i++) {
+    const val = maxBar * (1 - i/5);
+    const y = chartY0 + chartH2 * i/5;
+    ctx.fillText(fmtDollar(val, true), chartX0 - 6, y + 4);
+  }
+
+  // Y-axis label (right) for balance
+  ctx.fillStyle = '#3b82f6';
+  ctx.textAlign = 'left';
+  for (let i = 0; i <= 5; i++) {
+    const val = maxBalance * (1 - i/5);
+    const y = chartY0 + chartH2 * i/5;
+    ctx.fillText(fmtDollar(val, true), chartX1 + 6, y + 4);
+  }
+
+  // Axis labels
+  ctx.fillStyle = '#374151';
+  ctx.font = '11px "Segoe UI", sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('Principal / Interest ($)', 5, chartY0 + 10);
+  ctx.fillStyle = '#3b82f6';
+  ctx.textAlign = 'right';
+  ctx.fillText('Remaining Balance ($)', w - 5, chartY0 + 10);
+
+  // Stacked bars
+  schedule.forEach((row, i) => {
+    const x = chartX0 + barGap + i * (barW + barGap);
+    const intH = (row.interest / maxBar) * chartH2;
+    const prinH = (row.principalPaid / maxBar) * chartH2;
+
+    // Interest (bottom of bar)
+    ctx.fillStyle = '#ef4444';
+    ctx.fillRect(x, chartY1 - intH, barW, intH);
+
+    // Principal (on top)
+    ctx.fillStyle = '#16a34a';
+    ctx.fillRect(x, chartY1 - intH - prinH, barW, prinH);
+
+    // X label
+    ctx.fillStyle = '#374151';
+    ctx.font = '11px "Segoe UI", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('Y' + row.year, x + barW/2, chartY1 + 15);
+  });
+
+  // Axes
+  ctx.strokeStyle = '#374151';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(chartX0, chartY0); ctx.lineTo(chartX0, chartY1);
+  ctx.lineTo(chartX1, chartY1); ctx.stroke();
+
+  // Balance line (right axis)
+  ctx.strokeStyle = '#3b82f6';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([6, 3]);
+  ctx.beginPath();
+  schedule.forEach((row, i) => {
+    const x = chartX0 + barGap + i * (barW + barGap) + barW/2;
+    const y = chartY0 + chartH2 * (1 - row.balance / maxBalance);
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Balance dots
+  ctx.fillStyle = '#3b82f6';
+  schedule.forEach((row, i) => {
+    const x = chartX0 + barGap + i * (barW + barGap) + barW/2;
+    const y = chartY0 + chartH2 * (1 - row.balance / maxBalance);
+    ctx.beginPath(); ctx.arc(x, y, 3.5, 0, Math.PI*2); ctx.fill();
+  });
+
+  // Year 1 annotation
+  if (schedule.length > 0) {
+    const row1 = schedule[0];
+    const intPct = (row1.interest / annualPmt * 100).toFixed(0);
+    const ax = chartX0 + barGap + barW/2;
+    const ay = chartY0 + 8;
+    ctx.fillStyle = '#ef4444';
+    ctx.font = '11px "Segoe UI", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(`Yr 1: ${fmtDollar(row1.interest, true)} interest`, ax, ay);
+    ctx.fillText(`(${intPct}% to bank!)`, ax, ay + 14);
+  }
+
+  // Legend
+  const legX = chartX0 + 20;
+  const legY = chartY0 + 20;
+  ctx.fillStyle = '#16a34a'; ctx.fillRect(legX, legY, 12, 12);
+  ctx.fillStyle = '#ef4444'; ctx.fillRect(legX + 90, legY, 12, 12);
+  ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2; ctx.setLineDash([4,2]);
+  ctx.beginPath(); ctx.moveTo(legX + 190, legY+6); ctx.lineTo(legX + 202, legY+6); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#374151'; ctx.font = '12px "Segoe UI", sans-serif'; ctx.textAlign = 'left';
+  ctx.fillText('Principal Paid', legX + 16, legY + 10);
+  ctx.fillText('Interest Paid', legX + 106, legY + 10);
+  ctx.fillText('Remaining Balance', legX + 206, legY + 10);
+
+  // BOTTOM SECTION: total interest vs principal comparison
+  const bY2 = mainH + 10;
+  const totalInterest = schedule.reduce((s, r) => s + r.interest, 0);
+  const totalPrin = loan;
+  const totalPaid2 = totalInterest + totalPrin;
+  const barTrackW = w - PAD.l - PAD.r - 120;
+
+  ctx.fillStyle = '#374151';
+  ctx.font = 'bold 13px "Segoe UI", sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('Total Interest vs Principal:', PAD.l, bY2 + 16);
+
+  // Principal bar
+  ctx.fillStyle = '#dcfce7'; ctx.fillRect(PAD.l + 120, bY2, barTrackW, 18);
+  ctx.fillStyle = '#16a34a'; ctx.fillRect(PAD.l + 120, bY2, barTrackW * totalPrin / totalPaid2, 18);
+  ctx.fillStyle = '#14532d'; ctx.font = '11px "Segoe UI", sans-serif'; ctx.textAlign = 'right';
+  ctx.fillText(`Principal: ${fmtDollar(totalPrin)}`, PAD.l + 115, bY2 + 13);
+  ctx.fillStyle = 'white'; ctx.textAlign = 'left';
+  ctx.fillText(`${(totalPrin/totalPaid2*100).toFixed(0)}%`, PAD.l + 124, bY2 + 13);
+
+  // Interest bar
+  const ibY = bY2 + 24;
+  ctx.fillStyle = '#fee2e2'; ctx.fillRect(PAD.l + 120, ibY, barTrackW, 18);
+  ctx.fillStyle = '#ef4444'; ctx.fillRect(PAD.l + 120, ibY, barTrackW * totalInterest / totalPaid2, 18);
+  ctx.fillStyle = '#7f1d1d'; ctx.font = '11px "Segoe UI", sans-serif'; ctx.textAlign = 'right';
+  ctx.fillText(`Interest: ${fmtDollar(totalInterest)}`, PAD.l + 115, ibY + 13);
+  ctx.fillStyle = 'white'; ctx.textAlign = 'left';
+  ctx.fillText(`${(totalInterest/totalPaid2*100).toFixed(0)}%`, PAD.l + 124, ibY + 13);
+}
+
+// ══════════════════════════════════════════════════════
+// SLIDE 3: BREAK-EVEN & CASH FLOW
+// ══════════════════════════════════════════════════════
+const S3_LOAN_DEFAULTS = { principal: 360000, rate: 7.5, term: 7 };
+
+function calcS3() {
+  const cornPrice = +document.getElementById('s3-price').value;
+  const cornYield = +document.getElementById('s3-yield').value;
+  const acres = +document.getElementById('s3-acres').value;
+  const opCost = +document.getElementById('s3-opcost').value;
+  const maint = +document.getElementById('s3-maint').value;
+  const loanPmt = pmt(S3_LOAN_DEFAULTS.principal, S3_LOAN_DEFAULTS.rate, S3_LOAN_DEFAULTS.term);
+  const loanTerm = S3_LOAN_DEFAULTS.term;
+
+  const revenue = cornPrice * cornYield * acres;
+  const opCosts = opCost * acres;
+  const totalCosts = opCosts + maint + loanPmt;
+  const ncf = revenue - totalCosts;
+  const bepPrice = (opCosts + loanPmt + maint) / (cornYield * acres);
+  const downPayment = 40000;
+
+  // Cumulative cash flow over 10 years
+  const cumCF = [0];
+  let cum = -downPayment;
+  for (let yr = 1; yr <= 10; yr++) {
+    const loanPayment = yr <= loanTerm ? loanPmt : 0;
+    const yearNCF = revenue - opCosts - maint - loanPayment;
+    cum += yearNCF;
+    cumCF.push(cum);
+  }
+
+  // Payback period
+  let payback = null;
+  for (let yr = 1; yr <= 10; yr++) {
+    if (cumCF[yr] >= 0 && cumCF[yr-1] < 0) {
+      const frac = -cumCF[yr-1] / (cumCF[yr] - cumCF[yr-1]);
+      payback = (yr-1) + frac;
+      break;
+    }
+  }
+
+  return { cornPrice, cornYield, acres, opCost, maint, loanPmt, loanTerm,
+           revenue, opCosts, totalCosts, ncf, bepPrice, cumCF, payback, downPayment };
+}
+
+function updateSlide3() {
+  const cornPrice = +document.getElementById('s3-price').value;
+  const cornYield = +document.getElementById('s3-yield').value;
+  const acres = +document.getElementById('s3-acres').value;
+  const opCost = +document.getElementById('s3-opcost').value;
+  const maint = +document.getElementById('s3-maint').value;
+
+  document.getElementById('s3-price-val').textContent = '$' + cornPrice.toFixed(2) + '/bu';
+  document.getElementById('s3-yield-val').textContent = cornYield + ' bu/acre';
+  document.getElementById('s3-acres-val').textContent = acres + ' acres';
+  document.getElementById('s3-opcost-val').textContent = '$' + opCost + '/acre';
+  document.getElementById('s3-maint-val').textContent = '$' + maint.toLocaleString() + '/yr';
+
+  const d = calcS3();
+
+  document.getElementById('s3-loan-pmt').textContent = fmtDollar(d.loanPmt);
+  document.getElementById('s3-revenue').textContent = fmtDollar(d.revenue);
+  document.getElementById('s3-costs').textContent = fmtDollar(d.totalCosts);
+
+  const ncfEl = document.getElementById('s3-ncf');
+  ncfEl.textContent = (d.ncf >= 0 ? '+' : '') + fmtDollar(d.ncf);
+  ncfEl.className = 'mc-val' + (d.ncf >= 0 ? '' : ' neg');
+
+  document.getElementById('s3-bep').textContent = '$' + d.bepPrice.toFixed(2) + '/bu';
+  document.getElementById('s3-payback').textContent = d.payback !== null ? d.payback.toFixed(1) + ' yrs' : '>10 yrs';
+
+  drawSlide3(d);
+}
+
+function drawSlide3(d) {
+  const { ctx, w, h } = setupCanvas('canvas-3');
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(0, 0, w, h);
+
+  const splitY = h * 0.56;
+
+  // ── TOP PANEL: Cumulative Cash Flow ──
+  const PAD = { l: 75, r: 25, t: 45, b: 45 };
+  const cx0 = PAD.l, cx1 = w - PAD.r;
+  const cy0 = PAD.t, cy1 = splitY - PAD.b;
+  const cw = cx1 - cx0, ch = cy1 - cy0;
+
+  ctx.fillStyle = '#1a3a2a';
+  ctx.font = 'bold 15px "Segoe UI", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('10-Year Cumulative Cash Flow', w/2, 26);
+
+  const cf = d.cumCF; // [0..10]
+  const maxV = Math.max(...cf.map(Math.abs), 50000);
+  const dataMin = Math.min(...cf);
+  const dataMax = Math.max(...cf);
+  const vMin = Math.min(dataMin * 1.1, -50000);
+  const vMax = Math.max(dataMax * 1.15, 50000);
+  const vRange = vMax - vMin;
+
+  function cfToY(val) { return cy0 + ch * (1 - (val - vMin) / vRange); }
+  function yrToX(yr) { return cx0 + (yr / 10) * cw; }
+
+  // Zero line Y
+  const zeroY = cfToY(0);
+
+  // Shade regions
+  // Below zero: light red
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(yrToX(0), Math.min(zeroY, cy1));
+  for (let yr = 0; yr <= 10; yr++) {
+    const y = Math.min(cfToY(cf[yr]), cy1);
+    ctx.lineTo(yrToX(yr), y);
+  }
+  ctx.lineTo(yrToX(10), Math.min(zeroY, cy1));
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(239,68,68,0.12)';
+  ctx.fill();
+
+  // Above zero: light green
+  ctx.beginPath();
+  ctx.moveTo(yrToX(0), Math.max(zeroY, cy0));
+  for (let yr = 0; yr <= 10; yr++) {
+    const y = Math.max(cfToY(cf[yr]), cy0);
+    ctx.lineTo(yrToX(yr), y);
+  }
+  ctx.lineTo(yrToX(10), Math.max(zeroY, cy0));
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(22,163,74,0.10)';
+  ctx.fill();
+  ctx.restore();
+
+  // Grid
+  drawGrid(ctx, cx0, cy0, cx1, cy1, 10, 5);
+
+  // Axes
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(cx0, cy0); ctx.lineTo(cx0, cy1); ctx.lineTo(cx1, cy1);
+  ctx.stroke();
+
+  // Zero line
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5; ctx.setLineDash([4,2]);
+  ctx.beginPath(); ctx.moveTo(cx0, zeroY); ctx.lineTo(cx1, zeroY); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Loan payoff vertical line
+  const loanOffX = yrToX(d.loanTerm);
+  ctx.strokeStyle = '#d97706'; ctx.lineWidth = 1.5; ctx.setLineDash([5,3]);
+  ctx.beginPath(); ctx.moveTo(loanOffX, cy0); ctx.lineTo(loanOffX, cy1); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#d97706';
+  ctx.font = 'bold 11px "Segoe UI", sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('Loan Paid Off', loanOffX, cy0 - 4);
+
+  // Cash flow line
+  ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let yr = 0; yr <= 10; yr++) {
+    const x = yrToX(yr), y = cfToY(cf[yr]);
+    if (yr === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  // Dots
+  ctx.fillStyle = '#16a34a';
+  for (let yr = 0; yr <= 10; yr++) {
+    const x = yrToX(yr), y = cfToY(cf[yr]);
+    ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI*2); ctx.fill();
+  }
+
+  // Break-even dot
+  if (d.payback !== null && d.payback <= 10) {
+    const bx = yrToX(d.payback);
+    ctx.fillStyle = '#3b82f6';
+    ctx.beginPath(); ctx.arc(bx, zeroY, 7, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#1e40af';
+    ctx.font = 'bold 11px "Segoe UI", sans-serif'; ctx.textAlign = 'left';
+    ctx.fillText('BREAK-EVEN', bx + 10, zeroY - 6);
+    ctx.fillText('Yr ' + d.payback.toFixed(1), bx + 10, zeroY + 10);
+  }
+
+  // Year 10 label
+  const y10val = cf[10];
+  const y10x = yrToX(10);
+  const y10y = cfToY(y10val);
+  ctx.fillStyle = '#14532d';
+  ctx.font = 'bold 11px "Segoe UI", sans-serif'; ctx.textAlign = 'right';
+  ctx.fillText('Yr 10: ' + (y10val >= 0 ? '+' : '') + fmtDollar(y10val, true), y10x - 4, y10y - 6);
+
+  // Y-axis labels
+  ctx.fillStyle = '#6b7280'; ctx.font = '11px "Segoe UI", sans-serif'; ctx.textAlign = 'right';
+  for (let i = 0; i <= 5; i++) {
+    const val = vMin + vRange * i/5;
+    const y = cy0 + ch * (1 - i/5);
+    ctx.fillText(fmtDollar(val, true), cx0 - 5, y + 4);
+  }
+  // X-axis labels
+  ctx.fillStyle = '#374151'; ctx.textAlign = 'center';
+  for (let yr = 0; yr <= 10; yr++) {
+    ctx.fillText('Yr ' + yr, yrToX(yr), cy1 + 15);
+  }
+
+  // ── BOTTOM PANEL: Annual Cash Flow Breakdown ──
+  const bPAD = { l: 75, r: 25, t: 20, b: 30 };
+  const bY0 = splitY + 5;
+  const bPanelH = h - bY0;
+
+  ctx.fillStyle = '#1a3a2a';
+  ctx.font = 'bold 14px "Segoe UI", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Annual Cash Flow Breakdown', w/2, bY0 + 16);
+
+  const barAreaX0 = bPAD.l;
+  const barAreaX1 = w - bPAD.r;
+  const barAreaW = barAreaX1 - barAreaX0;
+
+  const items = [
+    { label: 'Revenue', val: d.revenue, color: '#16a34a' },
+    { label: 'Op. Costs', val: -d.opCosts, color: '#d97706' },
+    { label: 'Loan Payment', val: -d.loanPmt, color: '#ef4444' },
+    { label: 'Maintenance', val: -d.maint, color: '#9ca3af' },
+  ];
+
+  const maxAbs = d.revenue;
+  const barH = 18;
+  const barSpacing = 8;
+  let currentY = bY0 + 30;
+
+  items.forEach(item => {
+    const pct = Math.abs(item.val) / maxAbs;
+    const bW = pct * barAreaW;
+    const bX = item.val >= 0 ? barAreaX0 : barAreaX0 + barAreaW - bW;
+
+    ctx.fillStyle = item.val >= 0 ? '#dcfce7' : '#fee2e2';
+    ctx.fillRect(barAreaX0, currentY, barAreaW, barH);
+    ctx.fillStyle = item.color;
+    ctx.fillRect(bX, currentY, bW, barH);
+    ctx.fillStyle = '#374151'; ctx.font = '11px "Segoe UI", sans-serif'; ctx.textAlign = 'right';
+    ctx.fillText(item.label, barAreaX0 - 5, currentY + 13);
+    ctx.textAlign = 'left';
+    ctx.fillText(fmtDollar(Math.abs(item.val)), bX + bW + 4, currentY + 13);
+    currentY += barH + barSpacing;
+  });
+
+  // Net Cash Flow arrow/annotation
+  const ncfColor = d.ncf >= 0 ? '#16a34a' : '#ef4444';
+  ctx.fillStyle = ncfColor;
+  ctx.font = 'bold 14px "Segoe UI", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Net Cash Flow: ' + (d.ncf >= 0 ? '+' : '') + fmtDollar(d.ncf) + '/yr', w/2, currentY + 16);
+
+  // Break-even price note
+  ctx.fillStyle = '#78350f';
+  ctx.font = 'bold 12px "Segoe UI", sans-serif';
+  ctx.textAlign = 'center';
+  const bepNote = `Break-even corn price: $${d.bepPrice.toFixed(2)}/bu  ·  Current price: $${d.cornPrice.toFixed(2)}/bu`;
+  ctx.fillText(bepNote, w/2, currentY + 34);
+}
+
+// ══════════════════════════════════════════════════════
+// SLIDE 4: COOPERATIVE
+// ══════════════════════════════════════════════════════
+function calcS4() {
+  const members = +document.getElementById('s4-members').value;
+  const acresPerMember = +document.getElementById('s4-acres').value;
+  const cornPrice = +document.getElementById('s4-price').value;
+  const rate = +document.getElementById('s4-rate').value;
+  const term = 7;
+  const totalPrice = 400000;
+  const downPerMember = 40000 / members;
+  const loanPerMember = (totalPrice - 40000) / members;
+  const pmtPerMember = pmt(loanPerMember, rate, term);
+
+  // Individual (solo buy, all 400K financed minus 40K down)
+  const soloLoan = 360000;
+  const soloPmt = pmt(soloLoan, rate, term);
+  const soloAcres = 600;
+  const cornYield = 160;
+  const opCostPerAcre = 300;
+  const maintCost = 8000;
+  const soloRevenue = cornPrice * cornYield * soloAcres;
+  const soloOpCosts = opCostPerAcre * soloAcres;
+  const soloNCF = soloRevenue - soloOpCosts - maintCost - soloPmt;
+
+  // Co-op member
+  const coopRevenue = cornPrice * cornYield * acresPerMember;
+  const coopOpCosts = opCostPerAcre * acresPerMember;
+  const coopMaint = maintCost / members;
+  const coopNCF = coopRevenue - coopOpCosts - coopMaint - pmtPerMember;
+  const savings = coopNCF - (cornPrice * cornYield * acresPerMember - opCostPerAcre * acresPerMember - maintCost - soloPmt);
+
+  // Custom hire farms the full 600 acres (apples-to-apples with Buy Alone).
+  // Realism penalties: $50/ac premium scheduling + 18 bu/ac yield loss from late harvest.
+  const customAcres = soloAcres;
+  const customHireRate = 50;
+  const customYieldLoss = 18;
+  const customEffectiveYield = cornYield - customYieldLoss;
+  const customHireCost = customHireRate * customAcres;
+  const customOpCosts = opCostPerAcre * customAcres;
+  const customRevenue = cornPrice * customEffectiveYield * customAcres;
+  const customNCF = customRevenue - customOpCosts - customHireCost;
+
+  const patronage = 5000 / members;
+
+  return {
+    members, acresPerMember, cornPrice, rate, term,
+    loanPerMember, pmtPerMember, coopRevenue, coopOpCosts, coopMaint, coopNCF,
+    soloAcres, soloPmt, soloRevenue, soloOpCosts, soloNCF, soloMaint: maintCost,
+    customAcres, customHireCost, customOpCosts, customRevenue, customNCF,
+    customEffectiveYield, customYieldLoss,
+    savings, patronage,
+    cornYield, opCostPerAcre, maintCost
+  };
+}
+
+function updateSlide4() {
+  const members = +document.getElementById('s4-members').value;
+  const acres = +document.getElementById('s4-acres').value;
+  const price = +document.getElementById('s4-price').value;
+  const rate = +document.getElementById('s4-rate').value;
+
+  document.getElementById('s4-members-val').textContent = members + ' farmers';
+  document.getElementById('s4-acres-val').textContent = acres + ' acres';
+  document.getElementById('s4-price-val').textContent = '$' + price.toFixed(2) + '/bu';
+  document.getElementById('s4-rate-val').textContent = rate.toFixed(2) + '%';
+
+  const d = calcS4();
+
+  document.getElementById('s4-loan-share').textContent = fmtDollar(d.loanPerMember);
+  document.getElementById('s4-pmt-share').textContent = fmtDollar(d.pmtPerMember);
+  document.getElementById('s4-revenue').textContent = fmtDollar(d.coopRevenue);
+
+  const ncfEl = document.getElementById('s4-ncf');
+  ncfEl.textContent = (d.coopNCF >= 0 ? '+' : '') + fmtDollar(d.coopNCF);
+  ncfEl.className = 'mc-val' + (d.coopNCF >= 0 ? '' : ' neg');
+
+  const savEl = document.getElementById('s4-savings');
+  savEl.textContent = (d.coopNCF - d.coopRevenue + d.coopOpCosts + d.coopMaint + d.pmtPerMember < 0 ? '' : '+') + fmtDollar(d.pmtPerMember - d.soloPmt / d.members * d.members);
+  // Simple: show pmt savings vs solo
+  const pmtSavings = d.soloPmt - d.pmtPerMember;
+  savEl.textContent = (pmtSavings >= 0 ? '+' : '') + fmtDollar(pmtSavings) + '/yr (loan payment)';
+  savEl.style.color = pmtSavings >= 0 ? '#16a34a' : '#ef4444';
+
+  document.getElementById('s4-patronage').textContent = fmtDollar(d.patronage);
+
+  drawSlide4(d);
+}
+
+function drawSlide4(d) {
+  const { ctx, w, h } = setupCanvas('canvas-4');
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(0, 0, w, h);
+
+  ctx.fillStyle = '#1a3a2a';
+  ctx.font = 'bold 16px "Segoe UI", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Comparing Your Three Options (Annual Cash Flow)', w/2, 30);
+
+  // Column layout: Buy Alone | Co-op | Custom Hire
+  const cols = [
+    {
+      label: 'Buy Alone',
+      color: '#16a34a', bg: '#f0fdf4',
+      loanPmt: d.soloPmt,
+      maint: d.soloMaint,
+      opCost: d.opCostPerAcre * d.soloAcres,
+      customHire: 0,
+      revenue: d.soloRevenue,
+      ncf: d.soloNCF,
+      acres: d.soloAcres
+    },
+    {
+      label: `Co-op (${d.members} members)`,
+      color: '#d97706', bg: '#fffbeb',
+      loanPmt: d.pmtPerMember,
+      maint: d.coopMaint,
+      opCost: d.coopOpCosts,
+      customHire: 0,
+      revenue: d.coopRevenue,
+      ncf: d.coopNCF,
+      acres: d.acresPerMember
+    },
+    {
+      label: 'Custom Hire (600 ac)',
+      color: '#6b7280', bg: '#f9fafb',
+      loanPmt: 0,
+      maint: 0,
+      opCost: d.customOpCosts,
+      customHire: d.customHireCost,
+      revenue: d.customRevenue,
+      ncf: d.customNCF,
+      acres: d.customAcres
+    }
+  ];
+
+  const PAD = { l: 30, r: 20, t: 55, b: 80 };
+  const colW = (w - PAD.l - PAD.r) / 3;
+  const chartY0 = PAD.t;
+  const chartY1 = h - PAD.b;
+  const chartH = chartY1 - chartY0;
+
+  // Find max revenue for scale
+  const maxVal = Math.max(...cols.map(c => c.revenue));
+
+  // Stacked bars per column
+  cols.forEach((col, ci) => {
+    const colX = PAD.l + ci * colW;
+    const innerX = colX + colW * 0.15;
+    const barW2 = colW * 0.5;
+
+    // Column header
+    ctx.fillStyle = col.bg;
+    ctx.fillRect(colX, chartY0 - 30, colW, 26);
+    ctx.strokeStyle = col.color; ctx.lineWidth = 2;
+    ctx.strokeRect(colX, chartY0 - 30, colW, 26);
+    ctx.fillStyle = col.color;
+    ctx.font = 'bold 13px "Segoe UI", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(col.label, colX + colW/2, chartY0 - 13);
+
+    // Revenue bar (full height reference)
+    const revH = (col.revenue / maxVal) * (chartH * 0.7);
+    ctx.fillStyle = '#dcfce7';
+    ctx.fillRect(innerX, chartY1 - revH, barW2, revH);
+    ctx.fillStyle = '#16a34a';
+    ctx.fillRect(innerX, chartY1 - revH, barW2, revH);
+
+    // Cost stacks (overlay from bottom)
+    let stackH = 0;
+    const costItems = [
+      { val: col.opCost, color: '#d97706', label: 'Op' },
+      { val: col.loanPmt, color: '#ef4444', label: 'Loan' },
+      { val: col.maint, color: '#9ca3af', label: 'Maint' },
+      { val: col.customHire, color: '#3b82f6', label: 'Hire' },
+    ];
+
+    const costBarX = innerX + barW2 + 8;
+    costItems.forEach(item => {
+      if (item.val <= 0) return;
+      const itemH = (item.val / maxVal) * (chartH * 0.7);
+      ctx.fillStyle = item.color;
+      ctx.fillRect(costBarX, chartY1 - stackH - itemH, barW2, itemH);
+      stackH += itemH;
+    });
+
+    // Column labels
+    ctx.fillStyle = '#16a34a';
+    ctx.font = '10px "Segoe UI", sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('Revenue', innerX + barW2/2, chartY1 + 12);
+    ctx.fillStyle = '#374151';
+    ctx.fillText('Costs', costBarX + barW2/2, chartY1 + 12);
+
+    // Revenue value
+    ctx.fillStyle = '#14532d'; ctx.font = 'bold 11px "Segoe UI", sans-serif';
+    ctx.fillText(fmtDollar(col.revenue, true), innerX + barW2/2, chartY1 - revH - 5);
+
+    // Net cash flow indicator
+    const ncfColor = col.ncf >= 0 ? '#16a34a' : '#ef4444';
+    ctx.fillStyle = ncfColor;
+    ctx.font = 'bold 12px "Segoe UI", sans-serif'; ctx.textAlign = 'center';
+    const ncfTxt = 'Net CF: ' + (col.ncf >= 0 ? '+' : '') + fmtDollar(col.ncf, true);
+    ctx.fillText(ncfTxt, colX + colW/2, chartY1 + 35);
+
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px "Segoe UI", sans-serif';
+    ctx.fillText(col.acres + ' acres', colX + colW/2, chartY1 + 52);
+
+    // Divider
+    if (ci < 2) {
+      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(colX + colW, chartY0 - 35); ctx.lineTo(colX + colW, chartY1 + 60); ctx.stroke();
+    }
+  });
+
+  // Y-axis
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(PAD.l, chartY0); ctx.lineTo(PAD.l, chartY1); ctx.stroke();
+  ctx.fillStyle = '#6b7280'; ctx.font = '11px "Segoe UI", sans-serif';
+  for (let i = 0; i <= 4; i++) {
+    const val = maxVal * (1 - i/4);
+    const y2 = chartY0 + chartH * 0.7 * i/4;
+    ctx.textAlign = 'right';
+    ctx.fillText(fmtDollar(val, true), PAD.l - 4, y2 + 4);
+    ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 0.5;
+    ctx.beginPath(); ctx.moveTo(PAD.l, y2); ctx.lineTo(w - PAD.r, y2); ctx.stroke();
+  }
+
+  // Legend
+  const legItems = [
+    { color: '#16a34a', label: 'Revenue' },
+    { color: '#d97706', label: 'Operating' },
+    { color: '#ef4444', label: 'Loan Pmt' },
+    { color: '#9ca3af', label: 'Maintenance' },
+    { color: '#3b82f6', label: 'Custom Hire' },
+  ];
+  let legX2 = PAD.l + 10;
+  const legY2 = chartY1 + 65;
+  ctx.font = '11px "Segoe UI", sans-serif';
+  legItems.forEach(item => {
+    ctx.fillStyle = item.color;
+    ctx.fillRect(legX2, legY2 - 9, 10, 10);
+    ctx.fillStyle = '#374151'; ctx.textAlign = 'left';
+    ctx.fillText(item.label, legX2 + 13, legY2);
+    legX2 += 90;
+  });
+
+  // Savings callout box
+  const savX = w - 220, savY = PAD.t + 10;
+  const pmtSav = d.soloPmt - d.pmtPerMember;
+  roundRect(ctx, savX, savY, 200, 70, 8, '#fef9c3', '#d97706', 1.5);
+  ctx.fillStyle = '#78350f'; ctx.font = 'bold 12px "Segoe UI", sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('Co-op Loan Savings vs Solo', savX + 100, savY + 18);
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 20px "Segoe UI", sans-serif';
+  ctx.fillText((pmtSav >= 0 ? '+' : '') + fmtDollar(pmtSav, true) + '/yr', savX + 100, savY + 44);
+  ctx.fillStyle = '#78350f'; ctx.font = '11px "Segoe UI", sans-serif';
+  ctx.fillText('on loan payments alone', savX + 100, savY + 62);
+}
+
+// ══════════════════════════════════════════════════════
+// SLIDE 5: VERDICT
+// ══════════════════════════════════════════════════════
+function calcS5() {
+  // Use defaults from all slides
+  const cornPrice = 4.50, cornYield = 160, soloAcres = 600;
+  const opCostAcre = 300, maint = 8000;
+  const members = 5, acresPerMember = 120;
+  const rate = 7.5, term = 7;
+
+  // Solo
+  const soloLoan = 360000;
+  const soloPmt2 = pmt(soloLoan, rate, term);
+  const soloRevenue2 = cornPrice * cornYield * soloAcres;
+  const soloOpCosts2 = opCostAcre * soloAcres;
+  const soloNCF2 = soloRevenue2 - soloOpCosts2 - maint - soloPmt2;
+  const soloAnnualCost = soloOpCosts2 + maint + soloPmt2;
+
+  // Co-op
+  const coopLoan = 360000 / members;
+  const coopPmt = pmt(coopLoan, rate, term);
+  const coopRevenue2 = cornPrice * cornYield * acresPerMember;
+  const coopOpCosts2 = opCostAcre * acresPerMember;
+  const coopMaint2 = maint / members;
+  const coopNCF2 = coopRevenue2 - coopOpCosts2 - coopMaint2 - coopPmt;
+  const coopAnnualCost = coopOpCosts2 + coopMaint2 + coopPmt;
+
+  // Custom hire
+  // Custom hire farms the full 600 acres (apples-to-apples with Finance Alone).
+  // Two realism penalties bake in the hidden costs of not owning the iron:
+  //   1. Higher rate ($50/ac) — premium scheduling / take-it-or-leave-it terms
+  //   2. Yield loss (18 bu/ac) — late harvest while waiting for operator availability
+  const customAcres = soloAcres;
+  const customHireRate = 50;
+  const customYieldLoss = 18; // bu/acre lost to scheduling delays
+  const customEffectiveYield = cornYield - customYieldLoss;
+  const customHireCost2 = customHireRate * customAcres;
+  const customRevenue2 = cornPrice * customEffectiveYield * customAcres;
+  const customOpCosts2 = opCostAcre * customAcres;
+  const customNCF2 = customRevenue2 - customOpCosts2 - customHireCost2;
+  const customAnnualCost = customOpCosts2 + customHireCost2;
+
+  // Break-even prices
+  const soloBEP = (soloOpCosts2 + maint + soloPmt2) / (cornYield * soloAcres);
+  const coopBEP = (coopOpCosts2 + coopMaint2 + coopPmt) / (cornYield * acresPerMember);
+  const customBEP = (customOpCosts2 + customHireCost2) / (customEffectiveYield * customAcres);
+
+  return {
+    soloAnnualCost, soloNCF: soloNCF2,
+    coopAnnualCost, coopNCF: coopNCF2,
+    customAnnualCost, customNCF: customNCF2,
+    soloBEP, coopBEP, customBEP,
+    soloPmt: soloPmt2, coopPmt, coopLoan,
+    members, acresPerMember, cornPrice
+  };
+}
+
+function updateSlide5() {
+  const d = calcS5();
+
+  document.getElementById('s5-alone-cost').textContent = fmtDollar(d.soloAnnualCost);
+  const alNCF = document.getElementById('s5-alone-ncf');
+  alNCF.textContent = (d.soloNCF >= 0 ? '+' : '') + fmtDollar(d.soloNCF);
+  alNCF.style.color = d.soloNCF >= 0 ? '#16a34a' : '#ef4444';
+
+  document.getElementById('s5-coop-cost').textContent = fmtDollar(d.coopAnnualCost);
+  const coNCF = document.getElementById('s5-coop-ncf');
+  coNCF.textContent = (d.coopNCF >= 0 ? '+' : '') + fmtDollar(d.coopNCF);
+  coNCF.style.color = d.coopNCF >= 0 ? '#16a34a' : '#ef4444';
+
+  document.getElementById('s5-custom-cost').textContent = fmtDollar(d.customAnnualCost);
+  const cuNCF = document.getElementById('s5-custom-ncf');
+  cuNCF.textContent = (d.customNCF >= 0 ? '+' : '') + fmtDollar(d.customNCF);
+  cuNCF.style.color = d.customNCF >= 0 ? '#16a34a' : '#ef4444';
+
+  document.getElementById('s5-insight').textContent =
+    `At $${d.cornPrice.toFixed(2)}/bu corn: ` +
+    `Finance Alone nets ${(d.soloNCF >= 0 ? '+' : '') + fmtDollar(d.soloNCF, true)}/yr · ` +
+    `Co-op nets ${(d.coopNCF >= 0 ? '+' : '') + fmtDollar(d.coopNCF, true)}/member · ` +
+    `Custom Hire: you keep ${fmtDollar(d.customNCF, true)}/yr. ` +
+    `The math shows all three are viable — real question: risk tolerance, capital & relationships.`;
+}
+
+function drawSlide5() {
+  const { ctx, w, h } = setupCanvas('canvas-5');
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(0, 0, w, h);
+
+  const d = calcS5();
+
+  ctx.fillStyle = '#1a3a2a';
+  ctx.font = 'bold 17px "Segoe UI", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Decision Matrix — All Options at a Glance', w/2, 30);
+
+  // Decision matrix table
+  const criteria = [
+    { name: 'Annual Cost', vals: [d.soloAnnualCost, d.coopAnnualCost, d.customAnnualCost],
+      fmt: v => fmtDollar(v), best: 'min' },
+    { name: 'Break-Even Price', vals: [d.soloBEP, d.coopBEP, d.customBEP],
+      fmt: v => '$' + v.toFixed(2) + '/bu', best: 'min' },
+    { name: 'Capital Needed', vals: [360000, 360000/d.members, 0],
+      fmt: v => fmtDollar(v, true), best: 'min' },
+    { name: 'Net Cash Flow', vals: [d.soloNCF, d.coopNCF, d.customNCF],
+      fmt: v => (v >= 0 ? '+' : '') + fmtDollar(v, true), best: 'max' },
+    { name: 'Risk Level', vals: ['High', 'Medium', 'Low'],
+      fmt: v => v, best: 'min_str', order: ['Low','Medium','High'] },
+    { name: 'Flexibility', vals: ['Low', 'Medium', 'High'],
+      fmt: v => v, best: 'max_str', order: ['Low','Medium','High'] },
+    { name: 'Neighbor Relations', vals: ['Neutral', 'Builds Community', 'Builds Relations'],
+      fmt: v => v, best: 'special' },
+  ];
+
+  const cols2 = ['Finance Alone', `Co-op (${d.members})`, 'Custom Hire'];
+  const colColors = ['#16a34a', '#d97706', '#9ca3af'];
+
+  const tableX = 30;
+  const tableW = w - 60;
+  const labelColW = 150;
+  const dataColW = (tableW - labelColW) / 3;
+  const rowH = 36;
+  const headerH = 40;
+  const tableY = 50;
+
+  // Header
+  ctx.fillStyle = '#1a3a2a';
+  ctx.fillRect(tableX, tableY, tableW, headerH);
+  ctx.fillStyle = '#d1fae5';
+  ctx.font = 'bold 13px "Segoe UI", sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('Criteria', tableX + 10, tableY + 26);
+  cols2.forEach((col, ci) => {
+    const cx3 = tableX + labelColW + ci * dataColW;
+    ctx.fillStyle = colColors[ci];
+    ctx.fillRect(cx3, tableY, dataColW, headerH);
+    ctx.fillStyle = 'white';
+    ctx.font = 'bold 13px "Segoe UI", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(col, cx3 + dataColW/2, tableY + 26);
+    // Divider
+    if (ci > 0) { ctx.strokeStyle = '#1a3a2a'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(cx3, tableY); ctx.lineTo(cx3, tableY + headerH); ctx.stroke(); }
+  });
+
+  criteria.forEach((row, ri) => {
+    const ry = tableY + headerH + ri * rowH;
+    // Zebra
+    ctx.fillStyle = ri % 2 === 0 ? '#ffffff' : '#f9fafb';
+    ctx.fillRect(tableX, ry, tableW, rowH);
+
+    // Row label
+    ctx.fillStyle = '#374151';
+    ctx.font = '13px "Segoe UI", sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(row.name, tableX + 10, ry + 23);
+
+    // Determine rank (green=best, amber=mid, red=worst)
+    let ranks = [1, 1, 1]; // default all same
+    if (row.best === 'min') {
+      const sortedIdx = [0,1,2].sort((a,b) => row.vals[a] - row.vals[b]);
+      ranks[sortedIdx[0]] = 0; ranks[sortedIdx[1]] = 1; ranks[sortedIdx[2]] = 2;
+    } else if (row.best === 'max') {
+      const sortedIdx = [0,1,2].sort((a,b) => row.vals[b] - row.vals[a]);
+      ranks[sortedIdx[0]] = 0; ranks[sortedIdx[1]] = 1; ranks[sortedIdx[2]] = 2;
+    } else if (row.best === 'min_str') {
+      [0,1,2].forEach(i => { ranks[i] = row.order.indexOf(row.vals[i]); });
+    } else if (row.best === 'max_str') {
+      [0,1,2].forEach(i => { ranks[i] = 2 - row.order.indexOf(row.vals[i]); });
+    } else {
+      ranks = [1, 0, 0]; // special
+    }
+    const cellBg = ['#dcfce7', '#fef9c3', '#fee2e2'];
+    const cellFg = ['#14532d', '#78350f', '#7f1d1d'];
+
+    row.vals.forEach((val, ci) => {
+      const cx4 = tableX + labelColW + ci * dataColW;
+      ctx.fillStyle = cellBg[ranks[ci]];
+      ctx.fillRect(cx4, ry, dataColW, rowH);
+      ctx.fillStyle = cellFg[ranks[ci]];
+      ctx.font = 'bold 12px "Segoe UI", sans-serif';
+      ctx.textAlign = 'center';
+      const displayVal = row.fmt(val);
+      ctx.fillText(displayVal, cx4 + dataColW/2, ry + 23);
+    });
+
+    // Row bottom border
+    ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 0.8;
+    ctx.beginPath(); ctx.moveTo(tableX, ry + rowH); ctx.lineTo(tableX + tableW, ry + rowH); ctx.stroke();
+    // Col dividers
+    for (let ci = 1; ci <= 3; ci++) {
+      const cx5 = tableX + labelColW + (ci-1) * dataColW;
+      ctx.beginPath(); ctx.moveTo(cx5, ry); ctx.lineTo(cx5, ry + rowH); ctx.stroke();
+    }
+  });
+
+  // Table border
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5;
+  const tableBottom = tableY + headerH + criteria.length * rowH;
+  ctx.strokeRect(tableX, tableY, tableW, headerH + criteria.length * rowH);
+
+  // Summary box below
+  const sumY = tableBottom + 18;
+  const sumH = h - sumY - 10;
+  roundRect(ctx, tableX, sumY, tableW, sumH, 8, '#1a3a2a', '#4ade80', 1.5);
+
+  ctx.fillStyle = '#4ade80';
+  ctx.font = 'bold 14px "Segoe UI", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('What the Numbers Say', w/2, sumY + 22);
+
+  ctx.fillStyle = '#d1fae5';
+  ctx.font = '13px "Segoe UI", sans-serif';
+  const line1 = `At $${d.cornPrice.toFixed(2)}/bu corn:`;
+  const line2 = `Finance Alone: ${(d.soloNCF >= 0 ? '+' : '') + fmtDollar(d.soloNCF, true)}/yr net   ·   Co-op (${d.members} members): ${(d.coopNCF >= 0 ? '+' : '') + fmtDollar(d.coopNCF, true)}/member/yr   ·   Custom Hire: ${(d.customNCF >= 0 ? '+' : '') + fmtDollar(d.customNCF, true)}/yr`;
+  const line3 = `Break-even: Solo=$${d.soloBEP.toFixed(2)}  Co-op=$${d.coopBEP.toFixed(2)}  Custom=$${d.customBEP.toFixed(2)} per bu`;
+  ctx.fillText(line1, w/2, sumY + 42);
+  ctx.fillText(line2, w/2, sumY + 60);
+  ctx.fillText(line3, w/2, sumY + 78);
+}
+
+// ══════════════════════════════════════════════════════
+// FEATURE 1: GUESS THE PAYMENT (Slide 2)
+// ══════════════════════════════════════════════════════
+let guessRevealed = false;
+
+function revealPayment() {
+  const guessVal = +document.getElementById('guess-input').value;
+  if (!guessVal || guessVal <= 0) {
+    document.getElementById('guess-input').style.borderColor = '#ef4444';
+    return;
+  }
+  document.getElementById('guess-input').style.borderColor = '#93c5fd';
+
+  const loan = +document.getElementById('s2-loan').value;
+  const rate = +document.getElementById('s2-rate').value;
+  const term = +document.getElementById('s2-term').value;
+  const actual = pmt(loan, rate, term);
+
+  const diff = Math.abs(guessVal - actual);
+  const pctOff = (diff / actual) * 100;
+
+  const resultEl = document.getElementById('guess-result');
+  resultEl.classList.add('show');
+  resultEl.classList.remove('hot', 'warm', 'cold');
+
+  const actualStr = fmtDollar(actual);
+  if (pctOff <= 10) {
+    resultEl.classList.add('hot');
+    resultEl.innerHTML = `Nailed it! The actual payment is <strong>${actualStr}/yr</strong>. You were only ${pctOff.toFixed(0)}% off!`;
+  } else if (pctOff <= 25) {
+    resultEl.classList.add('warm');
+    resultEl.innerHTML = `Close! The actual payment is <strong>${actualStr}/yr</strong>. You were ${pctOff.toFixed(0)}% off.`;
+  } else {
+    resultEl.classList.add('cold');
+    const dir = guessVal > actual ? 'high' : 'low';
+    resultEl.innerHTML = `Way ${dir}! The actual payment is <strong>${actualStr}/yr</strong>. You were ${pctOff.toFixed(0)}% off. That's the power of compound interest!`;
+  }
+
+  // Show the hidden metrics
+  guessRevealed = true;
+  document.querySelectorAll('.s2-hideable').forEach(el => el.classList.remove('s2-hidden'));
+  document.getElementById('guess-btn').disabled = true;
+  document.getElementById('guess-btn').textContent = 'Revealed';
+}
+
+// ══════════════════════════════════════════════════════
+// FEATURE 2: SCENARIO PRESETS (Slide 3)
+// ══════════════════════════════════════════════════════
+const scenarios = {
+  drought: { price: 3.5, yield: 110, acres: 600, opcost: 350, maint: 12000, label: 'Drought Year: low yield, high costs' },
+  boom:    { price: 7.0, yield: 200, acres: 600, opcost: 300, maint: 8000, label: 'Boom Year: $7 corn, bumper crop' },
+  crash:   { price: 3.0, yield: 160, acres: 600, opcost: 330, maint: 10000, label: '2008 Crisis: cheap corn, rising inputs' },
+  reset:   { price: 4.5, yield: 160, acres: 600, opcost: 300, maint: 8000, label: 'Default scenario' },
+};
+
+function loadScenario(id) {
+  const s = scenarios[id];
+  document.getElementById('s3-price').value = s.price;
+  document.getElementById('s3-yield').value = s.yield;
+  document.getElementById('s3-acres').value = s.acres;
+  document.getElementById('s3-opcost').value = s.opcost;
+  document.getElementById('s3-maint').value = s.maint;
+
+  // Highlight active button
+  document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.querySelector(`.scenario-btn[data-id="${id}"]`);
+  if (btn) btn.classList.add('active');
+
+  updateSlide3();
+}
+
+// ══════════════════════════════════════════════════════
+// FEATURE 3: SURVIVAL CHALLENGE (Slide 3)
+// ══════════════════════════════════════════════════════
+let challengeActive = false;
+let challengeInterval = null;
+let challengeTimeLeft = 0;
+const CHALLENGE_SECONDS = 30;
+
+function startSurvivalChallenge() {
+  // Set corn to $3.00 and reset other sliders
+  document.getElementById('s3-price').value = 3.0;
+  document.getElementById('s3-yield').value = 160;
+  document.getElementById('s3-acres').value = 600;
+  document.getElementById('s3-opcost').value = 300;
+  document.getElementById('s3-maint').value = 8000;
+  updateSlide3();
+
+  // Clear scenario highlights
+  document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+
+  // Show challenge box
+  const box = document.getElementById('challenge-box');
+  box.classList.add('active');
+  document.getElementById('challenge-start').style.display = 'none';
+  document.getElementById('challenge-status').textContent = '';
+  document.getElementById('challenge-status').className = 'challenge-status';
+
+  // Lock corn price slider
+  document.getElementById('s3-price').disabled = true;
+
+  challengeActive = true;
+  challengeTimeLeft = CHALLENGE_SECONDS;
+  document.getElementById('challenge-fill').style.width = '100%';
+
+  challengeInterval = setInterval(() => {
+    challengeTimeLeft--;
+    const pct = (challengeTimeLeft / CHALLENGE_SECONDS) * 100;
+    document.getElementById('challenge-fill').style.width = pct + '%';
+
+    // Check win condition
+    const d = calcS3();
+    if (d.ncf > 0) {
+      endChallenge(true);
+      return;
+    }
+
+    if (challengeTimeLeft <= 0) {
+      endChallenge(false);
+    }
+  }, 1000);
+}
+
+function endChallenge(won) {
+  clearInterval(challengeInterval);
+  challengeActive = false;
+  document.getElementById('s3-price').disabled = false;
+
+  const statusEl = document.getElementById('challenge-status');
+  if (won) {
+    statusEl.textContent = 'YOU SURVIVED! The farm lives another day!';
+    statusEl.className = 'challenge-status win';
+  } else {
+    statusEl.textContent = 'TIME\'S UP! The bank is calling...';
+    statusEl.className = 'challenge-status lose';
+  }
+
+  // Show restart after 3 seconds
+  setTimeout(() => {
+    document.getElementById('challenge-start').style.display = '';
+    document.getElementById('challenge-start').textContent = 'TRY AGAIN';
+    document.getElementById('challenge-box').classList.remove('active');
+  }, 3000);
+}
+
+// ══════════════════════════════════════════════════════
+// FEATURE 4: POP QUIZ SYSTEM
+// ══════════════════════════════════════════════════════
+let quizScore = 0;
+let quizTotal = 0;
+
+const quizzes = {
+  // Shown when leaving slide 2 -> 3
+  2: {
+    question: 'In a 7-year, $360K loan at 7.5%, roughly what percentage of your Year 1 payment goes to interest?',
+    options: ['About 20%', 'About 40%', 'About 60%', 'About 80%'],
+    correct: 1,
+    explain: 'At 7.5% on $360K, Year 1 interest is ~$27,000 out of a ~$69,000 payment = about 39%. The bank gets paid first!'
+  },
+  // Shown when leaving slide 3 -> 4
+  3: {
+    question: 'If corn drops from $4.50 to $3.00/bu, what happens to your net cash flow on 600 acres?',
+    options: ['It drops by about $30K', 'It drops by about $90K', 'It drops by about $144K', 'It stays roughly the same'],
+    correct: 2,
+    explain: 'Revenue change = ($4.50 - $3.00) x 160 bu x 600 acres = $144,000 less revenue. Costs stay the same, so NCF drops by $144K. Commodity price risk is real!'
+  },
+  // Shown when leaving slide 4 -> 5
+  4: {
+    question: 'In a 5-member co-op, how much less is each member\'s annual loan payment compared to buying solo?',
+    options: ['About $15K less', 'About $35K less', 'About $55K less', 'About $69K less'],
+    correct: 2,
+    explain: 'Solo payment is ~$69K/yr. Co-op (5 members) splits the $360K loan, so each pays ~$13.8K/yr. That\'s ~$55K less per member per year!'
+  }
+};
+
+function showQuiz(slideNum) {
+  const q = quizzes[slideNum];
+  if (!q) return;
+
+  document.getElementById('quiz-question').textContent = q.question;
+  document.getElementById('quiz-explain').textContent = q.explain;
+  document.getElementById('quiz-explain').classList.remove('show');
+  document.getElementById('quiz-close').classList.remove('show');
+  document.getElementById('quiz-badge').textContent = `Quick Check — Slide ${slideNum}`;
+  document.getElementById('quiz-score').textContent = quizTotal > 0 ? `Score: ${quizScore}/${quizTotal}` : '';
+
+  const optContainer = document.getElementById('quiz-options');
+  optContainer.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt;
+    btn.onclick = () => answerQuiz(i, q.correct, optContainer);
+    optContainer.appendChild(btn);
+  });
+
+  document.getElementById('quiz-overlay').classList.add('show');
+}
+
+function answerQuiz(chosen, correct, container) {
+  quizTotal++;
+  const btns = container.querySelectorAll('.quiz-opt');
+  btns.forEach((btn, i) => {
+    btn.classList.add('disabled');
+    if (i === correct) btn.classList.add('correct');
+    if (i === chosen && i !== correct) btn.classList.add('wrong');
+  });
+
+  if (chosen === correct) quizScore++;
+
+  document.getElementById('quiz-explain').classList.add('show');
+  document.getElementById('quiz-close').classList.add('show');
+  document.getElementById('quiz-score').textContent = `Score: ${quizScore}/${quizTotal}`;
+}
+
+function closeQuiz() {
+  document.getElementById('quiz-overlay').classList.remove('show');
+}
+
+// ══════════════════════════════════════════════════════
+// FEATURE 5: DISCUSSION TIMER
+// ══════════════════════════════════════════════════════
+let discussInterval = null;
+let discussTimeLeft = 0;
+
+function toggleDiscussTimer() {
+  const btn = document.getElementById('discuss-btn');
+
+  if (discussInterval) {
+    // Cancel
+    clearInterval(discussInterval);
+    discussInterval = null;
+    btn.classList.remove('running');
+    btn.textContent = 'Discuss 60s';
+    return;
+  }
+
+  discussTimeLeft = 60;
+  btn.classList.add('running');
+  btn.textContent = '60s';
+
+  discussInterval = setInterval(() => {
+    discussTimeLeft--;
+    btn.textContent = discussTimeLeft + 's';
+
+    if (discussTimeLeft <= 0) {
+      clearInterval(discussInterval);
+      discussInterval = null;
+      btn.classList.remove('running');
+      btn.textContent = 'Discuss 60s';
+      // Flash to signal time's up
+      btn.style.background = '#ef4444';
+      setTimeout(() => { btn.style.background = ''; }, 2000);
+    }
+  }, 1000);
+}
+
+// ══════════════════════════════════════════════════════
+// RESIZE OBSERVER
+// ══════════════════════════════════════════════════════
+const canvasIds = ['canvas-1','canvas-2','canvas-3','canvas-4','canvas-5'];
+canvasIds.forEach(id => {
+  const canvas = document.getElementById(id);
+  const container = canvas.parentElement;
+  const ro = new ResizeObserver(() => { renderCurrentSlide(); });
+  ro.observe(container);
+});
+
+// ══════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════
+function init() {
+  updateNav();
+  updateTimer();
+  updateVoteBars();
+  updateFinalVoteBars();
+  drawSlide1();
+  updateSlide2();
+  updateSlide3();
+  updateSlide4();
+  updateSlide5();
+}
+
+window.addEventListener('load', init);
+</script>
+</body>
+</html>
