@@ -4,8 +4,6 @@ title: Research
 permalink: /research/
 ---
 
-# Research
-
 *Last edited May 2026.*
 
 I am an applied microeconomist working on the productivity, viability, and spatial organization of small and beginning farms in the United States. My methods combine restricted-access producer-level microdata with high-resolution geospatial data, causal inference, and machine learning. I enjoy interdisciplinary collaboration and have worked closely with agronomists, sociologists, and remote-sensing scientists in addition to economists.
