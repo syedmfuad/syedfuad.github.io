@@ -5,12 +5,9 @@ layout: default
 src="/images/photo.jpg" alt="" width="209" height="209">
 
 
-
 I am a postdoctoral fellow in the Department of Agricultural Economics and Rural Sociology at Auburn University.
 
 My research is in agricultural, rural, and spatial economics, with a focus on the structural conditions that determine whether small and beginning farms can enter farming, sustain operations, and grow over time. I combine high-resolution geospatial data with restricted-access Census of Agriculture and Agricultural Resource Management Survey (ARMS) microdata to study land access, productivity, technology adoption, and the regional and market environments that shape farm-level outcomes. A central question across my work is what policy and market conditions allow new and small operations to remain viable in the parts of the country where agricultural consolidation is most pronounced.
-
-**Funded research.** My current work is supported in part by awards from USDA NIFA (AFRI) and the Auburn University Water Resources Center (AUWRC), which together fund a national pilot on beginning-farmer entry and survival, the spatial spillovers from new entrants, and the role of water access and precision technology in shaping farm productivity. *[Insert grant titles and award numbers if you want them named explicitly.]*
 
 **Restricted data access.** I hold Special Sworn Status with the U.S. Department of Agriculture, which gives me direct access to the full Census of Agriculture and ARMS microdata. Much of the existing evidence on small-farm and beginning-farmer dynamics in the United States is constrained by what public-use tabulations can support; the restricted microdata removes that constraint and is the foundation of several of my current papers.
 
@@ -19,6 +16,7 @@ My published work appears in *[Journal of Agricultural and Applied Economics](ht
 A full list of publications and current projects, including working papers, can be found [here](/research/). A copy of my CV can be found [here](/FuadSyed_CV.pdf). *[Replace with the current CV filename once uploaded.]* I can be reached at <smf0100@auburn.edu>.
 
 I have [teaching](/teaching/) experience in statistics and econometrics, and have served as a teaching assistant for Ph.D. quantitative methodology in natural resource economics and undergraduate finance.
+
 
 
 
