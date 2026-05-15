@@ -4,12 +4,7 @@ layout: default
 <img style="width=209px;height=209px;float:left;padding:15px;"
 src="/images/photo.jpg" alt="" width="209" height="209">
 
----
-title: Syed Fuad
-description: Postdoctoral fellow at Auburn University working on agricultural, rural, and spatial economics, with a focus on small and beginning farms.
----
 
-# Syed Fuad
 
 I am a postdoctoral fellow in the Department of Agricultural Economics and Rural Sociology at Auburn University.
 
