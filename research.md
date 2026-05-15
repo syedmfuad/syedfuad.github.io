@@ -33,8 +33,6 @@ My current work is organized around three overlapping themes.
 
 "The Impact of Conflict on Food Security: Evidence from Household Data in Ethiopia and Malawi" (with James Muriuki and Darren Hudson). *Agriculture & Food Security,* 12, 41. DOI: [10.1186/s40066-023-00447-z](https://doi.org/10.1186/s40066-023-00447-z)
 
-*[If anything has been accepted or published since August 2024, add it at the top of this list.]*
-
 ## Papers under review
 
 "Beginning Farmers and Farm Productivity in the U.S.: Evidence from the 2022 Census of Agriculture" (with Valentina Hartarska and Denis Nadolnyak). *Journal of Agricultural and Resource Economics.* Revise and resubmit.
