@@ -13,7 +13,7 @@ My research is in agricultural, rural, and spatial economics, with a focus on th
 
 My published work appears in *[Journal of Agricultural and Applied Economics](https://www.cambridge.org/core/journals/journal-of-agricultural-and-applied-economics/article/economic-opportunities-of-bioelectricity-from-cotton-gin-waste/02BA814A3A7FAB86FB9E364DAE653489)*, *[Food Policy](https://www.sciencedirect.com/science/article/pii/S0306919223000155?via%3Dihub)*, *[Agriculture & Food Security](https://agricultureandfoodsecurity.biomedcentral.com/articles/10.1186/s40066-023-00447-z)*, *[Agrekon](https://www.tandfonline.com/doi/full/10.1080/03031853.2024.2368128)*, and *[Journal of Real Estate Research](https://www.tandfonline.com/doi/abs/10.1080/08965803.2024.2325244)*. I also have papers in the review pipeline that examine spatial spillovers from new farmer entry, productivity differences across small and beginning operations, the causal impact of precision agriculture adoption, racial disparities in property taxation, and methods for delineating discontiguous housing submarkets.
 
-A full list of publications and current projects, including working papers, can be found [here](/research/). A copy of my CV can be found [here](/FuadSyed_CV.pdf). *[Replace with the current CV filename once uploaded.]* I can be reached at <smf0100@auburn.edu>.
+A full list of publications and current projects, including working papers, can be found [here](/research/). A copy of my CV can be found [here](/FuadSyed_CV.pdf). I can be reached at <smf0100@auburn.edu>.
 
 I have [teaching](/teaching/) experience in statistics and econometrics, and have served as a teaching assistant for Ph.D. quantitative methodology in natural resource economics and undergraduate finance.
 
