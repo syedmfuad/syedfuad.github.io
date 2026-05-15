@@ -49,7 +49,7 @@ My current work is organized around three overlapping themes.
 
 "Women-Managed Farms and Agricultural Productivity: Evidence from the U.S. Census of Agriculture" (with Valentina Hartarska and Denis Nadolnyak). *Food Policy.* Under review.
 
-"Property Taxation Regressivity in Atlanta: The Difficulty in Reversing a Legacy of Assessment Gap" (with Michael C. Farmer). *Journal of Economic Geography.* Under review. ([Paper](/Paper_Bias%20in%20Atlanta%20property%20tax.pdf), [Presentation](/PPT_Bias%20in%20Atlanta%20property%20tax.pdf))
+"Property Taxation Regressivity in Atlanta: The Difficulty in Reversing a Legacy of Assessment Gap" (with Michael C. Farmer). *Journal of Economic Geography.* Under review. 
 
 ## Past research
 
