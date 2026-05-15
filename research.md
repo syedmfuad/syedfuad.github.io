@@ -1,6 +1,7 @@
 ---
+layout: page
 title: Research
-description: Research on small and beginning farm viability, agricultural productivity, and spatial economics.
+permalink: /research/
 ---
 
 # Research
